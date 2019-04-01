@@ -288,10 +288,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 689274187}
+  - component: {fileID: 689274190}
+  - component: {fileID: 689274191}
   - component: {fileID: 689274189}
   - component: {fileID: 689274188}
-  - component: {fileID: 689274191}
-  - component: {fileID: 689274190}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -529,6 +529,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: a710f4126e1078c469706e0cd2e6efac, type: 2}
+    - target: {fileID: 9500000, guid: 2db4df850e6a2a84a9e3d28814a577dd, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 2db4df850e6a2a84a9e3d28814a577dd, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 2db4df850e6a2a84a9e3d28814a577dd, type: 3}
     - target: {fileID: 13700000, guid: 2db4df850e6a2a84a9e3d28814a577dd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
