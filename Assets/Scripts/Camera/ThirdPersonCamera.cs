@@ -12,12 +12,12 @@ public class ThirdPersonCamera : MonoBehaviour
     //Uncomment line 62 Debug.Log(...) if needed
 
     public Transform FocusOn;
-    public float Distance;
+    public float Distance = 5;
     public GameObject LookingAtGameObject { get; private set; } //to allow player to interact with object that the camera is looking at (pick up object)
     public Vector3 LookingAtPoint { get; private set; } //allow player to interact with object that the camera is looking at (shooting)
     public float LookingAtDistance { get; private set; } //allow player to interact with object that the camera is looking at (calculate distance)
     public GameObject LookingAtObject { get; private set; }
-    public float MouseSensitivity;
+    public float MouseSensitivity = 1;
 
     private float _CurrentX = 0.0f;
     private float _CurrentY = 0.0f;
