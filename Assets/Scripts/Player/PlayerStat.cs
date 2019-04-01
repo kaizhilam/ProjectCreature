@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
-    public float HP = 100f;
+    public static float HP = 100f;
     //public ProjectileScriptableObject ProjectileAbility;
-    public PlayerInventory<string> Inventory = new PlayerInventory<string>(); //change int to whatever type item is 
+    public static PlayerInventory<string> Inventory = new PlayerInventory<string>(); //change int to whatever type item is 
 }
