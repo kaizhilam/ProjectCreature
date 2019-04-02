@@ -8,10 +8,14 @@ public class PlayerController : MonoBehaviour
     public float MovementSpeed = 10f;
 
     private float _Jump;
-    float _Horizontal;
-    float _Vertical;
+    private float _Horizontal;
+    private float _Vertical;
+    private float _Fire;
     private bool _CanJump = false;
     private bool _CanWalk = false;
+    private bool _CanFire = true;
+    private float _FireRechargeTime;
+    private float _FireRechargeTimer = 0f;
     private Transform _CameraFace;
     private Rigidbody _Rb;
     private Animator _Animator;
@@ -26,13 +30,15 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
+        _FireRechargeTime = 3f; //set fire recharge time here
         GetInputs();
     }
 
     public void FixedUpdate()
     {
         Jump();
-        Walk();
+        Movement();
+        Fire();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -56,21 +62,55 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Walk()
+    private void Movement()
     {
-        if (_CanWalk && (_Vertical != 0 || _Horizontal != 0/* || fire == 1*/)) //update rotation of the character when WASD is pressed
+        if (_CanWalk && (_Vertical != 0 || _Horizontal != 0)) //update rotation of the character when WASD is pressed
         {
-            _Animator.SetBool("PlayerIdle", false);
-            _Animator.SetBool("PlayerWalk", true);
+            Vector3 movement;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                _Animator.SetBool("PlayerIdle", false);
+                _Animator.SetBool("PlayerWalk", false);
+                _Animator.SetBool("PlayerRun", true);
+                Debug.Log("Running");
+                movement = new Vector3(_Horizontal * MovementSpeed * 1.2f * Time.deltaTime, 0, _Vertical * MovementSpeed * 1.2f * Time.deltaTime);
+            }
+            else
+            {
+                _Animator.SetBool("PlayerIdle", false);
+                _Animator.SetBool("PlayerWalk", true);
+                _Animator.SetBool("PlayerRun", false);
+                Debug.Log("Walking");
+                movement = new Vector3(_Horizontal * MovementSpeed * Time.deltaTime, 0, _Vertical * MovementSpeed * Time.deltaTime);
+            }
             transform.eulerAngles = new Vector3(0, _CameraFace.transform.eulerAngles.y, 0);
-            Vector3 movement = new Vector3(_Horizontal * MovementSpeed * Time.deltaTime, 0, _Vertical * MovementSpeed * Time.deltaTime);
             _Rb.transform.Translate(movement); //move the character
         }
         else
         {
             _Animator.SetBool("PlayerIdle", true);
             _Animator.SetBool("PlayerWalk", false);
+            _Animator.SetBool("PlayerRun", false);
         }
+    }
+
+    private void Fire()
+    {
+        if (_Fire == 1)
+        {
+            transform.eulerAngles = new Vector3(0, _CameraFace.transform.eulerAngles.y, 0);
+        }
+        if (_FireRechargeTimer > _FireRechargeTime)
+        {
+            _CanFire = true;
+        }
+        if (_Fire == 1 && _CanFire)
+        {
+            //Debug.Log("Name: " + ThirdPersonCamera.LookingAtGameObject.name + " Point: " + ThirdPersonCamera.LookingAtPoint + " Distance: " + ThirdPersonCamera.LookingAtDistance);
+            _FireRechargeTimer = 0f;
+            _CanFire = false;
+        }
+        _FireRechargeTimer += Time.deltaTime;
     }
 
     private void GetInputs()
@@ -78,6 +118,7 @@ public class PlayerController : MonoBehaviour
         _Jump = Input.GetAxisRaw("Jump"); //get space keys
         _Horizontal = Input.GetAxisRaw("Horizontal"); //get A,W keys
         _Vertical = Input.GetAxisRaw("Vertical"); //get W, S keys
+        _Fire = Input.GetAxisRaw("Fire1");
     }
 }
 
