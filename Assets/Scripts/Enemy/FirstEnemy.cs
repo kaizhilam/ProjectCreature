@@ -11,7 +11,6 @@ public class FirstEnemy : Enemy
 
     public void Start()
     {
-        enemyStats = GetComponent<EnemyScriptable>();
         Health = enemyStats.health;
         MovementSpeed1 = enemyStats.MovementSpeed;
         EnemyName1 = enemyStats.EnemyName;
