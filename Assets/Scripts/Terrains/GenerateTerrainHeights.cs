@@ -6,7 +6,7 @@ using UnityEngine;
 public class GenerateTerrainHeights : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int depth = 100;
+    public int depth;
     public int width = 256;
     public int height = 256;
     public float scale = 1f;
@@ -49,43 +49,170 @@ public class GenerateTerrainHeights : MonoBehaviour
                     + (1.0f / 15.0f) * Mathf.PerlinNoise(xCoord4 + 3000, yCoord4 + 3000);
             }
         }
-        //heights = AddRiver(heights);
+        heights = AddRiver(heights);
         return heights;
     }
     public float[,] AddRiver(float[,] heights)
     {
-        RiverPoint[] startEnd = GetRiverStartEnd(heights);
-        List<RiverPoint> path = getRiverPath(startEnd);
+        Debug.Log("Addriver()");
+        RiverPoint[,] objPoints = new RiverPoint[heights.GetLength(0), heights.GetLength(1)];
+        for (int i = 0; i < heights.GetLength(0); i++)
+        {
+            for (int j = 0; j < heights.GetLength(1); j++)
+            {
+                objPoints[i, j] = new RiverPoint(heights[i, j], i, j);
+            }
+        }
+        RiverPoint[] startEnd = GetRiverStartEnd(objPoints);
+        List<RiverPoint> path = getRiverPath(startEnd, heights);
         Debug.Log("startX: " + startEnd[0].x + " startY: " + startEnd[0].y + " endX: " + startEnd[1].x + " endY: " + startEnd[1].y + " heightStart: " + startEnd[0].height + " heightEnd: " + startEnd[1].height);
-        heights[startEnd[0].x, startEnd[0].y] = 0;
-        heights[startEnd[1].x, startEnd[1].y] = 0;
+        foreach (RiverPoint r in path)
+        {
+            Debug.Log(r.x + " " + r.y); 
+            heights[r.x, r.y] = 0;
+
+        }
         return heights;
     }
 
-    private List<RiverPoint> getRiverPath(RiverPoint[] startEnd)
+    private List<RiverPoint> getRiverPath(RiverPoint[] startEnd, float[,] heights)
     {
-        //big wip
-        //need to use a* pathfinding algorithm to generate path using heights as heuristics as opposed to distance to goal.
+        //need to use a* pathfinding algorithm to generate path using heights as heuristics as well as distance to goal.
         List<RiverPoint> openSet = new List<RiverPoint>();
+        List<RiverPoint> closedSet = new List<RiverPoint>();
+        List<RiverPoint> path = new List<RiverPoint>();
+        
+
         openSet.Add(startEnd[0]);
-        throw new NotImplementedException();
+        int winner = 0;
+        startEnd[0].f = Heuristic_cost_estimate(startEnd[0], startEnd[1]);
+        //while still points to evaluate
+        while (openSet.Count > 0)
+        {
+            Debug.Log(openSet.Count);
+            // set current to openSet riverpoint with lowest f value
+            for (int i = 0; i < openSet.Count; i++)
+            {
+                if (openSet[i].f < openSet[winner].f)
+                {
+                    winner = i;
+                }
+            }
+            RiverPoint current = openSet[winner];
+            //if river finished, construct the path
+            if (current == startEnd[1] || openSet.Count>7)
+            {
+                Debug.Log("Path COmpleted!!!!");
+                path = reconstruct_Path(current);
+                //openSet.Clear();
+            }
+            //set current as evaluated and put in closedSet
+            openSet.Remove(current);
+            closedSet.Add(current);
+
+            //add all neighbours to the openSet
+            List<RiverPoint> neighbours = getNeighbours(current, heights);
+            foreach (RiverPoint r in neighbours)
+            {
+                //if not in closed set, add to closed set
+                //Debug.Log("neightbor addewd");
+
+                if (closedSet.IndexOf(r) < 0)
+                {
+                    
+                    //this 1 needs changing if moving diagonally
+                    float tempG = current.g + 1;
+
+                    //if r not in open set, add to open set
+                    if (openSet.IndexOf(r) < 0)
+                    {
+                        Debug.Log("not in openset");
+                        openSet.Add(r);
+                    }
+                    else
+                    {
+                        Debug.Log("already in openset??");
+                    }
+                    //if better path is found, update camefrom, g and find new f
+                    if (tempG < r.g)
+                    {
+                        r.cameFrom = current;
+                        r.g = tempG;
+                        r.f = r.g + Heuristic_cost_estimate(r, startEnd[1]);
+                    }
+                    
+                }
+
+            
+            }
+            
+        }
+        return path;
     }
 
-    public RiverPoint[] GetRiverStartEnd(float[,] heights)
+    private List<RiverPoint> reconstruct_Path(RiverPoint current)
+    {
+        List<RiverPoint> path = new List<RiverPoint>();
+        while (current.cameFrom != null)
+        {
+            current = current.cameFrom;
+            path.Add(current);
+        }
+        return path;
+    }
+
+    private List<RiverPoint> getNeighbours(RiverPoint current, float[,] heights)
+    {
+        List<RiverPoint> neighbours = new List<RiverPoint>();
+        if (!(current.x - 1 < 0))
+        {
+            neighbours.Add(new RiverPoint(heights[current.x - 1, current.y], current.x - 1, current.y));
+        }
+        if (!(current.x + 1 >= heights.GetLength(0)))
+        {
+            neighbours.Add(new RiverPoint(heights[current.x + 1, current.y], current.x + 1, current.y));
+        }
+        if (!(current.y - 1 < 0))
+        {
+            neighbours.Add(new RiverPoint(heights[current.x, current.y - 1], current.x, current.y - 1));
+        }
+        if (!(current.y + 1 >= heights.GetLength(1)))
+        {
+            neighbours.Add(new RiverPoint(heights[current.x, current.y + 1], current.x, current.y + 1));
+        }
+        return neighbours;
+    }
+
+    private float Heuristic_cost_estimate(RiverPoint r, RiverPoint end)
+    {
+        //cost will be euclidean distance + height difference from previous
+        //if height greater than past height, add penalty
+        double x = end.x - r.x;
+        double y = end.y - r.y;
+        float h = Mathf.Sqrt((float)(x*x + y*y));
+        if(r.cameFrom != null)
+        h += r.height - r.cameFrom.height;
+
+        return h;
+    }
+
+    public RiverPoint[] GetRiverStartEnd(RiverPoint[,] objPoints)
     {
         //a pairing of the start and end point to be returned by this function
         //only works if terrain is square
         RiverPoint[] startEnd = new RiverPoint[2];
         List<RiverPoint> edgePoints = new List<RiverPoint>();
         //loop through all edge points in terrain
-        for (int i = 0; i < heights.GetLength(0); i++)
+        for (int i = 0; i < objPoints.GetLength(0); i++)
         {
-            edgePoints.Add(new RiverPoint(heights[i, 0], i, 0));
-            edgePoints.Add(new RiverPoint(heights[i, heights.GetLength(0) - 1], i, heights.GetLength(0) - 1));
-            if (i != 0 && i != heights.GetLength(0) - 1)
+            //edgePoints.Add(new RiverPoint(heights[i, 0], i, 0));
+            edgePoints.Add(objPoints[i,0]);
+            //edgePoints.Add(new RiverPoint(heights[i, heights.GetLength(0) - 1], i, heights.GetLength(0) - 1));
+            edgePoints.Add(objPoints[i, objPoints.GetLength(0) - 1]);
+            if (i != 0 && i != objPoints.GetLength(0) - 1)
             {
-                edgePoints.Add(new RiverPoint(heights[0, i], 0, i));
-                edgePoints.Add(new RiverPoint(heights[heights.GetLength(0) - 1, i], heights.GetLength(0) - 1, i));
+                edgePoints.Add(objPoints[0, i]);
+                edgePoints.Add(objPoints[objPoints.GetLength(0) - 1, i]);
             }
         }
         //make them into riverPoints and add to array list - new RiverPoint(height,xCoord,  yCoord)
@@ -101,7 +228,7 @@ public class GenerateTerrainHeights : MonoBehaviour
         {
             edgeNum = 0;
         }
-        else if (startPoint.x == heights.GetLength(0) - 1)
+        else if (startPoint.x == objPoints.GetLength(0) - 1)
         {
             edgeNum = 2;
         }
@@ -109,7 +236,7 @@ public class GenerateTerrainHeights : MonoBehaviour
         {
             edgeNum = 1;
         }
-        else if (startPoint.y == heights.GetLength(1) - 1)
+        else if (startPoint.y == objPoints.GetLength(1) - 1)
         {
             edgeNum = 3;
         }
@@ -120,32 +247,28 @@ public class GenerateTerrainHeights : MonoBehaviour
         switch (oppositeEdge)
         {
             case 2:
-                for (int i = 0; i < heights.GetLength(0); i++)
+                for (int i = 0; i < objPoints.GetLength(0); i++)
                 {
-                    oppositeEdges.Add(new RiverPoint(heights[heights.GetLength(0)-1, i], heights.GetLength(0) - 1, i));
-                    Debug.Log("case 2");
+                    oppositeEdges.Add(objPoints[objPoints.GetLength(0)-1, i]);
                 }
                 break;
             case 3:
-                for (int i = 0; i < heights.GetLength(0); i++)
+                for (int i = 0; i < objPoints.GetLength(0); i++)
                 {
-                    Debug.Log("case 3");
-                    oppositeEdges.Add(new RiverPoint(heights[i, heights.GetLength(0) - 1], i, heights.GetLength(0) - 1));
+                    oppositeEdges.Add(objPoints[i, objPoints.GetLength(0) - 1]);
                 }
                 break;
             case 0:
-                for (int i = 0; i < heights.GetLength(0); i++)
+                for (int i = 0; i < objPoints.GetLength(0); i++)
                 {
-                    Debug.Log("case 0");
-                    oppositeEdges.Add(new RiverPoint(heights[0, i], 0, i));
+                    oppositeEdges.Add(objPoints[0, i]);
                 }
                 break;
             case 1:
                 
-                for (int i = 0; i < heights.GetLength(0); i++)
+                for (int i = 0; i < objPoints.GetLength(0); i++)
                 {
-                    Debug.Log("Case 1");
-                    oppositeEdges.Add(new RiverPoint(heights[i, 0], i, 0));
+                    oppositeEdges.Add(objPoints[i, 0]);
                 }
                 break;
                 
