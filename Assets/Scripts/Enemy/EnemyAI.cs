@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     private GameObject Player;
     private float dist;
     private bool _CanMove = false;
+    public Transform face;
 
     NavMeshAgent agent;
 
@@ -18,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Player");
+    
         spotRange = 50;
         _Rb = GetComponent<Rigidbody>();
         _Rb.angularDrag = 0;
@@ -35,18 +37,17 @@ public class EnemyAI : MonoBehaviour
 
     private void NewEnemyDetection()
     {
-        dist = Vector3.Distance(this.transform.position, Player.transform.position);
+        dist = Vector3.Distance(this.transform.position, face.position);
         if (dist < spotRange)
         {
-            this.transform.LookAt(Player.transform);
             RaycastHit hit;
-            Ray objectRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
+            Ray objectRay = new Ray(transform.position, face.position-transform.position);
+            Debug.DrawRay(transform.position, face.position-transform.position, Color.red);
             if (Physics.Raycast(objectRay, out hit))
             {
                 if (hit.collider.tag == "Player" && _CanMove == true)
                 {
-                    transform.LookAt(hit.collider.gameObject.transform); //look at player
+                    transform.LookAt(face); //look at player
                     Vector3 movement = Vector3.forward * MovementSpeed * Time.deltaTime; //move forward
                     _Rb.transform.Translate(movement); //move towards the player
                 }

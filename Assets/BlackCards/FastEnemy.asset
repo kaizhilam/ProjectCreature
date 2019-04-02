@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FastEnemy
   m_EditorClassIdentifier: 
   health: 100
-  MovementSpeed: 5
+  MovementSpeed: 10
   EnemyName: Fast Enemy
