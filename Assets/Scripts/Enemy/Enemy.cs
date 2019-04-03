@@ -8,16 +8,15 @@ public abstract class Enemy : MonoBehaviour
     private int MovementSpeed;
     private string EnemyName;
     EnemyScriptable enemyStats;
-    public Transform position;
+    public Vector3 pos;
 
     public int Health { get => health; set => health = value; }
     public int MovementSpeed1 { get => MovementSpeed; set => MovementSpeed = value; }
     public string EnemyName1 { get => EnemyName; set => EnemyName = value; }
 
-    public Enemy(EnemyScriptable enemyStats, Vector3 position)
+    public Enemy()
     {
-        this.transform.position = position;
-        this.enemyStats = enemyStats;
+        //this.transform.position = pos;
     }
     // Start is called before the first frame update
     void Start()

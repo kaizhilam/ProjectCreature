@@ -6,7 +6,7 @@ public class FirstEnemy : Enemy
 {
     public EnemyScriptable enemyStats;
     public Vector3 position;
-    public FirstEnemy(EnemyScriptable enemyStats, Vector3 position) : base(enemyStats, position)
+    public FirstEnemy()
     {
         Health = enemyStats.health;
         MovementSpeed1 = enemyStats.MovementSpeed;
