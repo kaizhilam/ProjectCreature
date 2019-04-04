@@ -7,14 +7,14 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public int spawnCap = 1;
-    private List<Enemy> enemies = new List<Enemy>();
-    public float maxSpawnAngle;
-    public Enemy f1;
+    private List<GameObject> enemies = new List<GameObject>();
+    public float Range;
+    public GameObject f1;
     private Vector3 spawnOffset;    
     // Start is called before the first frame update
     void Start()
     {
-        maxSpawnAngle = 30;
+        Range = 30;
         SpawnEnemy();
         
     }
@@ -28,24 +28,42 @@ public class Spawner : MonoBehaviour
     void SpawnEnemy()
     {
         //how each enemy spawn location is determined
-        //imagining a 2D circle on the xz plane, pick a random point on that circle (random direction and random from 0->radius)
+        //imagining a 2D circle on the xz plane around the spawner object, pick a random point on that circle (random theta and random f from 0->radius)
         //convert to 3d point by using polar to cartesian conversion (r and theta to x and z [y is that of the spawner])
-        //ray cast from this point to the ground
+        //ray cast from this point straight down to the ground
         //wherever ray lands, spawn enemy at this location
-        //place these spawners with enough space for it to draw the imagined 2D circle
+        //Ensure spawner is placed above where you want enemies to potentially spawn, try not to have imaginary circle intersect object in scene
         float direction;
         float radius;
-        float radAngle = maxSpawnAngle * Mathf.PI / 180;
+        //converting degrees to radians
         for (int i = 0; i < 20; i++)
         {
-            //have more functionality. if(player in certain biome) {spawn specific enemy}
+            //have more functionality. if(spawner in certain biome) {spawn specific enemy}
             //right now its just creating firstEnemies
             direction = Random.Range(0,2 * Mathf.PI);
-            radius = Random.Range(0, (Mathf.PI/2)*180-radAngle);
+            radius = Random.Range(0, Range);
+            float x = radius * Mathf.Cos(direction);
+            float z = radius * Mathf.Sin(direction);
+            Vector3 castDownPoint = new Vector3(x + this.transform.position.x, this.transform.position.y, z +  this.transform.position.z);
+            Debug.Log(castDownPoint.x + " " + castDownPoint.y + " " + castDownPoint.z);
+            Vector3 downVector = new Vector3(0, -1, 0);
+            Ray spawnRay = new Ray(castDownPoint, downVector);
+            Debug.DrawRay(castDownPoint, downVector, Color.green);
+            Vector3 SpawnPoint;
+            if (Physics.Raycast(spawnRay, out RaycastHit hit))
+            {
+                SpawnPoint = hit.point;
+            }
+            else
+            {
+                Debug.Log("no land underneath spawner to spawn enemies");
+                SpawnPoint = this.transform.position;
+            }
 
-            enemies.Add(Instantiate(
+            
+                enemies.Add(Instantiate(
                 f1,
-                new Vector3(this.transform.position.x + Random.Range(-10f, 10f), this.transform.position.y + Random.Range(-10f, 10f), this.transform.position.z + Random.Range(-10f, 10f)),
+                SpawnPoint,
                 Quaternion.identity
             ));
             
