@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Range = 30;
+       
         SpawnEnemy();
         
     }
@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
         float direction;
         float radius;
         //converting degrees to radians
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 100; i++)
         {
             //have more functionality. if(spawner in certain biome) {spawn specific enemy}
             //right now its just creating firstEnemies
