@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireAbility : ActiveAbility
+public class FireAbility : ProjectileAbility
 {
     public override void Run()
     {
