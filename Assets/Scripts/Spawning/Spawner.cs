@@ -33,6 +33,7 @@ public class Spawner : MonoBehaviour
         //ray cast from this point straight down to the ground
         //wherever ray lands, spawn enemy at this location
         //Ensure spawner is placed above where you want enemies to potentially spawn, try not to have imaginary circle intersect object in scene
+        //!!if the ray never hits land, it will spawn enemy at spawner location!! (better solution to be added)
         float direction;
         float radius;
         //converting degrees to radians

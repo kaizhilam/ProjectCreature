@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     private GameObject Player;
     private float dist;
     private bool _CanMove = false;
+    public GameObject lookAt;
 
     NavMeshAgent agent;
 
@@ -38,7 +39,7 @@ public class EnemyAI : MonoBehaviour
         dist = Vector3.Distance(this.transform.position, Player.transform.position);
         if (dist < spotRange)
         {
-            this.transform.LookAt(Player.transform);
+            this.transform.LookAt(Player.transform.position + (Vector3.up*2));
             RaycastHit hit;
             Ray objectRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
@@ -46,7 +47,7 @@ public class EnemyAI : MonoBehaviour
             {
                 if (hit.collider.tag == "Player" && _CanMove == true)
                 {
-                    transform.LookAt(hit.collider.gameObject.transform); //look at player
+                    transform.LookAt(hit.collider.gameObject.transform.position + (Vector3.up*2)); //look at player
                     Vector3 movement = Vector3.forward * MovementSpeed * Time.deltaTime; //move forward
                     _Rb.transform.Translate(movement); //move towards the player
                 }
