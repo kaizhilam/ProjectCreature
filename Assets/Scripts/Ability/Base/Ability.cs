@@ -10,7 +10,7 @@ public abstract class Ability : MonoBehaviour
 	public abstract void End();
 }
 
-public class NullAbility : Ability
+public class NullAbility : PassiveAbility
 {
 	public override void End()
 	{

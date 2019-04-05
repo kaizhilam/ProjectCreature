@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Lightningball
   Damage: 100
-  Speed: 50
+  Speed: 100
   ActiveTime: 2
   CoolDownTime: 4
 --- !u!54 &2029242291570617556

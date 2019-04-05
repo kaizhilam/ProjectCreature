@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterballAbility : ActiveAbility
+public class LightningballAbility : ActiveAbility
 {
 	private GameObject _Player;
 	private float _Timer = 0;
-
 	public override void End()
 	{
-
 	}
 
 	public override void Init()
@@ -19,13 +17,13 @@ public class WaterballAbility : ActiveAbility
 
 	public override void Run()
 	{
-		GameObject projectile = (GameObject)Resources.Load("Projectile/Waterball");
-		float coolDownTime = projectile.GetComponent<WaterballBehavior>().CoolDownTime;
+		GameObject projectile = (GameObject)Resources.Load("Projectile/Lightningball");
+		float coolDownTime = projectile.GetComponent<LightningballBehavior>().CoolDownTime;
 		_Player = GameObject.FindGameObjectWithTag("Player");
 		Transform shootfrom = _Player.transform.Find("Idle").Find("ShootFrom").transform;
-		Debug.Log(_Player.transform.position+(Vector3.forward*5));
+		Debug.Log(_Player.transform.position + (Vector3.forward * 5));
 
-		if (Input.GetAxisRaw("Fire1") == 1f && _Timer >= coolDownTime && PlayerStat.SelectedAbility is WaterballAbility)
+		if (Input.GetAxisRaw("Fire1") == 1f && _Timer >= coolDownTime && PlayerStat.SelectedAbility is LightningballAbility)
 		{
 			_Timer = 0;
 			Instantiate(projectile, shootfrom.position, shootfrom.rotation);
@@ -36,10 +34,11 @@ public class WaterballAbility : ActiveAbility
 			_Timer = coolDownTime;
 		}
 		UITimer = coolDownTime - _Timer;
+
 	}
 
 	public override string ToString()
 	{
-		return "Waterball";
+		return "Lightningball";
 	}
 }

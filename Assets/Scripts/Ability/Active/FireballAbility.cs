@@ -22,10 +22,11 @@ public class FireballAbility : ActiveAbility
 		GameObject projectile = (GameObject)Resources.Load("Projectile/Fireball");
 		float coolDownTime = projectile.GetComponent<FireballBehavior>().CoolDownTime;
 		_Player = GameObject.FindGameObjectWithTag("Player");
+		Transform shootfrom = _Player.transform.Find("Idle").Find("ShootFrom").transform;
 		if (Input.GetAxisRaw("Fire1") == 1f && _Timer >= coolDownTime && PlayerStat.SelectedAbility is FireballAbility)
 		{
 			_Timer = 0;
-			Instantiate(projectile, _Player.transform.position + (Vector3.forward * 2) + (Vector3.up * 2), _Player.transform.rotation); //fix this
+			Instantiate(projectile, shootfrom.position, shootfrom.rotation); //fix this
 		}
 		_Timer += Time.deltaTime;
 		if (_Timer >= coolDownTime)
