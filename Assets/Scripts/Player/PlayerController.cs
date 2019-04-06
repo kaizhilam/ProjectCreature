@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
         _Animator = GetComponentInChildren<Animator>();
         //examples of how to assign power
         abilities = new Ability[3];
+        abilities[0] = new FireAbility();
+        abilities[1] = new WaterAbility();
+        abilities[2] = new JumpAbility();
     }
 
     public void Update()
@@ -41,14 +44,14 @@ public class PlayerController : MonoBehaviour
                 ((ActiveAbility)abilities[0]).Run();
             }
         }
-        if (Input.GetKeyDown("t"))
+        if (Input.GetKeyDown("f"))
         {
             if (abilities[0] is ActiveAbility)
             {
                 ((ActiveAbility)abilities[1]).Run();
             }
         }
-        if (Input.GetKeyDown("y"))
+        if (Input.GetKeyDown("c"))
         {
             if (abilities[0] is ActiveAbility)
             {
