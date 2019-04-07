@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private Transform _CameraFace;
     private Rigidbody _Rb;
     private Animator _Animator;
+    private ProjectileAbility proj = null;
     Ability[] abilities;
 
     private void Start()
@@ -29,35 +30,20 @@ public class PlayerController : MonoBehaviour
         _Animator = GetComponentInChildren<Animator>();
         //examples of how to assign power
         abilities = new Ability[3];
-        abilities[0] = new FireAbility();
-        abilities[1] = new WaterAbility();
-        abilities[2] = new JumpAbility();
+        abilities[0] = new JumpAbility();
+        proj = new FireAbility();
     }
 
     public void Update()
     {
         GetInputs();
-        if (Input.GetKeyDown("r"))
+        if (Input.GetMouseButton(0))
         {
-            if(abilities[0] is ActiveAbility)
-            {
-                ((ActiveAbility)abilities[0]).Run();
-            }
+            Debug.Log("clicking lmb");
+            Debug.Log("trying to fire proj");
+            proj.Shoot();
         }
-        if (Input.GetKeyDown("f"))
-        {
-            if (abilities[0] is ActiveAbility)
-            {
-                ((ActiveAbility)abilities[1]).Run();
-            }
-        }
-        if (Input.GetKeyDown("c"))
-        {
-            if (abilities[0] is ActiveAbility)
-            {
-                ((ActiveAbility)abilities[2]).Run();
-            }
-        }
+        
     }
 
     public void FixedUpdate()

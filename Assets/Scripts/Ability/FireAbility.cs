@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class FireAbility : ProjectileAbility
 {
-    public override void Run()
+    public float speed;
+    public GameObject prefab;
+    
+    public FireAbility()
     {
+        this.speed = 10;
+        this.prefab = (GameObject)Resources.Load("Fireball");
+    }
 
+    public override void Shoot()
+    {
+        base.Run(speed, prefab);
     }
 }

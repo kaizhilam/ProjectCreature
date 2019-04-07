@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class WaterAbility : ProjectileAbility
 {
-    public override void Run()
-    {
+    public float speed;
+    public GameObject prefab;
 
+    public WaterAbility()
+    {
+        this.speed = 20;
+        this.prefab = (GameObject)Resources.Load("WaterBall");
+    }
+
+    public override void Shoot()
+    {
+        base.Run(speed, prefab);
     }
 }

@@ -5,5 +5,4 @@ using UnityEngine;
 public abstract class ActiveAbility : Ability
 {
     public float cooldown;
-    public abstract void Run();
 }
