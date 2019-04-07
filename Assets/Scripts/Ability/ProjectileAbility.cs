@@ -21,7 +21,7 @@ public abstract class ProjectileAbility : ActiveAbility
         this.speed = speed;
         this.prefab = prefab;
         if (ThirdPersonCamera.LookingAtPoint.ToString() != Vector3.positiveInfinity.ToString())
-            transform.LookAt(ThirdPersonCamera.LookingAtPoint);
+           transform.LookAt(ThirdPersonCamera.LookingAtPoint);
         Instantiate(prefab, this.transform);
     }
 

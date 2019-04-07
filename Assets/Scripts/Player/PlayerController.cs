@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float _Jump;
     private float _Horizontal;
     private float _Vertical;
+    private Vector3 input;
     private float _Fire;
     private bool _CanJump = false;
     private bool _CanWalk = false;
@@ -76,7 +77,9 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
-        if (_CanWalk && (_Vertical != 0 || _Horizontal != 0)) //update rotation of the character when WASD is pressed
+        // if (_CanWalk && (_Vertical != 0 || _Horizontal != 0)) //update rotation of the character when WASD is pressed
+       
+       if(_CanWalk && input!=Vector3.zero)
         {
             Vector3 movement;
             if (Input.GetKey(KeyCode.LeftShift))
@@ -85,7 +88,8 @@ public class PlayerController : MonoBehaviour
                 _Animator.SetBool("PlayerWalk", false);
                 _Animator.SetBool("PlayerRun", true);
                 //Debug.Log("Running");
-                movement = new Vector3(_Horizontal * MovementSpeed * 1.2f * Time.deltaTime, 0, _Vertical * MovementSpeed * 1.2f * Time.deltaTime);
+                //movement = new Vector3(_Horizontal * MovementSpeed * 1.2f * Time.deltaTime, 0, _Vertical * MovementSpeed * 1.2f * Time.deltaTime);
+                movement = input * Time.fixedDeltaTime * MovementSpeed * 1.2f;
             }
             else
             {
@@ -93,7 +97,8 @@ public class PlayerController : MonoBehaviour
                 _Animator.SetBool("PlayerWalk", true);
                 _Animator.SetBool("PlayerRun", false);
                 //Debug.Log("Walking");
-                movement = new Vector3(_Horizontal * MovementSpeed * Time.deltaTime, 0, _Vertical * MovementSpeed * Time.deltaTime);
+                //movement = new Vector3(_Horizontal * MovementSpeed * Time.deltaTime, 0, _Vertical * MovementSpeed * Time.deltaTime);
+                movement = input * Time.fixedDeltaTime * MovementSpeed;
             }
             transform.eulerAngles = new Vector3(0, _CameraFace.transform.eulerAngles.y, 0);
             _Rb.transform.Translate(movement); //move the character
@@ -109,7 +114,8 @@ public class PlayerController : MonoBehaviour
     private void GetInputs()
     {
         _Jump = Input.GetAxisRaw("Jump"); //get space keys
-        _Horizontal = Input.GetAxisRaw("Horizontal"); //get A,W keys
-        _Vertical = Input.GetAxisRaw("Vertical"); //get W, S keys
+        //_Horizontal = Input.GetAxisRaw("Horizontal"); //get A,W keys
+        //_Vertical = Input.GetAxisRaw("Vertical"); //get W, S keys
+        input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
     }
 }
