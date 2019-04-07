@@ -20,6 +20,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _Rb;
     private Animator _Animator;
 
+    private PlayerInventory<Item> Inventory = new PlayerInventory<Item>();    
+    private GameObject selectedObj;
+    private Item selectedItem;
+    private bool isChecked = false;
+    
+
     private void Start()
     {
         _Rb = GetComponent<Rigidbody>();
@@ -31,7 +37,9 @@ public class PlayerController : MonoBehaviour
     public void Update()
     {
         _FireRechargeTime = 3f; //set fire recharge time here
-        GetInputs();
+        GetInputs();        
+        mouseOperayion();
+        pickUpOperation();
     }
 
     public void FixedUpdate()
@@ -39,6 +47,50 @@ public class PlayerController : MonoBehaviour
         Jump();
         Movement();
         Fire();
+        
+    }
+
+    private void mouseOperayion()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitInfo;
+            
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                selectedObj = hitInfo.collider.gameObject;
+                selectItem();                
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Debug.Log(Inventory);
+        }
+    }
+
+    private void selectItem()
+    {
+        if (selectedObj.CompareTag("T1"))
+        {
+            selectedItem = (Item)selectedObj.GetComponent<Item>();
+            if (selectedItem.IsCloseEnough() == true)
+            {
+                Debug.Log("The collectable item " + selectedItem.objName + "has been selected but not be added in your pack");
+                isChecked = true;
+            }
+        }
+    }
+
+    private void pickUpOperation()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && isChecked == true && selectedItem.IsCloseEnough() == true)
+        {
+            Inventory.Add(selectedItem);
+            Debug.Log("The item has been added");
+            isChecked = false;
+            selectedObj.SetActive(false);
+        }        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -72,7 +124,7 @@ public class PlayerController : MonoBehaviour
                 _Animator.SetBool("PlayerIdle", false);
                 _Animator.SetBool("PlayerWalk", false);
                 _Animator.SetBool("PlayerRun", true);
-                Debug.Log("Running");
+                //Debug.Log("Running");
                 movement = new Vector3(_Horizontal * MovementSpeed * 1.2f * Time.deltaTime, 0, _Vertical * MovementSpeed * 1.2f * Time.deltaTime);
             }
             else
@@ -80,7 +132,7 @@ public class PlayerController : MonoBehaviour
                 _Animator.SetBool("PlayerIdle", false);
                 _Animator.SetBool("PlayerWalk", true);
                 _Animator.SetBool("PlayerRun", false);
-                Debug.Log("Walking");
+                //Debug.Log("Walking");
                 movement = new Vector3(_Horizontal * MovementSpeed * Time.deltaTime, 0, _Vertical * MovementSpeed * Time.deltaTime);
             }
             transform.eulerAngles = new Vector3(0, _CameraFace.transform.eulerAngles.y, 0);
