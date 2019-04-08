@@ -23,7 +23,6 @@ public class WaterballAbility : ActiveAbility
 		float coolDownTime = projectile.GetComponent<WaterballBehavior>().CoolDownTime;
 		_Player = GameObject.FindGameObjectWithTag("Player");
 		Transform shootfrom = _Player.transform.Find("Idle").Find("ShootFrom").transform;
-		Debug.Log(_Player.transform.position+(Vector3.forward*5));
 
 		if (Input.GetAxisRaw("Fire1") == 1f && _Timer >= coolDownTime && PlayerStat.SelectedAbility is WaterballAbility)
 		{
