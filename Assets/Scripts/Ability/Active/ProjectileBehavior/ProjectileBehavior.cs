@@ -14,6 +14,7 @@ public class ProjectileBehavior : MonoBehaviour
 
 	protected virtual void Start()
 	{
+		Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>(), GetComponent<Collider>());
 		if (ThirdPersonCamera.LookingAtPoint.ToString() != Vector3.positiveInfinity.ToString())
 		{
 			transform.LookAt(ThirdPersonCamera.LookingAtPoint);

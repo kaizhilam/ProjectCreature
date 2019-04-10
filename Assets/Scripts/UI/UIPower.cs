@@ -17,7 +17,12 @@ public class UIPower : MonoBehaviour
 		{
 			if (PlayerStat.Abilities[i] is ActiveAbility)
 			{
-				result += i+1+" - "+PlayerStat.Abilities[i] + " " + PlayerStat.Abilities[i].UITimer + "\n";
+				result += i + 1 + " - ";
+				if (i == PlayerStat.AbilitiesIndex)
+				{
+					result += ">";
+				}
+				result += PlayerStat.Abilities[i] + " " + PlayerStat.Abilities[i].UITimer + "\n";
 			}
 			else if (PlayerStat.Abilities[i] is PassiveAbility)
 			{
