@@ -71,14 +71,16 @@ public class ThirdPersonCamera : MonoBehaviour
         Ray backRay = new Ray(FocusOn.position, this.transform.position - FocusOn.position);
         Debug.DrawRay(FocusOn.position, this.transform.position - FocusOn.position, Color.black);
         Debug.DrawRay(transform.position, -1 * (FocusOn.position - transform.position), Color.blue);
-
         if (Physics.Raycast(backRay, out hitBack))
         {
-            if (hitBack.collider.tag != "MainCamera")
+            if (hitBack.collider.gameObject.tag != "Water")
             {
-                //creates a new distance from ray casting. clamps the distance between 0.01 and maxDist. Linear interpolations to create smooth motion
-                _CurrentDistance = Mathf.Lerp(_CurrentDistance, Mathf.Clamp((Vector3.Distance(hitBack.point, FocusOn.transform.position) - 2), 0.01f, Distance), 0.9f);
-                //Debug.Log("Name: " + hitBack.collider.name + " Point: " + hitBack.point + " Distance: " + hitBack.distance + "Current: " + _CurrentDistance);
+                if (hitBack.collider.tag != "MainCamera")
+                {
+                    //creates a new distance from ray casting. clamps the distance between 0.01 and maxDist. Linear interpolations to create smooth motion
+                    _CurrentDistance = Mathf.Lerp(_CurrentDistance, Mathf.Clamp((Vector3.Distance(hitBack.point, FocusOn.transform.position) - 2), 0.01f, Distance), 0.9f);
+                    //Debug.Log("Name: " + hitBack.collider.name + " Point: " + hitBack.point + " Distance: " + hitBack.distance + "Current: " + _CurrentDistance);
+                }
             }
 
         }
@@ -86,6 +88,5 @@ public class ThirdPersonCamera : MonoBehaviour
         {
             _CurrentDistance = Distance;
         }
-
     }
 }
