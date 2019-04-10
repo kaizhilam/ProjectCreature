@@ -28,5 +28,7 @@ namespace UnityStandardAssets.Water
                 Mathf.Repeat(offset4.z, 1.0f), Mathf.Repeat(offset4.w, 1.0f));
             mat.SetVector("_WaveOffset", offsetClamped);
         }
+        
     }
 }
+
