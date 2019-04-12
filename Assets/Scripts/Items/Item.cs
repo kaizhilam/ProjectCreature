@@ -4,6 +4,60 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+
+    public int objID;
+    public string objName;
+    public string description;
+    public GameObject player;
+    private float distance;
+    private bool isCloseEnough;
+    public ItemType Type;
+
+    public Item()
+    {
+
+    }
+
+    public Item(int id, string name, string des, ItemType type)
+    {
+        objID = id;
+        objName = name;
+        description = des;
+        this.Type = type;
+    }
+
+    private void Update()
+    {
+        judgeDistance();
+    }
+
+    private void judgeDistance()
+    {
+        distance = Vector3.Distance(transform.position, player.transform.position);
+        if (distance < 5)
+        {
+            GetComponent<MeshRenderer>().material.color = Color.red;
+            isCloseEnough = true;
+        }
+        else
+        {
+            GetComponent<MeshRenderer>().material.color = Color.white;
+            isCloseEnough = false;
+        }
+    }
+
+    public bool IsCloseEnough()
+    {
+        return isCloseEnough;
+    }
+
+    public enum ItemType
+    {
+        Consumable,
+        Equipment,
+        Weapon
+        //Material
+    }
     //public ItemScriptableObject _Base;
 
     //public string Name { get; private set; }

@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
     private Animator _Animator;
 	private Ability[] _CompareAbilities;
 
+    private PlayerInventory<Item> Inventory = new PlayerInventory<Item>();
+    private GameObject selectedObj;
+    private Item selectedItem;
+    private bool isChecked = false;
+
     private void Start()
     {
         _Rb = GetComponent<Rigidbody>();
@@ -36,7 +41,11 @@ public class PlayerController : MonoBehaviour
         //_FireRechargeTime = 3f; //set fire recharge time here
         GetInputs();
 		AbilityMethod();
-	}
+
+        //Pick up operation
+        MouseOperation();
+        PickUpOperation();
+    }
 
 	public void FixedUpdate()
     {
@@ -203,5 +212,49 @@ public class PlayerController : MonoBehaviour
         _Horizontal = Input.GetAxisRaw("Horizontal"); //get A,W keys
         _Vertical = Input.GetAxisRaw("Vertical"); //get W, S keys
         //_Fire = Input.GetAxisRaw("Fire1");
+    }
+
+    //Pick up operation
+    private void MouseOperation()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitInfo;
+
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                selectedObj = hitInfo.collider.gameObject;
+                SelectItem();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Debug.Log(Inventory);
+        }
+    }
+
+    private void SelectItem()
+    {
+        if (selectedObj.CompareTag("T1"))
+        {
+            selectedItem = (Item)selectedObj.GetComponent<Item>();
+            if (selectedItem.IsCloseEnough() == true)
+            {
+                Debug.Log("The collectable item " + selectedItem.objName + "has been selected but not be added in your pack");
+                isChecked = true;
+            }
+        }
+    }
+
+    private void PickUpOperation()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && isChecked == true && selectedItem.IsCloseEnough() == true)
+        {
+            Inventory.Add(selectedItem);
+            Debug.Log("The item has been added");
+            isChecked = false;
+            selectedObj.SetActive(false);
+        }
     }
 }
