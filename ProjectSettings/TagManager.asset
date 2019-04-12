@@ -4,13 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
-  - Ground
-  - T1
-=======
   - Effect
   - Water
->>>>>>> master
+  - Ground
+  - T1
   layers:
   - Default
   - TransparentFX
