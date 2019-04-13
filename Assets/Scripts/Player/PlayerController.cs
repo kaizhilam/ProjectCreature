@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float JumpHeight = 200f;
+    public float JumpHeight;
     public float MovementSpeed = 10f;
 
     private float _Jump;
@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private float _Fire;
     private bool _CanJump = false;
     private bool _CanWalk = false;
+    public float fallMultiplier;
+    public float lowJumpMultiplier;
     //private bool _CanFire = true;
     //private float _FireRechargeTime;
     //private float _FireRechargeTimer = 0f;
@@ -135,12 +137,20 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (_Jump == 1 && _CanJump == true)
+        if (Input.GetButtonDown("Jump") && _CanJump == true)
         {
             _Animator.SetBool("PlayerIdle", false);
             _Animator.SetTrigger("PlayerJump");
             _CanJump = false;
             _Rb.AddForce(new Vector3(0f, JumpHeight, 0f));
+        }
+        if (_Rb.velocity.y < 0)
+        {
+            _Rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if(_Rb.velocity.y>0 && !Input.GetButton("Jump"))
+        {
+            _Rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
 
@@ -199,7 +209,6 @@ public class PlayerController : MonoBehaviour
 
     private void GetInputs()
     {
-        _Jump = Input.GetAxisRaw("Jump"); //get space keys
         _Horizontal = Input.GetAxisRaw("Horizontal"); //get A,W keys
         _Vertical = Input.GetAxisRaw("Vertical"); //get W, S keys
         //_Fire = Input.GetAxisRaw("Fire1");

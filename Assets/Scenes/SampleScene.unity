@@ -1502,6 +1502,21 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7582313423356066032, guid: b412180ee3ce70c4fa07727466aaece5,
+        type: 3}
+      propertyPath: fallMultiplier
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582313423356066032, guid: b412180ee3ce70c4fa07727466aaece5,
+        type: 3}
+      propertyPath: lowJumpMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582313423356066032, guid: b412180ee3ce70c4fa07727466aaece5,
+        type: 3}
+      propertyPath: JumpHeight
+      value: 400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b412180ee3ce70c4fa07727466aaece5, type: 3}
 --- !u!1001 &1942930286
