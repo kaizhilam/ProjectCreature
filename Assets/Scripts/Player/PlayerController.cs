@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     private float _Jump;
     private float _Horizontal;
     private float _Vertical;
-    private Vector3 input;
     private float _Fire;
     private bool _CanJump = false;
     private bool _CanWalk = false;
@@ -20,8 +19,6 @@ public class PlayerController : MonoBehaviour
     private Transform _CameraFace;
     private Rigidbody _Rb;
     private Animator _Animator;
-    private ProjectileAbility proj = null;
-    Ability[] abilities;
 	private Ability[] _CompareAbilities;
 
     private void Start()
@@ -30,10 +27,6 @@ public class PlayerController : MonoBehaviour
         _Rb.angularDrag = 0;
         _CameraFace = GameObject.FindGameObjectWithTag("MainCamera").transform;
         _Animator = GetComponentInChildren<Animator>();
-        //examples of how to assign power
-        abilities = new Ability[3];
-        abilities[0] = new JumpAbility();
-        proj = new FireAbility();
 		_CompareAbilities = PlayerStat.Abilities;
 		AbilityInit();
     }
@@ -49,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         Jump();
         Movement();
+		//Fire();
 
 	}
 
@@ -141,26 +135,22 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        float jump = JumpHeight;
-        if (_Jump   == 1 && _CanJump == true)
+        if (_Jump == 1 && _CanJump == true)
         {
             _Animator.SetBool("PlayerIdle", false);
             _Animator.SetTrigger("PlayerJump");
             _CanJump = false;
-            _Rb.AddForce(new Vector3(0f, jump, 0f));
+            _Rb.AddForce(new Vector3(0f, JumpHeight, 0f));
         }
     }
 
     private void Movement()
     {
-
 		if (_Fire == 1)
 		{
 			transform.eulerAngles = new Vector3(0, _CameraFace.transform.eulerAngles.y, 0);
 		}
-    if(_CanWalk && input!=Vector3.zero)
- //update rotation of the character when WASD is pressed
-
+		if (_CanWalk && (_Vertical != 0 || _Horizontal != 0)) //update rotation of the character when WASD is pressed
         {
             Vector3 movement;
             if (Input.GetKey(KeyCode.LeftShift))
@@ -168,20 +158,14 @@ public class PlayerController : MonoBehaviour
                 _Animator.SetBool("PlayerIdle", false);
                 _Animator.SetBool("PlayerWalk", false);
                 _Animator.SetBool("PlayerRun", true);
-                //Debug.Log("Running");
-                //movement = new Vector3(_Horizontal * MovementSpeed * 1.2f * Time.deltaTime, 0, _Vertical * MovementSpeed * 1.2f * Time.deltaTime);
-                movement = input * Time.fixedDeltaTime * MovementSpeed * 1.2f;
-
+                movement = new Vector3(_Horizontal * MovementSpeed * 1.2f * Time.deltaTime, 0, _Vertical * MovementSpeed * 1.2f * Time.deltaTime);
             }
             else
             {
                 _Animator.SetBool("PlayerIdle", false);
                 _Animator.SetBool("PlayerWalk", true);
                 _Animator.SetBool("PlayerRun", false);
-                //Debug.Log("Walking");
-                //movement = new Vector3(_Horizontal * MovementSpeed * Time.deltaTime, 0, _Vertical * MovementSpeed * Time.deltaTime);
-                movement = input * Time.fixedDeltaTime * MovementSpeed;
-
+                movement = new Vector3(_Horizontal * MovementSpeed * Time.deltaTime, 0, _Vertical * MovementSpeed * Time.deltaTime);
             }
             transform.eulerAngles = new Vector3(0, _CameraFace.transform.eulerAngles.y, 0);
             _Rb.transform.Translate(movement); //move the character
@@ -194,11 +178,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //private void Fire()
+    //{
+    //    if (_Fire == 1)
+    //    {
+    //        transform.eulerAngles = new Vector3(0, _CameraFace.transform.eulerAngles.y, 0);
+    //    }
+    //    if (_FireRechargeTimer > _FireRechargeTime)
+    //    {
+    //        _CanFire = true;
+    //    }
+    //    if (_Fire == 1 && _CanFire)
+    //    {
+    //        //Debug.Log("Name: " + ThirdPersonCamera.LookingAtGameObject.name + " Point: " + ThirdPersonCamera.LookingAtPoint + " Distance: " + ThirdPersonCamera.LookingAtDistance);
+    //        _FireRechargeTimer = 0f;
+    //        _CanFire = false;
+    //    }
+    //    _FireRechargeTimer += Time.deltaTime;
+    //}
+
     private void GetInputs()
     {
         _Jump = Input.GetAxisRaw("Jump"); //get space keys
-        //_Horizontal = Input.GetAxisRaw("Horizontal"); //get A,W keys
-        //_Vertical = Input.GetAxisRaw("Vertical"); //get W, S keys
-        input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        _Horizontal = Input.GetAxisRaw("Horizontal"); //get A,W keys
+        _Vertical = Input.GetAxisRaw("Vertical"); //get W, S keys
+        //_Fire = Input.GetAxisRaw("Fire1");
     }
 }
