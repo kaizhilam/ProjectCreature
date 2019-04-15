@@ -22,9 +22,8 @@ public class EnemyAI : MonoBehaviour
         spotRange = 50;
         _Rb = GetComponent<Rigidbody>();
         _Rb.angularDrag = 0;
-        FirstEnemy _fe = GetComponent<FirstEnemy>();
-        MovementSpeed = _fe.enemyStats.MovementSpeed;
-
+        Enemy _en = GetComponent<Enemy>();
+        MovementSpeed = _en.enemyStats.MovementSpeed;
         agent = GetComponent<NavMeshAgent>();
     }
 
