@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FirstEnemy : Enemy
 {
+
     public FirstEnemy()
     {
         Health = enemyStats.health;
