@@ -13,13 +13,16 @@ public abstract class Enemy : MonoBehaviour
     public int MovementSpeed1 { get => MovementSpeed; set => MovementSpeed = value; }
     public string EnemyName1 { get => EnemyName; set => EnemyName = value; }
 
+    public Enemy()
+    {
+    }
     // Start is called before the first frame update
     void Start()
     {
-        
 
     }
 
+    public abstract Enemy Clone();
 
 
     
