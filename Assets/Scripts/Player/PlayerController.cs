@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _InputVector;
     private bool _CanJump = false;
     private bool _CanWalk = false;
+    private float _Fire = 0;
     public float fallMultiplier;
     public float lowJumpMultiplier;
     //private bool _CanFire = true;
@@ -190,6 +191,7 @@ public class PlayerController : MonoBehaviour
 
     private void GetInputs()
     {
+        _Fire = Input.GetAxisRaw("Fire1");
         _InputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")); //get wasd movement
     }
 }
