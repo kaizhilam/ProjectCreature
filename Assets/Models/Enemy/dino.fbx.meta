@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 126c86eea6d704c4091992a5f918b194
+guid: b565ec19bec38ca47890e25a118af6cf
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -158,8 +158,8 @@ ModelImporter:
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1

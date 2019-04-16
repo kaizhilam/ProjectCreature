@@ -17,13 +17,10 @@ public abstract class Enemy : MonoBehaviour
     {
     }
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        enemyStats = GetComponent<Enemy>().enemyStats;
     }
-
-    public abstract Enemy Clone();
-
 
     
 }

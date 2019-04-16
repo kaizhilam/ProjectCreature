@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnCap: 20
-  maxSpawnAngle: 30
-  f1: {fileID: 3695293169384057462, guid: cbe5c480352ef7b4cbb30de95aeea71a, type: 3}
+  Range: 50
+  f1: {fileID: 8428823582346919707, guid: f6b38aedd494f8741a0341bbc16ef870, type: 3}

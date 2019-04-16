@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
         float direction;
         float radius;
         //converting degrees to radians
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < spawnCap; i++)
         {
             //have more functionality. if(spawner in certain biome) {spawn specific enemy}
             //right now its just creating firstEnemies
@@ -53,7 +53,7 @@ public class Spawner : MonoBehaviour
             Vector3 SpawnPoint;
             if (Physics.Raycast(spawnRay, out RaycastHit hit))
             {
-                SpawnPoint = hit.point;
+                SpawnPoint = hit.point + Vector3.up*10;
             }
             else
             {
@@ -62,7 +62,7 @@ public class Spawner : MonoBehaviour
             }
 
             
-                enemies.Add(Instantiate(
+            enemies.Add(Instantiate(
                 f1,
                 SpawnPoint,
                 Quaternion.identity
