@@ -1688,6 +1688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookAt: {fileID: 0}
+  rotSpeed: 100
   mask:
     serializedVersion: 2
     m_Bits: 0

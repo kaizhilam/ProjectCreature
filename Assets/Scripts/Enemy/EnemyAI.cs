@@ -12,6 +12,11 @@ public class EnemyAI : MonoBehaviour
     private bool _CanMove = false;
     public GameObject lookAt;
     private SkinnedMeshRenderer skin;
+    private bool _Wandering = false;
+    private bool _IsRotating = false;
+    private bool _IsWalking = false;
+    private RaycastHit hit;
+    public float rotSpeed = 100f;
 
     NavMeshAgent agent;
     public LayerMask mask;
@@ -30,19 +35,57 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is calle  d once per frame
+    // Update is called once per frame
     void FixedUpdate()
     {
-        NewEnemyDetection();
+        if (DetectsEnemy())
+        {
+            ChasePlayer();
+            StopCoroutine(Wander());
+        }
+        else if(!_Wandering)
+        {
+            StartCoroutine(Wander());
+        }
+        if (_IsRotating)
+        {
+            transform.Rotate(transform.up * Time.deltaTime * rotSpeed);
+        }
+        if (_IsWalking)
+        {
+            transform.position += transform.forward * MovementSpeed * Time.deltaTime;
+        }
+        
     }
 
-    private void NewEnemyDetection()
+    IEnumerator Wander()
     {
+        int rotTime = Random.Range(1, 3);
+        int rotateWait = Random.Range(1, 4);
+        int rotate = Random.Range(-2, 2);
+        int walkWait = Random.Range(1, 4);
+        int walkTime = Random.Range(1, 5);
+
+        _Wandering = true;
+
+        yield return new WaitForSeconds(walkWait);
+        _IsWalking = true;
+        yield return new WaitForSeconds(walkTime);
+        _IsWalking = false;
+        yield return new WaitForSeconds(rotateWait);
+        _IsRotating = true;
+        yield return new WaitForSeconds(rotTime);
+        _IsRotating = false;
+        _Wandering = false;
+    }
+
+    private bool DetectsEnemy()
+    {
+        return false;
         dist = Vector3.Distance(this.transform.position, Player.transform.position);
         if (dist < spotRange)
         {
             this.transform.LookAt(Player.transform.position + (Vector3.up*2));
-            RaycastHit hit;
             Ray objectRay = new Ray(transform.position + Vector3.up*4, Player.transform.position - (transform.position + Vector3.up * 4));
             //Debug.DrawRay(transform.position + Vector3.up * 4, Player.transform.position - (transform.position + Vector3.up * 4), Color.red);
             if (Physics.Raycast(objectRay, out hit, 1000))
@@ -50,44 +93,20 @@ public class EnemyAI : MonoBehaviour
                 print(hit.collider.gameObject.name);
                 if (hit.collider.tag == "Player" && _CanMove == true)
                 {
-                    print("hitting player");
-                    transform.LookAt(hit.collider.gameObject.transform.position + (Vector3.up*2)); //look at player
-                    Vector3 movement = Vector3.forward * MovementSpeed * Time.deltaTime; //move forward
-                    _Rb.transform.Translate(movement); //move towards the player
+                    return true;
+                    
                 }
+                return false;
             }
             else
             {
                 print("ray not hitting anything at all?");
-            }
-            //agent.enabled = true;
-            //agent.SetDestination(Player.transform.position);
-        }
-    }
-
-    private void EnemyDetection()
-    {
-        dist = Vector3.Distance(this.transform.position, Player.transform.position);
-        if (dist < spotRange)
-        {
-            this.transform.LookAt(Player.transform);
-            RaycastHit hit;
-            Ray objectRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
-            if (Physics.Raycast(objectRay, out hit))
-            {
-                if (hit.collider.tag == "Player" && _CanMove == true)
-                {
-                    Vector3 movement = new Vector3(MovementSpeed * Time.deltaTime, 0, MovementSpeed * Time.deltaTime);
-                    _Rb.transform.Translate(movement); //move towards the player
-                }
-            }
-            else
-            {
-
+                
             }
         }
+        return false;
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -102,5 +121,11 @@ public class EnemyAI : MonoBehaviour
         {
             _CanMove = false;
         }
+    }
+    private void ChasePlayer()
+    {
+        transform.LookAt(hit.collider.gameObject.transform.position + (Vector3.up * 2)); //look at player
+        Vector3 movement = Vector3.forward * MovementSpeed * Time.deltaTime; //move forward
+        _Rb.transform.Translate(movement); //move towards the player
     }
 }
