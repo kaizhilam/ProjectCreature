@@ -6,9 +6,9 @@ TerrainLayer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NewLayer 1
-  m_DiffuseTexture: {fileID: 0}
-  m_NormalMapTexture: {fileID: 0}
+  m_Name: Dark Rocky Road
+  m_DiffuseTexture: {fileID: 2800000, guid: 22568c74d65aed143b3352a5c32411f5, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: efd89409cb6d0b74a9b6a01ff26c3a5e, type: 3}
   m_MaskMapTexture: {fileID: 0}
   m_TileSize: {x: 2, y: 2}
   m_TileOffset: {x: 0, y: 0}
