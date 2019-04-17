@@ -21,7 +21,7 @@ public class LightningballAbility : ActiveAbility
 		GameObject projectile = (GameObject)Resources.Load("Projectile/Lightningball");
 		float coolDownTime = projectile.GetComponent<LightningballBehavior>().CoolDownTime;
 		_Player = GameObject.FindGameObjectWithTag("Player");
-		Transform shootfrom = _Player.transform.Find("Idle").Find("ShootFrom").transform;
+		Transform shootfrom = _Player.transform.Find("ShootFrom").transform;
 
 		if (Input.GetAxisRaw("Fire1") == 1f && _Timer >= coolDownTime && PlayerStat.SelectedAbility is LightningballAbility)
 		{
