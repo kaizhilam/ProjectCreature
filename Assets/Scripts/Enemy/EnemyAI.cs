@@ -30,7 +30,7 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is calle  d once per frame
+    // using FixedUpdate instead of update so PCs with slow framerates don't skip important calculations
     void FixedUpdate()
     {
         NewEnemyDetection();
@@ -39,18 +39,19 @@ public class EnemyAI : MonoBehaviour
     private void NewEnemyDetection()
     {
         dist = Vector3.Distance(this.transform.position, Player.transform.position);
+        //if player is close enough...
         if (dist < spotRange)
         {
+            //face the player
             this.transform.LookAt(Player.transform.position + (Vector3.up*2));
             RaycastHit hit;
             Ray objectRay = new Ray(transform.position + Vector3.up*4, Player.transform.position - (transform.position + Vector3.up * 4));
             //Debug.DrawRay(transform.position + Vector3.up * 4, Player.transform.position - (transform.position + Vector3.up * 4), Color.red);
             if (Physics.Raycast(objectRay, out hit, 1000))
             {
-                print(hit.collider.gameObject.name);
+                //if sees player, move towards it, otherwise do nothing
                 if (hit.collider.tag == "Player" && _CanMove == true)
                 {
-                    print("hitting player");
                     transform.LookAt(hit.collider.gameObject.transform.position + (Vector3.up*2)); //look at player
                     Vector3 movement = Vector3.forward * MovementSpeed * Time.deltaTime; //move forward
                     _Rb.transform.Translate(movement); //move towards the player
@@ -60,34 +61,9 @@ public class EnemyAI : MonoBehaviour
             {
                 print("ray not hitting anything at all?");
             }
-            //agent.enabled = true;
-            //agent.SetDestination(Player.transform.position);
         }
     }
 
-    private void EnemyDetection()
-    {
-        dist = Vector3.Distance(this.transform.position, Player.transform.position);
-        if (dist < spotRange)
-        {
-            this.transform.LookAt(Player.transform);
-            RaycastHit hit;
-            Ray objectRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
-            if (Physics.Raycast(objectRay, out hit))
-            {
-                if (hit.collider.tag == "Player" && _CanMove == true)
-                {
-                    Vector3 movement = new Vector3(MovementSpeed * Time.deltaTime, 0, MovementSpeed * Time.deltaTime);
-                    _Rb.transform.Translate(movement); //move towards the player
-                }
-            }
-            else
-            {
-
-            }
-        }
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
