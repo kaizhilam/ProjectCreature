@@ -1614,8 +1614,8 @@ GameObject:
   - component: {fileID: 4060787213451447498}
   - component: {fileID: 2012994977324056005}
   - component: {fileID: 5817545710190648129}
-  - component: {fileID: 6325385585385943556}
   - component: {fileID: 349595900943046807}
+  - component: {fileID: 6325385585385943556}
   - component: {fileID: 8428823582346919708}
   m_Layer: 8
   m_Name: dino
@@ -1675,22 +1675,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
---- !u!114 &6325385585385943556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8428823582346919707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcb103302c554c640bc3ed2c9c225d4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lookAt: {fileID: 0}
-  mask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &349595900943046807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1704,6 +1688,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 615f4fed1a7728940be231b4cefd2e71, type: 2}
+--- !u!114 &6325385585385943556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8428823582346919707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb103302c554c640bc3ed2c9c225d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAt: {fileID: 0}
+  rotSpeed: 100
+  mask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!135 &8428823582346919708
 SphereCollider:
   m_ObjectHideFlags: 0

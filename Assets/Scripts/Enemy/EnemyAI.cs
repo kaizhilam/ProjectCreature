@@ -12,6 +12,12 @@ public class EnemyAI : MonoBehaviour
     private bool _CanMove = false;
     public GameObject lookAt;
     private SkinnedMeshRenderer skin;
+    private bool _Wandering = false;
+    private bool _IsRotating = false;
+    private bool _IsWalking = false;
+    private RaycastHit hit;
+    public float rotSpeed = 100f;
+    private float health;
 
     NavMeshAgent agent;
     public LayerMask mask;
@@ -26,25 +32,70 @@ public class EnemyAI : MonoBehaviour
         _Rb = GetComponent<Rigidbody>();
         _Rb.angularDrag = 0;
         Enemy _en = GetComponent<Enemy>();
-        MovementSpeed = _en.enemyStats.MovementSpeed;
-        agent = GetComponent<NavMeshAgent>();
+        health = _en.Health;
+        MovementSpeed = _en.MovementSpeed1;
+        //agent = GetComponent<NavMeshAgent>();
     }
 
     // using FixedUpdate instead of update so PCs with slow framerates don't skip important calculations
     void FixedUpdate()
     {
-        NewEnemyDetection();
+        if (DetectsEnemy())
+        {
+            //if player is spotted by the enemy, chase the player and stop wandering
+            ChasePlayer();
+            StopCoroutine(Wander());
+        }
+        else if(!_Wandering)
+        {
+            StartCoroutine(Wander());
+        }
+        if (_IsRotating)
+        {
+            transform.Rotate(transform.up * Time.deltaTime * rotSpeed);
+        }
+        if (_IsWalking)
+        {
+            transform.position += transform.forward * MovementSpeed * Time.deltaTime;
+        }
+        
     }
 
-    private void NewEnemyDetection()
+    IEnumerator Wander()
     {
+        //enemy will wait for walkWait seconds, will then walk for walkTime seconds
+        //with then pause for rotateWait seconds, then will rotate for rotTime
+        //then will start the process again
+        //each of these times are set randomly, with their range indicated below
+        int rotTime = Random.Range(1, 3);
+        int rotateWait = Random.Range(1, 4);
+        int rotate = Random.Range(-2, 2);
+        int walkWait = Random.Range(1, 4);
+        int walkTime = Random.Range(1, 5);
+
+        _Wandering = true;
+
+        yield return new WaitForSeconds(walkWait);
+        _IsWalking = true;
+        yield return new WaitForSeconds(walkTime);
+        _IsWalking = false;
+        yield return new WaitForSeconds(rotateWait);
+        _IsRotating = true;
+        yield return new WaitForSeconds(rotTime);
+        _IsRotating = false;
+        _Wandering = false;
+    }
+
+    private bool DetectsEnemy()
+    {
+        //exits early just so that wandering can be shown
+        return false;
         dist = Vector3.Distance(this.transform.position, Player.transform.position);
         //if player is close enough...
         if (dist < spotRange)
         {
             //face the player
             this.transform.LookAt(Player.transform.position + (Vector3.up*2));
-            RaycastHit hit;
             Ray objectRay = new Ray(transform.position + Vector3.up*4, Player.transform.position - (transform.position + Vector3.up * 4));
             //Debug.DrawRay(transform.position + Vector3.up * 4, Player.transform.position - (transform.position + Vector3.up * 4), Color.red);
             if (Physics.Raycast(objectRay, out hit, 1000))
@@ -52,16 +103,18 @@ public class EnemyAI : MonoBehaviour
                 //if sees player, move towards it, otherwise do nothing
                 if (hit.collider.tag == "Player" && _CanMove == true)
                 {
-                    transform.LookAt(hit.collider.gameObject.transform.position + (Vector3.up*2)); //look at player
-                    Vector3 movement = Vector3.forward * MovementSpeed * Time.deltaTime; //move forward
-                    _Rb.transform.Translate(movement); //move towards the player
+                    return true;
+                    
                 }
+                return false;
             }
             else
             {
                 print("ray not hitting anything at all?");
+                
             }
         }
+        return false;
     }
 
 
@@ -71,6 +124,14 @@ public class EnemyAI : MonoBehaviour
         {
             _CanMove = true;
         }
+        //if comes into contact with projectile
+        if(collision.gameObject.tag == "Attack")
+        {
+            print("deleted dino");
+            //take that projectiles damage and deduct it from itself
+            TakeDamage(collision.gameObject.GetComponent<ProjectileBehavior>().Damage);
+            _Rb.AddForce(-collision.relativeVelocity*50);
+        }
     }
     private void OnCollisionExit(Collision collision)
     {
@@ -78,5 +139,26 @@ public class EnemyAI : MonoBehaviour
         {
             _CanMove = false;
         }
+    }
+    private void ChasePlayer()
+    {
+        transform.LookAt(hit.collider.gameObject.transform.position + (Vector3.up * 2)); //look at player
+        Vector3 movement = Vector3.forward * MovementSpeed * Time.deltaTime; //move forward
+        _Rb.transform.Translate(movement); //move towards the player
+    }
+
+    private void CheckIfDead()
+    {
+        if (health < 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void TakeDamage(float damage)
+    {
+        print(damage + " " + health);
+        health -= damage;
+        CheckIfDead();
     }
 }
