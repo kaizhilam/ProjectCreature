@@ -67,8 +67,6 @@ public class Spawner : MonoBehaviour
                 SpawnPoint,
                 Quaternion.identity
             ));
-            
-            //enemies.Add((Enemy)f1.Clone());
         }
     }
 
