@@ -38,9 +38,9 @@ public class PlayerController : MonoBehaviour
         //_FireRechargeTime = 3f; //set fire recharge time here
         GetInputs();
 		AbilityMethod();
-	}
+    }
 
-	public void FixedUpdate()
+    public void FixedUpdate()
     {
         Jump();
         Movement();

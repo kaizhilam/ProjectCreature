@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstEnemy : Enemy
+public class Dino : Enemy
 {
-
-    public FirstEnemy()
-    {
-        Health = enemyStats.health;
-        MovementSpeed1 = enemyStats.MovementSpeed;
-        EnemyName1 = enemyStats.EnemyName;
-    }
-
-    public void Start()
+    public Dino(): base()
     {
         
     }
 
+    public void Start()
+    {
+        enemyStats = GetComponent<Enemy>().enemyStats;
+        Health = enemyStats.health;
+        MovementSpeed1 = enemyStats.MovementSpeed;
+        EnemyName1 = enemyStats.EnemyName;
+    }
+    public void Awake()
+    {
+        enemyStats = GetComponent<Enemy>().enemyStats;
+    }
 }
