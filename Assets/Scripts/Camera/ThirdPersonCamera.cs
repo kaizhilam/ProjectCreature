@@ -48,7 +48,7 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         RaycastHit hit;
         Ray objectRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
+        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
         if (Physics.Raycast(objectRay, out hit))
         {
             LookingAtGameObject = hit.collider.gameObject;
@@ -69,8 +69,8 @@ public class ThirdPersonCamera : MonoBehaviour
         RaycastHit hitBack;
         Ray frontRay = new Ray(transform.position, FocusOn.position - transform.position);
         Ray backRay = new Ray(FocusOn.position, this.transform.position - FocusOn.position);
-        Debug.DrawRay(FocusOn.position, this.transform.position - FocusOn.position, Color.black);
-        Debug.DrawRay(transform.position, -1 * (FocusOn.position - transform.position), Color.blue);
+        //Debug.DrawRay(FocusOn.position, this.transform.position - FocusOn.position, Color.black);
+        //Debug.DrawRay(transform.position, -1 * (FocusOn.position - transform.position), Color.blue);
         if (Physics.Raycast(backRay, out hitBack))
         {
             if (hitBack.collider.gameObject.tag != "Water")
