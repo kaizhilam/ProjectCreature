@@ -43,9 +43,9 @@ public class PlayerController : MonoBehaviour
         GetInputs();
         //checking if player pressed 1,2 or 3 and running ability if it can
 		AbilityMethod();
-	}
+    }
 
-	public void FixedUpdate()
+    public void FixedUpdate()
     {
         Jump();
         //wasd movement
