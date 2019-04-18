@@ -37,7 +37,7 @@ public class EnemyAI : MonoBehaviour
         //agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
+    // using FixedUpdate instead of update so PCs with slow framerates don't skip important calculations
     void FixedUpdate()
     {
         if (DetectsEnemy())
@@ -91,14 +91,16 @@ public class EnemyAI : MonoBehaviour
         //exits early just so that wandering can be shown
         return false;
         dist = Vector3.Distance(this.transform.position, Player.transform.position);
+        //if player is close enough...
         if (dist < spotRange)
         {
+            //face the player
             this.transform.LookAt(Player.transform.position + (Vector3.up*2));
             Ray objectRay = new Ray(transform.position + Vector3.up*4, Player.transform.position - (transform.position + Vector3.up * 4));
             //Debug.DrawRay(transform.position + Vector3.up * 4, Player.transform.position - (transform.position + Vector3.up * 4), Color.red);
             if (Physics.Raycast(objectRay, out hit, 1000))
             {
-                print(hit.collider.gameObject.name);
+                //if sees player, move towards it, otherwise do nothing
                 if (hit.collider.tag == "Player" && _CanMove == true)
                 {
                     return true;
