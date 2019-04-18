@@ -40,6 +40,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (DetectsEnemy())
         {
+            //if player is spotted by the enemy, chase the player and stop wandering
             ChasePlayer();
             StopCoroutine(Wander());
         }
@@ -60,6 +61,10 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator Wander()
     {
+        //enemy will wait for walkWait seconds, will then walk for walkTime seconds
+        //with then pause for rotateWait seconds, then will rotate for rotTime
+        //then will start the process again
+        //each of these times are set randomly, with their range indicated below
         int rotTime = Random.Range(1, 3);
         int rotateWait = Random.Range(1, 4);
         int rotate = Random.Range(-2, 2);
@@ -81,6 +86,7 @@ public class EnemyAI : MonoBehaviour
 
     private bool DetectsEnemy()
     {
+        //exits early just so that wandering can be shown
         return false;
         dist = Vector3.Distance(this.transform.position, Player.transform.position);
         if (dist < spotRange)
