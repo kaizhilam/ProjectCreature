@@ -7,7 +7,6 @@ public abstract class Enemy : MonoBehaviour
     private float health;
     private int MovementSpeed;
     private string EnemyName;
-    public EnemyScriptable enemyStats;
 
     public float Health { get => health; set => health = value; }
     public int MovementSpeed1 { get => MovementSpeed; set => MovementSpeed = value; }
