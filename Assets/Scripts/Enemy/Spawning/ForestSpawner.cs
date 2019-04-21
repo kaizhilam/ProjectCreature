@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ForestSpawner : Spawner
 {
-    public GameObject enemy;
     private List<ForestEnemy> enemies = new List<ForestEnemy>();
     private Vector3 spawnOffset;
     public List<GameObject> forest = new List<GameObject>();

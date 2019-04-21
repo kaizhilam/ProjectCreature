@@ -59,6 +59,21 @@ ModelImporter:
     100106: spine.015
     100108: thigh.L
     100110: thigh.R
+    100112: belly_end_end
+    100114: breast.L_end_end
+    100116: breast.R_end_end
+    100118: chest_end_end
+    100120: eye.L_end_end
+    100122: eye.R_end_end
+    100124: jaw_end_end
+    100126: pelvis.L_end_end
+    100128: pelvis.R_end_end
+    100130: pelvis_end_end
+    100132: r_toe.L_end_end
+    100134: r_toe.R_end_end
+    100136: shoulder.L_end_end
+    100138: shoulder.R_end_end
+    100140: spine.013_end_end
     400000: belly
     400002: belly_end
     400004: breast.L
@@ -115,8 +130,24 @@ ModelImporter:
     400106: spine.015
     400108: thigh.L
     400110: thigh.R
+    400112: belly_end_end
+    400114: breast.L_end_end
+    400116: breast.R_end_end
+    400118: chest_end_end
+    400120: eye.L_end_end
+    400122: eye.R_end_end
+    400124: jaw_end_end
+    400126: pelvis.L_end_end
+    400128: pelvis.R_end_end
+    400130: pelvis_end_end
+    400132: r_toe.L_end_end
+    400134: r_toe.R_end_end
+    400136: shoulder.L_end_end
+    400138: shoulder.R_end_end
+    400140: spine.013_end_end
     2000000: Camera
     2100000: Material
+    2100002: Material.001
     4300000: Dino
     9500000: //RootNode
     10800000: Lamp
