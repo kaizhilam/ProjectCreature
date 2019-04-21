@@ -21,5 +21,20 @@ public abstract class Enemy : MonoBehaviour
         
     }
 
+    public virtual void TakeDamage(float damage)
+    {
+        print(damage + " " + health);
+        health -= damage;
+        CheckIfDead();
+    }
 
+    public virtual void CheckIfDead()
+    {
+        if (health < 0)
+        {
+            ResolveDeletion();
+        }
+    }
+
+    public abstract void ResolveDeletion();
 }

@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class ForestEnemy : Enemy
 {
-    
+    public override void ResolveDeletion()
+    {
+        ForestEnemyPool.Instance.ReturnToPool(this);
+    }
 }

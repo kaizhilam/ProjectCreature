@@ -5,7 +5,7 @@ using UnityEngine;
 public class ForestSpawner : Spawner
 {
     public GameObject enemy;
-    private List<GameObject> enemies = new List<GameObject>();
+    private List<ForestEnemy> enemies = new List<ForestEnemy>();
     private Vector3 spawnOffset;
     public List<GameObject> forest = new List<GameObject>();
 
@@ -35,7 +35,6 @@ public class ForestSpawner : Spawner
             float x = radius * Mathf.Cos(direction);
             float z = radius * Mathf.Sin(direction);
             Vector3 castDownPoint = new Vector3(x + this.transform.position.x, this.transform.position.y, z + this.transform.position.z);
-            Debug.Log(castDownPoint.x + " " + castDownPoint.y + " " + castDownPoint.z);
             Vector3 downVector = new Vector3(0, -1, 0);
             Ray spawnRay = new Ray(castDownPoint, downVector);
             Debug.DrawRay(castDownPoint, downVector, Color.green);
@@ -50,12 +49,11 @@ public class ForestSpawner : Spawner
                 SpawnPoint = this.transform.position;
             }
 
-
-            enemies.Add(Instantiate(
-                forest[Random.Range(0,forest.Count)],
-                SpawnPoint,
-                Quaternion.identity
-            ));
+            ForestEnemy inst = ForestEnemyPool.Instance.Get();
+            inst.transform.rotation = Quaternion.identity;
+            inst.transform.position = SpawnPoint;
+            inst.gameObject.SetActive(true);
+            enemies.Add(inst);
         }
     }
 }
