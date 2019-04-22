@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dino : Enemy
+public class Dino : ForestEnemy
 {
     public Dino()
     {

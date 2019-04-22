@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour
     private RaycastHit hit;
     public float rotSpeed = 100f;
     private float health;
+    private Enemy _En;
 
     NavMeshAgent agent;
     public LayerMask mask;
@@ -27,13 +28,12 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Player");
-        skin = GetComponent<Dino>().GetComponent<SkinnedMeshRenderer>();
         spotRange = 50;
         _Rb = GetComponent<Rigidbody>();
         _Rb.angularDrag = 0;
-        Enemy _en = GetComponent<Enemy>();
-        health = _en.Health;
-        MovementSpeed = _en.MovementSpeed1;
+        _En = GetComponent<Enemy>();
+        health = _En.Health;
+        MovementSpeed = _En.MovementSpeed1;
         //agent = GetComponent<NavMeshAgent>();
     }
 
@@ -127,9 +127,8 @@ public class EnemyAI : MonoBehaviour
         //if comes into contact with projectile
         if(collision.gameObject.tag == "Attack")
         {
-            print("deleted dino");
             //take that projectiles damage and deduct it from itself
-            TakeDamage(collision.gameObject.GetComponent<ProjectileBehavior>().Damage);
+            _En.TakeDamage(collision.gameObject.GetComponent<ProjectileBehavior>().Damage);
             _Rb.AddForce(-collision.relativeVelocity*50);
         }
     }
@@ -147,18 +146,5 @@ public class EnemyAI : MonoBehaviour
         _Rb.transform.Translate(movement); //move towards the player
     }
 
-    private void CheckIfDead()
-    {
-        if (health < 0)
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    private void TakeDamage(float damage)
-    {
-        print(damage + " " + health);
-        health -= damage;
-        CheckIfDead();
-    }
+    
 }
