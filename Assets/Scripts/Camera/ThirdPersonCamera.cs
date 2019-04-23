@@ -51,19 +51,26 @@ public class ThirdPersonCamera : MonoBehaviour
         //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
         if (Physics.Raycast(objectRay, out hit))
         {
+            //add information as to what the camera is currently looking at
             LookingAtGameObject = hit.collider.gameObject;
             LookingAtPoint = hit.point;
             LookingAtDistance = hit.distance;
             LookingAtGameObject = hit.collider.gameObject;
             //Debug.Log("Name: " + hit.collider.name + " Point: " + hit.point + " Distance: " + hit.distance);
         }
+        //if the ray cast from the camera hits nothing, the player is looking at the sky
         else
         {
             LookingAtGameObject = null;
             LookingAtPoint = Vector3.positiveInfinity;
         }
     }
-
+    //casts a ray from the player to the camera
+    //if the ray hits anything but the camera, it means something is blocking the cameras view
+    //with the raycast returning the position of the obstacle hit, we can place the camera just in front of that obstacle
+    //<o is camera, (p) is player
+    //if this scenario occurs with wall blocking (p)-----|------<o
+    // move camera to be in front of wall        (p)---<o|--------
     private void CameraZooming()
     {
         RaycastHit hitBack;
