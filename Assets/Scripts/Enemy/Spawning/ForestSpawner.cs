@@ -2,31 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-public class Spawner : MonoBehaviour
+public class ForestSpawner : Spawner
 {
-    public int spawnCap = 1;
-    private List<GameObject> enemies = new List<GameObject>();
-    public float Range;
-    public GameObject f1;
-    private Vector3 spawnOffset;    
-    // Start is called before the first frame update
-    void Start()
+    private List<ForestEnemy> enemies = new List<ForestEnemy>();
+    private Vector3 spawnOffset;
+    public List<GameObject> forest = new List<GameObject>();
+
+    public void Start()
     {
-       
         SpawnEnemy();
-        
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void SpawnEnemy()
     {
-            
-    }
 
-    void SpawnEnemy()
-    {
         //how each enemy spawn location is determined
         //imagining a 2D circle on the xz plane around the spawner object, pick a random point on that circle (random theta and random f from 0->radius)
         //convert to 3d point by using polar to cartesian conversion (r and theta to x and z [y is that of the spawner])
@@ -41,19 +29,18 @@ public class Spawner : MonoBehaviour
         {
             //have more functionality. if(spawner in certain biome) {spawn specific enemy}
             //right now its just creating firstEnemies
-            direction = Random.Range(0,2 * Mathf.PI);
+            direction = Random.Range(0, 2 * Mathf.PI);
             radius = Random.Range(0, Range);
             float x = radius * Mathf.Cos(direction);
             float z = radius * Mathf.Sin(direction);
-            Vector3 castDownPoint = new Vector3(x + this.transform.position.x, this.transform.position.y, z +  this.transform.position.z);
-            Debug.Log(castDownPoint.x + " " + castDownPoint.y + " " + castDownPoint.z);
+            Vector3 castDownPoint = new Vector3(x + this.transform.position.x, this.transform.position.y, z + this.transform.position.z);
             Vector3 downVector = new Vector3(0, -1, 0);
             Ray spawnRay = new Ray(castDownPoint, downVector);
             Debug.DrawRay(castDownPoint, downVector, Color.green);
             Vector3 SpawnPoint;
             if (Physics.Raycast(spawnRay, out RaycastHit hit))
             {
-                SpawnPoint = hit.point + Vector3.up*10;
+                SpawnPoint = hit.point + Vector3.up * 10;
             }
             else
             {
@@ -61,16 +48,11 @@ public class Spawner : MonoBehaviour
                 SpawnPoint = this.transform.position;
             }
 
-            
-            enemies.Add(Instantiate(
-                f1,
-                SpawnPoint,
-                Quaternion.identity
-            ));
-            
-            //enemies.Add((Enemy)f1.Clone());
+            ForestEnemy inst = ForestEnemyPool.Instance.Get();
+            inst.transform.rotation = Quaternion.identity;
+            inst.transform.position = SpawnPoint;
+            inst.gameObject.SetActive(true);
+            enemies.Add(inst);
         }
     }
-
-
 }
