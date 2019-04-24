@@ -189,7 +189,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &541144356
 PrefabInstance:
@@ -241,7 +241,7 @@ PrefabInstance:
     - target: {fileID: 4301457786798488651, guid: d8f47f65b93fffc4f927d9064a209e0c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4301457786798488651, guid: d8f47f65b93fffc4f927d9064a209e0c,
         type: 3}
@@ -320,7 +320,7 @@ PrefabInstance:
     - target: {fileID: 4301457786798488651, guid: d8f47f65b93fffc4f927d9064a209e0c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4301457786798488651, guid: d8f47f65b93fffc4f927d9064a209e0c,
         type: 3}
@@ -413,7 +413,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &616475366
 PrefabInstance:
@@ -544,7 +544,7 @@ PrefabInstance:
     - target: {fileID: 4301457786798488651, guid: d8f47f65b93fffc4f927d9064a209e0c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4301457786798488651, guid: d8f47f65b93fffc4f927d9064a209e0c,
         type: 3}
@@ -5510,7 +5510,7 @@ RectTransform:
   - {fileID: 1587423460}
   - {fileID: 1732017092}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6019,7 +6019,7 @@ PrefabInstance:
     - target: {fileID: 4806390366692392981, guid: b412180ee3ce70c4fa07727466aaece5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 234
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 4806390366692392981, guid: b412180ee3ce70c4fa07727466aaece5,
         type: 3}
