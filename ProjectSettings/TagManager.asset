@@ -8,6 +8,7 @@ TagManager:
   - Water
   - Ground
   - T1
+  - IUI
   layers:
   - Default
   - TransparentFX

@@ -11,8 +11,8 @@ public class Equipment : Item {
 
     public EquipmentType EquipType { get; set; }
 
-    public Equipment(int id, string name, string des, ItemType type, int strength,int intellect,int agility,int stamina, EquipmentType equipType)
-        : base(id, name, des, type)
+    public Equipment(int id, string name, string des, ItemType type, int capacity, int strength,int intellect,int agility,int stamina, EquipmentType equipType)
+        : base(id, name, des, type, capacity)
     {
         this.Strength = strength;
         this.Intellect = intellect;

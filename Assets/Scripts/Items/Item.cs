@@ -12,26 +12,29 @@ public class Item : MonoBehaviour
     private float distance;
     private bool isCloseEnough;
     public ItemType Type;
+    public string Sprite;
+    public int capacity;
 
     public Item()
     {
 
     }
 
-    public Item(int id, string name, string des, ItemType type)
+    public Item(int id, string name, string des, ItemType type, int capacity)
     {
         objID = id;
         objName = name;
         description = des;
         this.Type = type;
+        this.capacity = capacity;
     }
 
     private void Update()
     {
-        judgeDistance();
+        JudgeDistance();
     }
 
-    private void judgeDistance()
+    private void JudgeDistance()
     {
         distance = Vector3.Distance(transform.position, player.transform.position);
         if (distance < 5)

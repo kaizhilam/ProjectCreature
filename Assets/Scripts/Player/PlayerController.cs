@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private GameObject selectedObj;
     private Item selectedItem;
     private bool isChecked = false;
+    //public GameObject Knapsack;
 
     private void Start()
     {
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
         //Pick up operation
         MouseOperation();
         PickUpOperation();
+        ViewInventory();
     }
 
 	public void FixedUpdate()
@@ -54,6 +56,22 @@ public class PlayerController : MonoBehaviour
 		//Fire();
 
 	}
+
+    private void ViewInventory()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Debug.Log(Inventory);
+            Knapsack.Instance.DisplaySwitch();
+        }
+        /*
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Knapsack.SetActive(false);
+            //Knapsack.GetComponent<CanvasRenderer>() = false;
+        }
+        */
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -228,10 +246,7 @@ public class PlayerController : MonoBehaviour
                 SelectItem();
             }
         }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log(Inventory);
-        }
+
     }
 
     private void SelectItem()
@@ -252,6 +267,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && isChecked == true && selectedItem.IsCloseEnough() == true)
         {
             Inventory.Add(selectedItem);
+            Knapsack.Instance.StoreItem(selectedItem);
             Debug.Log("The item has been added");
             isChecked = false;
             selectedObj.SetActive(false);

@@ -44,7 +44,8 @@ public class ItemManagement : MonoBehaviour
                 case Item.ItemType.Consumable:
                     int hp = (int)(temp["hp"].n);
                     int mp = (int)(temp["mp"].n);
-                    item = new Consumable(id, name, description, type, hp, mp);
+                    int capacity = 10;
+                    item = new Consumable(id, name, description, type, capacity, hp, mp);
                     break;
                 //case Item.ItemType.Material:
                     //break;
