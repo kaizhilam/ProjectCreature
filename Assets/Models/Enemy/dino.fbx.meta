@@ -1,0 +1,209 @@
+fileFormatVersion: 2
+guid: 0ab8e6bdf10694d8fba85cc6194088f6
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: belly
+    100002: belly_end
+    100004: breast.L
+    100006: breast.L_end
+    100008: breast.R
+    100010: breast.R_end
+    100012: Camera
+    100014: chest
+    100016: chest_end
+    100018: Dino
+    100020: //RootNode
+    100022: eye.L
+    100024: eye.L_end
+    100026: eye.R
+    100028: eye.R_end
+    100030: foot.L
+    100032: foot.R
+    100034: jaw
+    100036: jaw_end
+    100038: Lamp
+    100040: metarig
+    100042: pelvis
+    100044: pelvis.L
+    100046: pelvis.L_end
+    100048: pelvis.R
+    100050: pelvis.R_end
+    100052: pelvis_end
+    100054: r_toe.L
+    100056: r_toe.L_end
+    100058: r_toe.R
+    100060: r_toe.R_end
+    100062: shin.L
+    100064: shin.R
+    100066: shoulder.L
+    100068: shoulder.L_end
+    100070: shoulder.R
+    100072: shoulder.R_end
+    100074: spine
+    100076: spine.001
+    100078: spine.002
+    100080: spine.003
+    100082: spine.004
+    100084: spine.005
+    100086: spine.006
+    100088: spine.007
+    100090: spine.008
+    100092: spine.009
+    100094: spine.010
+    100096: spine.011
+    100098: spine.012
+    100100: spine.013
+    100102: spine.013_end
+    100104: spine.014
+    100106: spine.015
+    100108: thigh.L
+    100110: thigh.R
+    400000: belly
+    400002: belly_end
+    400004: breast.L
+    400006: breast.L_end
+    400008: breast.R
+    400010: breast.R_end
+    400012: Camera
+    400014: chest
+    400016: chest_end
+    400018: Dino
+    400020: //RootNode
+    400022: eye.L
+    400024: eye.L_end
+    400026: eye.R
+    400028: eye.R_end
+    400030: foot.L
+    400032: foot.R
+    400034: jaw
+    400036: jaw_end
+    400038: Lamp
+    400040: metarig
+    400042: pelvis
+    400044: pelvis.L
+    400046: pelvis.L_end
+    400048: pelvis.R
+    400050: pelvis.R_end
+    400052: pelvis_end
+    400054: r_toe.L
+    400056: r_toe.L_end
+    400058: r_toe.R
+    400060: r_toe.R_end
+    400062: shin.L
+    400064: shin.R
+    400066: shoulder.L
+    400068: shoulder.L_end
+    400070: shoulder.R
+    400072: shoulder.R_end
+    400074: spine
+    400076: spine.001
+    400078: spine.002
+    400080: spine.003
+    400082: spine.004
+    400084: spine.005
+    400086: spine.006
+    400088: spine.007
+    400090: spine.008
+    400092: spine.009
+    400094: spine.010
+    400096: spine.011
+    400098: spine.012
+    400100: spine.013
+    400102: spine.013_end
+    400104: spine.014
+    400106: spine.015
+    400108: thigh.L
+    400110: thigh.R
+    2000000: Camera
+    2100000: Material
+    4300000: Dino
+    9500000: //RootNode
+    10800000: Lamp
+    13700000: Dino
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
