@@ -93,7 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb103302c554c640bc3ed2c9c225d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAt: {fileID: 7582313423356066038, guid: b412180ee3ce70c4fa07727466aaece5, type: 3}
 --- !u!114 &3695293169384057462
 MonoBehaviour:
   m_ObjectHideFlags: 0

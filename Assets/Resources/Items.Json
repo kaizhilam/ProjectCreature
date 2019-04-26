@@ -1,0 +1,11 @@
+﻿[
+    {
+        "id": 1,
+        "name": "HP",
+        "type": "Consumable",       
+        "description": "Recover HP",        
+        "hp": 10,
+        "mp": 0        
+    }
+    
+]

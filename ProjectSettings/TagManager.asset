@@ -4,10 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - Water
-  - Attack
   - Effect
+  - Water
+  - Ground
+  - T1
+  - IUI
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - enemy
+  - 
   - 
   - 
   - 

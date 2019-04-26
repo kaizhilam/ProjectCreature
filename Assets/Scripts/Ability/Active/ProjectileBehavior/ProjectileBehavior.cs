@@ -36,7 +36,6 @@ public class ProjectileBehavior : MonoBehaviour
 	{
 		if (collision.gameObject.tag != "Player")
 		{
-            print("deleting from projbeh");
 			Destroy(gameObject);
 		}
 	}
