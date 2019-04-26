@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Effect
   - Water
+  - Attack
+  - Effect
   layers:
   - Default
   - TransparentFX
