@@ -231,6 +231,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d198b7d3d5f75ea4ca033f8560c1c914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idle1: {fileID: 8300000, guid: d58e3ff4226e0dc469d895b3beb5dbb3, type: 3}
+  idle2: {fileID: 8300000, guid: c83ca1df751ee604cb2ca13d7fbeacb1, type: 3}
+  idle3: {fileID: 8300000, guid: c0e5da63a2f944c468b487339fbf44bf, type: 3}
+  idle4: {fileID: 8300000, guid: 89c5e8bf01658e34790afb62243b7333, type: 3}
 --- !u!114 &5953623335836021918
 MonoBehaviour:
   m_ObjectHideFlags: 0
