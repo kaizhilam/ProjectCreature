@@ -88,8 +88,6 @@ public class EnemyAI : MonoBehaviour
 
     private bool DetectsEnemy()
     {
-        //exits early just so that wandering can be shown
-        return false;
         dist = Vector3.Distance(this.transform.position, Player.transform.position);
         //if player is close enough...
         if (dist < spotRange)
