@@ -36,7 +36,8 @@ public class EnemyAI : MonoBehaviour
     private void NewEnemyDetection()
     {
         dist = Vector3.Distance(this.transform.position, Player.transform.position);
-        if (dist < spotRange)
+        //Renderer rend = Player.GetComponentInChildren<Renderer>();
+        if (dist < spotRange /*&& rend.enabled == true*/)
         {
             this.transform.LookAt(Player.transform);
             RaycastHit hit;
@@ -63,7 +64,8 @@ public class EnemyAI : MonoBehaviour
     private void EnemyDetection()
     {
         dist = Vector3.Distance(this.transform.position, Player.transform.position);
-        if (dist < spotRange)
+        //Renderer rend = Player.GetComponentInChildren<Renderer>();
+        if (dist < spotRange/* && rend.enabled == true*/)
         {
             this.transform.LookAt(Player.transform);
             RaycastHit hit;
