@@ -42,12 +42,13 @@ public class SoundManager : MonoBehaviour
 
     public void RandomizeSfx(List<AudioClip> sounds, Vector3 location)
     {
+        print("playing");
         int randomIndex = Random.Range(0, sounds.Count);
         float randomPitch = Random.Range(lowPitchRange, highPitchRange);
 
-        efxSource.pitch = randomPitch;
-        efxSource.clip = sounds[randomIndex];
-        efxSource.Play();
+        //efxSource.pitch = randomPitch;
+        //efxSource.clip = sounds[randomIndex];
+        //efxSource.Play();
         AudioSource.PlayClipAtPoint(sounds[randomIndex], location);
     }
 }

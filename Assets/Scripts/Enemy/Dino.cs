@@ -8,13 +8,17 @@ public class Dino : ForestEnemy
     public AudioClip idle2;
     public AudioClip idle3;
     public AudioClip idle4;
+    protected List<AudioClip> sounds;
 
     public Dino()
     {
-        sounds.Add(idle1);
-        sounds.Add(idle2);
-        sounds.Add(idle3);
-        sounds.Add(idle4);
+        sounds = new List<AudioClip>
+        {
+            idle1,
+            idle2,
+            idle3,
+            idle4
+        };
         Health = 100;
         MovementSpeed1 = 5;
         EnemyName1 = "dino";

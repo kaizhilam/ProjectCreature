@@ -7,7 +7,7 @@ public abstract class Enemy : MonoBehaviour
     private float health;
     private int MovementSpeed;
     private string EnemyName;
-    protected List<AudioClip> sounds;
+    protected List<AudioClip> sounds = new List<AudioClip>();
 
     public float Health { get => health; set => health = value; }
     public int MovementSpeed1 { get => MovementSpeed; set => MovementSpeed = value; }
