@@ -2,7 +2,7 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-	public Camera cam;
+	private GameObject cam;
 	public Vector3 gravity;
 	public Vector3 jumpVector;
 	public float jumpHeight;
@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
 		controller = GetComponent<CharacterController>();
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     void FixedUpdate()
