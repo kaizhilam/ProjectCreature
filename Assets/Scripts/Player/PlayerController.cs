@@ -103,10 +103,6 @@ public class PlayerController : MonoBehaviour
                 _Animator.SetBool("PlayerRun", true);
                 movement = _InputVector * MovementSpeed * 1.2f * Time.deltaTime;
             }
-            else if (!_CanJump)
-            {
-                movement = Vector3.Scale(_InputVector * AirMovementSpeed * Time.deltaTime,_Rb.velocity);
-            }
             else
             {
                 _Animator.SetBool("PlayerIdle", false);
