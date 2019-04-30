@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Effect
+  - Ground
   - Water
   - Attack
   - Effect
@@ -18,7 +18,7 @@ TagManager:
   - 
   - 
   - enemy
-  - obstacle
+  - 
   - 
   - 
   - 
