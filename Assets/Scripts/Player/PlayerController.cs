@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _Rb;
     private Animator _Animator;
 	private Ability[] _CompareAbilities;
+    private CharacterController _Controller;
 
     private void Start()
     {
@@ -199,9 +200,12 @@ public class PlayerController : MonoBehaviour
                 _Animator.SetBool("PlayerWalk", true);
                 _Animator.SetBool("PlayerRun", false);
                 movement = _InputVector * MovementSpeed * Time.deltaTime;
+
             }
             transform.eulerAngles = new Vector3(0, _CameraFace.transform.eulerAngles.y, 0);
-            _Rb.transform.Translate(movement); //move the character
+            //_Rb.transform.Translate(movement); //move the character
+            _Controller.Move(movement);
+            transform.forward = Vector3.Lerp(this.transform.position, movement, 0.5f);
         }
         //if player isn't moving, play idle animation
         else
