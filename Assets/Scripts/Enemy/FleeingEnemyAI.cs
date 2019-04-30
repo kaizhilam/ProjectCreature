@@ -107,7 +107,7 @@ public class FleeingEnemyAI : MonoBehaviour
             }
             else
             {
-                print("ray not hitting anything at all?");
+                //print("ray not hitting anything at all?");
 
             }
         }

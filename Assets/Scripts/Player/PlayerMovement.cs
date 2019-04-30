@@ -52,8 +52,22 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(-cam.transform.right * speed * delta);
             transform.forward = Vector3.Lerp(transform.forward, -cameraRight, delta * smooth);
 		}
-		
+
+		//GRAVITY FALLING (To prevent not being able to jump while going downhill)
+		jumpVector.y += gravity.y;
+		controller.Move(jumpVector);
+
 		//JUMPING
+		if (Input.GetKey(KeyCode.Space) && controller.isGrounded == true)
+		{
+			jumpVector.y = jumpHeight * delta;
+		}
+		jumpVector.y = Mathf.Clamp(jumpVector.y, -2f, Mathf.Infinity);
+		controller.Move(jumpVector);
+
+
+		//JUMPING
+		/*
         if (Input.GetKey(KeyCode.Space) && controller.isGrounded == true)
         {
             jumpVector.y = jumpHeight * delta;
@@ -61,6 +75,6 @@ public class PlayerMovement : MonoBehaviour
 		
 		jumpVector.y += gravity.y;
         jumpVector.y = Mathf.Clamp(jumpVector.y, -2f, Mathf.Infinity);
-		controller.Move(jumpVector);
+		controller.Move(jumpVector);*/
 	}
 }
