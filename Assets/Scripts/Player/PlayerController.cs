@@ -206,9 +206,9 @@ public class PlayerController : MonoBehaviour
         //if player isn't moving, play idle animation
         else
         {
-            _Animator.SetBool("PlayerIdle", true);
-            _Animator.SetBool("PlayerWalk", false);
-            _Animator.SetBool("PlayerRun", false);
+            //_Animator.SetBool("PlayerIdle", true);
+            //_Animator.SetBool("PlayerWalk", false);
+           // _Animator.SetBool("PlayerRun", false);
         }
     }
 
