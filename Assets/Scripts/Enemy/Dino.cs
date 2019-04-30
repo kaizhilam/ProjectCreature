@@ -9,16 +9,11 @@ public class Dino : ForestEnemy
     public AudioClip idle3;
     public AudioClip idle4;
     protected List<AudioClip> sounds;
+    private AudioSource src;
 
     public Dino()
     {
-        sounds = new List<AudioClip>
-        {
-            idle1,
-            idle2,
-            idle3,
-            idle4
-        };
+        
         Health = 100;
         MovementSpeed1 = 5;
         EnemyName1 = "dino";
@@ -26,6 +21,14 @@ public class Dino : ForestEnemy
 
     private void Start()
     {
+        src = GetComponent<AudioSource>();
+        sounds = new List<AudioClip>
+        {
+            idle1,
+            idle2,
+            idle3,
+            idle4
+        };
         StartCoroutine(IdleSound());
     }
 
@@ -34,8 +37,8 @@ public class Dino : ForestEnemy
         while (true)
         {
             print("idle sounds");
-            SoundManager.instance.RandomizeSfx(sounds, transform.position);
-            yield return new WaitForSeconds(1.0f);
+            SoundManager.instance.RandomizeSfx(sounds, src);
+            yield return new WaitForSeconds(Random.Range(5,8));
         }
 
     }

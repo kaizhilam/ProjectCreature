@@ -82,7 +82,11 @@ public class CollisionAvoidance : MonoBehaviour
         }
         else
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target - transform.position), Time.deltaTime / 3f);
+            Vector3 desiredRot = target - transform.position;
+            if (desiredRot != Vector3.zero)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredRot), Time.deltaTime / 3f);
+            }
             //cc.Move(transform.forward * 0.05f);
             _rb.transform.Translate(transform.forward * 0.05f);
         }

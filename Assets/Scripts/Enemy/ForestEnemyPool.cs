@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ForestEnemyPool : MonoBehaviour
 {
-
+    [SerializeField] private List<ForestEnemy> forestEnemyPrefabs;
     [SerializeField] private ForestEnemy forestEnemyPrefab;
     private Queue<ForestEnemy> ForestEnemies = new Queue<ForestEnemy>();
     public static ForestEnemyPool Instance { get; private set; }
@@ -27,7 +27,8 @@ public class ForestEnemyPool : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            ForestEnemy enemy = Instantiate(forestEnemyPrefab);
+            int RandomIndex = UnityEngine.Random.Range(0, forestEnemyPrefabs.Count); 
+            ForestEnemy enemy = Instantiate(forestEnemyPrefabs[RandomIndex]);
             enemy.gameObject.SetActive(false);
             ForestEnemies.Enqueue(enemy); 
         }
