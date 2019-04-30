@@ -11,6 +11,7 @@ public class PlayerStat : MonoBehaviour
 	 * LightningballAbility
 	 * FastMovementAbility
 	 * HighJumpAbility
+	 * BlinkAbility
 	 * */
     public static float HP = 100f;
     public static PlayerInventory<string> Inventory = new PlayerInventory<string>(); //change int to whatever type item is 
