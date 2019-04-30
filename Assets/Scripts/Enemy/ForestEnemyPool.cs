@@ -6,7 +6,6 @@ using UnityEngine;
 public class ForestEnemyPool : MonoBehaviour
 {
     [SerializeField] private List<ForestEnemy> forestEnemyPrefabs;
-    [SerializeField] private ForestEnemy forestEnemyPrefab;
     private Queue<ForestEnemy> ForestEnemies = new Queue<ForestEnemy>();
     public static ForestEnemyPool Instance { get; private set; }
     private void Awake()
