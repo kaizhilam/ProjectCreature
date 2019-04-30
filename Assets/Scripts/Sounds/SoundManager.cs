@@ -33,4 +33,15 @@ public class SoundManager : MonoBehaviour
             source.Play();
         }
     }
+
+    public void PlaySfxAtSource(AudioClip clip, AudioSource source)
+    {
+        float randomPitch = Random.Range(lowPitchRange, highPitchRange);
+        if (!source.isPlaying)
+        {
+            source.pitch = randomPitch;
+            source.clip = clip;
+            source.Play();
+        }
+    }
 }
