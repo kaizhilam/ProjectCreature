@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 439868}
   - component: {fileID: 3365326}
   - component: {fileID: 2327020}
+  - component: {fileID: 4994590783029038808}
   m_Layer: 0
   m_Name: grass_2_yellowflower
   m_TagString: Untagged
@@ -77,3 +78,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4994590783029038808
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166912}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 74b7218a784a53741a77cd2ba9232a70, type: 3}
