@@ -72,7 +72,9 @@ GameObject:
   - component: {fileID: 4806390366692392985}
   - component: {fileID: 4806390366692392986}
   - component: {fileID: 4806390366692392987}
-  - component: {fileID: 4806390366692392980}
+  - component: {fileID: 1164995793}
+  - component: {fileID: 1164995787}
+  - component: {fileID: 1164995794}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -121,7 +123,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -139,7 +141,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2627dc633e34baf4b861807c430850ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4806390366692392980
+--- !u!143 &1164995793
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806390366692392982}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1164995787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,13 +168,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 4806390366692392982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d96096f0f67aba40ad5ce0a3b2bd24d, type: 3}
+  m_Script: {fileID: 11500000, guid: a941e7138fa5561449ae0d63a50736e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpHeight: 400
-  MovementSpeed: 10
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  gravity: {x: 0, y: -0.025, z: 0}
+  jumpVector: {x: 0, y: -2, z: 0}
+  jumpHeight: 20
+  speed: 10
+  smooth: 10
+--- !u!114 &1164995794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806390366692392982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e7964a80b737c4c9e9563d6c0f7716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4806390366094501773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -360,9 +393,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4806390366094501773}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4806390366094376075 stripped
+--- !u!4 &4806390366094376083 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400134, guid: c5c314c1f89012e4b81d6c334cf4bd08,
+  m_CorrespondingSourceObject: {fileID: 400158, guid: c5c314c1f89012e4b81d6c334cf4bd08,
     type: 3}
   m_PrefabInstance: {fileID: 4806390366094501773}
   m_PrefabAsset: {fileID: 0}
@@ -438,12 +471,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4806390366094501773}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4806390366094376087 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400154, guid: c5c314c1f89012e4b81d6c334cf4bd08,
-    type: 3}
-  m_PrefabInstance: {fileID: 4806390366094501773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4806390366094376093 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400144, guid: c5c314c1f89012e4b81d6c334cf4bd08,
@@ -462,9 +489,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4806390366094501773}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4806390366094376083 stripped
+--- !u!4 &4806390366094376075 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400158, guid: c5c314c1f89012e4b81d6c334cf4bd08,
+  m_CorrespondingSourceObject: {fileID: 400134, guid: c5c314c1f89012e4b81d6c334cf4bd08,
+    type: 3}
+  m_PrefabInstance: {fileID: 4806390366094501773}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4806390366094376087 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400154, guid: c5c314c1f89012e4b81d6c334cf4bd08,
     type: 3}
   m_PrefabInstance: {fileID: 4806390366094501773}
   m_PrefabAsset: {fileID: 0}
