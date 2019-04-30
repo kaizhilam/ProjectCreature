@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.40577513, g: 0.52396554, b: 0.6259987, a: 1}
+  m_IndirectSpecularColor: {r: 0.4057792, g: 0.5239682, b: 0.6260005, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -599,7 +599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 458538, guid: fb94d61ff942fc34280ad39554af1cd8, type: 3}
       propertyPath: m_RootOrder
-      value: 46
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 458538, guid: fb94d61ff942fc34280ad39554af1cd8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2543,6 +2543,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.0000001
       objectReference: {fileID: 0}
+    - target: {fileID: 5822627054572535300, guid: 31762d3219a468d4ab06bd6f2c5f5ab6,
+        type: 3}
+      propertyPath: forest.Array.data[0]
+      value: 
+      objectReference: {fileID: 511162704281060795, guid: 571bba6d8ee740f45b53adf197d6139c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dea84a3662be77b4bad1db42d2b32262, type: 3}
 --- !u!4 &61348733 stripped
@@ -84580,7 +84586,7 @@ PrefabInstance:
     - target: {fileID: 7439998780682536544, guid: 9b502b95bb0b7a94f980638516c4cf27,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.291
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 7439998780682536544, guid: 9b502b95bb0b7a94f980638516c4cf27,
         type: 3}
