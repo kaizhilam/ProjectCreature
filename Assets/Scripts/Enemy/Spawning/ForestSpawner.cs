@@ -44,7 +44,7 @@ public class ForestSpawner : Spawner
             }
             else
             {
-                Debug.Log("no land underneath spawner to spawn enemies");
+                //Debug.Log("no land underneath spawner to spawn enemies");
                 SpawnPoint = this.transform.position;
             }
 
