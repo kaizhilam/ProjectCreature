@@ -4,11 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Effect
+  - Ground
   - Water
   - Attack
   - Effect
-  - Ground
   layers:
   - Default
   - TransparentFX

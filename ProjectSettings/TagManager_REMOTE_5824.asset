@@ -8,7 +8,6 @@ TagManager:
   - Water
   - Attack
   - Effect
-  - Ground
   layers:
   - Default
   - TransparentFX
@@ -18,8 +17,8 @@ TagManager:
   - UI
   - 
   - 
-  - enemy
-  - obstacle
+  - 
+  - 
   - 
   - 
   - 
