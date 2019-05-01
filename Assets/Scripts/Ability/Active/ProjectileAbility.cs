@@ -28,7 +28,7 @@ public class ProjectileAbility : ActiveAbility
 		if (Input.GetAxisRaw("Fire1") == 1f && _Timer >= coolDownTime && PlayerStat.SelectedAbility is WaterballAbility)
 		{
 			_Timer = 0;
-			Instantiate(projectile, shootfrom.position, shootfrom.rotation);
+            MonoBehaviour.Instantiate(projectile, shootfrom.position, shootfrom.rotation);
 		}
 		_Timer += Time.deltaTime;
 		if (_Timer >= coolDownTime)

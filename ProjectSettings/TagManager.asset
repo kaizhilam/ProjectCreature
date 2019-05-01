@@ -6,9 +6,11 @@ TagManager:
   tags:
   - Effect
   - Water
+  - Attack
+  - Effect
   - Ground
-  - T1
   - IUI
+  - T1
   layers:
   - Default
   - TransparentFX
