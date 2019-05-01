@@ -133,9 +133,7 @@ public class EnemyAI : MonoBehaviour
         //if comes into contact with projectile
         if(collision.gameObject.tag == "Attack")
         {
-            //take that projectiles damage and deduct it from itself
-            _En.TakeDamage(collision.gameObject.GetComponent<ProjectileBehavior>().Damage);
-            _Rb.AddForce(-collision.relativeVelocity*50);
+            _Rb.AddForce(-collision.relativeVelocity.normalized*50);
         }
     }
     private void OnCollisionExit(Collision collision)
