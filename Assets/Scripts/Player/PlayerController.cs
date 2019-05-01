@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     private Transform _CameraFace;
     private Rigidbody _Rb;
     private Animator _Animator;
+    delegate void NoParamNoReturn();
+    NoParamNoReturn Attack;
+    NoParamNoReturn RunAbility;
 
     private void Start()
     {
@@ -29,6 +32,7 @@ public class PlayerController : MonoBehaviour
         //for animations
         _Animator = GetComponentInChildren<Animator>();
         _InputVector = new Vector3(0, 0, 0);
+        //need to assign attack and runability delegates, have to make inveontoy manager first tho
 
     }
 
@@ -133,4 +137,6 @@ public class PlayerController : MonoBehaviour
         //get movement input - WASD
         _InputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")); 
     }
+
+
 }
