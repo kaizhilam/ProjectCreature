@@ -36,7 +36,7 @@ public class Dino : ForestEnemy
     {
         while (true)
         {
-            print("idle sounds");
+            //print("idle sounds");
             SoundManager.instance.RandomizeSfx(sounds, src);
             yield return new WaitForSeconds(Random.Range(5,8));
         }
