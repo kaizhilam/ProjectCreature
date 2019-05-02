@@ -1,7 +1,19 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 12778fe8155768a4ab4aa1588504cf4b
 folderAsset: yes
 timeCreated: 1458643596
+=======
+<<<<<<< HEAD:Assets/Terrain/Fantasy nature/Double Sided Shaders.meta
+guid: 5dc5d527ac987cb498554ebb5b570928
+folderAsset: yes
+timeCreated: 1458644052
+=======
+guid: 12778fe8155768a4ab4aa1588504cf4b
+folderAsset: yes
+timeCreated: 1458643596
+>>>>>>> master:Assets/Terrain/Fantasy nature/Models/Old_tree.meta
+>>>>>>> master
 licenseType: Store
 DefaultImporter:
   userData: 

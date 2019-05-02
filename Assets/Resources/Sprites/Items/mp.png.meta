@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 6592b916f86b19e428db6f6847c7b6dd
+=======
+<<<<<<< HEAD:Assets/Resources/Sprites/Items/sword.png.meta
+guid: 5fd50594014b70e48bd6993443d46b32
+=======
+guid: 6592b916f86b19e428db6f6847c7b6dd
+>>>>>>> master:Assets/Resources/Sprites/Items/mp.png.meta
+>>>>>>> master
 timeCreated: 1456159922
 licenseType: Store
 TextureImporter:

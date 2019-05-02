@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 4b0d51de85e2280428f8f91b26074432
+=======
+<<<<<<< HEAD:Assets/Scripts/Items/Consumable.cs.meta
+guid: adc1027ec4cd347f9b3155a15495b43d
+=======
+guid: 4b0d51de85e2280428f8f91b26074432
+>>>>>>> master:Assets/Scripts/Items/Slot.cs.meta
+>>>>>>> master
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -1,7 +1,19 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Terrain/Fantasy nature/Models/Rocks/Textures.meta
 guid: bb58ddf09ffe44847a2b6db094f1bbe0
 folderAsset: yes
 timeCreated: 1458644559
+=======
+guid: c2b0702168e2ba64580f2b188f7670d3
+folderAsset: yes
+timeCreated: 1506511166
+>>>>>>> master:Assets/Terrain/FantasyEnvironments/Environments/Ambient-Occlusion-Trees/Textures.meta
+=======
+guid: bb58ddf09ffe44847a2b6db094f1bbe0
+folderAsset: yes
+timeCreated: 1458644559
+>>>>>>> master
 licenseType: Store
 DefaultImporter:
   userData: 
