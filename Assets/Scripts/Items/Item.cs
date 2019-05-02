@@ -8,7 +8,7 @@ public class Item : MonoBehaviour
     public int objID;
     public string objName;
     public string description;
-    public GameObject player;
+    private GameObject player;
     private float distance;
     private bool isCloseEnough;
     public ItemType Type;
@@ -20,7 +20,12 @@ public class Item : MonoBehaviour
 
     }
 
-    public Item(int id, string name, string des, ItemType type, int capacity)
+	private void Start()
+	{
+		player = GameObject.FindGameObjectWithTag("Player"); //THE LESS VARIABLE THERE IS, THE BETTER IT IS FOR THE FUTURE
+	}
+
+	public Item(int id, string name, string des, ItemType type, int capacity)
     {
         objID = id;
         objName = name;
