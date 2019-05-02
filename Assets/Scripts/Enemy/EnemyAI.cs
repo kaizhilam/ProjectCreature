@@ -19,7 +19,6 @@ public class EnemyAI : MonoBehaviour
     public float rotSpeed = 100f;
     private float health;
     private Enemy _En;
-    private CollisionAvoidance avoidScript;
 
     NavMeshAgent agent;
     public LayerMask mask;
@@ -36,7 +35,6 @@ public class EnemyAI : MonoBehaviour
         health = _En.Health;
         MovementSpeed = _En.MovementSpeed1;
         //agent = GetComponent<NavMeshAgent>();
-        avoidScript = GetComponent<CollisionAvoidance>();
     }
 
     // using FixedUpdate instead of update so PCs with slow framerates don't skip important calculations
@@ -48,23 +46,17 @@ public class EnemyAI : MonoBehaviour
             ChasePlayer();
             StopCoroutine(Wander());
         }
-        else { 
-            if (!_Wandering)
-            {
-                StartCoroutine(Wander());
-            }
-            if (_IsRotating)
-            {
-                transform.Rotate(transform.up * Time.deltaTime * rotSpeed);
-            }
-            if (_IsWalking)
-            {
-                //if self doesn't need course correction (isn't about to hit a wall), move forward normally
-                if (!avoidScript.CourseCorrection())
-                {
-                    transform.position += transform.forward * MovementSpeed * Time.deltaTime;
-                }
-            }
+        else if(!_Wandering)
+        {
+            StartCoroutine(Wander());
+        }
+        if (_IsRotating)
+        {
+            transform.Rotate(transform.up * Time.deltaTime * rotSpeed);
+        }
+        if (_IsWalking)
+        {
+            transform.position += transform.forward * MovementSpeed * Time.deltaTime;
         }
         
     }
@@ -104,10 +96,10 @@ public class EnemyAI : MonoBehaviour
             this.transform.LookAt(Player.transform.position + (Vector3.up*2));
             Ray objectRay = new Ray(transform.position + Vector3.up*4, Player.transform.position - (transform.position + Vector3.up * 4));
             //Debug.DrawRay(transform.position + Vector3.up * 4, Player.transform.position - (transform.position + Vector3.up * 4), Color.red);
-            if (Physics.Raycast(objectRay, out hit, spotRange))
+            if (Physics.Raycast(objectRay, out hit, 1000))
             {
                 //if sees player, move towards it, otherwise do nothing
-                if (hit.collider.tag == "Player")
+                if (hit.collider.tag == "Player" && _CanMove == true)
                 {
                     return true;
                     
@@ -133,7 +125,9 @@ public class EnemyAI : MonoBehaviour
         //if comes into contact with projectile
         if(collision.gameObject.tag == "Attack")
         {
-            _Rb.AddForce(-collision.relativeVelocity.normalized*50);
+            //take that projectiles damage and deduct it from itself
+            _En.TakeDamage(collision.gameObject.GetComponent<ProjectileBehavior>().Damage);
+            _Rb.AddForce(-collision.relativeVelocity*50);
         }
     }
     private void OnCollisionExit(Collision collision)

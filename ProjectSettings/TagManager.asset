@@ -9,6 +9,8 @@ TagManager:
   - Attack
   - Effect
   - Ground
+  - IUI
+  - T1
   layers:
   - Default
   - TransparentFX
@@ -18,8 +20,8 @@ TagManager:
   - UI
   - 
   - 
-  - enemy
-  - obstacle
+  - 
+  - 
   - 
   - 
   - 

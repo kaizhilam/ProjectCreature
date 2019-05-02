@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b29ffd89d7ad0a40a14b31d33a9ea0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCap: 50
-  Range: 30
+  spawnCap: 10
+  Range: 50
   forest:
   - {fileID: 511162704281060795, guid: f6b38aedd494f8741a0341bbc16ef870, type: 3}
   - {fileID: 4083383024262006830, guid: dc669a68a63ed6a44b5b98fc95e2bdfd, type: 3}

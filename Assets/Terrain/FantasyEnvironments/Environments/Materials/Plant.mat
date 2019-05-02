@@ -76,7 +76,6 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 1
-    - _Occlusion: 7.5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _ShadowStrength: 1

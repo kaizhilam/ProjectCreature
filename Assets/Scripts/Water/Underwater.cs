@@ -50,7 +50,7 @@ public class Underwater : MonoBehaviour
         {
             isUnderwater = false;
             _CheckCamera = false;
-            //Debug.Log("CheckCamera Off");
+            Debug.Log("CheckCamera Off");
             SetNormal();
         }
         else if (_Player.position.y > transform.position.y)
