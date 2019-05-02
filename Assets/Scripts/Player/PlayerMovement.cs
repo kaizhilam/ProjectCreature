@@ -76,10 +76,9 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		////DEBUG
-		//Vector3 temp = _Controller.velocity;
-		//temp.y = 0f;
-		//Debug.Log("GROUNDED: " + _Controller.isGrounded + " --- VELOCITY: " + temp + " --- MAGNITUDE: " + temp.magnitude + " --- RETAIN: " + _RetainMagnitude);
-		//Debug.Log("GROUNDED: " + _Controller.isGrounded + " --- VELOCITY: " + temp + " --- MAGNITUDE: " + temp.magnitude + " --- MOVEMENT: " + movement);
+		Vector3 temp = _Controller.velocity;
+		temp.y = 0f;
+		Debug.Log("GROUNDED: " + _Controller.isGrounded + " --- VELOCITY: " + temp + " --- MAGNITUDE: " + temp.magnitude + " --- MOVEMENT: " + movement);
 	}
 
 	private void GetInput()

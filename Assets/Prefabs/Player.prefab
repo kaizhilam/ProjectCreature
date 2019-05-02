@@ -140,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gravity: {x: 0, y: -0.05, z: 0}
   JumpVector: {x: 0, y: 0, z: 0}
-  JumpHeight: 20
+  JumpHeight: 50
   Speed: 15
   Smooth: 15
   AirMovementPenalty: 0.75
