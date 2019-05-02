@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 57427cf970a14461081a6c0103a120e5
-=======
-<<<<<<< HEAD:Assets/Resources/Sprites.meta
-guid: 4fda88da921244dffa5255c24dd1e623
-=======
-guid: 57427cf970a14461081a6c0103a120e5
->>>>>>> master:Assets/JSON/Editor.meta
->>>>>>> master
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

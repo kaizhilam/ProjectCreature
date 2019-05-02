@@ -47,7 +47,6 @@ public class Knapsack : MonoBehaviour
     public void StoreItem(Item item)
     {
         Slot slot = FindEmptySlot();
-
         slot.StoreItem(item);
 
     }

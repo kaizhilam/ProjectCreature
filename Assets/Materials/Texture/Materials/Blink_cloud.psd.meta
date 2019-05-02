@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 927dd79055a0d024b889b07783de7758
-=======
-<<<<<<< HEAD:Assets/Materials/Texture/Materials/Lightning_circle_2.psd.meta
-guid: 0023c4ef0e07cf64397d89e18a47619b
-=======
-guid: 927dd79055a0d024b889b07783de7758
->>>>>>> master:Assets/Materials/Texture/Materials/Blink_cloud.psd.meta
->>>>>>> master
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}

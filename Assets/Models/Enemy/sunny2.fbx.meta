@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD:Assets/Models/Enemy/sunny2.fbx.meta
 guid: ab5e3827c5a791b4dac4489158606351
-=======
-guid: 82ef649bb562acd4c862f75a3f4d6a7e
->>>>>>> master:Assets/Models/Enemy/sunny.fbx.meta
-=======
-guid: ab5e3827c5a791b4dac4489158606351
->>>>>>> master
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:

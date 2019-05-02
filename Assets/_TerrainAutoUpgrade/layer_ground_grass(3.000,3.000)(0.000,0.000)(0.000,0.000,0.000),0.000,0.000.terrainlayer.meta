@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD:Assets/_TerrainAutoUpgrade/layer_ground_grass(3.000,3.000)(0.000,0.000)(0.000,0.000,0.000),0.000,0.000.terrainlayer.meta
 guid: 50c2a9d6c36c4bf40accbec8df455cd8
-=======
-guid: 2b64a6be1a0b9a7418125518239a5200
->>>>>>> master:Assets/Terrain/Dark Rocky Road.terrainlayer.meta
-=======
-guid: 50c2a9d6c36c4bf40accbec8df455cd8
->>>>>>> master
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 8574412962073106934

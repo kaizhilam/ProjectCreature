@@ -1,16 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: d4f5634edede200468fc1ccf30e6f3a1
 timeCreated: 1456159922
-=======
-<<<<<<< HEAD:Assets/Resources/Sprites/Items/boots.png.meta
-guid: e420c5bc93cb2604695a893500c897e3
-timeCreated: 1456159923
-=======
-guid: d4f5634edede200468fc1ccf30e6f3a1
-timeCreated: 1456159922
->>>>>>> master:Assets/Resources/Sprites/Items/gloves.PNG.meta
->>>>>>> master
 licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}
