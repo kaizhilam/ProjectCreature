@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager: MonoBehaviour
-{ 
+{
+    private float targetAlpha = 1;
+    private float smoothing = 4;
+    private CanvasGroup canvasGroup;
     public static InventoryManager Instance { get; private set; }
     private static SlottedItem[] InventoryItems;
     private static SlottedItem[] HotbarItems;
+    public static Slot[] Slots;
 
     public InventoryManager()
     {
@@ -24,6 +28,13 @@ public class InventoryManager: MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+    }
+
+    public virtual void Start()
+    {
+        Slots = GetComponentsInChildren<Slot>();
+        canvasGroup = GetComponent<CanvasGroup>();
+        InventoryItems = new SlottedItem[UISlots.Length];
     }
 
     public void Swap(SlottedItem item1, SlottedItem item2)
@@ -80,17 +91,18 @@ public class InventoryManager: MonoBehaviour
 
     }
 
-    public bool AddToFirstInvSlot(SlottedItem item)
+    //returns index item was added to, returns -1 if no room for it
+    public int AddToFirstInvSlot(SlottedItem item)
     {
         for (int i = 0; i < InventoryItems.Length; i++)
         {
-            if (InventoryItems[i] != null)
+            if (InventoryItems[i] == null)
             {
                 InventoryItems[i] = item;
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 
     public bool AddToInventoryIndex(SlottedItem item, int index)
@@ -151,6 +163,55 @@ public class InventoryManager: MonoBehaviour
     public void PopulateArrayFromSceneObject()
     {
 
+    }
+
+    public void RefreshInventoryFromList()
+    {
+        for (int i = 0; i < UISlots.Length; i++)
+        {
+            RefreshSlotFromList(i);
+        }
+    }
+
+    public void RefreshSlotFromList(int index)
+    {
+        print("refreshing slot " + index);
+        UISlots[index].SetItem(InventoryItems[index], index, 1);
+        
+    }
+
+    public void DisplaySwitch()
+    {
+        if (targetAlpha == 0)
+        {
+            Show();
+        }
+        else
+        {
+            Hide();
+        }
+    }
+    public void Show()
+    {
+        canvasGroup.blocksRaycasts = true;
+        targetAlpha = 1;
+    }
+    public void Hide()
+    {
+        canvasGroup.blocksRaycasts = false;
+        targetAlpha = 0;
+    }
+
+    private void Update()
+    {
+        if (canvasGroup.alpha != targetAlpha)
+        {
+            canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, targetAlpha, smoothing * Time.deltaTime);
+            if (Mathf.Abs(canvasGroup.alpha - targetAlpha) < .01f)
+            {
+                canvasGroup.alpha = targetAlpha;
+            }
+        }
     }
 }
 

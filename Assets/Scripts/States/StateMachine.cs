@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class StateMachine : MonoBehaviour
 {
@@ -17,6 +18,22 @@ public class StateMachine : MonoBehaviour
 
     private void Update()
     {
-        if(Current)
+        if(CurrentState == null)
+        {
+            CurrentState = _availableStates.Values.First();
+        }
+
+        var nextState = CurrentState?.Tick();
+
+        if(nextState != null && nextState != CurrentState?.GetType())
+        {
+            SwitchToNewState(nextState);
+        }
+    }
+
+    private void SwitchToNewState(Type nextState)
+    {
+        CurrentState = _availableStates[nextState];
+        OnStateChanged?.Invoke(CurrentState);
     }
 }

@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Weapon : MonoBehaviour
+public abstract class Weapon : SlottedItem
 {
     public float durability;
-    public Image icon;
-    public GameObject prefab;
     public float damage;
 
     public abstract void RunAbility();
