@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 			}
 
 			//MOVEMENT CODE
-			movement = (cameraForward * _Input.z * Speed * delta) + (cameraRight * _Input.x * Speed * delta); //HORIZONTAL + VERTICAL MOVEMENT
+			movement = ((cameraForward * _Input.z) + (cameraRight * _Input.x)).normalized * Speed * delta;//HORIZONTAL + VERTICAL MOVEMENT
 		}
 
 		//GRAVITY CODE
