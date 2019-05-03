@@ -13,6 +13,5 @@ public class PlayerStat : MonoBehaviour
 	 * HighJumpAbility
 	 * BlinkAbility
 	 * */
-    public static float HP = 100f;
-    public static PlayerInventory<string> Inventory = new PlayerInventory<string>(); //change int to whatever type item is 
+    public static float HP = 100f; 
 }
