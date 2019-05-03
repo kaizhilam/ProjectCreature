@@ -9,6 +9,7 @@ TagManager:
   - Attack
   - Effect
   - Ground
+  - T1
   layers:
   - Default
   - TransparentFX
