@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class SlottedItem : MonoBehaviour
 {
 
     public int objID;
@@ -15,17 +15,17 @@ public class Item : MonoBehaviour
     public string Sprite;
     public int capacity;
 
-    public Item()
+    public SlottedItem()
     {
 
     }
 
-	private void Start()
-	{
-		player = GameObject.FindGameObjectWithTag("Player"); //THE LESS VARIABLE THERE IS, THE BETTER IT IS FOR THE FUTURE
-	}
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player"); //THE LESS VARIABLE THERE IS, THE BETTER IT IS FOR THE FUTURE
+    }
 
-	public Item(int id, string name, string des, ItemType type, int capacity)
+    public SlottedItem(int id, string name, string des, ItemType type, int capacity)
     {
         objID = id;
         objName = name;
