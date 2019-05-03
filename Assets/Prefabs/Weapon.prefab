@@ -113,7 +113,7 @@ MonoBehaviour:
   objName: axe
   description: a
   Type: 2
-  Sprite: axe.png
+  Sprite: Sprites/Items/hp
   capacity: 1
   durability: 5
   damage: 5

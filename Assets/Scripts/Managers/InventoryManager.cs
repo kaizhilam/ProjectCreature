@@ -214,6 +214,19 @@ public class InventoryManager: MonoBehaviour
             }
         }
     }
+
+    public Slot GetSlot(int index)
+    {
+        return Slots[index];
+    }
+
+    public void StoreItem(SlottedItem item)
+    {
+        int index = AddToFirstInvSlot(item);
+        Slot slot = GetSlot(index);
+        slot.StoreItem(item);
+
+    }
 }
 
     
