@@ -33,8 +33,9 @@ public class InventoryManager: MonoBehaviour
     public virtual void Start()
     {
         Slots = GetComponentsInChildren<Slot>();
+        print(Slots.Length);
         canvasGroup = GetComponent<CanvasGroup>();
-        InventoryItems = new SlottedItem[UISlots.Length];
+        InventoryItems = new SlottedItem[Slots.Length];
     }
 
     public void Swap(SlottedItem item1, SlottedItem item2)
@@ -167,7 +168,7 @@ public class InventoryManager: MonoBehaviour
 
     public void RefreshInventoryFromList()
     {
-        for (int i = 0; i < UISlots.Length; i++)
+        for (int i = 0; i < Slots.Length; i++)
         {
             RefreshSlotFromList(i);
         }
@@ -176,7 +177,7 @@ public class InventoryManager: MonoBehaviour
     public void RefreshSlotFromList(int index)
     {
         print("refreshing slot " + index);
-        UISlots[index].SetItem(InventoryItems[index], index, 1);
+        Slots[index]?.GetComponent<ItemUI>()?.SetItem(InventoryItems[index]);
         
     }
 
