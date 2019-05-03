@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 9214005677116186829}
   - component: {fileID: 9214005677116186827}
   - component: {fileID: 9214005677116186828}
-  - component: {fileID: 9222225829712527340}
+  - component: {fileID: 3987678098997767602}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &9222225829712527340
+--- !u!114 &3987678098997767602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,12 +164,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9214005677116186830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b26b27844b53cd408afabaaac85c1b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f5dafba9ba38de4a8b383a8bd8e4eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objID: 0
-  objName: 
-  description: 
-  Type: 0
-  Sprite: axe.png
-  capacity: 0
