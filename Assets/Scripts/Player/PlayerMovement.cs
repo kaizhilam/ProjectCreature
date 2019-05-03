@@ -17,16 +17,21 @@ public class PlayerMovement : MonoBehaviour
     {
 		_Controller = GetComponent<CharacterController>();
         _Camera = GameObject.FindGameObjectWithTag("MainCamera");
+        //subscribing Movement function to InputManager -- If InputManager sees WASD or jump pressed, will call
+        //movement function
+        GetComponent<InputManager>().WASDJump += Movement;
     }
 
 	private void FixedUpdate()
 	{
-		GetInput();
-		Movement();
+		//GetInput();
+		//Movement();
 	}
 
-	private void Movement()
+	private void Movement(Vector3 input, Vector3 raw)
 	{
+        _Input = input;
+        _InputRaw = raw;
 		Vector3 movement = new Vector3();
 		float delta = Time.deltaTime;
 		Vector3 cameraForward = _Camera.transform.forward;
@@ -34,9 +39,6 @@ public class PlayerMovement : MonoBehaviour
 		Vector3 cameraRight = _Camera.transform.right;
 		cameraRight.y = 0f;
 
-		//CHARACTER ROTATION WHEN WALKING
-		if (_InputRaw != Vector3.zero)
-		{
 			if (_InputRaw.z >= 0)
 			{
 				if (_InputRaw.z > 0) //CHARACTER FACING FORWARD
@@ -54,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
 
 			//MOVEMENT CODE
 			movement = ((cameraForward * _Input.z) + (cameraRight * _Input.x)).normalized * Speed * delta;//HORIZONTAL + VERTICAL MOVEMENT
-		}
 
 		//GRAVITY CODE
 		if (_Controller.isGrounded)
@@ -83,7 +84,6 @@ public class PlayerMovement : MonoBehaviour
 
 	private void GetInput()
 	{
-		_Input = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Jump"), Input.GetAxis("Vertical")); //NUMBER CONTAINS DECIMALS FOR CHARACTER ACCELERATION
-		_InputRaw = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Jump"), Input.GetAxisRaw("Vertical")); //NUMBER IS A FULL NUMBER FOR CHECKING IF BUTTON IS PRESSED
+
 	}
 }

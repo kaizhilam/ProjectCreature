@@ -32,6 +32,7 @@ public class InventoryManager: MonoBehaviour
 
     public virtual void Start()
     {
+        GameObject.Find("Player").GetComponent<InputManager>().BKey += DisplaySwitch;
         Slots = GetComponentsInChildren<Slot>();
         print(Slots.Length);
         canvasGroup = GetComponent<CanvasGroup>();
