@@ -20,7 +20,7 @@ public class PlayerPickUpItems : MonoBehaviour
             //SET selectedObj TO OBJECT THAT THE CROSSHAIR IS LOOKING AT
             selectedObj = ThirdPersonCamera.LookingAtGameObject;
             //CHECK selectedObj tag
-            if (selectedObj.tag == "T1")
+            if (selectedObj!=null && selectedObj.tag == "T1")
             {
                 //REST OF MyLi's CODE
                 selectedItem = (SlottedItem)selectedObj.GetComponent<SlottedItem>();

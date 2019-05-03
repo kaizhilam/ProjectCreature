@@ -31,15 +31,38 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B)) { BKey(); }
-        if (Input.GetMouseButtonDown(0)) { LeftClick(); }
-        if (Input.GetMouseButtonDown(1)) { RightClick(); }
-        if (Input.GetKeyDown(KeyCode.E)) { EKey(); }
+        if (Input.GetKeyDown(KeyCode.B)) {
+            if (BKey != null)
+            {
+                BKey();
+            }
+        }
+        if (Input.GetMouseButtonDown(0)) {
+            if (LeftClick != null)
+            {
+                LeftClick();
+            }
+        }
+        if (Input.GetMouseButtonDown(1)) {
+            if (RightClick != null)
+            {
+                RightClick();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.E)) {
+            if (EKey != null)
+            {
+                EKey();
+            }
+        }
         _Input = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Jump"), Input.GetAxis("Vertical")); //NUMBER CONTAINS DECIMALS FOR CHARACTER ACCELERATION
         _InputRaw = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Jump"), Input.GetAxisRaw("Vertical")); //NUMBER IS A FULL NUMBER FOR CHECKING IF BUTTON IS PRESSED
         if (_Input!= Vector3.zero)
         {
-            WASDJump(_Input, _InputRaw);
+            if (WASDJump != null)
+            {
+                WASDJump(_Input, _InputRaw);
+            }
         }
 
     }
