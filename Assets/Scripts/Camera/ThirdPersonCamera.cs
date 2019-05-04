@@ -28,11 +28,17 @@ public class ThirdPersonCamera : MonoBehaviour
         CameraMovement();
         CameraAiming();
     }
-
+    // pause the camera
+    public void OnApplicationPause(bool pause)
+    {
+        if (pause) { MouseSensitivity = 0; }
+        else
+            MouseSensitivity = 1f;
+}
     private void CameraMovement()
     {
-        _CurrentX += Input.GetAxis("Mouse X") * MouseSensitivity;
-        _CurrentY += Input.GetAxis("Mouse Y");
+        _CurrentX += Input.GetAxis("Mouse X") * MouseSensitivity* Time.timeScale;
+        _CurrentY += Input.GetAxis("Mouse Y")* Time.timeScale;
 		_CurrentY = Mathf.Clamp(_CurrentY * MouseSensitivity, -89, 89); //so the y axis does not clip through ground
 		//_CurrentY = Mathf.Clamp(_CurrentY * MouseSensitivity, -15, 89); //so the y axis does not clip through ground
 

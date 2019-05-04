@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class ButtonPause : MonoBehaviour
 {
-    public Button Resume;
     //the ButtonPauseMenu
     public GameObject ingameMenu;
     bool paused;
     private Text _Crosshair;
-
+    ThirdPersonCamera thirdPersonCamera = new ThirdPersonCamera();
+    
     private void Start()
     {
         _Crosshair = GameObject.Find("Crosshair").GetComponent<Text>();
@@ -35,6 +35,7 @@ public class ButtonPause : MonoBehaviour
         ingameMenu.SetActive(true);
         paused = true;
         _Crosshair.text = "";
+        thirdPersonCamera.OnApplicationPause(true);
     }
 
     public void OnResume()
@@ -44,10 +45,11 @@ public class ButtonPause : MonoBehaviour
         ingameMenu.SetActive(false);
         paused = false;
         _Crosshair.text = "+";
+        thirdPersonCamera.OnApplicationPause(false);
     }
     public void OnApplicationQuit()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(0);
     }
 
 }
