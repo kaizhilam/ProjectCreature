@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 1164995793}
   - component: {fileID: 1164995787}
   - component: {fileID: 251117981135048682}
+  - component: {fileID: 1028101635}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -157,6 +158,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9041d9cc84bab6842a0d337fb7e230ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1028101635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806390366692392982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdd9a3c38c24a648b476e41cc9d2de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4806390366094501773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,6 +177,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4806390366692392981}
     m_Modifications:
+    - target: {fileID: 100002, guid: c5c314c1f89012e4b81d6c334cf4bd08, type: 3}
+      propertyPath: m_Name
+      value: Idle
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c5c314c1f89012e4b81d6c334cf4bd08, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -219,10 +236,6 @@ PrefabInstance:
     - target: {fileID: 400002, guid: c5c314c1f89012e4b81d6c334cf4bd08, type: 3}
       propertyPath: m_LocalScale.z
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: c5c314c1f89012e4b81d6c334cf4bd08, type: 3}
-      propertyPath: m_Name
-      value: Idle
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: c5c314c1f89012e4b81d6c334cf4bd08, type: 3}
       propertyPath: m_Bones.Array.data[0]
