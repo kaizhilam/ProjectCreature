@@ -32,7 +32,7 @@ public class PlayerPickUpItems : MonoBehaviour
                     //ADD TO INVENTORY
                     int indexOfInsertedItem = InventoryManager.Instance.AddToFirstInvSlot(selectedItem);
                     InventoryManager.Instance.RefreshSlotFromList(indexOfInsertedItem);
-                    InventoryManager.Instance.StoreItem(selectedItem);
+                    //InventoryManager.Instance.StoreItem(selectedItem);
 
                     Debug.Log("The item has been added");
                     isChecked = false;

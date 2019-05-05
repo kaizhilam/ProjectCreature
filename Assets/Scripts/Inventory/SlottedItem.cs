@@ -13,6 +13,8 @@ public class SlottedItem : MonoBehaviour
     private bool isCloseEnough;
     public ItemType Type;
     public string Sprite;
+    [HideInInspector]
+    public int count;
     public int capacity;
 
     public SlottedItem()
