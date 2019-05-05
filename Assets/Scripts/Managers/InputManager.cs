@@ -57,7 +57,7 @@ public class InputManager : MonoBehaviour
         }
         _Input = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Jump"), Input.GetAxis("Vertical")); //NUMBER CONTAINS DECIMALS FOR CHARACTER ACCELERATION
         _InputRaw = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Jump"), Input.GetAxisRaw("Vertical")); //NUMBER IS A FULL NUMBER FOR CHECKING IF BUTTON IS PRESSED
-        if (_Input!= Vector3.zero)
+        if (_InputRaw!= Vector3.zero)
         {
             if (WASDJump != null)
             {
