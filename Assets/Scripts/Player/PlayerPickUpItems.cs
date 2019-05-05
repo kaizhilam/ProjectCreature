@@ -19,6 +19,7 @@ public class PlayerPickUpItems : MonoBehaviour
 
             //SET selectedObj TO OBJECT THAT THE CROSSHAIR IS LOOKING AT
             selectedObj = ThirdPersonCamera.LookingAtGameObject;
+        print(selectedObj);
             //CHECK selectedObj tag
             if (selectedObj!=null && selectedObj.tag == "T1")
             {
