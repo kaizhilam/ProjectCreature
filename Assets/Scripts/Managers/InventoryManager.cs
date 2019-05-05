@@ -32,6 +32,7 @@ public class InventoryManager: MonoBehaviour
 
     public virtual void Start()
     {
+        GameObject.Find("Player").GetComponent<InputManager>().BKey += DisplaySwitch;
         Slots = GetComponentsInChildren<Slot>();
         print(Slots.Length);
         canvasGroup = GetComponent<CanvasGroup>();
@@ -97,9 +98,15 @@ public class InventoryManager: MonoBehaviour
     {
         for (int i = 0; i < InventoryItems.Length; i++)
         {
+            //if empty spot, or if it can stack on itself...
             if (InventoryItems[i] == null)
             {
                 InventoryItems[i] = item;
+                return i;
+            }
+            else if ( item == InventoryItems[i] && item.count < item.capacity)
+            {
+                InventoryItems[i].count++;
                 return i;
             }
         }
@@ -177,7 +184,8 @@ public class InventoryManager: MonoBehaviour
     public void RefreshSlotFromList(int index)
     {
         print("refreshing slot " + index);
-        Slots[index]?.GetComponent<ItemUI>()?.SetItem(InventoryItems[index]);
+        //Slots[index]?.GetComponent<ItemUI>()?.SetItem(InventoryItems[index]);
+        Slots[index]?.StoreItem(InventoryItems[index]);
         
     }
 
