@@ -71,6 +71,7 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator Wander()
     {
+
         //enemy will wait for walkWait seconds, will then walk for walkTime seconds
         //with then pause for rotateWait seconds, then will rotate for rotTime
         //then will start the process again
@@ -97,8 +98,8 @@ public class EnemyAI : MonoBehaviour
     private bool DetectsEnemy()
     {
         dist = Vector3.Distance(this.transform.position, Player.transform.position);
-        //if player is close enough...
-        if (dist < spotRange)
+        //Renderer rend = Player.GetComponentInChildren<Renderer>();
+        if (dist < spotRange/* && rend.enabled == true*/)
         {
             //face the player
             this.transform.LookAt(Player.transform.position + (Vector3.up*2));
