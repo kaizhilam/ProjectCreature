@@ -26,4 +26,23 @@ public static class WeaponFactory
             abilitiesByName.Add(tempEffect.name, type);
         }
     }
+
+    public static Weapon GetWeapon(string weaponType)
+    {
+        InitializeFactory();
+
+        if (abilitiesByName.ContainsKey(weaponType))
+        {
+            Type type = abilitiesByName[weaponType];
+            var weapon = Activator.CreateInstance(type) as Weapon;
+            return weapon;
+        }
+        return null;
+    }
+
+    internal static IEnumerable<string> GetWeaponNames()
+    {
+        InitializeFactory();
+        return abilitiesByName.Keys;
+    }
 }
