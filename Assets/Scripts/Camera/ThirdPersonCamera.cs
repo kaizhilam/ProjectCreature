@@ -32,7 +32,7 @@ public class ThirdPersonCamera : MonoBehaviour
     private void CameraMovement()
     {
         _CurrentX += Input.GetAxis("Mouse X") * MouseSensitivity;
-        _CurrentY += Input.GetAxis("Mouse Y");
+        _CurrentY -= Input.GetAxis("Mouse Y");
 		_CurrentY = Mathf.Clamp(_CurrentY * MouseSensitivity, -89, 89); //so the y axis does not clip through ground
 		//_CurrentY = Mathf.Clamp(_CurrentY * MouseSensitivity, -15, 89); //so the y axis does not clip through ground
 
