@@ -8,6 +8,9 @@ public class ButtonPause : MonoBehaviour
 {
     //the ButtonPauseMenu
     public GameObject ingameMenu;
+    public delegate void PauseDelegate();
+    public event PauseDelegate pause;
+    public event PauseDelegate play;
     bool paused;
     private Text _Crosshair;
     ThirdPersonCamera thirdPersonCamera = new ThirdPersonCamera();
@@ -36,6 +39,7 @@ public class ButtonPause : MonoBehaviour
         paused = true;
         _Crosshair.text = "";
         thirdPersonCamera.OnApplicationPause(true);
+        pause?.Invoke();
     }
 
     public void OnResume()
@@ -46,9 +50,11 @@ public class ButtonPause : MonoBehaviour
         paused = false;
         _Crosshair.text = "+";
         thirdPersonCamera.OnApplicationPause(false);
+        play?.Invoke();
     }
     public void OnApplicationQuit()
     {
+        OnResume();
         SceneManager.LoadScene(0);
     }
 
