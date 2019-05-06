@@ -48,9 +48,9 @@ public class PlayerMovement : MonoBehaviour
             else if (_InputRaw.z < 0)
             {
                 if (_InputRaw.z < 0) //CHARACTER FACING FORWARD
-                    transform.forward = Vector3.Lerp(transform.forward, cameraForward, delta * Smooth);
+                    transform.forward = Vector3.Lerp(transform.forward, -cameraForward, delta * Smooth);
                 if (_InputRaw.x != 0) //CHARACTER FACING LEFT AND RIGHT, BUT INVERSE
-                    transform.forward = Vector3.Lerp(transform.forward, cameraRight * -_InputRaw.x, delta * Smooth);
+                    transform.forward = Vector3.Lerp(transform.forward, -cameraRight * -_InputRaw.x, delta * Smooth);
             }
 
             //MOVEMENT CODE
@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         ////DEBUG
         Vector3 temp = _Controller.velocity;
         temp.y = 0f;
-        Debug.Log("GROUNDED: " + _Controller.isGrounded + " --- VELOCITY: " + temp + " --- MAGNITUDE: " + temp.magnitude + " --- MOVEMENT: " + movement);
+        //Debug.Log("GROUNDED: " + _Controller.isGrounded + " --- VELOCITY: " + temp + " --- MAGNITUDE: " + temp.magnitude + " --- MOVEMENT: " + movement);
     }
 
     private void GetInput()

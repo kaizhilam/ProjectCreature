@@ -10,6 +10,7 @@ TagManager:
   - Effect
   - Ground
   - T1
+  - Enemy
   layers:
   - Default
   - TransparentFX
