@@ -13,6 +13,8 @@ public class SlottedItem : MonoBehaviour
     private bool isCloseEnough;
     public ItemType Type;
     public string Sprite;
+    [HideInInspector]
+    public int count;
     public int capacity;
 
     public SlottedItem()
@@ -44,12 +46,12 @@ public class SlottedItem : MonoBehaviour
         distance = Vector3.Distance(transform.position, player.transform.position);
         if (distance < 5)
         {
-            GetComponent<MeshRenderer>().material.color = Color.red;
+            //GetComponent<MeshRenderer>().material.color = Color.red;
             isCloseEnough = true;
         }
         else
         {
-            GetComponent<MeshRenderer>().material.color = Color.white;
+            //GetComponent<MeshRenderer>().material.color = Color.white;
             isCloseEnough = false;
         }
     }
