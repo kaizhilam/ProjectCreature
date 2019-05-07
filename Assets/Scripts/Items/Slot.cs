@@ -48,18 +48,19 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
 
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerData, results);
-        print(results.Count + " count");
         bool found = false;
         foreach (var hit in results)
         {
             //if found somewhere to move the item to, move it there
             if (hit.gameObject.GetComponent<Slot>() != null)
             {
-                item.transform.SetParent(hit.gameObject.transform);
-                item.transform.localPosition = Vector3.zero;
+                Destroy(item);
+                //item.transform.SetParent(hit.gameObject.transform);
+                //item.transform.localPosition = Vector3.zero;
                 found = true;
                 item = null;
                 dragging = false;
+                print("swapping " + this.name + " " + hit.gameObject.name);
                 InventoryManager.Instance.Swap(this, hit.gameObject.GetComponent<Slot>());
                 break;
             }
@@ -78,19 +79,22 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void StoreItem(SlottedItem item)
     {
+        print("bf " + GetComponentsInChildren<ItemUI>().Length + " for: " + this.name);
         if (item == null)
         {
             Destroy(GetComponentInChildren<ItemUI>()?.gameObject);
         }
-        else
+        else //wanting to add something
         {
             if (GetComponentInChildren<ItemUI>() == null)
             {
+                print("creating new item");
                 GameObject itemGameObject = Instantiate(itemPrefab) as GameObject;
                 itemGameObject.transform.SetParent(this.transform);
                 itemGameObject.transform.localScale = Vector3.one;
                 itemGameObject.transform.localPosition = Vector3.zero;
             }
+            print(GetComponentsInChildren<ItemUI>().Length + " for: " + this.name);
             GetComponentInChildren<ItemUI>().SetItem(item);
             //SetItem(item);
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -92,6 +93,12 @@ public class InventoryManager: MonoBehaviour
 
             print("successfully swapped?");
         }
+    }
+
+    private void RefreshAll()
+    {
+        RefreshInventoryFromList();
+        RefreshHotbarFromList();
     }
 
     public void Remove(SlottedItem item)
@@ -316,7 +323,7 @@ public class InventoryManager: MonoBehaviour
 
     public void RefreshHotbarFromList()
     {
-        for (int i = 0; i < Slots.Length; i++)
+        for (int i = 0; i < HotbarSlots.Length; i++)
         {
             RefreshHotbarSlotFromList(i);
         }
