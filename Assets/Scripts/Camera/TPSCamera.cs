@@ -12,7 +12,7 @@ public class TPSCamera : MonoBehaviour
     public float clampMax = 28f;
     public float smooth;
 
-    float speed = 10f;
+    public float speed;
     float rotX, rotY;
     Vector3 dolly;
     Vector3 camPos;
@@ -22,12 +22,15 @@ public class TPSCamera : MonoBehaviour
     {
         dolly = cam.transform.localPosition.normalized;
         dist = cam.transform.localPosition.magnitude;  
-    }
+    
+		//Cursor.lockState = CursorLockMode.Locked;
+		//Cursor.visible = false;
+	}
 
     void Update()
     {
         float delta = Time.deltaTime;
-
+		
         //MOUSE
         if (!Input.GetKey(KeyCode.LeftControl))
         {

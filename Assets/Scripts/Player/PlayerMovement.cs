@@ -9,14 +9,14 @@ public class PlayerMovement : MonoBehaviour
 	public float Smooth;
 	public float AirMovementPenalty; //VALUE BETWEEN 0-1
 
-	private GameObject _Camera;
+	public Camera _Camera;
 	private CharacterController _Controller;
 	private Vector3 _Input, _InputRaw;
 
 	void Start()
     {
 		_Controller = GetComponent<CharacterController>();
-        _Camera = GameObject.FindGameObjectWithTag("MainCamera");
+        //_Camera = GameObject.FindGameObjectWithTag("MainCamera");
         //subscribing Movement function to InputManager -- If InputManager sees WASD or jump pressed, will call
     }
 

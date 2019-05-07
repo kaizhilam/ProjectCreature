@@ -182,7 +182,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Jumping_Anim
       takeName: mixamo.com
-      firstFrame: 0
+      firstFrame: 37
       lastFrame: 97
       wrapMode: 0
       orientationOffsetY: 0

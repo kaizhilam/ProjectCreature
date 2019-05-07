@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 7442123270930513698}
   - component: {fileID: 7985713793073053054}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player(original)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,6 +148,7 @@ MonoBehaviour:
   Speed: 15
   Smooth: 15
   AirMovementPenalty: 0.75
+  _Camera: {fileID: 0}
 --- !u!114 &251117981135048682
 MonoBehaviour:
   m_ObjectHideFlags: 0

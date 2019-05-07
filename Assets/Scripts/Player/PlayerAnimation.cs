@@ -6,6 +6,7 @@ public class PlayerAnimation : MonoBehaviour
     CharacterController controller;
     BoxCollider daggerHitbox;
 	
+	int idle;
 	int jump;
 	int run;
 	int dodge;
@@ -18,16 +19,18 @@ public class PlayerAnimation : MonoBehaviour
 		anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         daggerHitbox = GetComponent<BoxCollider>();
-
+		
+		idle = Animator.StringToHash("idle");
 		jump = Animator.StringToHash("jump");
 		run = Animator.StringToHash("run");
 		dodge = Animator.StringToHash("dodge");
 		slash = Animator.StringToHash("slash");
-    }
+	}
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space)) { //controller.isGrounded not working here
+    void FixedUpdate()
+    {		
+        if(Input.GetKeyDown(KeyCode.Space) && controller.isGrounded) 
+		{ 
             anim.SetTrigger(jump);
 		} 
 		
@@ -61,4 +64,12 @@ public class PlayerAnimation : MonoBehaviour
 			anim.SetBool(run, false);
 		}
     }
+	
+	void OnGUI()
+	{
+		GUI.Label(new Rect(20, 20, 200, 20), "E: Dodge");
+		GUI.Label(new Rect(20, 40, 200, 20), "WASD: Move");
+		GUI.Label(new Rect(20, 60, 200, 20), "Space: Jump");
+		GUI.Label(new Rect(20, 80, 200, 20), "MouseLB: Attack");
+	}
 }
