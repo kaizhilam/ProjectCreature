@@ -163,11 +163,11 @@ public class InventoryManager: MonoBehaviour
         {
             List<int> indexes = GetInvIndexesOfItem(item);
             //if can hold it, ++
-            for (int i = 0; i < indexes[i]; i++)
+            for (int i = 0; i < indexes.Count; i++)
             {
-                if (HotbarItems[indexes[i]].count < InventoryItems[indexes[i]].capacity)
+                if (InventoryItems[indexes[i]].count < InventoryItems[indexes[i]].capacity)
                 {
-                    HotbarItems[indexes[i]].count++;
+                    InventoryItems[indexes[i]].count++;
                     RefreshSlotFromList(indexes[i]);
                     return indexes[i];
                 }
