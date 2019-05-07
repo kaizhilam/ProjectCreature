@@ -42,41 +42,55 @@ public class InventoryManager: MonoBehaviour
         DisplaySwitch();
     }
 
-    public void Swap(SlottedItem item1, SlottedItem item2)
+    public void Swap(Slot slot1, Slot slot2)
     {
-        bool isInHotbar1 = IsInHotbar(item1);
-        bool isInHotbar2 = IsInHotbar(item2);
+        SlottedItem item1 = GetItemFromSlot(slot1);
+        SlottedItem item2 = GetItemFromSlot(slot2);
+        int index1 = GetIndexOfSlot(slot1);
+        int index2 = GetIndexOfSlot(slot2);
+        bool isInHotbar1 = IsInHotbar(slot1);
+        bool isInHotbar2 = IsInHotbar(slot2);
         if(!isInHotbar1 && !isInHotbar2)
         {
-            int invIndex1 = GetIndex(item1);
-            int invIndex2 = GetIndex(item2);
-            SlottedItem temp = item1;
-            InventoryItems[invIndex1] = item2;
+            int invIndex1 = index1;
+            int invIndex2 = index2;
+            SlottedItem temp = InventoryItems[invIndex1];
+            InventoryItems[invIndex1] = InventoryItems[invIndex2];
             InventoryItems[invIndex2] = temp;
+            RefreshSlotFromList(invIndex1);
+            RefreshSlotFromList(invIndex2);
         }
         else if(isInHotbar1 && !isInHotbar2)
         {
-            int hotbarindex1 = GetFirstHotbarIndexOfItem(item1);
-            int invIndex1 = GetIndex(item2);
-            SlottedItem temp = item1;
-            HotbarItems[hotbarindex1] = item2;
+            int hotbarindex1 = index1;
+            int invIndex1 = index2;
+            SlottedItem temp = HotbarItems[hotbarindex1];
+            HotbarItems[hotbarindex1] = InventoryItems[invIndex1];
             InventoryItems[invIndex1] = temp;
+            RefreshHotbarSlotFromList(hotbarindex1);
+            RefreshSlotFromList(invIndex1);
         }
         else if(!isInHotbar1 && isInHotbar2)
         {
-            int invIndex1 = GetIndex(item1);
-            int hotbarindex1 = GetFirstHotbarIndexOfItem(item2);
-            SlottedItem temp = item1;
-            InventoryItems[invIndex1] = item2;
+            int invIndex1 = index1;
+            int hotbarindex1 = index2;
+            SlottedItem temp = InventoryItems[invIndex1];
+            InventoryItems[invIndex1] = HotbarItems[hotbarindex1];
             HotbarItems[hotbarindex1] = temp;
+            RefreshSlotFromList(invIndex1);
+            RefreshHotbarSlotFromList(hotbarindex1);
         }
-        else
+        else //if both in hotbar
         {
-            int hotbarindex1 = GetFirstHotbarIndexOfItem(item1);
-            int hotbarindex2 = GetFirstHotbarIndexOfItem(item2);
-            SlottedItem temp = item1;
-            HotbarItems[hotbarindex1] = item2;
+            int hotbarindex1 = GetIndexOfSlot(slot1);
+            int hotbarindex2 = GetIndexOfSlot(slot2);
+            SlottedItem temp = HotbarItems[hotbarindex1];
+            HotbarItems[hotbarindex1] = HotbarItems[hotbarindex2];
             HotbarItems[hotbarindex2] = temp;
+            RefreshHotbarSlotFromList(hotbarindex1);
+            RefreshHotbarSlotFromList(hotbarindex2);
+
+            print("successfully swapped?");
         }
     }
 
@@ -127,13 +141,11 @@ public class InventoryManager: MonoBehaviour
         int indexInv = GetIndex(item);
         int firstEmpty = FirstEmptySlotInvIndex();
         int firstEmptyHotbar = FirstEmptySlotHotbarIndex();
-        print(indexHotbar + " " + indexInv + " " + firstEmpty + " " + firstEmptyHotbar);
         //check if item in hotbar already
         if (indexHotbar > -1)
         {
             List<int> indexes = GetHotbarIndexesOfItem(item);
             //if can hold it, ++
-            print(HotbarSlots[indexHotbar].name);
             for (int i = 0; i < indexes.Count; i++)
             {
                 if (HotbarItems[indexes[i]].count < HotbarItems[indexes[i]].capacity)
@@ -182,6 +194,12 @@ public class InventoryManager: MonoBehaviour
 
 
     }
+
+    public SlottedItem GetItemFromSlot(Slot slot)
+    {
+        return slot.GetComponentInChildren<ItemUI>()?.item;
+    }
+
     //outdated, dont use
     public bool AddToInventoryIndex(SlottedItem item, int index)
     {
@@ -197,7 +215,7 @@ public class InventoryManager: MonoBehaviour
     {
         for (int i = 0; i < InventoryItems.Length; i++)
         {
-            if(item.objID == InventoryItems[i]?.objID)
+            if(item?.objID == InventoryItems[i]?.objID)
             {
                 return i;
             }
@@ -205,8 +223,18 @@ public class InventoryManager: MonoBehaviour
         return -1;
     }
 
+    public int GetIndexOfSlot(Slot slot)
+    {
+        return slot.transform.GetSiblingIndex();
+    }
+
+    //returns index of item in hotbar, -1 if there isn't any
     public int GetFirstHotbarIndexOfItem(SlottedItem item)
     {
+        if(item == null)
+        {
+            return -1;
+        }
         for (int i = 0; i < HotbarItems.Length; i++)
         {
             if(item.objID == HotbarItems[i]?.objID)
@@ -255,6 +283,19 @@ public class InventoryManager: MonoBehaviour
         return false;
     }
 
+    public bool IsInHotbar(Slot slot)
+    {
+        Slot[] hotbarSlots = GetComponentsInChildren<Panel>()[0].GetComponentsInChildren<Slot>();
+        for (int i = 0; i < hotbarSlots.Length; i++)
+        {
+            if(hotbarSlots[i].GetInstanceID() == slot.GetInstanceID())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public SlottedItem GetItem(int index)
     {
         return InventoryItems[index];
@@ -283,12 +324,12 @@ public class InventoryManager: MonoBehaviour
 
     public void RefreshSlotFromList(int index)
     {
-        Slots[index]?.StoreItem(InventoryItems[index]);
+        Slots[index].StoreItem(InventoryItems[index]);
     }
 
     public void RefreshHotbarSlotFromList(int index)
     {
-        HotbarSlots[index]?.StoreItem(HotbarItems[index]);
+        HotbarSlots[index].StoreItem(HotbarItems[index]);
     }
 
     public void DisplaySwitch()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ItemUI : MonoBehaviour
 {
@@ -52,5 +53,12 @@ public class ItemUI : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        this.transform.localPosition = Vector3.zero;
     }
 }
