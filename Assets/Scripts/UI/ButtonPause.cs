@@ -55,7 +55,8 @@ public class ButtonPause : MonoBehaviour
     public void OnApplicationQuit()
     {
         OnResume();
-        SceneManager.LoadScene(0);
+        print("Quit");
+        //Application.Quit();
     }
 
 }
