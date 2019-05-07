@@ -19,12 +19,12 @@ public class SlottedItem : MonoBehaviour
 
     public SlottedItem()
     {
-
     }
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player"); //THE LESS VARIABLE THERE IS, THE BETTER IT IS FOR THE FUTURE
+        count = 1;
     }
 
     public SlottedItem(int id, string name, string des, ItemType type, int capacity)

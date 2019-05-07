@@ -6,12 +6,12 @@ using System.Linq;
 
 public class StateMachine : MonoBehaviour
 {
-    private Dictionary<Type, State> _availableStates;
+    private Dictionary<Type, EnemyAIState> _availableStates;
 
-    public State CurrentState { get; private set; }
-    public event Action<State> OnStateChanged;
+    public EnemyAIState CurrentState { get; private set; }
+    public event Action<EnemyAIState> OnStateChanged;
 
-    public void SetStates(Dictionary<Type, State> states)
+    public void SetStates(Dictionary<Type, EnemyAIState> states)
     {
         _availableStates = states;
     }
@@ -24,7 +24,6 @@ public class StateMachine : MonoBehaviour
         }
 
         var nextState = CurrentState?.Tick();
-
         if(nextState != null && nextState != CurrentState?.GetType())
         {
             SwitchToNewState(nextState);
