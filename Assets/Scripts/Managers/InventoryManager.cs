@@ -36,11 +36,10 @@ public class InventoryManager: MonoBehaviour
         GameObject.Find("Player").GetComponent<InputManager>().BKey += DisplaySwitch;
         Slots = GetComponentsInChildren<Panel>()[1].GetComponentsInChildren<Slot>();
         HotbarSlots = GetComponentsInChildren<Panel>()[0].GetComponentsInChildren<Slot>();
-        print(HotbarSlots.Length);
-        print(Slots.Length);
         canvasGroup = GetComponent<CanvasGroup>();
         InventoryItems = new SlottedItem[Slots.Length];
         HotbarItems = new SlottedItem[HotbarSlots.Length];
+        DisplaySwitch();
     }
 
     public void Swap(SlottedItem item1, SlottedItem item2)
