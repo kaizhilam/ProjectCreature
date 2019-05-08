@@ -7,9 +7,10 @@ public class ThirdPersonCamera : MonoBehaviour
     public Transform FocusOn;
     public float Distance = 5f;
 
-    public float MouseSensitivity = 1f;
+	public float MouseSensitivityX;
+	public float MouseSensitivityY;
 
-    public static GameObject LookingAtGameObject;
+	public static GameObject LookingAtGameObject;
     public static Vector3 LookingAtPoint;
     public static float LookingAtDistance;
 
@@ -17,7 +18,7 @@ public class ThirdPersonCamera : MonoBehaviour
     private float _CurrentY = 0f;
     private float _CurrentDistance;
 
-    private void Start()
+	private void Start()
     {
         _CurrentDistance = Distance;
     }
@@ -31,10 +32,13 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void CameraMovement()
     {
-        _CurrentX += Input.GetAxis("Mouse X") * MouseSensitivity;
-        _CurrentY += Input.GetAxis("Mouse Y");
-		_CurrentY = Mathf.Clamp(_CurrentY * MouseSensitivity, -89, 89); //so the y axis does not clip through ground
-		//_CurrentY = Mathf.Clamp(_CurrentY * MouseSensitivity, -15, 89); //so the y axis does not clip through ground
+		float mouseX = Input.GetAxis("Mouse X") * MouseSensitivityX;
+		float mouseY = Input.GetAxis("Mouse Y") * MouseSensitivityY;
+
+		_CurrentX += mouseX;
+        _CurrentY += mouseY;
+		_CurrentY = Mathf.Clamp(_CurrentY, -89, 89); //so the y axis does not clip through ground
+		//Debug.Log(_CurrentX + ":" + _CurrentY);
 
 		Vector3 dir = new Vector3(0, 0, -_CurrentDistance); //set distance between LookAt and camera
         Quaternion rotation = Quaternion.Euler(_CurrentY, _CurrentX, 0);
