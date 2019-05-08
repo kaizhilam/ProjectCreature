@@ -13,4 +13,8 @@ public class TestWeapon : Weapon
     {
         throw new System.NotImplementedException();
     }
+
+    private void Update()
+    {
+    }
 }

@@ -35,6 +35,7 @@ public class AnimationManager : MonoBehaviour
         InputManager.instance.Space += SetJumpAnim;
         InputManager.instance.LeftClick += SetSlashAnim;
         InputManager.instance.Movement += SetRunAnim;
+        InputManager.instance.StoppedMoving += UnsetRunAnim;
         _player = GameObject.Find("Player");
 		anim = _player.GetComponent<Animator>();
         controller = _player.GetComponent<CharacterController>();
@@ -80,6 +81,11 @@ public class AnimationManager : MonoBehaviour
         {
             anim.SetTrigger(dodge);
         }
+    }
+
+    void UnsetRunAnim()
+    {
+        anim.SetBool(run, false);
     }
 	
 	void OnGUI()

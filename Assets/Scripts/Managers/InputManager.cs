@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     public delegate void MovementDelegate(Vector2 v1, Vector2 v2);
     public event InputDelegate Space;
     public event MovementDelegate Movement;
+    public event InputDelegate StoppedMoving; 
     public event InputDelegate LeftClick;
     public event InputDelegate RightClick;
     public event InputDelegate BKey;
@@ -52,7 +53,12 @@ public class InputManager : MonoBehaviour
         Vector2 inputRaw = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if(inputRaw != Vector2.zero)
         {
+            print("invoke");
             Movement?.Invoke(inputVec, inputRaw);
+        }
+        else
+        {
+            StoppedMoving?.Invoke();
         }
     }
 }
