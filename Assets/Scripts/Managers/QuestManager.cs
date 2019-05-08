@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestController : MonoBehaviour
+public class QuestManager : MonoBehaviour
 {
     public static List<Quest> QuestList = new List<Quest>();
 }

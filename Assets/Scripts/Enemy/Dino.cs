@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Dino : ForestEnemy
 {
@@ -17,6 +18,22 @@ public class Dino : ForestEnemy
         Health = 100;
         MovementSpeed1 = 5;
         EnemyName1 = "dino";
+    }
+
+    public void Awake()
+    {
+        InitializeStateMachine();
+    }
+
+    private void InitializeStateMachine()
+    {
+        var states = new Dictionary<Type, EnemyAIState>()
+        {
+            {typeof(WanderState), new WanderState(this) },
+            {typeof(ChaseState), new ChaseState(this) }
+        };
+
+        GetComponent<StateMachine>().SetStates(states);
     }
 
     private void Start()
@@ -38,7 +55,7 @@ public class Dino : ForestEnemy
         {
             //print("idle sounds");
             SoundManager.instance.RandomizeSfx(sounds, src);
-            yield return new WaitForSeconds(Random.Range(5,8));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(5,8));
         }
 
     }

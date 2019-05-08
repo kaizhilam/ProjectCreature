@@ -30,8 +30,7 @@ public class PlayerPickUpItems : MonoBehaviour
                     Debug.Log("The collectable item " + selectedItem.objName + "has been selected but not be added in your pack");
                     isChecked = true;
                     //ADD TO INVENTORY
-                    int indexOfInsertedItem = InventoryManager.Instance.AddToFirstInvSlot(selectedItem);
-                    InventoryManager.Instance.RefreshSlotFromList(indexOfInsertedItem);
+                    InventoryManager.Instance.PutIntoUI(selectedItem);
                     //InventoryManager.Instance.StoreItem(selectedItem);
 
                     Debug.Log("The item has been added");
