@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8197771592987320180}
   - component: {fileID: 8961296810202327247}
+  - component: {fileID: 1614845012}
   m_Layer: 0
   m_Name: BasicKnife
   m_TagString: T1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8197771592987320180
 Transform:
@@ -47,6 +48,27 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: -0.73, y: 1.08, z: 0}
+--- !u!114 &1614845012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325608031440604891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c4e25747e6c0144a4572dc74a63cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objID: 0
+  objName: hunter knife
+  description: Weapon
+  Type: 2
+  Sprite: Sprites/Items/axe
+  count: 0
+  capacity: 2
+  durability: 50
+  damage: 50
 --- !u!1 &2827187410117890834
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,7 +85,7 @@ GameObject:
   m_TagString: T1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4517393562767429279
 Transform:
@@ -104,7 +126,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1d1979d37be1f10499d962438a1bb9c0, type: 3}
+  - {fileID: 2100000, guid: c9df4f5495f530446aacdbae49b9d012, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
