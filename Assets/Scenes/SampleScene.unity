@@ -2601,6 +2601,16 @@ PrefabInstance:
       propertyPath: FocusOn
       value: 
       objectReference: {fileID: 617763040}
+    - target: {fileID: 7967573112292681304, guid: bf372307573098c4d97baa7aff1f3203,
+        type: 3}
+      propertyPath: MouseInverseX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967573112292681304, guid: bf372307573098c4d97baa7aff1f3203,
+        type: 3}
+      propertyPath: MouseInverseY
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf372307573098c4d97baa7aff1f3203, type: 3}
 --- !u!1001 &8985534129981917183

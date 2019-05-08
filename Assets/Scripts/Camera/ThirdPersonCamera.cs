@@ -8,7 +8,9 @@ public class ThirdPersonCamera : MonoBehaviour
     public float Distance = 5f;
 
 	public float MouseSensitivityX;
+	public bool MouseInverseX = false;
 	public float MouseSensitivityY;
+	public bool MouseInverseY = false;
 
 	public static GameObject LookingAtGameObject;
     public static Vector3 LookingAtPoint;
@@ -34,9 +36,17 @@ public class ThirdPersonCamera : MonoBehaviour
     {
 		float mouseX = Input.GetAxis("Mouse X") * MouseSensitivityX;
 		float mouseY = Input.GetAxis("Mouse Y") * MouseSensitivityY;
+		//INVERSE CODE HERE
+		if (MouseInverseX)
+			_CurrentX -= mouseX;
+		else
+			_CurrentX += mouseX;
 
-		_CurrentX += mouseX;
-        _CurrentY += mouseY;
+		if (MouseInverseY)
+			_CurrentY += mouseY;
+		else
+			_CurrentY -= mouseY;
+
 		_CurrentY = Mathf.Clamp(_CurrentY, -89, 89); //so the y axis does not clip through ground
 		//Debug.Log(_CurrentX + ":" + _CurrentY);
 
