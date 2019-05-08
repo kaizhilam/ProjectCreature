@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             //MOVEMENT CODE
-            print((cameraForward * _Input.y) + (cameraRight * _Input.x));
+            //print((cameraForward * _Input.y) + (cameraRight * _Input.x));
             movement = ((cameraForward * _Input.y) + (cameraRight * _Input.x)).normalized * Speed * delta;//HORIZONTAL + VERTICAL MOVEMENT
             _Controller.Move(new Vector3(movement.x, 0, movement.z));
         }

@@ -32,6 +32,9 @@ public class AnimationManager : MonoBehaviour
 
     void Start()
     {
+        InputManager.instance.Space += SetJumpAnim;
+        InputManager.instance.LeftClick += SetSlashAnim;
+        InputManager.instance.Movement += SetRunAnim;
         _player = GameObject.Find("Player");
 		anim = _player.GetComponent<Animator>();
         controller = _player.GetComponent<CharacterController>();
@@ -44,7 +47,7 @@ public class AnimationManager : MonoBehaviour
 		slash = Animator.StringToHash("slash");
 	}
 
-    void SetJump()
+    void SetJumpAnim()
     {
         if (controller.isGrounded)
         {
@@ -52,7 +55,7 @@ public class AnimationManager : MonoBehaviour
         }
     }
 
-    void Slash()
+    void SetSlashAnim()
     {
         anim.SetTrigger(slash);
         Collider[] colliders = Physics.OverlapBox(daggerHitbox.center, daggerHitbox.size);
@@ -68,22 +71,15 @@ public class AnimationManager : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void SetRunAnim(Vector2 input, Vector2 inputRaw)
     {
-		
-		if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A))
-        {
-			anim.SetBool(run, true);
+        print("set run anim");
+	    anim.SetBool(run, true);
 
-            if (Input.GetKeyDown(KeyCode.E) && controller.isGrounded)
-            {
-                anim.SetTrigger(dodge);
-            }
-
-        } else
+        if (Input.GetKeyDown(KeyCode.E) && controller.isGrounded)
         {
-			anim.SetBool(run, false);
-		}
+            anim.SetTrigger(dodge);
+        }
     }
 	
 	void OnGUI()
