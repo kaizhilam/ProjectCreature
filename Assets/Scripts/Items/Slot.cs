@@ -27,7 +27,7 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
         {
             dragging = true;
             item.transform.position = Input.mousePosition;
-            item.transform.SetParent(GetComponentInParent<InventoryManager>().transform);
+            item.transform.SetParent(GameObject.Find("UI").transform);
         }
         else
         {

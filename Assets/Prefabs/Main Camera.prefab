@@ -97,5 +97,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FocusOn: {fileID: 0}
   Distance: 5
+  ignore:
+    serializedVersion: 2
+    m_Bits: 1024
   MouseSensitivityX: 1
+  MouseInverseX: 0
   MouseSensitivityY: 1
+  MouseInverseY: 0

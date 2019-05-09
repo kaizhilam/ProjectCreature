@@ -34,7 +34,7 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void CheckIfDead()
     {
-        if (health < 0)
+        if (health <= 0)
         {
             ResolveDeletion();
         }

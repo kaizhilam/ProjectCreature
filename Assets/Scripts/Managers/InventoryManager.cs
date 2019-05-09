@@ -8,6 +8,8 @@ public class InventoryManager: MonoBehaviour
     private float targetAlpha = 1;
     private float smoothing = 4;
     private CanvasGroup canvasGroup;
+    private CanvasGroup HotbarCanvasGroup;
+    private CanvasGroup InventoryCanvasGroup;
     public static InventoryManager Instance { get; private set; }
     private static SlottedItem[] InventoryItems;
     private static SlottedItem[] HotbarItems;
@@ -34,15 +36,22 @@ public class InventoryManager: MonoBehaviour
 
     public virtual void Start()
     {
+        //Bind b to the DisplaySwitch function
         GameObject.Find("Player").GetComponent<InputManager>().BKey += DisplaySwitch;
-        Slots = GetComponentsInChildren<Panel>()[1].GetComponentsInChildren<Slot>();
-        HotbarSlots = GetComponentsInChildren<Panel>()[0].GetComponentsInChildren<Slot>();
+        //get all slot object
+        Slots = GetComponentsInChildren<Panel>()[0].GetComponentsInChildren<Slot>();
+        HotbarSlots = gameObject.transform.parent.GetComponentInChildren<Hotbar>().GetComponentsInChildren<Slot>();
+        //grab both canvases and parent canvas 
         canvasGroup = GetComponent<CanvasGroup>();
+        HotbarCanvasGroup = gameObject.transform.parent.GetComponentInChildren<Hotbar>().GetComponent<CanvasGroup>();
+        InventoryCanvasGroup = canvasGroup.gameObject.GetComponentInChildren<CanvasGroup>();
+        //Creating an array that will mirror the hotbar and inv contents
         InventoryItems = new SlottedItem[Slots.Length];
         HotbarItems = new SlottedItem[HotbarSlots.Length];
-        DisplaySwitch();
+        FastHideInv();
     }
 
+    //Swaps two slots contents
     public void Swap(Slot slot1, Slot slot2)
     {
         SlottedItem item1 = GetItemFromSlot(slot1);
@@ -51,8 +60,12 @@ public class InventoryManager: MonoBehaviour
         int index2 = GetIndexOfSlot(slot2);
         bool isInHotbar1 = IsInHotbar(slot1);
         bool isInHotbar2 = IsInHotbar(slot2);
+        print("from " + isInHotbar1 + ", to " + isInHotbar2);
+        //Depending on which panel the slots are in, we target different panels slots
+        //if swapping hotbar items for example, we are only concerned with hotbar slots
         if(!isInHotbar1 && !isInHotbar2)
         {
+            print("inv to inv swap");
             int invIndex1 = index1;
             int invIndex2 = index2;
             SlottedItem temp = InventoryItems[invIndex1];
@@ -63,6 +76,7 @@ public class InventoryManager: MonoBehaviour
         }
         else if(isInHotbar1 && !isInHotbar2)
         {
+            print("bar to inv swap");
             int hotbarindex1 = index1;
             int invIndex1 = index2;
             SlottedItem temp = HotbarItems[hotbarindex1];
@@ -73,6 +87,7 @@ public class InventoryManager: MonoBehaviour
         }
         else if(!isInHotbar1 && isInHotbar2)
         {
+            print("inv to bar swap");
             int invIndex1 = index1;
             int hotbarindex1 = index2;
             SlottedItem temp = InventoryItems[invIndex1];
@@ -83,6 +98,7 @@ public class InventoryManager: MonoBehaviour
         }
         else //if both in hotbar
         {
+            print("bar to bar swap");
             int hotbarindex1 = GetIndexOfSlot(slot1);
             int hotbarindex2 = GetIndexOfSlot(slot2);
             SlottedItem temp = HotbarItems[hotbarindex1];
@@ -90,17 +106,17 @@ public class InventoryManager: MonoBehaviour
             HotbarItems[hotbarindex2] = temp;
             RefreshHotbarSlotFromList(hotbarindex1);
             RefreshHotbarSlotFromList(hotbarindex2);
-
-            print("successfully swapped?");
         }
     }
 
+    //update UI slots from arrays
     private void RefreshAll()
     {
         RefreshInventoryFromList();
         RefreshHotbarFromList();
     }
 
+    //not used yet, used for player throwing away items
     public void Remove(SlottedItem item)
     {
         int index = -1;
@@ -117,6 +133,7 @@ public class InventoryManager: MonoBehaviour
 
     }
 
+    //returns index of first slot in inv that is free, returns -1 if none
     public int FirstEmptySlotInvIndex()
     {
         for (int i = 0; i < InventoryItems.Length; i++)
@@ -129,6 +146,7 @@ public class InventoryManager: MonoBehaviour
         return -1;
     }
 
+    //return index of first slot in hotbar that is free, returns -1 if none
     public int FirstEmptySlotHotbarIndex()
     {
         for (int i = 0; i < HotbarItems.Length; i++)
@@ -202,6 +220,7 @@ public class InventoryManager: MonoBehaviour
 
     }
 
+    //get item ojbect given a slot object
     public SlottedItem GetItemFromSlot(Slot slot)
     {
         return slot.GetComponentInChildren<ItemUI>()?.item;
@@ -218,6 +237,7 @@ public class InventoryManager: MonoBehaviour
         return false;
     }
 
+    //finds index of item in the inventory
     public int GetIndex(SlottedItem item)
     {
         for (int i = 0; i < InventoryItems.Length; i++)
@@ -230,6 +250,7 @@ public class InventoryManager: MonoBehaviour
         return -1;
     }
 
+    //given a slot, will find the index in inv
     public int GetIndexOfSlot(Slot slot)
     {
         return slot.transform.GetSiblingIndex();
@@ -252,6 +273,7 @@ public class InventoryManager: MonoBehaviour
         return -1;
     }
 
+    //Returns list of all indexes of item in hotbar
     public List<int> GetHotbarIndexesOfItem(SlottedItem item)
     {
         List<int> indexes = new List<int>();
@@ -265,6 +287,7 @@ public class InventoryManager: MonoBehaviour
         return indexes;
     }
 
+    //Returns list of all indexes of item in inventory
     public List<int> GetInvIndexesOfItem(SlottedItem item)
     {
         List<int> indexes = new List<int>();
@@ -278,6 +301,7 @@ public class InventoryManager: MonoBehaviour
         return indexes;
     }
 
+    //returns bool, is item in hotbar?
     public bool IsInHotbar(SlottedItem item)
     {
         for (int i = 0; i < HotbarItems.Length; i++)
@@ -290,12 +314,12 @@ public class InventoryManager: MonoBehaviour
         return false;
     }
 
+    //returns bool, is slot in hotbar? (or in inv?)
     public bool IsInHotbar(Slot slot)
     {
-        Slot[] hotbarSlots = GetComponentsInChildren<Panel>()[0].GetComponentsInChildren<Slot>();
-        for (int i = 0; i < hotbarSlots.Length; i++)
+        for (int i = 0; i < HotbarSlots.Length; i++)
         {
-            if(hotbarSlots[i].GetInstanceID() == slot.GetInstanceID())
+            if(HotbarSlots[i].GetInstanceID() == slot.GetInstanceID())
             {
                 return true;
             }
@@ -303,16 +327,19 @@ public class InventoryManager: MonoBehaviour
         return false;
     }
 
+    //given index, get item from inv
     public SlottedItem GetItem(int index)
     {
         return InventoryItems[index];
     }
 
+    //given index, get item from hotbar
     public SlottedItem GetHotbarItem(int index)
     {
         return HotbarItems[index];
     }
 
+    //Refresh Inventory from inventory array
     public void RefreshInventoryFromList()
     {
         for (int i = 0; i < Slots.Length; i++)
@@ -321,6 +348,7 @@ public class InventoryManager: MonoBehaviour
         }
     }
 
+    //Refresh Hotbar from hotbar array
     public void RefreshHotbarFromList()
     {
         for (int i = 0; i < HotbarSlots.Length; i++)
@@ -328,17 +356,20 @@ public class InventoryManager: MonoBehaviour
             RefreshHotbarSlotFromList(i);
         }
     }
-
+    
+    //will update the inv slot from array using index 
     public void RefreshSlotFromList(int index)
     {
         Slots[index].StoreItem(InventoryItems[index]);
     }
 
+    //will update the hotbar slot from array using index
     public void RefreshHotbarSlotFromList(int index)
     {
         HotbarSlots[index].StoreItem(HotbarItems[index]);
     }
 
+    //toggles visibility of inventory panel
     public void DisplaySwitch()
     {
         if (targetAlpha == 0)
@@ -351,42 +382,58 @@ public class InventoryManager: MonoBehaviour
         }
     }
 
+    //don't lerp, set inv hidden straight away
+    public void FastHideInv()
+    {
+        targetAlpha = 0;
+        InventoryCanvasGroup.alpha = 0;
+    }
+
+    //will cause update function to slowly bring back visibility to inv panel
     public void Show()
     {
-        canvasGroup.blocksRaycasts = true;
+        InventoryCanvasGroup.blocksRaycasts = true;
         targetAlpha = 1;
+        CursorManager.Visible = true;
+        InputManager.EnabledPlayInput = false;
     }
 
+    //will cause update function to slowly bring back visibility to inv panel
     public void Hide()
     {
-        canvasGroup.blocksRaycasts = false;
+        InventoryCanvasGroup.blocksRaycasts = false;
         targetAlpha = 0;
+        CursorManager.Visible = false;
+        InputManager.EnabledPlayInput = true;
     }
 
+    //inv panel will gradually reach targetAlpha if not there already
     private void Update()
     {
-        if (canvasGroup.alpha != targetAlpha)
+        //if (HotbarCanvasGroup.alpha != targetAlpha)
+        //{
+        //    HotbarCanvasGroup.alpha = Mathf.Lerp(HotbarCanvasGroup.alpha, targetAlpha, smoothing * Time.deltaTime);
+        //    if (Mathf.Abs(HotbarCanvasGroup.alpha - targetAlpha) < .01f)
+        //    {
+        //        HotbarCanvasGroup.alpha = targetAlpha;
+        //    }
+        //}
+        if (InventoryCanvasGroup.alpha != targetAlpha)
         {
-            canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, targetAlpha, smoothing * Time.deltaTime);
-            if (Mathf.Abs(canvasGroup.alpha - targetAlpha) < .01f)
+            InventoryCanvasGroup.alpha = Mathf.Lerp(InventoryCanvasGroup.alpha, targetAlpha, smoothing * Time.deltaTime);
+            if (Mathf.Abs(InventoryCanvasGroup.alpha - targetAlpha) < .01f)
             {
-                canvasGroup.alpha = targetAlpha;
+                InventoryCanvasGroup.alpha = targetAlpha;
             }
         }
     }
 
+    //given index, get slot object
     public Slot GetSlot(int index)
     {
         return Slots[index];
     }
 
-    public void StoreItem(SlottedItem item)
-    {
-        int index = PutIntoUI(item);
-        Slot slot = GetSlot(index);
-        slot.StoreItem(item);
-
-    }
 }
 
     

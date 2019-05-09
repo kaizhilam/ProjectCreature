@@ -3,7 +3,7 @@
 public class PlayerMovement : MonoBehaviour
 {
 	public Vector3 Gravity;
-	public Vector3 JumpVector;
+	public float JumpAmount;
 	public float JumpHeight;
 	public float Speed;
 	public float Smooth;
@@ -11,10 +11,11 @@ public class PlayerMovement : MonoBehaviour
 
 	private GameObject _Camera;
 	private CharacterController _Controller;
-	private Vector3 _Input, _InputRaw;
 
 	void Start()
     {
+        InputManager.instance.Space += Jump;
+        InputManager.instance.Movement += Movement;
 		_Controller = GetComponent<CharacterController>();
         _Camera = GameObject.FindGameObjectWithTag("MainCamera");
         //subscribing Movement function to InputManager -- If InputManager sees WASD or jump pressed, will call
@@ -22,11 +23,16 @@ public class PlayerMovement : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		GetInput();
-		Movement();
-	}
+        //GRAVITY CODE
+        if (_Controller.isGrounded)
+            JumpAmount += -0.5f; //TO COMBAT isGrounded BECAUSE GRAVITY CAN'T CATCH UP TO THE GAME'S TICK RATE
+        else
+            JumpAmount += Gravity.y;
+        _Controller.Move(new Vector3(0,JumpAmount,0));
 
-    private void Movement()
+    }
+
+    private void Movement(Vector2 _Input, Vector2 _InputRaw)
     {
         Vector3 movement = new Vector3();
         float delta = Time.deltaTime;
@@ -34,47 +40,30 @@ public class PlayerMovement : MonoBehaviour
         cameraForward.y = 0f;
         Vector3 cameraRight = _Camera.transform.right;
         cameraRight.y = 0f;
-
-        //CHARACTER ROTATION WHEN WALKING
-        if (_InputRaw != Vector3.zero)
         {
-            if (_InputRaw.z >= 0)
+            if (_InputRaw.y >= 0)
             {
-                if (_InputRaw.z > 0) //CHARACTER FACING FORWARD
+                if (_InputRaw.y > 0) //CHARACTER FACING FORWARD
                     transform.forward = Vector3.Lerp(transform.forward, cameraForward, delta * Smooth);
                 if (_InputRaw.x != 0) //CHARACTER FACING LEFT AND RIGHT
                     transform.forward = Vector3.Lerp(transform.forward, cameraRight * _InputRaw.x, delta * Smooth);
             }
-            else if (_InputRaw.z < 0)
+            else if (_InputRaw.y < 0)
             {
-                if (_InputRaw.z < 0) //CHARACTER FACING FORWARD
+                if (_InputRaw.y < 0) //CHARACTER FACING FORWARD
                     transform.forward = Vector3.Lerp(transform.forward, cameraForward, delta * Smooth);
                 if (_InputRaw.x != 0) //CHARACTER FACING LEFT AND RIGHT, BUT INVERSE
                     transform.forward = Vector3.Lerp(transform.forward, cameraRight * -_InputRaw.x, delta * Smooth);
             }
 
             //MOVEMENT CODE
-            movement = ((cameraForward * _Input.z) + (cameraRight * _Input.x)).normalized * Speed * delta;//HORIZONTAL + VERTICAL MOVEMENT
+            //print((cameraForward * _Input.y) + (cameraRight * _Input.x));
+            movement = ((cameraForward * _Input.y) + (cameraRight * _Input.x)).normalized * Speed * delta;//HORIZONTAL + VERTICAL MOVEMENT
+            _Controller.Move(new Vector3(movement.x, 0, movement.z));
         }
 
-        //GRAVITY CODE
-        if (_Controller.isGrounded)
-            JumpVector.y += -0.5f; //TO COMBAT isGrounded BECAUSE GRAVITY CAN'T CATCH UP TO THE GAME'S TICK RATE
-        else
-            JumpVector.y += Gravity.y;
-        movement += JumpVector;
-        if (_Controller.isGrounded)
-        {
-            //JUMPING CODE
-            JumpVector.y = _InputRaw.y * JumpHeight * delta;
-            JumpVector.y = Mathf.Clamp(JumpVector.y, -2f, Mathf.Infinity);
-            movement += JumpVector;
-            _Controller.Move(movement);
-        }
-        else
-        {
-            _Controller.Move(movement * AirMovementPenalty);
-        }
+        
+        
 
         ////DEBUG
         Vector3 temp = _Controller.velocity;
@@ -82,9 +71,24 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("GROUNDED: " + _Controller.isGrounded + " --- VELOCITY: " + temp + " --- MAGNITUDE: " + temp.magnitude + " --- MOVEMENT: " + movement);
     }
 
-    private void GetInput()
+    private void Jump()
     {
-        _Input = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Jump"), Input.GetAxis("Vertical")); //NUMBER CONTAINS DECIMALS FOR CHARACTER ACCELERATION
-        _InputRaw = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Jump"), Input.GetAxisRaw("Vertical")); //NUMBER IS A FULL NUMBER FOR CHECKING IF BUTTON IS PRESSED
+        if (_Controller.isGrounded)
+        {
+            //JUMPING CODE
+            JumpAmount = JumpHeight * Time.deltaTime;
+            JumpAmount = Mathf.Clamp(JumpAmount, -2f, Mathf.Infinity);
+            _Controller.Move(new Vector3(0,JumpAmount,0));
+        }
+        else
+        {
+            //_Controller.Move(movement * AirMovementPenalty);
+        }
     }
+
+    //private void GetInput()
+    //{
+    //    _Input = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Jump"), Input.GetAxis("Vertical")); //NUMBER CONTAINS DECIMALS FOR CHARACTER ACCELERATION
+    //    _InputRaw = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Jump"), Input.GetAxisRaw("Vertical")); //NUMBER IS A FULL NUMBER FOR CHECKING IF BUTTON IS PRESSED
+    //}
 }
