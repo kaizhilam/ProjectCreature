@@ -7,6 +7,8 @@ public class ThirdPersonCamera : MonoBehaviour
     public Transform FocusOn;
     public float Distance = 5f;
 
+    public LayerMask ignore;
+
 	public float MouseSensitivityX;
 	public bool MouseInverseX = false;
 	public float MouseSensitivityY;
@@ -15,6 +17,7 @@ public class ThirdPersonCamera : MonoBehaviour
 	public static GameObject LookingAtGameObject;
     public static Vector3 LookingAtPoint;
     public static float LookingAtDistance;
+    public static Ray castRay;
 
     private float _CurrentX = 0f;
     private float _CurrentY = 0f;
@@ -61,15 +64,13 @@ public class ThirdPersonCamera : MonoBehaviour
     private void CameraAiming() //Raycasting for character interaction with objects
     {
         RaycastHit hit;
-        Ray objectRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
-        if (Physics.Raycast(objectRay, out hit))
+        castRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
+        if (Physics.Raycast(castRay, out hit))
         {
             //add information as to what the camera is currently looking at
             LookingAtGameObject = hit.collider.gameObject;
             LookingAtPoint = hit.point;
             LookingAtDistance = hit.distance;
-            LookingAtGameObject = hit.collider.gameObject;
             //Debug.Log("Name: " + hit.collider.name + " Point: " + hit.point + " Distance: " + hit.distance);
         }
         //if the ray cast from the camera hits nothing, the player is looking at the sky

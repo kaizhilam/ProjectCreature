@@ -9,8 +9,7 @@ public class ChaseState : EnemyAIState
     private Enemy _enemy;
     public override Type Tick()
     {
-        print("ChaseState");
-        throw new NotImplementedException();
+        return typeof(ChaseState);
     }
 
     public ChaseState(Enemy enemy) : base(enemy.gameObject)

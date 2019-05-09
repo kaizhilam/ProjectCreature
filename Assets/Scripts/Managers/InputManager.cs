@@ -19,6 +19,10 @@ public class InputManager : MonoBehaviour
 
     public static InputManager instance = null;
 
+    private bool enabledPlayInput = false;
+
+    public static bool EnabledPlayInput { get => instance.enabledPlayInput; set => instance.enabledPlayInput = value; }
+
     private void Awake()
     {
         if (instance == null)
@@ -34,15 +38,25 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        //This update functions looks for all inputs and broadcasts a message out depending on which are pressed
+        //To have a method of any class listen for a specific broadcast,
+
+        //let x be the function you are trying to subscribe and y the event that will broadcast
+        //inside the class's start method, type InputManager.instance.y += x;
+        //when this is done, the method(x) will run when event(y) is invoked
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            LeftClick?.Invoke();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            RightClick?.Invoke();
+        }
         if (Input.GetKeyDown(KeyCode.B)) {
             BKey?.Invoke();
         }
-        if (Input.GetMouseButtonDown(0)) {
-            LeftClick?.Invoke();
-        }
-        if (Input.GetMouseButtonDown(1)) {
-            RightClick?.Invoke();
-        }
+
         if (Input.GetKeyDown(KeyCode.E)) {
             EKey?.Invoke();
         }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyAIState : MonoBehaviour
+public abstract class EnemyAIState
 {
     protected GameObject gameObject;
     protected Transform transform;

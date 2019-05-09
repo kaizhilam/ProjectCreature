@@ -50,7 +50,7 @@ public class AnimationManager : MonoBehaviour
 
     void SetJumpAnim()
     {
-        if (controller.isGrounded)
+        if (controller.isGrounded && !anim.GetBool(dodge))
         {
             anim.SetTrigger(jump);
         }
@@ -73,7 +73,7 @@ public class AnimationManager : MonoBehaviour
 
     void SetDodgeAnim()
     {
-        if (controller.isGrounded && anim.GetBool(dodge) != true)
+        if (controller.isGrounded && !anim.GetBool(dodge))
         {
             print("running dodge anim");
             UnsetRunAnim();

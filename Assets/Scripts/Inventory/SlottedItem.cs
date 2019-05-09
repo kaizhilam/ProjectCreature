@@ -15,6 +15,7 @@ public class SlottedItem : MonoBehaviour
     public string Sprite;
     [HideInInspector]
     public int count;
+    protected BoxCollider daggerHitbox;
     public int capacity;
 
     public SlottedItem()
@@ -23,8 +24,9 @@ public class SlottedItem : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player"); //THE LESS VARIABLE THERE IS, THE BETTER IT IS FOR THE FUTURE
+        player = GameObject.Find("Player").gameObject; //Caching
         count = 1;
+        daggerHitbox = GameObject.Find("Player").GetComponent<BoxCollider>();
     }
 
     public SlottedItem(int id, string name, string des, ItemType type, int capacity)
@@ -43,8 +45,9 @@ public class SlottedItem : MonoBehaviour
 
     private void JudgeDistance()
     {
+       
         distance = Vector3.Distance(transform.position, player.transform.position);
-        if (distance < 5)
+        if (distance < 6)
         {
             //GetComponent<MeshRenderer>().material.color = Color.red;
             isCloseEnough = true;
@@ -58,6 +61,7 @@ public class SlottedItem : MonoBehaviour
 
     public bool IsCloseEnough()
     {
+        print(distance);
         return isCloseEnough;
     }
 
