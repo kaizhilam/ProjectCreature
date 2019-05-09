@@ -48,6 +48,7 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            print("invoking space");
             Space?.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.Q))

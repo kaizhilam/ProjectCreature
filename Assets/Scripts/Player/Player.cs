@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         daggerHitbox = GetComponent<BoxCollider>();
+        GetComponentInChildren<Weapon>().gameObject.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
     }
 
     private void Attack()
