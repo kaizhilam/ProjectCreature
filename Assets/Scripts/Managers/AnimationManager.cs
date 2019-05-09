@@ -58,27 +58,33 @@ public class AnimationManager : MonoBehaviour
 
     void SetSlashAnim()
     {
+        if (anim.GetBool(slash) != true)
         anim.SetTrigger(slash);
         
     }
 
     void SetRunAnim(Vector2 input, Vector2 inputRaw)
     {
-        print("set run anim");
-	    anim.SetBool(run, true);
+        if (controller.isGrounded && anim.GetBool(run)!=true)
+        {
+            anim.SetBool(run, true);
+        }
     }
 
     void SetDodgeAnim()
     {
-        if (controller.isGrounded)
+        if (controller.isGrounded && anim.GetBool(dodge) != true)
         {
+            print("running dodge anim");
+            UnsetRunAnim();
             anim.SetTrigger(dodge);
         }
     }
 
     void UnsetRunAnim()
     {
-        anim.SetBool(run, false);
+        if(anim.GetBool(run)==true)
+            anim.SetBool(run, false);
     }
 	
 	void OnGUI()

@@ -59,7 +59,6 @@ public class InputManager : MonoBehaviour
         Vector2 inputRaw = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if(inputRaw != Vector2.zero)
         {
-            print("invoke");
             Movement?.Invoke(inputVec, inputRaw);
         }
         else

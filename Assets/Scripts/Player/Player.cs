@@ -16,6 +16,11 @@ public class Player : MonoBehaviour
 
     private void Attack()
     {
+        ManageCollisons();
+    }
+
+    private void ManageCollisons()
+    {
         Collider[] colliders = Physics.OverlapBox(daggerHitbox.center, daggerHitbox.size);
         for (int i = 0; i < colliders.Length; i++)
         {
