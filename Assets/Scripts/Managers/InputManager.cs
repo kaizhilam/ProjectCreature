@@ -8,8 +8,8 @@ public class InputManager : MonoBehaviour
     public delegate void MovementDelegate(Vector2 v1, Vector2 v2);
     public delegate void ParamKeyCode(int i);
     public event InputDelegate Space;
-    public event InputDelegate QKey;
     public event ParamKeyCode TopNumbers;
+    public event InputDelegate CTRLKey;
     public event MovementDelegate Movement;
     public event InputDelegate StoppedMoving; 
     public event InputDelegate LeftClick;
@@ -66,9 +66,9 @@ public class InputManager : MonoBehaviour
         {
             Space?.Invoke();
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            QKey?.Invoke();
+            CTRLKey?.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

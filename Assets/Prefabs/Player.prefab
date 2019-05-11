@@ -160,7 +160,7 @@ MonoBehaviour:
   JumpAmount: 0
   JumpHeight: 50
   Speed: 15
-  Smooth: 15
+  Smooth: 21
   AirMovementPenalty: 0.75
 --- !u!114 &251117981135048682
 MonoBehaviour:

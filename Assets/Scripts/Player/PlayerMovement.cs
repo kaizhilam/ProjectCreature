@@ -51,9 +51,9 @@ public class PlayerMovement : MonoBehaviour
             else if (_InputRaw.y < 0)
             {
                 if (_InputRaw.y < 0) //CHARACTER FACING FORWARD
-                    transform.forward = Vector3.Lerp(transform.forward, cameraForward, delta * Smooth);
+                    transform.forward = Vector3.Lerp(transform.forward, -cameraForward, delta * Smooth);
                 if (_InputRaw.x != 0) //CHARACTER FACING LEFT AND RIGHT, BUT INVERSE
-                    transform.forward = Vector3.Lerp(transform.forward, cameraRight * -_InputRaw.x, delta * Smooth);
+                    transform.forward = Vector3.Lerp(transform.forward, -cameraRight * -_InputRaw.x, delta * Smooth);
             }
 
             //MOVEMENT CODE
