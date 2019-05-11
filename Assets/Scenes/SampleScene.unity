@@ -1777,6 +1777,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.9093668
       objectReference: {fileID: 0}
+    - target: {fileID: 1164995787, guid: b412180ee3ce70c4fa07727466aaece5, type: 3}
+      propertyPath: Smooth
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b412180ee3ce70c4fa07727466aaece5, type: 3}
 --- !u!1001 &1942930286
