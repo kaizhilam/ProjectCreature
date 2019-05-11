@@ -35,7 +35,7 @@ public class AnimationManager : MonoBehaviour
         InputManager.instance.LeftClick += SetSlashAnim;
         InputManager.instance.Movement += SetRunAnim;
         InputManager.instance.StoppedMoving += UnsetRunAnim;
-        InputManager.instance.QKey += SetDodgeAnim;
+        InputManager.instance.CTRLKey += SetDodgeAnim;
         _player = GameObject.Find("Player");
 		anim = _player.GetComponent<Animator>();
         controller = _player.GetComponent<CharacterController>();
@@ -89,7 +89,7 @@ public class AnimationManager : MonoBehaviour
 	
 	void OnGUI()
 	{
-		GUI.Label(new Rect(20, 20, 200, 20), "Q: Dodge");
+		GUI.Label(new Rect(20, 20, 200, 20), "CTRL: Dodge");
 		GUI.Label(new Rect(20, 40, 200, 20), "WASD: Move");
 		GUI.Label(new Rect(20, 60, 200, 20), "Space: Jump");
 		GUI.Label(new Rect(20, 80, 200, 20), "MouseLB: Attack");

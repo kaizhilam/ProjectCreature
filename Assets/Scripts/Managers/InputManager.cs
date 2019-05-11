@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
     public delegate void InputDelegate();
     public delegate void MovementDelegate(Vector2 v1, Vector2 v2);
     public event InputDelegate Space;
-    public event InputDelegate QKey;
+    public event InputDelegate CTRLKey;
     public event MovementDelegate Movement;
     public event InputDelegate StoppedMoving; 
     public event InputDelegate LeftClick;
@@ -65,9 +65,9 @@ public class InputManager : MonoBehaviour
             print("invoking space");
             Space?.Invoke();
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            QKey?.Invoke();
+            CTRLKey?.Invoke();
         }
         Vector2 inputVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         Vector2 inputRaw = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
