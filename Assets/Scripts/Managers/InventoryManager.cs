@@ -15,6 +15,8 @@ public class InventoryManager: MonoBehaviour
     private static SlottedItem[] HotbarItems;
     public static Slot[] Slots;
     public static Slot[] HotbarSlots;
+    public static int SelectedHotbarSlot = 0;
+    private GameObject _player;
 
     public InventoryManager()
     {
@@ -36,8 +38,12 @@ public class InventoryManager: MonoBehaviour
 
     public virtual void Start()
     {
+        //caching player
+        _player = GameObject.Find("Player");
         //Bind b to the DisplaySwitch function
         GameObject.Find("Player").GetComponent<InputManager>().BKey += DisplaySwitch;
+        //used for switching hotbar slots on key press
+        InputManager.instance.TopNumbers += SwitchHotbarIndex;
         //get all slot object
         Slots = GetComponentsInChildren<Panel>()[0].GetComponentsInChildren<Slot>();
         HotbarSlots = gameObject.transform.parent.GetComponentInChildren<Hotbar>().GetComponentsInChildren<Slot>();
@@ -49,6 +55,41 @@ public class InventoryManager: MonoBehaviour
         InventoryItems = new SlottedItem[Slots.Length];
         HotbarItems = new SlottedItem[HotbarSlots.Length];
         FastHideInv();
+    }
+
+    //switch hotbar index, wield new weapon 
+    public void SwitchHotbarIndex(int i)
+    {
+       //if we do this check, then we'd need a new method for when item is added to selectedHotbarIndex
+       //if player is on slot 1 and presses 1, it will update the weapon uneccessarily but still better than making new method
+       // if (i == SelectedHotbarSlot)
+            //return;
+        SelectedHotbarSlot = i;
+        Destroy(_player.GetComponentInChildren<SlottedItem>()?.gameObject);
+        if (GetHotbarItem(i) != null)
+        {
+            var newWield = Instantiate(GetHotbarItem(i).objectPrefab, Vector3.zero, Quaternion.identity);
+            SlottedItem script = newWield.GetComponent<SlottedItem>();
+            switch (script.wieldBone)
+            {
+                case 0:
+                    newWield.transform.SetParent(_player.GetComponentInChildren<WieldBone>().transform);
+                    break;
+                case -1:
+                    newWield.transform.SetParent(_player.GetComponentInChildren<WieldArm>().transform);
+                    break;
+
+            }
+            newWield.transform.SetSiblingIndex(0);
+            newWield.transform.localPosition = script.wieldPos;
+            newWield.transform.localRotation = script.wieldRotation;
+            newWield.SetActive(true);
+            newWield.transform.localScale = script.wieldScale;
+            newWield.gameObject.layer = 2;
+            _player.GetComponent<Player>().UpdateWeaponFunctionality();
+        }
+        
+        
     }
 
     //Swaps two slots contents
@@ -71,8 +112,8 @@ public class InventoryManager: MonoBehaviour
             SlottedItem temp = InventoryItems[invIndex1];
             InventoryItems[invIndex1] = InventoryItems[invIndex2];
             InventoryItems[invIndex2] = temp;
-            RefreshSlotFromList(invIndex1);
-            RefreshSlotFromList(invIndex2);
+            RefreshSlotFromIndex(invIndex1);
+            RefreshSlotFromIndex(invIndex2);
         }
         else if(isInHotbar1 && !isInHotbar2)
         {
@@ -82,8 +123,8 @@ public class InventoryManager: MonoBehaviour
             SlottedItem temp = HotbarItems[hotbarindex1];
             HotbarItems[hotbarindex1] = InventoryItems[invIndex1];
             InventoryItems[invIndex1] = temp;
-            RefreshHotbarSlotFromList(hotbarindex1);
-            RefreshSlotFromList(invIndex1);
+            RefreshHotbarSlotFromIndex(hotbarindex1);
+            RefreshSlotFromIndex(invIndex1);
         }
         else if(!isInHotbar1 && isInHotbar2)
         {
@@ -93,8 +134,8 @@ public class InventoryManager: MonoBehaviour
             SlottedItem temp = InventoryItems[invIndex1];
             InventoryItems[invIndex1] = HotbarItems[hotbarindex1];
             HotbarItems[hotbarindex1] = temp;
-            RefreshSlotFromList(invIndex1);
-            RefreshHotbarSlotFromList(hotbarindex1);
+            RefreshSlotFromIndex(invIndex1);
+            RefreshHotbarSlotFromIndex(hotbarindex1);
         }
         else //if both in hotbar
         {
@@ -104,8 +145,8 @@ public class InventoryManager: MonoBehaviour
             SlottedItem temp = HotbarItems[hotbarindex1];
             HotbarItems[hotbarindex1] = HotbarItems[hotbarindex2];
             HotbarItems[hotbarindex2] = temp;
-            RefreshHotbarSlotFromList(hotbarindex1);
-            RefreshHotbarSlotFromList(hotbarindex2);
+            RefreshHotbarSlotFromIndex(hotbarindex1);
+            RefreshHotbarSlotFromIndex(hotbarindex2);
         }
     }
 
@@ -176,7 +217,7 @@ public class InventoryManager: MonoBehaviour
                 if (HotbarItems[indexes[i]].count < HotbarItems[indexes[i]].capacity)
                 {
                     HotbarItems[indexes[i]].count++;
-                    RefreshHotbarSlotFromList(indexes[i]);
+                    RefreshHotbarSlotFromIndex(indexes[i]);
                     return indexes[i];
                 }
             }
@@ -193,7 +234,7 @@ public class InventoryManager: MonoBehaviour
                 if (InventoryItems[indexes[i]].count < InventoryItems[indexes[i]].capacity)
                 {
                     InventoryItems[indexes[i]].count++;
-                    RefreshSlotFromList(indexes[i]);
+                    RefreshSlotFromIndex(indexes[i]);
                     return indexes[i];
                 }
             }
@@ -204,20 +245,29 @@ public class InventoryManager: MonoBehaviour
         if(firstEmptyHotbar > -1)
         {
             HotbarItems[firstEmptyHotbar] = item;
-            RefreshHotbarSlotFromList(firstEmptyHotbar);
+            RefreshHotbarSlotFromIndex(firstEmptyHotbar);
             return firstEmptyHotbar;
         }
         //then check for free spot in inventory
         if (firstEmpty > -1)
         {
             InventoryItems[firstEmpty] = item;
-            RefreshSlotFromList(firstEmpty);
+            RefreshSlotFromIndex(firstEmpty);
             return firstEmpty;
         }
         //no room for item anywhere, return false
         return -1;
 
 
+    }
+
+    //if item added to index i, we need to update it and show new wielded weapon
+    private void UpdateWield(int i)
+    {
+        if(i == SelectedHotbarSlot)
+        {
+            SwitchHotbarIndex(i);
+        }
     }
 
     //get item ojbect given a slot object
@@ -344,7 +394,7 @@ public class InventoryManager: MonoBehaviour
     {
         for (int i = 0; i < Slots.Length; i++)
         {
-            RefreshSlotFromList(i);
+            RefreshSlotFromIndex(i);
         }
     }
 
@@ -353,20 +403,22 @@ public class InventoryManager: MonoBehaviour
     {
         for (int i = 0; i < HotbarSlots.Length; i++)
         {
-            RefreshHotbarSlotFromList(i);
+            RefreshHotbarSlotFromIndex(i);
         }
     }
     
     //will update the inv slot from array using index 
-    public void RefreshSlotFromList(int index)
+    public void RefreshSlotFromIndex(int index)
     {
         Slots[index].StoreItem(InventoryItems[index]);
     }
 
     //will update the hotbar slot from array using index
-    public void RefreshHotbarSlotFromList(int index)
+    public void RefreshHotbarSlotFromIndex(int index)
     {
         HotbarSlots[index].StoreItem(HotbarItems[index]);
+        UpdateWield(index);
+        _player.GetComponent<Player>().UpdateWeaponFunctionality();
     }
 
     //toggles visibility of inventory panel

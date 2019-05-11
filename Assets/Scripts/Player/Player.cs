@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,19 +18,37 @@ public class Player : MonoBehaviour
         selectedItem = this?.GetComponentInChildren<SlottedItem>();
         equippedWeapon = this?.GetComponentInChildren<Weapon>();
         InputManager.instance.LeftClick += Attack;
-        equippedWeapon.gameObject.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
+        InventoryManager.Instance.SwitchHotbarIndex(0);
         //layer 2 means its ignored by raycast, we don't want camera worrying about an equipped weapon
-        equippedWeapon.gameObject.layer = 2;
-        Atk = GetComponentInChildren<Weapon>().Attack;
+        if (GetComponentInChildren<Weapon>() != null)
+        {
+            Atk = this.GetComponentInChildren<Weapon>().Attack;
+        }
+        else
+        {
+            //if player not holding weapon, tell em to stop trying to use lmb/rmb?
+            Atk = () => print("no weapon equipped, can't perform actions");
+        }
     }
+
 
     private void Attack()
     {
         Atk();
     }
 
+    private void Ability()
+    {
+        RunAbility();
+    }
+
     private void ManageCollisons()
     {
         
+    }
+
+    public void UpdateWeaponFunctionality()
+    {
+        Atk = this.GetComponentInChildren<Weapon>().Attack;
     }
 }

@@ -64,7 +64,6 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            print("invoking space");
             Space?.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.Q))
@@ -73,15 +72,15 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            TopNumbers?.Invoke(1);
+            TopNumbers?.Invoke(0);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            TopNumbers?.Invoke(2);
+            TopNumbers?.Invoke(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            TopNumbers?.Invoke(3);
+            TopNumbers?.Invoke(2);
         }
         Vector2 inputVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         Vector2 inputRaw = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));

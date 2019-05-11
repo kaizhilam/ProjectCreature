@@ -17,6 +17,15 @@ public class SlottedItem : MonoBehaviour
     public int count;
     protected BoxCollider daggerHitbox;
     public int capacity;
+    public GameObject objectPrefab;
+    [HideInInspector]
+    public Vector3 wieldPos = Vector3.zero;
+    [HideInInspector]
+    public Vector3 wieldScale = Vector3.one;
+    [HideInInspector]
+    public Quaternion wieldRotation = Quaternion.identity;
+    [HideInInspector]
+    public int wieldBone = 0;
 
     public SlottedItem()
     {
@@ -61,7 +70,6 @@ public class SlottedItem : MonoBehaviour
 
     public bool IsCloseEnough()
     {
-        print(distance);
         return isCloseEnough;
     }
 

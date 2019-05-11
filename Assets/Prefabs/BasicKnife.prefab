@@ -67,6 +67,7 @@ MonoBehaviour:
   Sprite: Sprites/Items/axe
   count: 0
   capacity: 2
+  objectPrefab: {fileID: 325608031440604891}
   durability: 50
   damage: 50
 --- !u!1 &2827187410117890834
