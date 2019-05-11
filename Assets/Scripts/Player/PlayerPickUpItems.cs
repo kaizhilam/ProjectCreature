@@ -35,6 +35,7 @@ public class PlayerPickUpItems : MonoBehaviour
                 //InventoryManager.Instance.StoreItem(selectedItem);
                 isChecked = false;
                 selectedObj.SetActive(false);
+                selectedObj.tag = "Untagged";
             }
         }
             else
