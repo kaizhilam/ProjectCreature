@@ -21,7 +21,8 @@ public class PlayerPickUpItems : MonoBehaviour
             //we use the cameras ray but with a mask so it will only detect gameObjects with weapon layer (in future should be item layer)
             selectedObj = hit.collider.gameObject;
         }
-            //CHECK selectedObj tag
+        //CHECK selectedObj tag
+        print(selectedObj);
             if (selectedObj!=null && selectedObj.tag == "T1")
             {
             //REST OF MyLi's CODE

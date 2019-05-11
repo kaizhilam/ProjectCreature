@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 904735785601904063}
   - component: {fileID: 2449028762578890273}
   - component: {fileID: 6947221329372199450}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NurbsPath.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 1064388539023038055}
   - component: {fileID: 526223096571982625}
   - component: {fileID: 7069126336404873976}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NurbsPath.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 1886169772815781819}
   - component: {fileID: 8073378521135467517}
   - component: {fileID: 1165505794}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: armbow
   m_TagString: T1
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 6875976794883233449}
   - component: {fileID: 7826656757038361592}
   - component: {fileID: 6556423690760106035}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 236224253372511291}
   - component: {fileID: 692461012937429035}
   - component: {fileID: 7091310265016859911}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 5204487537986928850}
   - component: {fileID: 7887845516308500690}
   - component: {fileID: 177086136383216747}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Firing Mechanism
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 4619628291080854832}
   - component: {fileID: 602017515111354144}
   - component: {fileID: 2972568010174625630}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 6009411480054150611}
   - component: {fileID: 4941194802418473984}
   - component: {fileID: 4182869766715364827}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 1802722949805405236}
   - component: {fileID: 1291436963654821007}
   - component: {fileID: 4736193305232778080}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arm Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +716,7 @@ GameObject:
   - component: {fileID: 337125610460145314}
   - component: {fileID: 6391066450352650176}
   - component: {fileID: 3225888518051419976}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arm Bow Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 3876202229599169650}
   - component: {fileID: 1016287780252630890}
   - component: {fileID: 7956336995557396884}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Firing Port
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -870,7 +870,7 @@ GameObject:
   - component: {fileID: 1688110313590858969}
   - component: {fileID: 4749179305604699506}
   - component: {fileID: 8097364350541142087}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +947,7 @@ GameObject:
   - component: {fileID: 7474847707149838538}
   - component: {fileID: 6225144190392793591}
   - component: {fileID: 1657969550872590807}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BezierCurve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1024,7 +1024,7 @@ GameObject:
   - component: {fileID: 8671831956026068742}
   - component: {fileID: 8129357217055924690}
   - component: {fileID: 7695889836315202024}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1101,7 +1101,7 @@ GameObject:
   - component: {fileID: 4297837446382386927}
   - component: {fileID: 5257541873611822910}
   - component: {fileID: 7207012552340631762}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1178,7 +1178,7 @@ GameObject:
   - component: {fileID: 4091130445531179427}
   - component: {fileID: 5186410099450001920}
   - component: {fileID: 4149553573984222365}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NurbsPath.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1255,7 +1255,7 @@ GameObject:
   - component: {fileID: 2141286555067119232}
   - component: {fileID: 3751853859786829918}
   - component: {fileID: 3986340911136149484}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NurbsPath.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1332,7 +1332,7 @@ GameObject:
   - component: {fileID: 6860860013968900008}
   - component: {fileID: 1640703698076644020}
   - component: {fileID: 8864591851588913893}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1408,7 +1408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8159594940820218663}
   - component: {fileID: 3085834755005090609}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
