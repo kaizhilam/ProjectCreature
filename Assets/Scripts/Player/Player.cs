@@ -47,8 +47,14 @@ public class Player : MonoBehaviour
         
     }
 
-    public void UpdateWeaponFunctionality()
+    public void UpdateWeaponFunctionality(SlottedItem script)
     {
-        Atk = this.GetComponentInChildren<Weapon>().Attack;
+        if (script.GetComponentInChildren<Weapon>() !=null)
+        {
+            Weapon wepScript = script.GetComponentInChildren<Weapon>();
+            print("updating for weapon " + script.name);
+            Atk = wepScript.Attack;
+        }
+        
     }
 }

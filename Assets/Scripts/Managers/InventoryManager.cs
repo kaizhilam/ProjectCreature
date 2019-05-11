@@ -86,7 +86,8 @@ public class InventoryManager: MonoBehaviour
             newWield.SetActive(true);
             newWield.transform.localScale = script.wieldScale;
             newWield.gameObject.layer = 2;
-            _player.GetComponent<Player>().UpdateWeaponFunctionality();
+            print("equipping weapon " + script.name);
+            _player.GetComponent<Player>().UpdateWeaponFunctionality(script);
         }
         
         
@@ -418,7 +419,7 @@ public class InventoryManager: MonoBehaviour
     {
         HotbarSlots[index].StoreItem(HotbarItems[index]);
         UpdateWield(index);
-        _player.GetComponent<Player>().UpdateWeaponFunctionality();
+        _player.GetComponent<Player>().UpdateWeaponFunctionality(HotbarItems[SelectedHotbarSlot]);
     }
 
     //toggles visibility of inventory panel
