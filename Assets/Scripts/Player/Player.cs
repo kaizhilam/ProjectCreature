@@ -49,11 +49,15 @@ public class Player : MonoBehaviour
 
     public void UpdateWeaponFunctionality(SlottedItem script)
     {
-        if (script.GetComponentInChildren<Weapon>() !=null)
+        if (script?.GetComponentInChildren<Weapon>() !=null)
         {
             Weapon wepScript = script.GetComponentInChildren<Weapon>();
             print("updating for weapon " + script.name);
             Atk = wepScript.Attack;
+        }
+        else
+        {
+            Atk = () => print("no weapon equipped, can't perform actions");
         }
         
     }
