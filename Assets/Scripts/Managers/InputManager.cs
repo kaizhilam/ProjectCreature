@@ -6,8 +6,10 @@ public class InputManager : MonoBehaviour
 {
     public delegate void InputDelegate();
     public delegate void MovementDelegate(Vector2 v1, Vector2 v2);
+    public delegate void ParamKeyCode(int i);
     public event InputDelegate Space;
     public event InputDelegate QKey;
+    public event ParamKeyCode TopNumbers;
     public event MovementDelegate Movement;
     public event InputDelegate StoppedMoving; 
     public event InputDelegate LeftClick;
@@ -68,6 +70,18 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             QKey?.Invoke();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            TopNumbers?.Invoke(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            TopNumbers?.Invoke(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            TopNumbers?.Invoke(3);
         }
         Vector2 inputVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         Vector2 inputRaw = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
