@@ -26,7 +26,6 @@ public class WanderState : EnemyAIState
             _enemy.Target = chaseTarget;
             return typeof(ChaseState);
         }
-
         return typeof(WanderState);
     }
 

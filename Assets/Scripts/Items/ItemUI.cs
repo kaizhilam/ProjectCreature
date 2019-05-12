@@ -54,6 +54,8 @@ public class ItemUI : MonoBehaviour
         
     }
 
+    
+
 
 
     public void OnDrop(PointerEventData eventData)

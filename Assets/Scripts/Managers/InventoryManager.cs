@@ -60,10 +60,11 @@ public class InventoryManager: MonoBehaviour
     //switch hotbar index, wield new weapon 
     public void SwitchHotbarIndex(int i)
     {
-       //if we do this check, then we'd need a new method for when item is added to selectedHotbarIndex
-       //if player is on slot 1 and presses 1, it will update the weapon uneccessarily but still better than making new method
-       // if (i == SelectedHotbarSlot)
-            //return;
+        //if we do this check, then we'd need a new method for when item is added to selectedHotbarIndex
+        //if player is on slot 1 and presses 1, it will update the weapon uneccessarily but still better than making new method
+        // if (i == SelectedHotbarSlot)
+        //return;
+        GetHotbarSlot(SelectedHotbarSlot).UnhighlightSlot();
         SelectedHotbarSlot = i;
         Destroy(_player.GetComponentInChildren<SlottedItem>()?.gameObject);
         if (GetHotbarItem(i) != null)
@@ -89,6 +90,8 @@ public class InventoryManager: MonoBehaviour
             print("equipping weapon " + script.name);
             _player.GetComponent<Player>().UpdateWeaponFunctionality(script);
         }
+
+        GetHotbarSlot(SelectedHotbarSlot).HighlightSlot();
         
         
     }
@@ -485,6 +488,11 @@ public class InventoryManager: MonoBehaviour
     public Slot GetSlot(int index)
     {
         return Slots[index];
+    }
+
+    public Slot GetHotbarSlot(int index)
+    {
+        return HotbarSlots[index];
     }
 
 }

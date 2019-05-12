@@ -99,5 +99,15 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
 
     }
 
+    public void HighlightSlot()
+    {
+        GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Backgrounds/button_square_h");
+    }
+
+    public void UnhighlightSlot()
+    {
+        GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Backgrounds/button_square");
+    }
+
 
 }
