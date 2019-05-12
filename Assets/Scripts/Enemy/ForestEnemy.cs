@@ -8,5 +8,9 @@ public class ForestEnemy : Enemy
     {
         ForestEnemyPool.Instance.ReturnToPool(this);
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/master
 }

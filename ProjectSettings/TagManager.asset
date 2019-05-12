@@ -9,6 +9,8 @@ TagManager:
   - Attack
   - Effect
   - Ground
+  - T1
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,8 @@ TagManager:
   - 
   - enemy
   - obstacle
-  - 
-  - 
+  - item
+  - player
   - 
   - 
   - 
