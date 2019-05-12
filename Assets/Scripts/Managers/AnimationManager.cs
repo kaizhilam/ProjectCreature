@@ -4,9 +4,10 @@ public class AnimationManager : MonoBehaviour
 {
 
     public static AnimationManager instance = null;
-	Animator anim;
+	public Animator anim;
     CharacterController controller;
     GameObject _player;
+    public AnimatorClipInfo clipInfo;
 	
 	int idle;
 	int jump;
@@ -50,22 +51,28 @@ public class AnimationManager : MonoBehaviour
 
     void SetJumpAnim()
     {
-        if (controller.isGrounded && !anim.GetBool(dodge))
+        if (!IsAnimationRunning("Dodge_Dive_anim"))
         {
-            anim.SetTrigger(jump);
+            //we don't want to play jump animation if its already playing
+            if (controller.isGrounded)
+            {
+                instance.ResetAnimations();
+                anim.SetTrigger(jump);
+            }
         }
     }
 
     void SetSlashAnim()
     {
-        if (anim.GetBool(slash) != true)
+        instance.ResetAnimationsExcept("slash");
         anim.SetTrigger(slash);
         
     }
 
     void SetRunAnim(Vector2 input, Vector2 inputRaw)
     {
-        if (controller.isGrounded && anim.GetBool(run)!=true)
+        //if animation already playing, don't play run animation. We don't want it to switch to running while mid-dodge, or mid-jump animation
+        if (controller.isGrounded && !IsAnimationRunning())
         {
             anim.SetBool(run, true);
         }
@@ -73,18 +80,20 @@ public class AnimationManager : MonoBehaviour
 
     void SetDodgeAnim()
     {
-        if (controller.isGrounded && !anim.GetBool(dodge))
+        if (!IsAnimationRunning("Jumping_Anim"))
         {
-            print("running dodge anim");
-            UnsetRunAnim();
-            anim.SetTrigger(dodge);
+            instance.ResetAnimationsExcept("dodge");
+            if (controller.isGrounded)
+            {
+                print("running dodge anim");
+                anim.SetTrigger(dodge);
+            }
         }
     }
 
     void UnsetRunAnim()
     {
-        if(anim.GetBool(run)==true)
-            anim.SetBool(run, false);
+        anim.SetBool(run, false);
     }
 	
 	void OnGUI()
@@ -94,4 +103,46 @@ public class AnimationManager : MonoBehaviour
 		GUI.Label(new Rect(20, 60, 200, 20), "Space: Jump");
 		GUI.Label(new Rect(20, 80, 200, 20), "MouseLB: Attack");
 	}
+
+    public void ResetAnimations()
+    {
+        foreach (AnimatorControllerParameter parameter in instance.anim.parameters)
+        {
+            instance.anim.SetBool(parameter.name, false);
+        }
+    }
+    public void ResetAnimationsExcept(string name)
+    {
+        foreach (AnimatorControllerParameter parameter in instance.anim.parameters)
+        {
+            if(parameter.name != name)
+            {
+                instance.anim.SetBool(parameter.name, false);
+            }
+        }
+
+    }
+
+    public bool IsAnimationRunning()
+    {
+        foreach (AnimatorControllerParameter parameter in instance.anim.parameters)
+        {
+            if (instance.anim.GetBool(parameter.name))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //returns true is paramater string equals animators current animation
+    public bool IsAnimationRunning(string name)
+    {
+        return instance.clipInfo.clip.name == name;
+    }
+
+    public void Update()
+    {
+        clipInfo = instance.anim.GetCurrentAnimatorClipInfo(0)[0];
+    }
 }
