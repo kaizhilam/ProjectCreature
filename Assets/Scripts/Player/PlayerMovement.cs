@@ -73,8 +73,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (_Controller.isGrounded)
+        //player can only jump when on the ground and not dodging
+        AnimatorClipInfo info = AnimationManager.instance.clipInfo;
+        if (_Controller.isGrounded && info.clip.name!="Dodge_Dive_anim")
         {
+
             //JUMPING CODE
             JumpAmount = JumpHeight * Time.deltaTime;
             JumpAmount = Mathf.Clamp(JumpAmount, -2f, Mathf.Infinity);
@@ -82,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            print("it worked!");
             //_Controller.Move(movement * AirMovementPenalty);
         }
     }

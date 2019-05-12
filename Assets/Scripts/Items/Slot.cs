@@ -79,7 +79,6 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void StoreItem(SlottedItem item)
     {
-        print("bf " + GetComponentsInChildren<ItemUI>().Length + " for: " + this.name);
         if (item == null)
         {
             Destroy(GetComponentInChildren<ItemUI>()?.gameObject);
@@ -88,18 +87,26 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
         {
             if (GetComponentInChildren<ItemUI>() == null)
             {
-                print("creating new item");
                 GameObject itemGameObject = Instantiate(itemPrefab) as GameObject;
                 itemGameObject.transform.SetParent(this.transform);
                 itemGameObject.transform.localScale = Vector3.one;
                 itemGameObject.transform.localPosition = Vector3.zero;
             }
-            print(GetComponentsInChildren<ItemUI>().Length + " for: " + this.name);
             GetComponentInChildren<ItemUI>().SetItem(item);
             //SetItem(item);
         }
 
 
+    }
+
+    public void HighlightSlot()
+    {
+        GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Backgrounds/button_square_h");
+    }
+
+    public void UnhighlightSlot()
+    {
+        GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Backgrounds/button_square");
     }
 
 

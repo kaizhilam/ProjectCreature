@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,23 +8,38 @@ public class Player : MonoBehaviour
     public delegate void ActionDelegate();
     public event ActionDelegate Atk;
     public event ActionDelegate RunAbility;
+    public SlottedItem selectedItem;
     public Weapon equippedWeapon;
 
     public static float HP = 100f;
 
     private void Start()
     {
-        equippedWeapon = GetComponentInChildren<Weapon>();
+        selectedItem = this?.GetComponentInChildren<SlottedItem>();
+        equippedWeapon = this?.GetComponentInChildren<Weapon>();
         InputManager.instance.LeftClick += Attack;
-        equippedWeapon.gameObject.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
+        InventoryManager.Instance.SwitchHotbarIndex(0);
         //layer 2 means its ignored by raycast, we don't want camera worrying about an equipped weapon
-        equippedWeapon.gameObject.layer = 2;
-        Atk = GetComponentInChildren<Weapon>().Attack;
+        if (GetComponentInChildren<Weapon>() != null)
+        {
+            Atk = this.GetComponentInChildren<Weapon>().Attack;
+        }
+        else
+        {
+            //if player not holding weapon, tell em to stop trying to use lmb/rmb?
+            Atk = () => print("no weapon equipped, can't perform actions");
+        }
     }
+
 
     private void Attack()
     {
         Atk();
+    }
+
+    private void Ability()
+    {
+        RunAbility();
     }
 
     private void ManageCollisons()
@@ -31,7 +47,18 @@ public class Player : MonoBehaviour
         
     }
 
-    private void OnDrawGizmos()
+    public void UpdateWeaponFunctionality(SlottedItem script)
     {
+        if (script?.GetComponentInChildren<Weapon>() !=null)
+        {
+            Weapon wepScript = script.GetComponentInChildren<Weapon>();
+            print("updating for weapon " + script.name);
+            Atk = wepScript.Attack;
+        }
+        else
+        {
+            Atk = () => print("no weapon equipped, can't perform actions");
+        }
+        
     }
 }

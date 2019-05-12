@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class HuntingKnife : Weapon
 {
-
+    private void Awake()
+    {
+        wieldPos = new Vector3(-0.0159f, 0.0342f, 0.0067f);
+        wieldRotation = Quaternion.Euler(new Vector3(185.8f, 10.96f, 4.411f));
+        wieldScale = new Vector3(0.02f, 0.02f, 0.02f);
+        wieldBone = 0;
+    }
 
     public override void Attack()
     {
@@ -13,7 +19,6 @@ public class HuntingKnife : Weapon
         {
             if (colliders[i].gameObject.CompareTag("Enemy"))
             {
-                print(colliders[i].name);
                 colliders[i].gameObject.GetComponent<Enemy>().TakeDamage(damage);
             }
         }
