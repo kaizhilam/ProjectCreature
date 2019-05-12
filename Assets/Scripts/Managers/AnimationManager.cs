@@ -56,7 +56,7 @@ public class AnimationManager : MonoBehaviour
             //we don't want to play jump animation if its already playing
             if (controller.isGrounded)
             {
-                instance.ResetAnimations();
+                instance.ResetAnimationsExcept("run","dodge");
                 anim.SetTrigger(jump);
             }
         }
