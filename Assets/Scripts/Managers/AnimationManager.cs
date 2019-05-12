@@ -82,7 +82,7 @@ public class AnimationManager : MonoBehaviour
     {
         if (!IsAnimationRunning("Jumping_Anim"))
         {
-            instance.ResetAnimationsExcept("dodge");
+            instance.ResetAnimationsExcept("dodge", "run");
             if (controller.isGrounded)
             {
                 print("running dodge anim");
@@ -111,14 +111,25 @@ public class AnimationManager : MonoBehaviour
             instance.anim.SetBool(parameter.name, false);
         }
     }
-    public void ResetAnimationsExcept(string name)
+    public void ResetAnimationsExcept(params string[] names)
     {
         foreach (AnimatorControllerParameter parameter in instance.anim.parameters)
         {
-            if(parameter.name != name)
+            //for each animation...
+            bool unset = true;
+            for (int i = 0; i < names.Length; i++)
+                //for each input argument...
             {
-                instance.anim.SetBool(parameter.name, false);
+                //if parameters name was in argument list, don't unset it
+                if(parameter.name == names[i])
+                {
+                    unset = false;
+                }
+                
             }
+            //if wasn't found in argument list, set to false
+            if (unset)
+                instance.anim.SetBool(parameter.name, false);
         }
 
     }
