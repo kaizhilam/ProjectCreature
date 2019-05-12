@@ -10,6 +10,7 @@ public class Dino : ForestEnemy
     public AudioClip idle4;
     protected List<AudioClip> sounds;
     private AudioSource src;
+    public GameObject drop;
 
     public Dino()
     {
@@ -42,5 +43,12 @@ public class Dino : ForestEnemy
         }
 
     }
+
+    public override void ResolveDeletion() //called, when enemy will be destroyed
+    {
+        Instantiate(drop, transform.position, drop.transform.rotation);
+        ForestEnemyPool.Instance.ReturnToPool(this);
+    }
+
 
 }

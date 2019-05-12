@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sunny : ForestEnemy
 {
+    public GameObject drop;
     // Start is called before the first frame update
     public Sunny()
     {
@@ -16,5 +17,11 @@ public class Sunny : ForestEnemy
     void Start()
     {
         
+    }
+
+    public override void ResolveDeletion() //called, when enemy will be destroyed
+    {
+        Instantiate(drop, transform.position, drop.transform.rotation);
+        ForestEnemyPool.Instance.ReturnToPool(this);
     }
 }

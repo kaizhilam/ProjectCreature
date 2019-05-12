@@ -32,6 +32,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (health < 0)
         {
+            
             ResolveDeletion();
         }
     }
