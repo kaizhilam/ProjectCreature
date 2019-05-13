@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 12d590c37ab24c34ab10b15aafa7ed19
+guid: d79b5db63fa2a5b4290b222a11dd5bbe
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -12,7 +12,7 @@ ModelImporter:
     400004: Cylinder
     400006: Lamp
     2000000: Camera
-    2100000: No Name
+    2100000: lambert1
     2300000: Cylinder
     3300000: Cylinder
     4300000: Cylinder

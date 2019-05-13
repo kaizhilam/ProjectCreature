@@ -5,25 +5,55 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
 	private Rigidbody _Rigidbody;
+	private Collider _Collider;
+	private bool _IsMoving = true;
+	private Vector3 _HitTransform;
+
     public float Speed;
 
 	private void Start()
     {
-        _Rigidbody = GetComponent<Rigidbody>();
-		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		_Rigidbody = GetComponent<Rigidbody>();
+		_Collider = GetComponent<Collider>();
+		GameObject player = GameObject.Find("Face");
 		GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
-        transform.SetPositionAndRotation(player.transform.position + (Vector3.forward*2), player.transform.rotation);
-        transform.LookAt(ThirdPersonCamera.LookingAtPoint);
-    }
+		transform.position = player.transform.position + (player.transform.forward * 4);
+		transform.rotation = camera.transform.rotation;
 
-    private void FixedUpdate()
-    {
-        _Rigidbody.AddForce(Vector3.forward * Speed * Time.deltaTime);
-    }
+		//CIRCUMVENTING AIMING TOWARDS SKYBOX
+		Vector3 lookingAt = ThirdPersonCamera.LookingAtPoint;
+		if (lookingAt.ToString() != "(Infinity, Infinity, Infinity)")
+		{
+			transform.LookAt(lookingAt);
+		}
+	}
 
-    private void OnCollisionEnter(Collision collision)
+	private void FixedUpdate()
 	{
-		Debug.Log(collision.gameObject.name);
-		//Destroy(_Rigidbody);
+		if (_IsMoving == true)
+		{
+			_Rigidbody.AddForce(transform.forward * Speed);
+		}
+		else
+		{
+			transform.position = _HitTransform;
+		}
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		Debug.Log(other.gameObject.name);
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.tag != "Player")
+		{
+			_HitTransform = transform.position;
+			_IsMoving = false;
+			_Rigidbody.velocity = Vector3.zero;
+			Destroy(_Rigidbody);
+			Destroy(_Collider);
+		}
 	}
 }
