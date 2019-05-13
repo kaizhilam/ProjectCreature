@@ -83,16 +83,5 @@ public class PlayerMovement : MonoBehaviour
             JumpAmount = Mathf.Clamp(JumpAmount, -2f, Mathf.Infinity);
             _Controller.Move(new Vector3(0,JumpAmount,0));
         }
-        else
-        {
-            print("it worked!");
-            //_Controller.Move(movement * AirMovementPenalty);
-        }
     }
-
-    //private void GetInput()
-    //{
-    //    _Input = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Jump"), Input.GetAxis("Vertical")); //NUMBER CONTAINS DECIMALS FOR CHARACTER ACCELERATION
-    //    _InputRaw = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Jump"), Input.GetAxisRaw("Vertical")); //NUMBER IS A FULL NUMBER FOR CHECKING IF BUTTON IS PRESSED
-    //}
 }

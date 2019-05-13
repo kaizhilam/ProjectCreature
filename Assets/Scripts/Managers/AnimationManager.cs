@@ -85,7 +85,6 @@ public class AnimationManager : MonoBehaviour
             instance.ResetAnimationsExcept("dodge", "run");
             if (controller.isGrounded)
             {
-                print("running dodge anim");
                 anim.SetTrigger(dodge);
             }
         }
