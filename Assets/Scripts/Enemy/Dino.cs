@@ -11,6 +11,8 @@ public class Dino : ForestEnemy
     public AudioClip idle4;
     protected List<AudioClip> sounds;
     private AudioSource src;
+    public GameObject drop;
+    //public DropTable DropTable { get; set; }
 
     public Dino()
     {
@@ -38,6 +40,14 @@ public class Dino : ForestEnemy
 
     private void Start()
     {
+        /*DropTable = new DropTable();
+        DropTable.loot = new List<LootDrop>
+        {
+            new LootDrop("knife",25),
+            new LootDrop("arrow",25),
+            new LootDrop("sword",25)
+        };*/
+
         src = GetComponent<AudioSource>();
         sounds = new List<AudioClip>
         {
@@ -60,4 +70,13 @@ public class Dino : ForestEnemy
 
     }
 
+    public override void DropWeapon() //called, when enemy will be destroyed
+    {
+        /*SlottedItem item = DropTable.GetDrop();
+        if (item != null)
+        {
+            Instantiate(drop, transform.position, drop.transform.rotation);
+        }*/
+        Instantiate(drop, transform.position, drop.transform.rotation);
+    }
 }

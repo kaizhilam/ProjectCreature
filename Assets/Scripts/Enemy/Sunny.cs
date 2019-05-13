@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sunny : ForestEnemy
 {
+    public GameObject drop;
     // Start is called before the first frame update
     public Sunny()
     {
@@ -17,4 +18,10 @@ public class Sunny : ForestEnemy
     {
         
     }
+
+    public override void DropWeapon() //called, when enemy will be destroyed
+    {
+        Instantiate(drop, transform.position, drop.transform.rotation);
+    }
+
 }
