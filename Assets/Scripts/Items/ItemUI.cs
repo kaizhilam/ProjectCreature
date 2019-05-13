@@ -36,7 +36,6 @@ public class ItemUI : MonoBehaviour
 
     public void SetItem(SlottedItem item)
     {
-        print("setting item for " + this.gameObject.GetInstanceID());
         this.item = item;
         ItemImage.sprite = Resources.Load<Sprite>(item.Sprite);
         //if (item.count > 1)
@@ -54,6 +53,8 @@ public class ItemUI : MonoBehaviour
     {
         
     }
+
+    
 
 
 
