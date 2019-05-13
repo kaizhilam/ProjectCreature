@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CursorController : MonoBehaviour
+public class CursorManager : MonoBehaviour
 {
 	public static bool Visible
 	{
