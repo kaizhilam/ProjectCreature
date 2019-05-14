@@ -156,9 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a941e7138fa5561449ae0d63a50736e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gravity: {x: 0, y: -0.05, z: 0}
+  Gravity: {x: 0, y: -5, z: 0}
   JumpAmount: 0
-  JumpHeight: 50
+  JumpHeight: 80
   Speed: 15
   Smooth: 21
   AirMovementPenalty: 0.75
@@ -237,16 +237,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4806390366692392981}
     m_Modifications:
-    - target: {fileID: 3598469944877352978, guid: 0e2e3a29b7f0a6b4e808b7c2a8176a38,
-        type: 3}
-      propertyPath: m_Name
-      value: Idle
-      objectReference: {fileID: 0}
-    - target: {fileID: 3598469944877352978, guid: 0e2e3a29b7f0a6b4e808b7c2a8176a38,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 4806390366094376207, guid: 0e2e3a29b7f0a6b4e808b7c2a8176a38,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -301,6 +291,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5142571343939571138, guid: 0e2e3a29b7f0a6b4e808b7c2a8176a38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3598469944877352978, guid: 0e2e3a29b7f0a6b4e808b7c2a8176a38,
+        type: 3}
+      propertyPath: m_Name
+      value: Idle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3598469944877352978, guid: 0e2e3a29b7f0a6b4e808b7c2a8176a38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4650714236020546072, guid: 0e2e3a29b7f0a6b4e808b7c2a8176a38,
         type: 3}
@@ -673,11 +678,6 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 941695693519537098, guid: 0e2e3a29b7f0a6b4e808b7c2a8176a38,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5142571343939571138, guid: 0e2e3a29b7f0a6b4e808b7c2a8176a38,
         type: 3}
       propertyPath: m_Layer
       value: 11
