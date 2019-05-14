@@ -7,17 +7,23 @@ public class ThirdPersonCamera : MonoBehaviour
     public Transform FocusOn;
     public float Distance = 5f;
 
-    public float MouseSensitivity = 1f;
+    public LayerMask ignore;
 
-    public static GameObject LookingAtGameObject;
+	public float MouseSensitivityX;
+	public bool MouseInverseX = false;
+	public float MouseSensitivityY;
+	public bool MouseInverseY = false;
+
+	public static GameObject LookingAtGameObject;
     public static Vector3 LookingAtPoint;
     public static float LookingAtDistance;
+    public static Ray castRay;
 
     private float _CurrentX = 0f;
     private float _CurrentY = 0f;
     private float _CurrentDistance;
 
-    private void Start()
+	private void Start()
     {
         _CurrentDistance = Distance;
     }
@@ -31,10 +37,21 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void CameraMovement()
     {
-        _CurrentX += Input.GetAxis("Mouse X") * MouseSensitivity;
-        _CurrentY += Input.GetAxis("Mouse Y");
-		_CurrentY = Mathf.Clamp(_CurrentY * MouseSensitivity, -89, 89); //so the y axis does not clip through ground
-		//_CurrentY = Mathf.Clamp(_CurrentY * MouseSensitivity, -15, 89); //so the y axis does not clip through ground
+		float mouseX = Input.GetAxis("Mouse X") * MouseSensitivityX;
+		float mouseY = Input.GetAxis("Mouse Y") * MouseSensitivityY;
+		//INVERSE CODE HERE
+		if (MouseInverseX)
+			_CurrentX -= mouseX;
+		else
+			_CurrentX += mouseX;
+
+		if (MouseInverseY)
+			_CurrentY += mouseY;
+		else
+			_CurrentY -= mouseY;
+
+		_CurrentY = Mathf.Clamp(_CurrentY, -89, 89); //so the y axis does not clip through ground
+		//Debug.Log(_CurrentX + ":" + _CurrentY);
 
 		Vector3 dir = new Vector3(0, 0, -_CurrentDistance); //set distance between LookAt and camera
         Quaternion rotation = Quaternion.Euler(_CurrentY, _CurrentX, 0);
@@ -47,15 +64,13 @@ public class ThirdPersonCamera : MonoBehaviour
     private void CameraAiming() //Raycasting for character interaction with objects
     {
         RaycastHit hit;
-        Ray objectRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
-        if (Physics.Raycast(objectRay, out hit))
+        castRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
+        if (Physics.Raycast(castRay, out hit))
         {
             //add information as to what the camera is currently looking at
             LookingAtGameObject = hit.collider.gameObject;
             LookingAtPoint = hit.point;
             LookingAtDistance = hit.distance;
-            LookingAtGameObject = hit.collider.gameObject;
             //Debug.Log("Name: " + hit.collider.name + " Point: " + hit.point + " Distance: " + hit.distance);
         }
         //if the ray cast from the camera hits nothing, the player is looking at the sky

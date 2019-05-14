@@ -8,11 +8,15 @@ public class InventoryManager: MonoBehaviour
     private float targetAlpha = 1;
     private float smoothing = 4;
     private CanvasGroup canvasGroup;
+    private CanvasGroup HotbarCanvasGroup;
+    private CanvasGroup InventoryCanvasGroup;
     public static InventoryManager Instance { get; private set; }
     private static SlottedItem[] InventoryItems;
     private static SlottedItem[] HotbarItems;
     public static Slot[] Slots;
     public static Slot[] HotbarSlots;
+    public static int SelectedHotbarSlot = 0;
+    private GameObject _player;
 
     public InventoryManager()
     {
@@ -34,15 +38,65 @@ public class InventoryManager: MonoBehaviour
 
     public virtual void Start()
     {
+        //caching player
+        _player = GameObject.Find("Player");
+        //Bind b to the DisplaySwitch function
         GameObject.Find("Player").GetComponent<InputManager>().BKey += DisplaySwitch;
-        Slots = GetComponentsInChildren<Panel>()[1].GetComponentsInChildren<Slot>();
-        HotbarSlots = GetComponentsInChildren<Panel>()[0].GetComponentsInChildren<Slot>();
+        //used for switching hotbar slots on key press
+        InputManager.instance.TopNumbers += SwitchHotbarIndex;
+        //get all slot object
+        Slots = GetComponentsInChildren<Panel>()[0].GetComponentsInChildren<Slot>();
+        HotbarSlots = gameObject.transform.parent.GetComponentInChildren<Hotbar>().GetComponentsInChildren<Slot>();
+        //grab both canvases and parent canvas 
         canvasGroup = GetComponent<CanvasGroup>();
+        HotbarCanvasGroup = gameObject.transform.parent.GetComponentInChildren<Hotbar>().GetComponent<CanvasGroup>();
+        InventoryCanvasGroup = canvasGroup.gameObject.GetComponentInChildren<CanvasGroup>();
+        //Creating an array that will mirror the hotbar and inv contents
         InventoryItems = new SlottedItem[Slots.Length];
         HotbarItems = new SlottedItem[HotbarSlots.Length];
-        DisplaySwitch();
+        FastHideInv();
     }
 
+    //switch hotbar index, wield new weapon 
+    public void SwitchHotbarIndex(int i)
+    {
+        //if we do this check, then we'd need a new method for when item is added to selectedHotbarIndex
+        //if player is on slot 1 and presses 1, it will update the weapon uneccessarily but still better than making new method
+        // if (i == SelectedHotbarSlot)
+        //return;
+        GetHotbarSlot(SelectedHotbarSlot).UnhighlightSlot();
+        SelectedHotbarSlot = i;
+        Destroy(_player.GetComponentInChildren<SlottedItem>()?.gameObject);
+        if (GetHotbarItem(i) != null)
+        {
+            var newWield = Instantiate(GetHotbarItem(i).objectPrefab, Vector3.zero, Quaternion.identity);
+            SlottedItem script = newWield.GetComponent<SlottedItem>();
+            switch (script.wieldBone)
+            {
+                case 0:
+                    newWield.transform.SetParent(_player.GetComponentInChildren<WieldBone>().transform);
+                    break;
+                case -1:
+                    newWield.transform.SetParent(_player.GetComponentInChildren<WieldArm>().transform);
+                    break;
+
+            }
+            newWield.transform.SetSiblingIndex(0);
+            newWield.transform.localPosition = script.wieldPos;
+            newWield.transform.localRotation = script.wieldRotation;
+            newWield.SetActive(true);
+            newWield.transform.localScale = script.wieldScale;
+            newWield.gameObject.layer = 2;
+            print("equipping weapon " + script.name);
+            _player.GetComponent<Player>().UpdateWeaponFunctionality(script);
+        }
+
+        GetHotbarSlot(SelectedHotbarSlot).HighlightSlot();
+        
+        
+    }
+
+    //Swaps two slots contents
     public void Swap(Slot slot1, Slot slot2)
     {
         SlottedItem item1 = GetItemFromSlot(slot1);
@@ -51,56 +105,63 @@ public class InventoryManager: MonoBehaviour
         int index2 = GetIndexOfSlot(slot2);
         bool isInHotbar1 = IsInHotbar(slot1);
         bool isInHotbar2 = IsInHotbar(slot2);
+        print("from " + isInHotbar1 + ", to " + isInHotbar2);
+        //Depending on which panel the slots are in, we target different panels slots
+        //if swapping hotbar items for example, we are only concerned with hotbar slots
         if(!isInHotbar1 && !isInHotbar2)
         {
+            print("inv to inv swap");
             int invIndex1 = index1;
             int invIndex2 = index2;
             SlottedItem temp = InventoryItems[invIndex1];
             InventoryItems[invIndex1] = InventoryItems[invIndex2];
             InventoryItems[invIndex2] = temp;
-            RefreshSlotFromList(invIndex1);
-            RefreshSlotFromList(invIndex2);
+            RefreshSlotFromIndex(invIndex1);
+            RefreshSlotFromIndex(invIndex2);
         }
         else if(isInHotbar1 && !isInHotbar2)
         {
+            print("bar to inv swap");
             int hotbarindex1 = index1;
             int invIndex1 = index2;
             SlottedItem temp = HotbarItems[hotbarindex1];
             HotbarItems[hotbarindex1] = InventoryItems[invIndex1];
             InventoryItems[invIndex1] = temp;
-            RefreshHotbarSlotFromList(hotbarindex1);
-            RefreshSlotFromList(invIndex1);
+            RefreshHotbarSlotFromIndex(hotbarindex1);
+            RefreshSlotFromIndex(invIndex1);
         }
         else if(!isInHotbar1 && isInHotbar2)
         {
+            print("inv to bar swap");
             int invIndex1 = index1;
             int hotbarindex1 = index2;
             SlottedItem temp = InventoryItems[invIndex1];
             InventoryItems[invIndex1] = HotbarItems[hotbarindex1];
             HotbarItems[hotbarindex1] = temp;
-            RefreshSlotFromList(invIndex1);
-            RefreshHotbarSlotFromList(hotbarindex1);
+            RefreshSlotFromIndex(invIndex1);
+            RefreshHotbarSlotFromIndex(hotbarindex1);
         }
         else //if both in hotbar
         {
+            print("bar to bar swap");
             int hotbarindex1 = GetIndexOfSlot(slot1);
             int hotbarindex2 = GetIndexOfSlot(slot2);
             SlottedItem temp = HotbarItems[hotbarindex1];
             HotbarItems[hotbarindex1] = HotbarItems[hotbarindex2];
             HotbarItems[hotbarindex2] = temp;
-            RefreshHotbarSlotFromList(hotbarindex1);
-            RefreshHotbarSlotFromList(hotbarindex2);
-
-            print("successfully swapped?");
+            RefreshHotbarSlotFromIndex(hotbarindex1);
+            RefreshHotbarSlotFromIndex(hotbarindex2);
         }
     }
 
+    //update UI slots from arrays
     private void RefreshAll()
     {
         RefreshInventoryFromList();
         RefreshHotbarFromList();
     }
 
+    //not used yet, used for player throwing away items
     public void Remove(SlottedItem item)
     {
         int index = -1;
@@ -117,6 +178,7 @@ public class InventoryManager: MonoBehaviour
 
     }
 
+    //returns index of first slot in inv that is free, returns -1 if none
     public int FirstEmptySlotInvIndex()
     {
         for (int i = 0; i < InventoryItems.Length; i++)
@@ -129,6 +191,7 @@ public class InventoryManager: MonoBehaviour
         return -1;
     }
 
+    //return index of first slot in hotbar that is free, returns -1 if none
     public int FirstEmptySlotHotbarIndex()
     {
         for (int i = 0; i < HotbarItems.Length; i++)
@@ -158,7 +221,7 @@ public class InventoryManager: MonoBehaviour
                 if (HotbarItems[indexes[i]].count < HotbarItems[indexes[i]].capacity)
                 {
                     HotbarItems[indexes[i]].count++;
-                    RefreshHotbarSlotFromList(indexes[i]);
+                    RefreshHotbarSlotFromIndex(indexes[i]);
                     return indexes[i];
                 }
             }
@@ -175,7 +238,7 @@ public class InventoryManager: MonoBehaviour
                 if (InventoryItems[indexes[i]].count < InventoryItems[indexes[i]].capacity)
                 {
                     InventoryItems[indexes[i]].count++;
-                    RefreshSlotFromList(indexes[i]);
+                    RefreshSlotFromIndex(indexes[i]);
                     return indexes[i];
                 }
             }
@@ -186,14 +249,14 @@ public class InventoryManager: MonoBehaviour
         if(firstEmptyHotbar > -1)
         {
             HotbarItems[firstEmptyHotbar] = item;
-            RefreshHotbarSlotFromList(firstEmptyHotbar);
+            RefreshHotbarSlotFromIndex(firstEmptyHotbar);
             return firstEmptyHotbar;
         }
         //then check for free spot in inventory
         if (firstEmpty > -1)
         {
             InventoryItems[firstEmpty] = item;
-            RefreshSlotFromList(firstEmpty);
+            RefreshSlotFromIndex(firstEmpty);
             return firstEmpty;
         }
         //no room for item anywhere, return false
@@ -202,6 +265,16 @@ public class InventoryManager: MonoBehaviour
 
     }
 
+    //if item added to index i, we need to update it and show new wielded weapon
+    private void UpdateWield(int i)
+    {
+        if(i == SelectedHotbarSlot)
+        {
+            SwitchHotbarIndex(i);
+        }
+    }
+
+    //get item ojbect given a slot object
     public SlottedItem GetItemFromSlot(Slot slot)
     {
         return slot.GetComponentInChildren<ItemUI>()?.item;
@@ -218,6 +291,7 @@ public class InventoryManager: MonoBehaviour
         return false;
     }
 
+    //finds index of item in the inventory
     public int GetIndex(SlottedItem item)
     {
         for (int i = 0; i < InventoryItems.Length; i++)
@@ -230,6 +304,7 @@ public class InventoryManager: MonoBehaviour
         return -1;
     }
 
+    //given a slot, will find the index in inv
     public int GetIndexOfSlot(Slot slot)
     {
         return slot.transform.GetSiblingIndex();
@@ -252,6 +327,7 @@ public class InventoryManager: MonoBehaviour
         return -1;
     }
 
+    //Returns list of all indexes of item in hotbar
     public List<int> GetHotbarIndexesOfItem(SlottedItem item)
     {
         List<int> indexes = new List<int>();
@@ -265,6 +341,7 @@ public class InventoryManager: MonoBehaviour
         return indexes;
     }
 
+    //Returns list of all indexes of item in inventory
     public List<int> GetInvIndexesOfItem(SlottedItem item)
     {
         List<int> indexes = new List<int>();
@@ -278,6 +355,7 @@ public class InventoryManager: MonoBehaviour
         return indexes;
     }
 
+    //returns bool, is item in hotbar?
     public bool IsInHotbar(SlottedItem item)
     {
         for (int i = 0; i < HotbarItems.Length; i++)
@@ -290,12 +368,12 @@ public class InventoryManager: MonoBehaviour
         return false;
     }
 
+    //returns bool, is slot in hotbar? (or in inv?)
     public bool IsInHotbar(Slot slot)
     {
-        Slot[] hotbarSlots = GetComponentsInChildren<Panel>()[0].GetComponentsInChildren<Slot>();
-        for (int i = 0; i < hotbarSlots.Length; i++)
+        for (int i = 0; i < HotbarSlots.Length; i++)
         {
-            if(hotbarSlots[i].GetInstanceID() == slot.GetInstanceID())
+            if(HotbarSlots[i].GetInstanceID() == slot.GetInstanceID())
             {
                 return true;
             }
@@ -303,42 +381,51 @@ public class InventoryManager: MonoBehaviour
         return false;
     }
 
+    //given index, get item from inv
     public SlottedItem GetItem(int index)
     {
         return InventoryItems[index];
     }
 
+    //given index, get item from hotbar
     public SlottedItem GetHotbarItem(int index)
     {
         return HotbarItems[index];
     }
 
+    //Refresh Inventory from inventory array
     public void RefreshInventoryFromList()
     {
         for (int i = 0; i < Slots.Length; i++)
         {
-            RefreshSlotFromList(i);
+            RefreshSlotFromIndex(i);
         }
     }
 
+    //Refresh Hotbar from hotbar array
     public void RefreshHotbarFromList()
     {
         for (int i = 0; i < HotbarSlots.Length; i++)
         {
-            RefreshHotbarSlotFromList(i);
+            RefreshHotbarSlotFromIndex(i);
         }
     }
-
-    public void RefreshSlotFromList(int index)
+    
+    //will update the inv slot from array using index 
+    public void RefreshSlotFromIndex(int index)
     {
         Slots[index].StoreItem(InventoryItems[index]);
     }
 
-    public void RefreshHotbarSlotFromList(int index)
+    //will update the hotbar slot from array using index
+    public void RefreshHotbarSlotFromIndex(int index)
     {
         HotbarSlots[index].StoreItem(HotbarItems[index]);
+        UpdateWield(index);
+        _player.GetComponent<Player>().UpdateWeaponFunctionality(HotbarItems[SelectedHotbarSlot]);
     }
 
+    //toggles visibility of inventory panel
     public void DisplaySwitch()
     {
         if (targetAlpha == 0)
@@ -351,42 +438,63 @@ public class InventoryManager: MonoBehaviour
         }
     }
 
+    //don't lerp, set inv hidden straight away
+    public void FastHideInv()
+    {
+        targetAlpha = 0;
+        InventoryCanvasGroup.alpha = 0;
+    }
+
+    //will cause update function to slowly bring back visibility to inv panel
     public void Show()
     {
-        canvasGroup.blocksRaycasts = true;
+        InventoryCanvasGroup.blocksRaycasts = true;
         targetAlpha = 1;
+        CursorManager.Visible = true;
+        InputManager.EnabledPlayInput = false;
     }
 
+    //will cause update function to slowly bring back visibility to inv panel
     public void Hide()
     {
-        canvasGroup.blocksRaycasts = false;
+        InventoryCanvasGroup.blocksRaycasts = false;
         targetAlpha = 0;
+        CursorManager.Visible = false;
+        InputManager.EnabledPlayInput = true;
     }
 
+    //inv panel will gradually reach targetAlpha if not there already
     private void Update()
     {
-        if (canvasGroup.alpha != targetAlpha)
+        //if (HotbarCanvasGroup.alpha != targetAlpha)
+        //{
+        //    HotbarCanvasGroup.alpha = Mathf.Lerp(HotbarCanvasGroup.alpha, targetAlpha, smoothing * Time.deltaTime);
+        //    if (Mathf.Abs(HotbarCanvasGroup.alpha - targetAlpha) < .01f)
+        //    {
+        //        HotbarCanvasGroup.alpha = targetAlpha;
+        //    }
+        //}
+        if (InventoryCanvasGroup.alpha != targetAlpha)
         {
-            canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, targetAlpha, smoothing * Time.deltaTime);
-            if (Mathf.Abs(canvasGroup.alpha - targetAlpha) < .01f)
+            InventoryCanvasGroup.alpha = Mathf.Lerp(InventoryCanvasGroup.alpha, targetAlpha, smoothing * Time.deltaTime);
+            if (Mathf.Abs(InventoryCanvasGroup.alpha - targetAlpha) < .01f)
             {
-                canvasGroup.alpha = targetAlpha;
+                InventoryCanvasGroup.alpha = targetAlpha;
             }
         }
     }
 
+    //given index, get slot object
     public Slot GetSlot(int index)
     {
         return Slots[index];
     }
 
-    public void StoreItem(SlottedItem item)
+    public Slot GetHotbarSlot(int index)
     {
-        int index = PutIntoUI(item);
-        Slot slot = GetSlot(index);
-        slot.StoreItem(item);
-
+        return HotbarSlots[index];
     }
+
 }
 
     

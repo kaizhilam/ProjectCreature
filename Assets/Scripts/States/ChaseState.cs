@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class ChaseState : EnemyAIState
 {
-
     private Enemy _enemy;
     public override Type Tick()
     {
-        print("ChaseState");
-        throw new NotImplementedException();
+        transform.LookAt(player.transform.position + (Vector3.up * 2)); //look at player
+        Vector3 movement = Vector3.forward * movementSpeed * Time.deltaTime; //move forward
+        _rb.transform.Translate(movement); //move towards the player
+        if (CheckForAggro())
+        {
+            return typeof(ChaseState);
+        }
+        return typeof(WanderState);
     }
 
     public ChaseState(Enemy enemy) : base(enemy.gameObject)
