@@ -109,5 +109,11 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
         GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Backgrounds/button_square");
     }
 
+    public void ApplyCooldown()
+    {
+        print("applyingCooldown");
+        GetComponent<CalCDTime>().currentTime = 0;
+    }
+
 
 }
