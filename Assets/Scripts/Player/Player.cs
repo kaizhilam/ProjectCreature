@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     private void Ability()
     {
         RunAbility();
+        InventoryManager.Instance.CooldownToCurrent();
     }
 
     private void ManageCollisons()
