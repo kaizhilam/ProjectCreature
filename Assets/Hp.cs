@@ -15,6 +15,9 @@ public class Hp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.localPosition = new Vector3((-200+200*(hp/MaxHp)),0.0f,0.0f);
+        if (hp != 0)
+        {
+            this.transform.localPosition = new Vector3((-200 + 200 * (hp / MaxHp)), 0.0f, 0.0f);
+        }
     }
 }
