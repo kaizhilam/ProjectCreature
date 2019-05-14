@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 8197771592987320180}
   - component: {fileID: 8961296810202327247}
   - component: {fileID: 1614845012}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BasicKnife
   m_TagString: T1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8197771592987320180
 Transform:
@@ -67,6 +67,7 @@ MonoBehaviour:
   Sprite: Sprites/Items/axe
   count: 0
   capacity: 2
+  objectPrefab: {fileID: 325608031440604891}
   durability: 50
   damage: 50
 --- !u!1 &2827187410117890834
@@ -80,12 +81,12 @@ GameObject:
   - component: {fileID: 4517393562767429279}
   - component: {fileID: 2118444329165863257}
   - component: {fileID: 167903404629484258}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Blade
   m_TagString: T1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4517393562767429279
 Transform:
@@ -156,7 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7424022658015904091}
   - component: {fileID: 5016922247309102834}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

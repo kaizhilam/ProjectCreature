@@ -97,6 +97,73 @@ ModelImporter:
     100182: Spine
     100184: Spine1
     100186: Spine2
+    100188: Body1
+    100190: default
+    100192: mixamorig:Head
+    100194: mixamorig:HeadTop_End
+    100196: mixamorig:Hips
+    100198: mixamorig:LeftArm
+    100200: mixamorig:LeftFoot
+    100202: mixamorig:LeftForeArm
+    100204: mixamorig:LeftHand
+    100206: mixamorig:LeftHandIndex1
+    100208: mixamorig:LeftHandIndex2
+    100210: mixamorig:LeftHandIndex3
+    100212: mixamorig:LeftHandIndex4
+    100214: mixamorig:LeftHandMiddle1
+    100216: mixamorig:LeftHandMiddle2
+    100218: mixamorig:LeftHandMiddle3
+    100220: mixamorig:LeftHandMiddle4
+    100222: mixamorig:LeftHandPinky1
+    100224: mixamorig:LeftHandPinky2
+    100226: mixamorig:LeftHandPinky3
+    100228: mixamorig:LeftHandPinky4
+    100230: mixamorig:LeftHandRing1
+    100232: mixamorig:LeftHandRing2
+    100234: mixamorig:LeftHandRing3
+    100236: mixamorig:LeftHandRing4
+    100238: mixamorig:LeftHandThumb1
+    100240: mixamorig:LeftHandThumb2
+    100242: mixamorig:LeftHandThumb3
+    100244: mixamorig:LeftHandThumb4
+    100246: mixamorig:LeftLeg
+    100248: mixamorig:LeftShoulder
+    100250: mixamorig:LeftToe_End
+    100252: mixamorig:LeftToeBase
+    100254: mixamorig:LeftUpLeg
+    100256: mixamorig:Neck
+    100258: mixamorig:RightArm
+    100260: mixamorig:RightFoot
+    100262: mixamorig:RightForeArm
+    100264: mixamorig:RightHand
+    100266: mixamorig:RightHandIndex1
+    100268: mixamorig:RightHandIndex2
+    100270: mixamorig:RightHandIndex3
+    100272: mixamorig:RightHandIndex4
+    100274: mixamorig:RightHandMiddle1
+    100276: mixamorig:RightHandMiddle2
+    100278: mixamorig:RightHandMiddle3
+    100280: mixamorig:RightHandMiddle4
+    100282: mixamorig:RightHandPinky1
+    100284: mixamorig:RightHandPinky2
+    100286: mixamorig:RightHandPinky3
+    100288: mixamorig:RightHandPinky4
+    100290: mixamorig:RightHandRing1
+    100292: mixamorig:RightHandRing2
+    100294: mixamorig:RightHandRing3
+    100296: mixamorig:RightHandRing4
+    100298: mixamorig:RightHandThumb1
+    100300: mixamorig:RightHandThumb2
+    100302: mixamorig:RightHandThumb3
+    100304: mixamorig:RightHandThumb4
+    100306: mixamorig:RightLeg
+    100308: mixamorig:RightShoulder
+    100310: mixamorig:RightToe_End
+    100312: mixamorig:RightToeBase
+    100314: mixamorig:RightUpLeg
+    100316: mixamorig:Spine
+    100318: mixamorig:Spine1
+    100320: mixamorig:Spine2
     400000: Face6
     400002: //RootNode
     400004: Head
@@ -191,11 +258,89 @@ ModelImporter:
     400182: Spine
     400184: Spine1
     400186: Spine2
+    400188: Body1
+    400190: default
+    400192: mixamorig:Head
+    400194: mixamorig:HeadTop_End
+    400196: mixamorig:Hips
+    400198: mixamorig:LeftArm
+    400200: mixamorig:LeftFoot
+    400202: mixamorig:LeftForeArm
+    400204: mixamorig:LeftHand
+    400206: mixamorig:LeftHandIndex1
+    400208: mixamorig:LeftHandIndex2
+    400210: mixamorig:LeftHandIndex3
+    400212: mixamorig:LeftHandIndex4
+    400214: mixamorig:LeftHandMiddle1
+    400216: mixamorig:LeftHandMiddle2
+    400218: mixamorig:LeftHandMiddle3
+    400220: mixamorig:LeftHandMiddle4
+    400222: mixamorig:LeftHandPinky1
+    400224: mixamorig:LeftHandPinky2
+    400226: mixamorig:LeftHandPinky3
+    400228: mixamorig:LeftHandPinky4
+    400230: mixamorig:LeftHandRing1
+    400232: mixamorig:LeftHandRing2
+    400234: mixamorig:LeftHandRing3
+    400236: mixamorig:LeftHandRing4
+    400238: mixamorig:LeftHandThumb1
+    400240: mixamorig:LeftHandThumb2
+    400242: mixamorig:LeftHandThumb3
+    400244: mixamorig:LeftHandThumb4
+    400246: mixamorig:LeftLeg
+    400248: mixamorig:LeftShoulder
+    400250: mixamorig:LeftToe_End
+    400252: mixamorig:LeftToeBase
+    400254: mixamorig:LeftUpLeg
+    400256: mixamorig:Neck
+    400258: mixamorig:RightArm
+    400260: mixamorig:RightFoot
+    400262: mixamorig:RightForeArm
+    400264: mixamorig:RightHand
+    400266: mixamorig:RightHandIndex1
+    400268: mixamorig:RightHandIndex2
+    400270: mixamorig:RightHandIndex3
+    400272: mixamorig:RightHandIndex4
+    400274: mixamorig:RightHandMiddle1
+    400276: mixamorig:RightHandMiddle2
+    400278: mixamorig:RightHandMiddle3
+    400280: mixamorig:RightHandMiddle4
+    400282: mixamorig:RightHandPinky1
+    400284: mixamorig:RightHandPinky2
+    400286: mixamorig:RightHandPinky3
+    400288: mixamorig:RightHandPinky4
+    400290: mixamorig:RightHandRing1
+    400292: mixamorig:RightHandRing2
+    400294: mixamorig:RightHandRing3
+    400296: mixamorig:RightHandRing4
+    400298: mixamorig:RightHandThumb1
+    400300: mixamorig:RightHandThumb2
+    400302: mixamorig:RightHandThumb3
+    400304: mixamorig:RightHandThumb4
+    400306: mixamorig:RightLeg
+    400308: mixamorig:RightShoulder
+    400310: mixamorig:RightToe_End
+    400312: mixamorig:RightToeBase
+    400314: mixamorig:RightUpLeg
+    400316: mixamorig:Spine
+    400318: mixamorig:Spine1
+    400320: mixamorig:Spine2
     2000000: left
     2100000: lambert1
+    2100002: lambert2SGmat
+    2100004: blinn3SGmat
+    2100006: blinn4SGmat
+    2100008: initialShadingGroupmat
+    2300000: default
+    3300000: default
     4300000: Face6
+    4300002: default
+    4300004: Body1
+    7400000: Idle_Anim
     9500000: //RootNode
     13700000: Face6
+    13700002: Body1
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -223,7 +368,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle_Anim
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
