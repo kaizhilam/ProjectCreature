@@ -14,6 +14,9 @@ public class Armbow : Weapon
     public override void Attack()
     {
         print("attacking with armbow");
+		//SHOOT STUFF
+		Object arrow = Resources.Load("Projectile/Arrow");
+		Instantiate(arrow);
     }
 
     public override void RunAbility()

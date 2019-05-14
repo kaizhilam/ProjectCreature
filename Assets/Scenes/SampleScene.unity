@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1223571601}
-  m_IndirectSpecularColor: {r: 0.40577513, g: 0.52396554, b: 0.6259987, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -839,6 +839,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: dino
       objectReference: {fileID: 0}
+    - target: {fileID: 511162704281060795, guid: 571bba6d8ee740f45b53adf197d6139c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3511975759671987874, guid: 571bba6d8ee740f45b53adf197d6139c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1306,6 +1311,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: dinot
       objectReference: {fileID: 0}
+    - target: {fileID: 1533036472, guid: 8f22c3ea3e843734a9a2f10c86890a97, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1533036474, guid: 8f22c3ea3e843734a9a2f10c86890a97, type: 3}
       propertyPath: m_LocalPosition.x
       value: 666.85034
@@ -1513,6 +1522,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822627054572535307, guid: 31762d3219a468d4ab06bd6f2c5f5ab6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5822627054572535301, guid: 31762d3219a468d4ab06bd6f2c5f5ab6,
         type: 3}
@@ -2351,6 +2365,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sunny2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083383024262006830, guid: dc669a68a63ed6a44b5b98fc95e2bdfd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9207976895189837925, guid: dc669a68a63ed6a44b5b98fc95e2bdfd,
         type: 3}
