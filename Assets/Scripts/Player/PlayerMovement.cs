@@ -24,11 +24,15 @@ public class PlayerMovement : MonoBehaviour
 	private void FixedUpdate()
 	{
         //GRAVITY CODE
+        JumpAmount += Gravity.y * Time.deltaTime;
+        _Controller.Move(new Vector3(0, JumpAmount, 0));
+        /*
         if (_Controller.isGrounded)
             JumpAmount += -0.5f; //TO COMBAT isGrounded BECAUSE GRAVITY CAN'T CATCH UP TO THE GAME'S TICK RATE
         else
             JumpAmount += Gravity.y;
         _Controller.Move(new Vector3(0,JumpAmount,0));
+        */
 
     }
 
@@ -79,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             //JUMPING CODE
+            JumpAmount = 0;
             JumpAmount = JumpHeight * Time.deltaTime;
             JumpAmount = Mathf.Clamp(JumpAmount, -2f, Mathf.Infinity);
             _Controller.Move(new Vector3(0,JumpAmount,0));

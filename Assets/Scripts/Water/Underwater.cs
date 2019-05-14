@@ -20,18 +20,20 @@ public class Underwater : MonoBehaviour
 	{
         if (_CheckCamera == true)
 		{
-                if (_Camera.position.y > transform.position.y)
-                {
-                    //isUnderwater = false;
-                    SetNormal();
-                    
-                }
-                else if (_Camera.position.y < transform.position.y)
-                {
-                    isUnderwater = true;
-                    SetUnderwater();
-                }
-                
+             if (_Camera.position.y > transform.position.y)
+             {
+                 SetNormal();
+                 if (_Player.position.y > transform.position.y)
+                 {
+                      //Debug.Log("Bug fixed");
+                      _CheckCamera = false;
+                 }                   
+             }
+             else if (_Camera.position.y < transform.position.y)
+             {
+                 isUnderwater = true;
+                 SetUnderwater();
+             }     
         }
     }
 
@@ -39,32 +41,25 @@ public class Underwater : MonoBehaviour
 	{
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Player touched water, CC enabled");
+            //Debug.Log("Player touched water, CC enabled");
             _CheckCamera = true;
         }
-	}
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (_Player.position.y > transform.position.y)
+        else if (_Camera.position.y > transform.position.y)
         {
-            isUnderwater = false;
-            _CheckCamera = false;
-            //Debug.Log("CheckCamera Off");
             SetNormal();
         }
-        else if (_Player.position.y > transform.position.y)
+        else if (_Camera.position.y < transform.position.y)
         {
-            isUnderwater = true;
             SetUnderwater();
         }
+        
     }
 
     private void SetUnderwater()
 	{
-        //Debug.Log("SetUnderwater Works");
         if (isUnderwater == true)
         {
+            //Debug.Log("SetUnderwater Works");
             RenderSettings.fog = true;
             RenderSettings.fogColor = new Color(0.22f, 0.65f, 0.77f, 0.5f);
             RenderSettings.fogDensity = 0.1f;
@@ -74,8 +69,8 @@ public class Underwater : MonoBehaviour
 	private void SetNormal()
 	{
 		//Debug.Log("SetNormal Works");
-		RenderSettings.fog = false;
+        RenderSettings.fog = false;
 		RenderSettings.fogColor = new Color(0.5f, 0.5f, 0.5f, 1f);
 		RenderSettings.fogDensity = 0.01f;
-	}
+    }
 }
