@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 3526567607174172345}
   - component: {fileID: 6705061775468289560}
   - component: {fileID: 2619040919754997377}
+  - component: {fileID: 1351804063}
   m_Layer: 0
   m_Name: dino
   m_TagString: Enemy
@@ -213,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d198b7d3d5f75ea4ca033f8560c1c914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
   idle1: {fileID: 8300000, guid: d58e3ff4226e0dc469d895b3beb5dbb3, type: 3}
   idle2: {fileID: 8300000, guid: c83ca1df751ee604cb2ca13d7fbeacb1, type: 3}
   idle3: {fileID: 8300000, guid: c0e5da63a2f944c468b487339fbf44bf, type: 3}
@@ -226,7 +228,7 @@ SphereCollider:
   m_GameObject: {fileID: 511162704281060795}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 2.7
   m_Center: {x: 0, y: 2.52, z: 0}
@@ -347,10 +349,24 @@ BoxCollider:
   m_GameObject: {fileID: 511162704281060795}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 3.232544, y: 5.80439, z: 8.25354}
   m_Center: {x: 0.0033569336, y: 2.902195, z: 0.74090576}
+--- !u!64 &1351804063
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511162704281060795}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: b565ec19bec38ca47890e25a118af6cf, type: 3}
 --- !u!1 &543704218514199249
 GameObject:
   m_ObjectHideFlags: 0

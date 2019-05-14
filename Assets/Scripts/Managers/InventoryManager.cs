@@ -90,6 +90,10 @@ public class InventoryManager: MonoBehaviour
             print("equipping weapon " + script.name);
             _player.GetComponent<Player>().UpdateWeaponFunctionality(script);
         }
+        else
+        {
+            _player.GetComponent<Player>().UpdateWeaponFunctionality(null);
+        }
 
         GetHotbarSlot(SelectedHotbarSlot).HighlightSlot();
         
