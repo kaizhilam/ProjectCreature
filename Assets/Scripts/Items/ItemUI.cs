@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ItemUI : MonoBehaviour
 {
@@ -36,22 +37,29 @@ public class ItemUI : MonoBehaviour
     public void SetItem(SlottedItem item)
     {
         this.item = item;
-        this.amount = amount;
         ItemImage.sprite = Resources.Load<Sprite>(item.Sprite);
-        if (item.capacity > 1)
-            AmountText.text = amount.ToString();
-        else
-            AmountText.text = "";
+        //if (item.count > 1)
+            AmountText.text = item.count.ToString();
+        //else
+            //AmountText.text = "1";
     }
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    
+
+
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        this.transform.localPosition = Vector3.zero;
     }
 }
