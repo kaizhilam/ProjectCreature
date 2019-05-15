@@ -1,0 +1,42 @@
+[
+  {
+    "objectSlug": "sword",
+    "itemName": "Sword",
+    "description": "A long, sharp blade.",
+    "itemType": "Weapon",
+    "actionName": "Equip",
+    "itemModifier": 0
+  },
+  {
+    "objectSlug": "BasicKnife",
+    "itemName": "Knife",
+    "description": "A Knife made by Valyrian steel.",
+    "itemType": "Weapon",
+    "actionName": "Equip",
+    "itemModifier": 0
+  },
+  {
+    "objectSlug": "armbow",
+    "itemName": "arrow",
+    "description": "Do I need to spell it out for you?",
+    "itemType": "Consumable",
+    "actionName": "Use",
+    "itemModifier": 0
+  },
+  {
+    "objectSlug": "Cube",
+    "itemName": "Head of a dinosaur",
+    "description": "Survival of the fittest",
+    "itemType": "Consumable",
+    "actionName": "Eat",
+    "itemModifier": 0
+  },
+  {
+    "objectSlug": "Sunny's head",
+    "itemName": "Head of poor sunny",
+    "description": "Not sunny anymore",
+    "itemType": "Consumable",
+    "actionName": "Eat",
+    "itemModifier": 0
+  }
+]

@@ -6,6 +6,7 @@ public class ForestEnemy : Enemy
 {
     public override void ResolveDeletion()
     {
+        Debug.Log("enemy killed");
         DropWeapon();
         ForestEnemyPool.Instance.ReturnToPool(this);
     }
