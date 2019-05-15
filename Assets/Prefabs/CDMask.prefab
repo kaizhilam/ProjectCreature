@@ -88,5 +88,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CDBar: {fileID: 7057585711427241910}
-  maxTime: 10
-  currentTime: 10
+  maxTime: 0
+  currentTime: 0

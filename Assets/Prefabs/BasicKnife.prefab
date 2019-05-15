@@ -74,6 +74,8 @@ MonoBehaviour:
   wieldBone: 0
   durability: 50
   damage: 50
+  abilityMaxCDTime: 10
+  abilityCurrentCDTime: 0
 --- !u!1 &2827187410117890834
 GameObject:
   m_ObjectHideFlags: 0
