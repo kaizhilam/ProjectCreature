@@ -56,7 +56,7 @@ public class AnimationManager : MonoBehaviour
             //we don't want to play jump animation if its already playing
             if (controller.isGrounded)
             {
-                instance.ResetAnimations();
+                instance.ResetAnimationsExcept("run","dodge", "wielding");
                 anim.SetTrigger(jump);
             }
         }
@@ -64,7 +64,7 @@ public class AnimationManager : MonoBehaviour
 
     void SetSlashAnim()
     {
-        instance.ResetAnimationsExcept("slash");
+        instance.ResetAnimationsExcept("slash", "wielding");
         anim.SetTrigger(slash);
         
     }
@@ -72,9 +72,11 @@ public class AnimationManager : MonoBehaviour
     void SetRunAnim(Vector2 input, Vector2 inputRaw)
     {
         //if animation already playing, don't play run animation. We don't want it to switch to running while mid-dodge, or mid-jump animation
-        if (controller.isGrounded && !IsAnimationRunning())
+        if (controller.isGrounded && !IsAnimationRunningExcept("wielding"))
         {
             anim.SetBool(run, true);
+            print(anim.GetBool("wielding") + " " + anim.GetBool("run"));
+
         }
     }
 
@@ -82,10 +84,10 @@ public class AnimationManager : MonoBehaviour
     {
         if (!IsAnimationRunning("Jumping_Anim"))
         {
-            instance.ResetAnimationsExcept("dodge", "run");
+            //we dont want to reset wielding to false if the player is still holding a weapon
+            instance.ResetAnimationsExcept("dodge", "run", "wielding");
             if (controller.isGrounded)
             {
-                print("running dodge anim");
                 anim.SetTrigger(dodge);
             }
         }
@@ -106,6 +108,8 @@ public class AnimationManager : MonoBehaviour
 
     public void ResetAnimations()
     {
+        print("animations being reset");
+
         foreach (AnimatorControllerParameter parameter in instance.anim.parameters)
         {
             instance.anim.SetBool(parameter.name, false);
@@ -113,6 +117,8 @@ public class AnimationManager : MonoBehaviour
     }
     public void ResetAnimationsExcept(params string[] names)
     {
+        print("animations being reset");
+
         foreach (AnimatorControllerParameter parameter in instance.anim.parameters)
         {
             //for each animation...
@@ -146,6 +152,18 @@ public class AnimationManager : MonoBehaviour
         return false;
     }
 
+    public bool IsAnimationRunningExcept(string name)
+    {
+        foreach (AnimatorControllerParameter parameter in instance.anim.parameters)
+        {
+            if (instance.anim.GetBool(parameter.name) && parameter.name != name)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //returns true is paramater string equals animators current animation
     public bool IsAnimationRunning(string name)
     {
@@ -154,6 +172,11 @@ public class AnimationManager : MonoBehaviour
 
     public void Update()
     {
-        clipInfo = instance.anim.GetCurrentAnimatorClipInfo(0)[0];
+        //I can't set this to null if length is zero :( clipInfo can never be set to null
+        if (instance.anim.GetCurrentAnimatorClipInfo(0).Length > 0)
+        {
+            clipInfo = instance.anim.GetCurrentAnimatorClipInfo(0)[0];
+
+        }
     }
 }

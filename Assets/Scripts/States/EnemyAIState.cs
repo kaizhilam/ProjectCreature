@@ -21,16 +21,7 @@ public abstract class EnemyAIState
         _rb = gameObject.GetComponent<Rigidbody>();
     }
 
-    protected GameObject CheckForAggro()
-    {
-        Ray ray = new Ray(gameObject.transform.position + gameObject.transform.forward , player.transform.position - gameObject.transform.position);
-        Debug.DrawLine(gameObject.transform.position + gameObject.transform.forward, player.transform.position);
-        if (Physics.Raycast(ray, out RaycastHit hit, LayerMask.NameToLayer("player")))
-        {
-            return player;
-        }
-        return null;
-    }
+
 
 
 }

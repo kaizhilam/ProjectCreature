@@ -52,12 +52,18 @@ public class Player : MonoBehaviour
     {
         if (script?.GetComponentInChildren<Weapon>() !=null)
         {
+            print("set wielding to true");
+
+            AnimationManager.instance.anim.SetBool("wielding", true);
             Weapon wepScript = script.GetComponentInChildren<Weapon>();
             print("updating for weapon " + script.name);
             Atk = wepScript.Attack;
         }
         else
         {
+            print("set wielding to false");
+
+            AnimationManager.instance.anim.SetBool("wielding", false);
             Atk = () => print("no weapon equipped, can't perform actions");
         }
         
