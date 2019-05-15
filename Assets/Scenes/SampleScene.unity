@@ -480,6 +480,7 @@ GameObject:
   - component: {fileID: 258556717}
   - component: {fileID: 258556716}
   - component: {fileID: 258556715}
+  - component: {fileID: 258556718}
   m_Layer: 9
   m_Name: Terrain
   m_TagString: Ground
@@ -1177,6 +1178,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3085834755005090609, guid: 8f6dd9b3b0dc40a42b039650b3067793,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3085834755005090609, guid: 8f6dd9b3b0dc40a42b039650b3067793,
+        type: 3}
+      propertyPath: m_Type
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f6dd9b3b0dc40a42b039650b3067793, type: 3}
