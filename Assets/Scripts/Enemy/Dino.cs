@@ -46,7 +46,7 @@ public class Dino : ForestEnemy
         {
             new LootDrop("BasicKnife",25), //25% chance to get a knife
             new LootDrop("armbow",25), //50% chance to get an arrow
-            new LootDrop("Cube",25) //75% chance to get its head
+            new LootDrop("Tent",25) //75% chance to get its head
         };
 
         src = GetComponent<AudioSource>();
@@ -77,18 +77,18 @@ public class Dino : ForestEnemy
 
         if (item != null)
         {
-            Debug.Log("get item " + item.ObjectSlug);
+            //Debug.Log("get item " + item.ObjectSlug);
             //Debug.Log("get drop 1 " + ItemsToDrop[0].name);
 
-            for (int i = 0; i < 3; i++)
+            /*for (int i = 0; i < 3; i++)
             {
                 Debug.Log(i);
                 Debug.Log("gameobject is " + ItemsToDrop[i].name);
-            }
+            }*/
 
             foreach (GameObject drop in ItemsToDrop)
             {
-                Debug.Log("get gameobject " + drop.name);
+                //Debug.Log("get gameobject " + drop.name);
                 if (drop.name == item.ObjectSlug)
                 {
                     Debug.Log("get gameobject " + drop.name);

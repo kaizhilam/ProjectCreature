@@ -17,14 +17,14 @@
   },
   {
     "objectSlug": "armbow",
-    "itemName": "arrow",
+    "itemName": "armbow",
     "description": "Do I need to spell it out for you?",
-    "itemType": "Consumable",
-    "actionName": "Use",
+    "itemType": "Weapon",
+    "actionName": "Equip",
     "itemModifier": 0
   },
   {
-    "objectSlug": "Cube",
+    "objectSlug": "Tent",
     "itemName": "Head of a dinosaur",
     "description": "Survival of the fittest",
     "itemType": "Consumable",
