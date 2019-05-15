@@ -10,6 +10,7 @@ public class Arrow : MonoBehaviour
 	private Vector3 _HitTransform;
 
     public float Speed;
+	public float TimeToDissapear;
 
 	private void Start()
     {
@@ -26,6 +27,8 @@ public class Arrow : MonoBehaviour
 		{
 			transform.LookAt(lookingAt);
 		}
+
+		_Rigidbody.AddForce(transform.forward * Speed);
 	}
 
 	private void FixedUpdate()
@@ -37,6 +40,18 @@ public class Arrow : MonoBehaviour
 		else
 		{
 			transform.position = _HitTransform;
+		}
+	}
+
+	private void Update()
+	{
+		if (_IsMoving == false)
+		{
+			TimeToDissapear -= Time.deltaTime;
+		}
+		if (TimeToDissapear <= 0)
+		{
+			Destroy(gameObject); //CHNAGE THIS FOR THE POOLING THINGO
 		}
 	}
 
