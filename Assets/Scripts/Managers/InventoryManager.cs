@@ -495,5 +495,10 @@ public class InventoryManager : MonoBehaviour
         return HotbarSlots[index];
     }
 
+    public void CooldownToCurrent()
+    {
+        GetHotbarSlot(SelectedHotbarSlot).ApplyCooldown();
+    }
+
 }
 
