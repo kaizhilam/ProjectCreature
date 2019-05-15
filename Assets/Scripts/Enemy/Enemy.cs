@@ -10,6 +10,7 @@ public abstract class Enemy : MonoBehaviour
     private string EnemyName;
     private GameObject target;
     public StateMachine StateMachine => GetComponent<StateMachine>();
+    public Rigidbody _rb;
 
     public float Health { get => health; set => health = value; }
     public int MovementSpeed1 { get => MovementSpeed; set => MovementSpeed = value; }
@@ -23,6 +24,7 @@ public abstract class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _rb = GetComponent<Rigidbody>();
     }
 
     public virtual void TakeDamage(float damage)
@@ -42,5 +44,7 @@ public abstract class Enemy : MonoBehaviour
 
     public abstract void ResolveDeletion();
 
-    
+    public void FixedGravity()
+    {
+    }
 }

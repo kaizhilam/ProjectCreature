@@ -82,6 +82,7 @@ public class Dino : ForestEnemy
 
             for (int i = 0; i < 3; i++)
             {
+                Debug.Log(i);
                 Debug.Log("gameobject is " + ItemsToDrop[i].name);
             }
 
@@ -90,6 +91,7 @@ public class Dino : ForestEnemy
                 Debug.Log("get gameobject " + drop.name);
                 if (drop.name == item.ObjectSlug)
                 {
+                    Debug.Log("get gameobject " + drop.name);
                     Instantiate(drop, transform.position, drop.transform.rotation);
 
                 }

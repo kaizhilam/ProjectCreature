@@ -24,11 +24,15 @@ public class PlayerMovement : MonoBehaviour
 	private void FixedUpdate()
 	{
         //GRAVITY CODE
+        JumpAmount += Gravity.y * Time.deltaTime;
+        _Controller.Move(new Vector3(0, JumpAmount, 0));
+        /*
         if (_Controller.isGrounded)
             JumpAmount += -0.5f; //TO COMBAT isGrounded BECAUSE GRAVITY CAN'T CATCH UP TO THE GAME'S TICK RATE
         else
             JumpAmount += Gravity.y;
         _Controller.Move(new Vector3(0,JumpAmount,0));
+        */
 
     }
 
@@ -79,20 +83,10 @@ public class PlayerMovement : MonoBehaviour
         {
 
             //JUMPING CODE
+            JumpAmount = 0;
             JumpAmount = JumpHeight * Time.deltaTime;
             JumpAmount = Mathf.Clamp(JumpAmount, -2f, Mathf.Infinity);
             _Controller.Move(new Vector3(0,JumpAmount,0));
         }
-        else
-        {
-            print("it worked!");
-            //_Controller.Move(movement * AirMovementPenalty);
-        }
     }
-
-    //private void GetInput()
-    //{
-    //    _Input = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Jump"), Input.GetAxis("Vertical")); //NUMBER CONTAINS DECIMALS FOR CHARACTER ACCELERATION
-    //    _InputRaw = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Jump"), Input.GetAxisRaw("Vertical")); //NUMBER IS A FULL NUMBER FOR CHECKING IF BUTTON IS PRESSED
-    //}
 }
