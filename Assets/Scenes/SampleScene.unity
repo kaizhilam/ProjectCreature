@@ -555,11 +555,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7057585711427241908, guid: 6cc8e3adf306f487aab24a5305e7b8b1,
-        type: 3}
-      propertyPath: m_Name
-      value: CDMask
-      objectReference: {fileID: 0}
     - target: {fileID: 7057585711427241909, guid: 6cc8e3adf306f487aab24a5305e7b8b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -664,6 +659,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057585711427241908, guid: 6cc8e3adf306f487aab24a5305e7b8b1,
+        type: 3}
+      propertyPath: m_Name
+      value: CDMask
       objectReference: {fileID: 0}
     - target: {fileID: 7057585711427241904, guid: 6cc8e3adf306f487aab24a5305e7b8b1,
         type: 3}
@@ -1940,6 +1940,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941042754428619202, guid: b412180ee3ce70c4fa07727466aaece5,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.087419
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941042754428619202, guid: b412180ee3ce70c4fa07727466aaece5,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 2.4937103
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941042754428619202, guid: b412180ee3ce70c4fa07727466aaece5,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2.565796
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941042754428619202, guid: b412180ee3ce70c4fa07727466aaece5,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.78289795
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941042754428619202, guid: b412180ee3ce70c4fa07727466aaece5,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 3.3803225
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941042754428619202, guid: b412180ee3ce70c4fa07727466aaece5,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 1.640161
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b412180ee3ce70c4fa07727466aaece5, type: 3}

@@ -32,7 +32,7 @@ public class WanderState : EnemyAIState
         //    return typeof(ChaseState);
         //}
         gameObject.transform.Rotate(spinDirection * Vector3.up * Time.deltaTime * rotationSpeed);
-        _rb.transform.Translate(gameObject.transform.forward*movementSpeed * Time.deltaTime);
+        _rb.transform.Translate(Vector3.forward* movementSpeed * Time.deltaTime);
 
         return typeof(WanderState);
     }
