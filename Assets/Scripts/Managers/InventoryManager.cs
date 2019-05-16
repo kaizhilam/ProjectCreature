@@ -69,6 +69,7 @@ public class InventoryManager: MonoBehaviour
         Destroy(_player.GetComponentInChildren<SlottedItem>()?.gameObject);
         if (GetHotbarItem(i) != null)
         {
+            //if selecting weapon as the new index
             var newWield = Instantiate(GetHotbarItem(i).objectPrefab, Vector3.zero, Quaternion.identity);
             SlottedItem script = newWield.GetComponent<SlottedItem>();
             switch (script.wieldBone)
@@ -89,6 +90,22 @@ public class InventoryManager: MonoBehaviour
             newWield.gameObject.layer = 2;
             print("equipping weapon " + script.name);
             _player.GetComponent<Player>().UpdateWeaponFunctionality(script);
+            //if its a weapon we're switching to..
+            if (script.GetComponent<Weapon>() != null)
+            {
+                //I should really be caching this stuff..
+                GetHotbarSlot(SelectedHotbarSlot).GetComponentInChildren<CalCDTime>().enabled = true;
+
+            }
+            else
+            {
+                GetHotbarSlot(SelectedHotbarSlot).GetComponentInChildren<CalCDTime>().enabled = false;
+            }
+        }
+        else
+        {
+            GetHotbarSlot(SelectedHotbarSlot).GetComponentInChildren<CalCDTime>().maxTime = 0;
+            _player.GetComponent<Player>().UpdateWeaponFunctionality(null);
         }
 
         GetHotbarSlot(SelectedHotbarSlot).HighlightSlot();
@@ -99,18 +116,17 @@ public class InventoryManager: MonoBehaviour
     //Swaps two slots contents
     public void Swap(Slot slot1, Slot slot2)
     {
-        SlottedItem item1 = GetItemFromSlot(slot1);
-        SlottedItem item2 = GetItemFromSlot(slot2);
         int index1 = GetIndexOfSlot(slot1);
         int index2 = GetIndexOfSlot(slot2);
         bool isInHotbar1 = IsInHotbar(slot1);
         bool isInHotbar2 = IsInHotbar(slot2);
+        SlottedItem item1 = isInHotbar1 ? GetHotbarItem(index1) : GetItem(index2);
+        SlottedItem item2 = isInHotbar2 ? GetHotbarItem(index2) : GetItem(index2);
         print("from " + isInHotbar1 + ", to " + isInHotbar2);
         //Depending on which panel the slots are in, we target different panels slots
         //if swapping hotbar items for example, we are only concerned with hotbar slots
         if(!isInHotbar1 && !isInHotbar2)
         {
-            print("inv to inv swap");
             int invIndex1 = index1;
             int invIndex2 = index2;
             SlottedItem temp = InventoryItems[invIndex1];
@@ -121,25 +137,57 @@ public class InventoryManager: MonoBehaviour
         }
         else if(isInHotbar1 && !isInHotbar2)
         {
-            print("bar to inv swap");
+            //hotbar into inv
             int hotbarindex1 = index1;
             int invIndex1 = index2;
+            print(invIndex1);
+            print(InventoryItems[invIndex1]);
+            if (InventoryItems[invIndex1] != null && InventoryItems[invIndex1].GetComponent<Weapon>() != null)
+            {
+                print("cD active AGAIN");
+                GetHotbarSlot(hotbarindex1).GetComponentInChildren<CalCDTime>().enabled = true;
+            }
+            else
+            {
+                print("disable CD");
+                GetHotbarSlot(hotbarindex1).GetComponentInChildren<CalCDTime>().enabled = false;
+                GetHotbarSlot(hotbarindex1).GetComponentInChildren<CalCDTime>().CDBar.fillAmount = 0;
+            }
             SlottedItem temp = HotbarItems[hotbarindex1];
             HotbarItems[hotbarindex1] = InventoryItems[invIndex1];
             InventoryItems[invIndex1] = temp;
             RefreshHotbarSlotFromIndex(hotbarindex1);
             RefreshSlotFromIndex(invIndex1);
+
+            
         }
         else if(!isInHotbar1 && isInHotbar2)
         {
-            print("inv to bar swap");
+            //inv into hotbar
             int invIndex1 = index1;
             int hotbarindex1 = index2;
+            print(invIndex1);
+            print(InventoryItems[invIndex1]);
+            //if new item is a weapon
+            if (InventoryItems[invIndex1] != null && InventoryItems[invIndex1].GetComponent<Weapon>() != null)
+            {
+                print("cD active AGAIN");
+                GetHotbarSlot(hotbarindex1).GetComponentInChildren<CalCDTime>().enabled = true;
+                print("set current time to 0");
+                GetSlotCDScript(hotbarindex1).currentTime = 0;
+            }
+            else
+            {
+                print("disable CD");
+                GetHotbarSlot(hotbarindex1).GetComponentInChildren<CalCDTime>().enabled = false;
+                GetHotbarSlot(hotbarindex1).GetComponentInChildren<CalCDTime>().CDBar.fillAmount = 0;
+            }
             SlottedItem temp = InventoryItems[invIndex1];
             InventoryItems[invIndex1] = HotbarItems[hotbarindex1];
             HotbarItems[hotbarindex1] = temp;
             RefreshSlotFromIndex(invIndex1);
             RefreshHotbarSlotFromIndex(hotbarindex1);
+           
         }
         else //if both in hotbar
         {
@@ -151,7 +199,21 @@ public class InventoryManager: MonoBehaviour
             HotbarItems[hotbarindex2] = temp;
             RefreshHotbarSlotFromIndex(hotbarindex1);
             RefreshHotbarSlotFromIndex(hotbarindex2);
+            CalCDTime script1 = GetHotbarSlot(hotbarindex1).GetComponentInChildren<CalCDTime>();
+            CalCDTime script2 = GetHotbarSlot(hotbarindex2).GetComponentInChildren<CalCDTime>();
+            Vector2 holding = new Vector2(script1.currentTime, script1.maxTime);
+            script1.currentTime = script2.currentTime;
+            script1.maxTime = script2.maxTime;
+            script2.currentTime = holding[0];
+            script2.maxTime = holding[1];
+
         }
+    }
+
+    private CalCDTime GetSlotCDScript(int index)
+    {
+        print(GetHotbarSlot(index).name);
+        return GetHotbarSlot(index).GetComponentInChildren<CalCDTime>();
     }
 
     //update UI slots from arrays
@@ -250,6 +312,11 @@ public class InventoryManager: MonoBehaviour
         {
             HotbarItems[firstEmptyHotbar] = item;
             RefreshHotbarSlotFromIndex(firstEmptyHotbar);
+            if (item.GetComponent<Weapon>())
+            {
+                GetHotbarSlot(firstEmptyHotbar).GetComponentInChildren<CalCDTime>().maxTime = item.GetComponent<Weapon>().abilityMaxCDTime;
+                GetHotbarSlot(firstEmptyHotbar).GetComponentInChildren<CalCDTime>().currentTime = item.GetComponent<Weapon>().abilityMaxCDTime;
+            }
             return firstEmptyHotbar;
         }
         //then check for free spot in inventory
@@ -493,6 +560,16 @@ public class InventoryManager: MonoBehaviour
     public Slot GetHotbarSlot(int index)
     {
         return HotbarSlots[index];
+    }
+
+    public void CooldownToCurrent()
+    {
+        GetHotbarSlot(SelectedHotbarSlot).ApplyCooldown();
+    }
+
+    public bool IsOnCooldown()
+    {
+        return GetHotbarSlot(SelectedHotbarSlot).IsStillOnCooldown();
     }
 
 }

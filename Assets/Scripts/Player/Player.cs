@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
         selectedItem = this?.GetComponentInChildren<SlottedItem>();
         equippedWeapon = this?.GetComponentInChildren<Weapon>();
         InputManager.instance.LeftClick += Attack;
+        InputManager.instance.RightClick += Ability;
         InventoryManager.Instance.SwitchHotbarIndex(0);
         //layer 2 means its ignored by raycast, we don't want camera worrying about an equipped weapon
         if (GetComponentInChildren<Weapon>() != null)
@@ -27,7 +28,17 @@ public class Player : MonoBehaviour
         else
         {
             //if player not holding weapon, tell em to stop trying to use lmb/rmb?
-            Atk = () => print("no weapon equipped, can't perform actions");
+            Atk = () => print("no weapon equipped, can't perform attack");
+        }
+
+        if (GetComponentInChildren<Weapon>() != null)
+        {
+            RunAbility = this.GetComponentInChildren<Weapon>().RunAbility;
+        }
+        else
+        {
+            //if player not holding weapon, tell em to stop trying to use lmb/rmb?
+            RunAbility = () => print("no weapon equipped, can't perform ability");
         }
     }
 
@@ -39,7 +50,12 @@ public class Player : MonoBehaviour
 
     private void Ability()
     {
-        RunAbility();
+        //only run the ability if it isn't on cooldown
+        if (!InventoryManager.Instance.IsOnCooldown())
+        {
+            RunAbility();
+            InventoryManager.Instance.CooldownToCurrent();
+        }
     }
 
     private void ManageCollisons()
@@ -51,13 +67,18 @@ public class Player : MonoBehaviour
     {
         if (script?.GetComponentInChildren<Weapon>() !=null)
         {
+            AnimationManager.instance.anim.SetBool("wielding", true);
             Weapon wepScript = script.GetComponentInChildren<Weapon>();
-            print("updating for weapon " + script.name);
             Atk = wepScript.Attack;
+            RunAbility = wepScript.RunAbility;
         }
         else
         {
-            Atk = () => print("no weapon equipped, can't perform actions");
+            print("set wielding to false");
+
+            AnimationManager.instance.anim.SetBool("wielding", false);
+            Atk = () => print("no weapon equipped, can't perform attack");
+            RunAbility = () => print("no weapon equipped, can't perform ability");
         }
         
     }

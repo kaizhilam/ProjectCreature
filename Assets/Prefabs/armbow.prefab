@@ -230,6 +230,8 @@ MonoBehaviour:
   wieldBone: 0
   durability: 50
   damage: 30
+  abilityMaxCDTime: 5
+  abilityCurrentCDTime: 0
 --- !u!135 &1165505794
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1438,7 +1440,7 @@ Light:
   m_GameObject: {fileID: 9118183467984256211}
   m_Enabled: 1
   serializedVersion: 8
-  m_Type: 0
+  m_Type: 2
   m_Color: {r: 0.98387384, g: 1, b: 0.062745094, a: 1}
   m_Intensity: 2.45
   m_Range: 10

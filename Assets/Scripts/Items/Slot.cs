@@ -11,6 +11,7 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
     GameObject oldParent;
     private bool dragging = false;
     public delegate void SwitchDelegate();
+    private CalCDTime cdScript;
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -91,6 +92,12 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
                 itemGameObject.transform.SetParent(this.transform);
                 itemGameObject.transform.localScale = Vector3.one;
                 itemGameObject.transform.localPosition = Vector3.zero;
+                if (itemGameObject.GetComponent<Weapon>() != null)
+                {
+                    print(itemGameObject.GetComponent<Weapon>().abilityMaxCDTime);
+                    cdScript.maxTime = itemGameObject.GetComponent<Weapon>().abilityMaxCDTime;
+                    cdScript.currentTime = itemGameObject.GetComponent<Weapon>().abilityMaxCDTime;
+                }
             }
             GetComponentInChildren<ItemUI>().SetItem(item);
             //SetItem(item);
@@ -109,5 +116,21 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
         GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Backgrounds/button_square");
     }
 
+    public void ApplyCooldown()
+    {
+        print("applyingCooldown");
+        cdScript.currentTime = 0;
+    }
+
+    public bool IsStillOnCooldown()
+    {
+        //return true if on cooldown, false if not
+        return cdScript.currentTime < cdScript.maxTime ? true : false;
+    }
+
+    private void Awake()
+    {
+        cdScript = GetComponentInChildren<CalCDTime>();
+    }
 
 }

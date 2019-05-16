@@ -68,8 +68,14 @@ MonoBehaviour:
   count: 0
   capacity: 2
   objectPrefab: {fileID: 325608031440604891}
+  wieldPos: {x: 0, y: 0, z: 0}
+  wieldScale: {x: 1, y: 1, z: 1}
+  wieldRotation: {x: 0, y: 0, z: 0, w: 1}
+  wieldBone: 0
   durability: 50
   damage: 50
+  abilityMaxCDTime: 10
+  abilityCurrentCDTime: 0
 --- !u!1 &2827187410117890834
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +191,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8676544493480825220}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.7830189, g: 0.15881987, b: 0.67375445, a: 1}
