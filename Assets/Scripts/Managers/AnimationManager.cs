@@ -75,8 +75,6 @@ public class AnimationManager : MonoBehaviour
         if (controller.isGrounded && !IsAnimationRunningExcept("wielding"))
         {
             anim.SetBool(run, true);
-            print(anim.GetBool("wielding") + " " + anim.GetBool("run"));
-
         }
     }
 
