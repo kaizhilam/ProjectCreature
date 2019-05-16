@@ -30,7 +30,8 @@ public class Dino : ForestEnemy
         var states = new Dictionary<Type, EnemyAIState>()
         {
             {typeof(WanderState), new WanderState(this) },
-            {typeof(ChaseState), new ChaseState(this) }
+            {typeof(ChaseState), new ChaseState(this) },
+            {typeof(AvoidanceState), new AvoidanceState(this) }
         };
 
         GetComponent<StateMachine>().SetStates(states);

@@ -35,10 +35,12 @@ public class WanderState : EnemyAIState
             _enemy.Target = chaseTarget;
             return typeof(ChaseState);
         }
+        if (AIAlgorithms.NeedsCorrection(gameObject))
+        {
+            return typeof(AvoidanceState);
+        }
         Vector2 match1 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
         Vector3 match2 = new Vector2(_destination.x, _destination.z);
-        Debug.Log(Vector2.Distance(match1, match2));
-        Debug.Log(match1 + " + " + match2);
         if (Vector2.Distance(match1, match2) < 5 || _destination == Vector3.zero)
         {
             GetDestination();
