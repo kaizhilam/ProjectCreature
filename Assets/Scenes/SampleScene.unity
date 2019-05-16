@@ -112,6 +112,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &4886868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 146164123831427512, guid: e1738c2b8ac1db4468087e8c2cb49a72,
+    type: 3}
+  m_PrefabInstance: {fileID: 146164125584184521}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4886876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4886868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac08fecc0bdc24c409e776243b06326d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9674594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -711,7 +729,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f641bcd1ae36a04580c3c65e77ccd7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drop: {fileID: 100000, guid: 12d590c37ab24c34ab10b15aafa7ed19, type: 3}
+  _rb: {fileID: 0}
+  ItemsToDrop:
+  - {fileID: 1531286124224477998, guid: 61b99204c57f2084b957fac57744820d, type: 3}
+  - {fileID: 2422166637796321525, guid: e21e4a3e2e19ad940b847212fb839616, type: 3}
+  - {fileID: 5337079849440621394, guid: e19ab5c4da822d143b627a5b49dd508e, type: 3}
 --- !u!1001 &850051094
 PrefabInstance:
   m_ObjectHideFlags: 0
