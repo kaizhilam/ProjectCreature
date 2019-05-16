@@ -7,6 +7,9 @@ public abstract class Weapon : SlottedItem
 {
     public float durability;
     public float damage;
+    public float abilityMaxCDTime;
+    [HideInInspector]
+    public float abilityCurrentCDTime;
 
     public abstract void RunAbility();
 

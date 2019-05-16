@@ -26,7 +26,7 @@ public class HuntingKnife : Weapon
 
     public override void RunAbility()
     {
-        throw new System.NotImplementedException();
+        print("running knife ability");
     }
 
 }
