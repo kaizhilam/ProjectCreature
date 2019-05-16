@@ -9,7 +9,7 @@ public class ChaseState : EnemyAIState
 
     public override Type Tick()
     {
-        return typeof(WanderState);
+        //return typeof(WanderState);
         transform.LookAt(player.transform.position + (Vector3.up * 2)); //look at player
         Vector3 movement = Vector3.forward * movementSpeed * Time.deltaTime; //move forward
         _rb.transform.Translate(movement); //move towards the player

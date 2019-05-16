@@ -14,6 +14,9 @@ public class WanderState : EnemyAIState
     Quaternion newRot;
     float rotationSpeed = 40f;
     int spinDirection = -1;
+    Vector3 _destination;
+    Vector3 _direction;
+    Quaternion _desiredRotation;
 
 
     public WanderState(Enemy enemy) : base(enemy.gameObject)
@@ -24,16 +27,25 @@ public class WanderState : EnemyAIState
 
     public override Type Tick()
     {
-        //checks to see if we should leave the wander state
-        //var chaseTarget = CheckForAggro();
-        //if (chaseTarget != null)
-        //{
-        //    _enemy.Target = chaseTarget;
-        //    return typeof(ChaseState);
-        //}
-        gameObject.transform.Rotate(spinDirection * Vector3.up * Time.deltaTime * rotationSpeed);
-        _rb.transform.Translate(Vector3.forward* movementSpeed * Time.deltaTime);
 
+        //checks to see if we should leave the wander state
+        var chaseTarget = AIAlgorithms.CheckForAggro(gameObject);
+        if (chaseTarget != null)
+        {
+            _enemy.Target = chaseTarget;
+            return typeof(ChaseState);
+        }
+        Vector2 match1 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
+        Vector3 match2 = new Vector2(_destination.x, _destination.z);
+        Debug.Log(Vector2.Distance(match1, match2));
+        Debug.Log(match1 + " + " + match2);
+        if (Vector2.Distance(match1, match2) < 5 || _destination == Vector3.zero)
+        {
+            GetDestination();
+
+        }
+        gameObject.transform.rotation = _desiredRotation;
+        _rb.transform.Translate(Vector3.forward* movementSpeed * Time.deltaTime);
         return typeof(WanderState);
     }
 
@@ -42,13 +54,19 @@ public class WanderState : EnemyAIState
         Gizmos.DrawSphere(transform.position + Vector3.forward * dist, radius);
     }
 
-    IEnumerator changeSpinDirection()
+    
+
+    public void GetDestination()
     {
-        while (true)
-        {
-            spinDirection *= -1;
-            yield return new WaitForSeconds(UnityEngine.Random.Range(4f, 9f));
-        }
+        Vector3 testPosition = (gameObject.transform.position + (gameObject.transform.forward * 20f)) +
+                               new Vector3(UnityEngine.Random.Range(-10f, 10.0f), 0f,
+                                   UnityEngine.Random.Range(-10.0f, 10.0f));
+
+        _destination = new Vector3(testPosition.x, 1f, testPosition.z);
+
+        _direction = Vector3.Normalize(_destination - transform.position);
+        _direction = new Vector3(_direction.x, 0f, _direction.z);
+        _desiredRotation = Quaternion.LookRotation(_direction);
     }
 
 }
