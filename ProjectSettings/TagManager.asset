@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - T1
   - Enemy
+  - Climb
   layers:
   - Default
   - TransparentFX

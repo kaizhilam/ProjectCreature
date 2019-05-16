@@ -24,8 +24,17 @@ public class PlayerMovement : MonoBehaviour
 	private void FixedUpdate()
 	{
         //GRAVITY CODE
-        JumpAmount += Gravity.y * Time.deltaTime;
-        _Controller.Move(new Vector3(0, JumpAmount, 0));
+        if (Player.isClimbing == false)
+        {
+            JumpAmount += Gravity.y * Time.deltaTime;
+            _Controller.Move(new Vector3(0, JumpAmount, 0));
+        }
+
+        if(Player.isClimbing == true)
+        {
+            JumpAmount = 0.0f;
+        }
+
         /*
         if (_Controller.isGrounded)
             JumpAmount += -0.5f; //TO COMBAT isGrounded BECAUSE GRAVITY CAN'T CATCH UP TO THE GAME'S TICK RATE
@@ -63,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
             //MOVEMENT CODE
             //print((cameraForward * _Input.y) + (cameraRight * _Input.x));
             movement = ((cameraForward * _Input.y) + (cameraRight * _Input.x)).normalized * Speed * delta;//HORIZONTAL + VERTICAL MOVEMENT
+
             _Controller.Move(new Vector3(movement.x, 0, movement.z));
         }
 
