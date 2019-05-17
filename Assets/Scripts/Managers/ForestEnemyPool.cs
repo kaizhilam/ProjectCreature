@@ -28,7 +28,7 @@ public class ForestEnemyPool : MonoBehaviour
         {
             int RandomIndex = UnityEngine.Random.Range(0, forestEnemyPrefabs.Count); 
             ForestEnemy enemy = Instantiate(forestEnemyPrefabs[RandomIndex]);
-            enemy.gameObject.SetActive(false);
+            enemy.gameObject.SetActive(true);
             ForestEnemies.Enqueue(enemy); 
         }
     }

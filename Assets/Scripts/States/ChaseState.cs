@@ -10,7 +10,7 @@ public class ChaseState : EnemyAIState
     public override Type Tick()
     {
         //return typeof(WanderState);
-        transform.LookAt(player.transform.position + (Vector3.up * 2)); //look at player
+        transform.LookAt(player.transform.position + (Vector3.up * 4)); //look at player
         _rb.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime); //move towards the player
         if (AIAlgorithms.NeedsCorrection(gameObject))
         {

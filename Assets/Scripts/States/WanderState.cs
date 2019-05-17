@@ -30,9 +30,9 @@ public class WanderState : EnemyAIState
 
         //checks to see if we should leave the wander state
         var chaseTarget = AIAlgorithms.CheckForAggro(gameObject);
-        if (chaseTarget != null)
+        if (chaseTarget)
         {
-            _enemy.Target = chaseTarget;
+            _enemy.Target = player;
             return typeof(ChaseState);
         }
         if (AIAlgorithms.NeedsCorrection(gameObject))

@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class ForestSpawner : Spawner
 {
-    private List<ForestEnemy> enemies = new List<ForestEnemy>();
     private Vector3 spawnOffset;
-    public List<GameObject> forest = new List<GameObject>();
+    public List<GameObject> forest = new List<GameObject>();    
     private Ray spawnRay;
 
-    public void Start()
-    {
-        SpawnEnemy(spawnCap);
-    }
     public override void SpawnEnemy(int numberToSpawn)
     {
 
@@ -27,7 +22,6 @@ public class ForestSpawner : Spawner
         //converting degrees to radians
         for (int i = 0; i < numberToSpawn; i++)
         {
-
             Vector3 TrySpawnLocation;
             int tries = 0;
             //will keep trying to find a valid spawnLocation
@@ -80,7 +74,6 @@ public class ForestSpawner : Spawner
         {
             if(hit.collider.gameObject.tag == "Ground")
             {
-                print("valid spawn loc");
                 return true;
             }
             print("invalid point");
