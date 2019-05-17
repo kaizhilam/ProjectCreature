@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 146164123831427515}
   - component: {fileID: 146164123831427514}
+  - component: {fileID: 3465033292864966922}
   - component: {fileID: 158824046}
   - component: {fileID: 158824047}
   - component: {fileID: 158824048}
@@ -48,6 +49,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb0c5bed0e09da4285001e4d834e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3465033292864966922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146164123831427512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702e8591e6b49404ea4dc5ec2ed2ee1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 1373499103, guid: f0b7a415cd9240f458fca0843598b20b, type: 3}
 --- !u!82 &158824046
 AudioSource:
   m_ObjectHideFlags: 0
@@ -182,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6910794b51974b42a16d2d6542f1826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
 --- !u!114 &6424459038731511547
 MonoBehaviour:
   m_ObjectHideFlags: 0

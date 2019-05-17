@@ -46,7 +46,20 @@ public class AvoidanceState : EnemyAIState
                 target = hit.point + hit.normal * avoidDistance;
                 gameObject.transform.Rotate(-Vector3.up);
             }
-
+            //move to target
+            if (avoidCornerTrap)
+            {
+                transform.Rotate(-Vector3.up);
+            }
+            else
+            {
+                Vector3 desiredRot = target - transform.position;
+                if (desiredRot != Vector3.zero)
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredRot), Time.deltaTime / 3f);
+                }
+                _rb.transform.Translate(transform.forward * Time.deltaTime * movementSpeed);
+            }
             return typeof(AvoidanceState);
         }
         else if (AIAlgorithms.CheckForAggro(gameObject))

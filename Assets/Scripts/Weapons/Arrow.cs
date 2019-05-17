@@ -2,30 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow : MonoBehaviour
+public class Arrow : Projectile
 {
 	private Rigidbody _Rigidbody;
 	private Collider _Collider;
 	private bool _IsMoving = true;
 	private Vector3 _HitTransform;
-
+    private LayerMask allButPlayerMask; 
     public float Speed;
 
 	private void Start()
     {
-		_Rigidbody = GetComponent<Rigidbody>();
+        allButPlayerMask = ~LayerMask.GetMask("player");
+        _Rigidbody = GetComponent<Rigidbody>();
 		_Collider = GetComponent<Collider>();
 		GameObject player = GameObject.Find("Face");
 		GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
 		transform.position = player.transform.position + (player.transform.forward * 4);
 		transform.rotation = camera.transform.rotation;
 
-		//CIRCUMVENTING AIMING TOWARDS SKYBOX
-		Vector3 lookingAt = ThirdPersonCamera.LookingAtPoint;
-		if (lookingAt.ToString() != "(Infinity, Infinity, Infinity)")
-		{
-			transform.LookAt(lookingAt);
-		}
+        //CIRCUMVENTING AIMING TOWARDS SKYBOX
+
+		if(Physics.Raycast(ThirdPersonCamera.castRay, out RaycastHit hit, allButPlayerMask))
+        {
+            print("not looking at sky");
+        }
+        else
+        {
+            print("looking at sky");
+            print(camera.transform.forward);
+            transform.LookAt(camera.transform.forward*Time.deltaTime*20f);
+
+        }
 	}
 
 	private void FixedUpdate()
@@ -42,7 +50,7 @@ public class Arrow : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log(other.gameObject.name);
+		//Debug.Log(other.gameObject.name);
 	}
 
 	private void OnCollisionEnter(Collision collision)
