@@ -13,7 +13,8 @@ public class Arrow : Projectile
 
 	private void Start()
     {
-        allButPlayerMask = ~LayerMask.GetMask("player");
+        LayerMask playerLayer = LayerMask.NameToLayer("player");
+        allButPlayerMask = ~(1<<playerLayer);
         _Rigidbody = GetComponent<Rigidbody>();
 		_Collider = GetComponent<Collider>();
 		GameObject player = GameObject.Find("Face");
@@ -22,16 +23,14 @@ public class Arrow : Projectile
 		transform.rotation = camera.transform.rotation;
 
         //CIRCUMVENTING AIMING TOWARDS SKYBOX
-
-		if(Physics.Raycast(ThirdPersonCamera.castRay, out RaycastHit hit, allButPlayerMask))
+		if(Physics.Raycast(ThirdPersonCamera.castRay, out RaycastHit hit,Mathf.Infinity,allButPlayerMask))
         {
             print("not looking at sky");
         }
         else
         {
             print("looking at sky");
-            print(camera.transform.forward);
-            transform.LookAt(camera.transform.forward*Time.deltaTime*20f);
+            transform.LookAt(camera.transform.position + camera.transform.forward*Time.deltaTime*900f);
 
         }
 	}
