@@ -7,12 +7,13 @@ public class ForestSpawner : Spawner
     private List<ForestEnemy> enemies = new List<ForestEnemy>();
     private Vector3 spawnOffset;
     public List<GameObject> forest = new List<GameObject>();
+    private Ray spawnRay;
 
     public void Start()
     {
-        SpawnEnemy();
+        SpawnEnemy(spawnCap);
     }
-    public override void SpawnEnemy()
+    public override void SpawnEnemy(int numberToSpawn)
     {
 
         //how each enemy spawn location is determined
@@ -22,37 +23,69 @@ public class ForestSpawner : Spawner
         //wherever ray lands, spawn enemy at this location
         //Ensure spawner is placed above where you want enemies to potentially spawn, try not to have imaginary circle intersect object in scene
         //!!if the ray never hits land, it will spawn enemy at spawner location!! (better solution to be added)
-        float direction;
-        float radius;
+
         //converting degrees to radians
-        for (int i = 0; i < spawnCap; i++)
+        for (int i = 0; i < numberToSpawn; i++)
         {
-            //have more functionality. if(spawner in certain biome) {spawn specific enemy}
-            //right now its just creating firstEnemies
-            direction = Random.Range(0, 2 * Mathf.PI);
-            radius = Random.Range(0, Range);
-            float x = radius * Mathf.Cos(direction);
-            float z = radius * Mathf.Sin(direction);
-            Vector3 castDownPoint = new Vector3(x + this.transform.position.x, this.transform.position.y, z + this.transform.position.z);
-            Vector3 downVector = new Vector3(0, -1, 0);
-            Ray spawnRay = new Ray(castDownPoint, downVector);
-            Debug.DrawRay(castDownPoint, downVector, Color.green);
-            Vector3 SpawnPoint;
+
+            Vector3 TrySpawnLocation;
+            int tries = 0;
+            //will keep trying to find a valid spawnLocation
+            //if it can't after 100 tries, uses the latest invalid location
+            do
+            {
+                tries++;
+                TrySpawnLocation = GetRandomPointInCircle();
+            } while (!isValid(TrySpawnLocation) && tries<100);
+
+            spawnRay = new Ray(TrySpawnLocation, -Vector3.up);
+
             if (Physics.Raycast(spawnRay, out RaycastHit hit))
             {
-                SpawnPoint = hit.point + Vector3.up * 10;
+                TrySpawnLocation = hit.point + Vector3.up * 5;
+
             }
-            else
-            {
-                //Debug.Log("no land underneath spawner to spawn enemies");
-                SpawnPoint = this.transform.position;
-            }
+
 
             ForestEnemy inst = ForestEnemyPool.Instance.Get();
             inst.transform.rotation = Quaternion.identity;
-            inst.transform.position = SpawnPoint;
+            inst.transform.position = TrySpawnLocation;
             inst.gameObject.SetActive(true);
             enemies.Add(inst);
         }
+
+        
+    }
+
+    public Vector3 GetRandomPointInCircle()
+    {
+        float direction;
+        float radius;
+        //have more functionality. if(spawner in certain biome) {spawn specific enemy}
+        //right now its just creating firstEnemies
+        direction = Random.Range(0, 2 * Mathf.PI);
+        radius = Random.Range(0, Range);
+        float x = radius * Mathf.Cos(direction);
+        float z = radius * Mathf.Sin(direction);
+        Vector3 castDownPoint = new Vector3(x + this.transform.position.x, this.transform.position.y, z + this.transform.position.z);
+        Vector3 downVector = new Vector3(0, -1, 0);
+        
+        return castDownPoint;
+    }
+
+    public bool isValid(Vector3 castDownPoint)
+    {
+        //if casts down do the ground, returns true
+        if (Physics.Raycast(spawnRay, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("obstacle")))
+        {
+            if(hit.collider.gameObject.tag == "Ground")
+            {
+                print("valid spawn loc");
+                return true;
+            }
+            print("invalid point");
+            return false;
+        }
+        return false;
     }
 }
