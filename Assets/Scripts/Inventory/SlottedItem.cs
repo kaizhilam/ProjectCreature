@@ -26,6 +26,7 @@ public class SlottedItem : MonoBehaviour
     public Quaternion wieldRotation = Quaternion.identity;
     [HideInInspector]
     public int wieldBone = 0;
+    public Item ItemDrop { get; set; }
 
     public SlottedItem()
     {
