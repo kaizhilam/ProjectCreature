@@ -112,6 +112,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &4886868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 146164123831427512, guid: e1738c2b8ac1db4468087e8c2cb49a72,
+    type: 3}
+  m_PrefabInstance: {fileID: 146164125584184521}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4886876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4886868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac08fecc0bdc24c409e776243b06326d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9674594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -956,6 +974,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9485b0c79d11e2e4d0007da98d76c639, type: 3}
+--- !u!1 &796513491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4083383024262006830, guid: dc669a68a63ed6a44b5b98fc95e2bdfd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2912035597501172234}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &796513496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796513491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f641bcd1ae36a04580c3c65e77ccd7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
+  ItemsToDrop:
+  - {fileID: 1531286124224477998, guid: 61b99204c57f2084b957fac57744820d, type: 3}
+  - {fileID: 2422166637796321525, guid: e21e4a3e2e19ad940b847212fb839616, type: 3}
+  - {fileID: 5337079849440621394, guid: e19ab5c4da822d143b627a5b49dd508e, type: 3}
 --- !u!1001 &850051094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1102,7 +1143,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: dino
       objectReference: {fileID: 0}
-    - target: {fileID: 511162704281060795, guid: 571bba6d8ee740f45b53adf197d6139c,
+    - target: {fileID: 8286709714443899492, guid: 571bba6d8ee740f45b53adf197d6139c,
+        type: 3}
+      propertyPath: drop
+      value: 
+      objectReference: {fileID: 325608031440604891, guid: 3ea9eadb7bb8bae4ab917a084c128fc7,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1713,10 +1758,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: dinot
       objectReference: {fileID: 0}
-    - target: {fileID: 1533036472, guid: 8f22c3ea3e843734a9a2f10c86890a97, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1533036474, guid: 8f22c3ea3e843734a9a2f10c86890a97, type: 3}
       propertyPath: m_LocalPosition.x
       value: 666.85034
@@ -2061,6 +2102,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ea9eadb7bb8bae4ab917a084c128fc7, type: 3}
+--- !u!1 &1818348532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8985534130134613892, guid: 212ac0b260f3c5944b00524ead2c037c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8985534129981917183}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1818348533
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818348532}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1928610136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2760,11 +2819,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sunny2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4083383024262006830, guid: dc669a68a63ed6a44b5b98fc95e2bdfd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4422826808471991751, guid: dc669a68a63ed6a44b5b98fc95e2bdfd,
         type: 3}
@@ -3578,6 +3632,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985534131313114977, guid: 212ac0b260f3c5944b00524ead2c037c,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 357677893138935466, guid: 212ac0b260f3c5944b00524ead2c037c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 212ac0b260f3c5944b00524ead2c037c, type: 3}

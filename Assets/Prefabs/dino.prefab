@@ -219,6 +219,10 @@ MonoBehaviour:
   idle2: {fileID: 8300000, guid: c83ca1df751ee604cb2ca13d7fbeacb1, type: 3}
   idle3: {fileID: 8300000, guid: c0e5da63a2f944c468b487339fbf44bf, type: 3}
   idle4: {fileID: 8300000, guid: 89c5e8bf01658e34790afb62243b7333, type: 3}
+  ItemsToDrop:
+  - {fileID: 1531286124224477998, guid: 61b99204c57f2084b957fac57744820d, type: 3}
+  - {fileID: 2422166637796321525, guid: e21e4a3e2e19ad940b847212fb839616, type: 3}
+  - {fileID: 5337079849440621394, guid: e19ab5c4da822d143b627a5b49dd508e, type: 3}
 --- !u!135 &3170223779396088978
 SphereCollider:
   m_ObjectHideFlags: 0
