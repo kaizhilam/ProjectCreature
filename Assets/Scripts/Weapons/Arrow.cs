@@ -58,9 +58,7 @@ public class Arrow : Projectile
 		{
 			_HitTransform = transform.position;
 			_IsMoving = false;
-			_Rigidbody.velocity = Vector3.zero;
-			Destroy(_Rigidbody);
-			Destroy(_Collider);
+            _Rigidbody.velocity = Vector3.zero;
 		}
 	}
 }
