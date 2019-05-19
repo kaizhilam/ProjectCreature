@@ -12,12 +12,14 @@ public class Dino : ForestEnemy
     protected List<AudioClip> sounds;
     private AudioSource src;
 
+
     public Dino()
     {
         
         Health = 100;
         MovementSpeed1 = 5;
         EnemyName1 = "dino";
+
     }
 
     public void Awake()
@@ -36,6 +38,7 @@ public class Dino : ForestEnemy
         GetComponent<StateMachine>().SetStates(states);
     }
 
+
     private void Start()
     {
         src = GetComponent<AudioSource>();
@@ -48,6 +51,8 @@ public class Dino : ForestEnemy
         };
         StartCoroutine(IdleSound());
     }
+
+
 
     IEnumerator IdleSound()
     {
