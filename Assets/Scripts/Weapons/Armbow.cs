@@ -14,9 +14,10 @@ public class Armbow : Weapon
     public override void Attack()
     {
         print("attacking with armbow");
-		//SHOOT STUFF
-		Object arrow = Resources.Load("Projectile/Arrow");
-		Instantiate(arrow);
+        //SHOOT STUFF
+        Projectile arrow = ProjPool.Instance.Get();
+        arrow.gameObject.SetActive(true);
+
     }
 
     public override void RunAbility()

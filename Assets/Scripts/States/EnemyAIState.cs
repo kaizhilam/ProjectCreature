@@ -21,7 +21,4 @@ public abstract class EnemyAIState
         _rb = gameObject.GetComponent<Rigidbody>();
     }
 
-
-
-
 }

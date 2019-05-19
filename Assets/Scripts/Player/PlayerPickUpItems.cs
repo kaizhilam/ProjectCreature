@@ -16,13 +16,12 @@ public class PlayerPickUpItems : MonoBehaviour
 
     private void PickUpOperation()
     {
-        if(Physics.Raycast(ThirdPersonCamera.castRay, out RaycastHit hit, LayerMask.NameToLayer("item")))
+        if(Physics.Raycast(ThirdPersonCamera.castRay, out RaycastHit hit, 11.0f, 1<<LayerMask.NameToLayer("item")))
         {
             //we use the cameras ray but with a mask so it will only detect gameObjects with weapon layer (in future should be item layer)
             selectedObj = hit.collider.gameObject;
         }
         //CHECK selectedObj tag
-        print(selectedObj);
             if (selectedObj!=null && selectedObj.tag == "T1")
             {
             //REST OF MyLi's CODE
@@ -36,6 +35,7 @@ public class PlayerPickUpItems : MonoBehaviour
                 isChecked = false;
                 selectedObj.SetActive(false);
                 selectedObj.tag = "Untagged";
+                selectedObj.layer = 2;
             }
         }
             else
