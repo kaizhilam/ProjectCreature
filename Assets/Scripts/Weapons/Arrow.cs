@@ -10,6 +10,7 @@ public class Arrow : Projectile
 	private Vector3 _HitTransform;
     private LayerMask allButPlayerMask; 
     public float Speed;
+	public float TimeToDissapear;
 
 	private void Start()
     {
@@ -33,6 +34,8 @@ public class Arrow : Projectile
             transform.LookAt(camera.transform.position + camera.transform.forward*Time.deltaTime*900f);
 
         }
+
+		_Rigidbody.AddForce(transform.forward * Speed);
 	}
 
 	private void FixedUpdate()
@@ -44,6 +47,18 @@ public class Arrow : Projectile
 		else
 		{
 			transform.position = _HitTransform;
+		}
+	}
+
+	private void Update()
+	{
+		if (_IsMoving == false)
+		{
+			TimeToDissapear -= Time.deltaTime;
+		}
+		if (TimeToDissapear <= 0)
+		{
+			Destroy(gameObject); //CHNAGE THIS FOR THE POOLING THINGO
 		}
 	}
 
