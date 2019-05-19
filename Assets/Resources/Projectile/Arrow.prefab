@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 300
+  TimeToDissapear: 5
 --- !u!136 &2765626501206742883
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -104,6 +105,10 @@ PrefabInstance:
       value: arrow
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d79b5db63fa2a5b4290b222a11dd5bbe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: d79b5db63fa2a5b4290b222a11dd5bbe, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
