@@ -17,12 +17,6 @@ public abstract class Enemy : MonoBehaviour
     public string EnemyName1 { get => EnemyName; set => EnemyName = value; }
     public GameObject Target { get => target; set => target = value; }
 
-    private bool flashActive;
-    public float flashLength;
-    private float flashCounter;
-
-    private SpriteRenderer playerSprite;
-
 
     public Enemy()
     {
@@ -33,38 +27,8 @@ public abstract class Enemy : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
 
-        playerSprite = GetComponent<SpriteRenderer>();
     }
 
-
-
-    void Update() {
-        if (flashActive)
-        {
-            if (flashCounter > flashLength * .66f)
-            {
-                playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0f);
-            }
-            else if (flashCounter > flashLength * .33f)
-            {
-                playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 1f);
-            }
-            else if (flashCounter > 0f)
-            {
-                playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0f);
-            }
-
-            else
-            {
-                playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 1f);
-                flashActive = false;
-            }
-
-            flashCounter -= Time.deltaTime;
-
-
-        }
-    }
 
 
 
@@ -74,8 +38,6 @@ public abstract class Enemy : MonoBehaviour
         print(damage + " " + health);
         health -= damage;
 
-        flashActive = true;
-        flashCounter = flashLength;
 
         CheckIfDead();
 
