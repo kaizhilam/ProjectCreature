@@ -106,8 +106,6 @@ public class AnimationManager : MonoBehaviour
 
     public void ResetAnimations()
     {
-        print("animations being reset");
-
         foreach (AnimatorControllerParameter parameter in instance.anim.parameters)
         {
             instance.anim.SetBool(parameter.name, false);
@@ -115,8 +113,6 @@ public class AnimationManager : MonoBehaviour
     }
     public void ResetAnimationsExcept(params string[] names)
     {
-        print("animations being reset");
-
         foreach (AnimatorControllerParameter parameter in instance.anim.parameters)
         {
             //for each animation...

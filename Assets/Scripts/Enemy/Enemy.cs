@@ -31,20 +31,25 @@ public abstract class Enemy : MonoBehaviour
     {
         print(damage + " " + health);
         health -= damage;
-        CheckIfDead();
     }
 
     public virtual void CheckIfDead()
     {
-        if (health <= 0)
+        if (health <= 0 || transform.position.y < -100)
         {
             ResolveDeletion();
         }
+        
     }
 
     public abstract void ResolveDeletion();
 
     public void FixedGravity()
     {
+    }
+
+    private void Update()
+    {
+        CheckIfDead();
     }
 }

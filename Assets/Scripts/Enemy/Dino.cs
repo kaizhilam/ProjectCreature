@@ -33,7 +33,8 @@ public class Dino : ForestEnemy
         var states = new Dictionary<Type, EnemyAIState>()
         {
             {typeof(WanderState), new WanderState(this) },
-            {typeof(ChaseState), new ChaseState(this) }
+            {typeof(ChaseState), new ChaseState(this) },
+            {typeof(AvoidanceState), new AvoidanceState(this) }
         };
 
         GetComponent<StateMachine>().SetStates(states);
@@ -91,7 +92,6 @@ public class Dino : ForestEnemy
                 //Debug.Log("get gameobject " + drop.name);
                 if (drop.name == item.ObjectSlug)
                 {
-                    Debug.Log("get gameobject " + drop.name);
                     Instantiate(drop, transform.position, drop.transform.rotation);
 
                 }
@@ -101,7 +101,6 @@ public class Dino : ForestEnemy
             //Instantiate(item, transform.position, Quaternion.identity); //drop it.
         }
         else {
-            Debug.Log("get item null");
 
         }
         //Instantiate(drop, transform.position, drop.transform.rotation);

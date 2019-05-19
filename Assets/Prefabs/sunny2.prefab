@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4168170761995892843}
   - component: {fileID: 7093627866865846755}
   - component: {fileID: 7994738061851841085}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,8 @@ GameObject:
   - component: {fileID: 5283297165666997827}
   - component: {fileID: 3239322281233639963}
   - component: {fileID: 796513496}
-  m_Layer: 0
+  - component: {fileID: 5705239472140598466}
+  m_Layer: 8
   m_Name: sunny2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,3 +171,16 @@ MonoBehaviour:
   - {fileID: 1531286124224477998, guid: 61b99204c57f2084b957fac57744820d, type: 3}
   - {fileID: 2422166637796321525, guid: e21e4a3e2e19ad940b847212fb839616, type: 3}
   - {fileID: 5337079849440621394, guid: e19ab5c4da822d143b627a5b49dd508e, type: 3}
+--- !u!135 &5705239472140598466
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4083383024262006830}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.17
+  m_Center: {x: 9.34, y: 0.52, z: 0}

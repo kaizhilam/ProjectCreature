@@ -18,6 +18,7 @@ public class ThirdPersonCamera : MonoBehaviour
     public static Vector3 LookingAtPoint;
     public static float LookingAtDistance;
     public static Ray castRay;
+    public static bool isLookingAtSky = true;
 
     private float _CurrentX = 0f;
     private float _CurrentY = 0f;
@@ -78,6 +79,7 @@ public class ThirdPersonCamera : MonoBehaviour
         {
             LookingAtGameObject = null;
             LookingAtPoint = Vector3.positiveInfinity;
+            isLookingAtSky = true;
         }
     }
     //casts a ray from the player to the camera
