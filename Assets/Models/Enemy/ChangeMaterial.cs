@@ -14,6 +14,10 @@ public class ChangeMaterial : MonoBehaviour
         rend.sharedMaterial = material[0];
     }
 
+    void Update()
+    {
+        
+    }
     // Update is called once per frame
     void OnCollisionEnter(Collision col)
     {

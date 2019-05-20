@@ -12,7 +12,8 @@ public class Dino : ForestEnemy
     protected List<AudioClip> sounds;
     private AudioSource src;
 
- 
+
+
     public Dino()
     {
         
@@ -79,8 +80,6 @@ public class Dino : ForestEnemy
         };
         StartCoroutine(IdleSound());
 
-
-
     }
 
 
@@ -99,3 +98,6 @@ public class Dino : ForestEnemy
     }
 
 }
+
+
+
