@@ -11,6 +11,7 @@ public abstract class Enemy : MonoBehaviour
     private GameObject target;
     public StateMachine StateMachine => GetComponent<StateMachine>();
     public Rigidbody _rb;
+    private Renderer _renderer;
 
     public float Health { get => health; set => health = value; }
     public int MovementSpeed1 { get => MovementSpeed; set => MovementSpeed = value; }
@@ -29,7 +30,8 @@ public abstract class Enemy : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-
+        _renderer = GetComponentInChildren<Renderer>();
+        print(_renderer);
     }
 
     IEnumerator Flash(float time, float intervalTime)
@@ -39,18 +41,16 @@ public abstract class Enemy : MonoBehaviour
         //This repeats our coroutine until the FlashingTime is elapsed
         while (elapsedTime < time)
         {
-            //This gets an array with all the renderers in our gameobject's children
-            Renderer[] RendererArray = GetComponentsInChildren<Renderer>();
-            //this turns off all the Renderers
-            foreach (Renderer r in RendererArray)
-                r.enabled = false;
+            _renderer = GetComponentInChildren<Renderer>();
+            //change material to red
+            //_renderer.material.shader = Shader.Find("_Color");
+            _renderer.material.SetColor("_Color", Color.red);
             //then add time to elapsedtime
             elapsedTime += Time.deltaTime;
             //then wait for the Timeinterval set
             yield return new WaitForSeconds(intervalTime);
-            //then turn them all back on
-            foreach (Renderer r in RendererArray)
-                r.enabled = true;
+            //then set the material colour back to white
+            _renderer.material.SetColor("_Color", Color.white);   
             elapsedTime += Time.deltaTime;
             //then wait for another interval of time
             yield return new WaitForSeconds(intervalTime);
@@ -62,6 +62,7 @@ public abstract class Enemy : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         print(damage + " " + health);
+        print("hit");
         health -= damage;
         StartCoroutine(Flash(FlashingTime, TimeInterval));
         CheckIfDead();
