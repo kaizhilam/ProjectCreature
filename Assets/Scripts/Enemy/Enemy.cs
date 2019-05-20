@@ -65,7 +65,6 @@ public abstract class Enemy : MonoBehaviour
         health -= damage;
         StartCoroutine(Flash(FlashingTime, TimeInterval));
         CheckIfDead();
-
     }
 
 
@@ -74,15 +73,21 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void CheckIfDead()
     {
-        if (health <= 0)
+        if (health <= 0 || transform.position.y < -100)
         {
             ResolveDeletion();
         }
+        
     }
 
     public abstract void ResolveDeletion();
 
     public void FixedGravity()
     {
+    }
+
+    private void Update()
+    {
+        CheckIfDead();
     }
 }

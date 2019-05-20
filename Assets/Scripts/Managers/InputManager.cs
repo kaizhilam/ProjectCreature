@@ -47,50 +47,55 @@ public class InputManager : MonoBehaviour
         //inside the class's start method, type InputManager.instance.y += x;
         //when this is done, the method(x) will run when event(y) is invoked
 
-        if (Input.GetMouseButtonDown(0))
+        if (Player.isClimbing == false) //Why is this reversed?
         {
-            LeftClick?.Invoke();
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            RightClick?.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.B)) {
-            BKey?.Invoke();
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                LeftClick?.Invoke();
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                RightClick?.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                BKey?.Invoke();
+            }
 
-        if (Input.GetKeyDown(KeyCode.E)) {
-            EKey?.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Space?.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            CTRLKey?.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            TopNumbers?.Invoke(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            TopNumbers?.Invoke(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            TopNumbers?.Invoke(2);
-        }
-        Vector2 inputVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        Vector2 inputRaw = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if(inputRaw != Vector2.zero)
-        {
-            Movement?.Invoke(inputVec, inputRaw);
-        }
-        else
-        {
-            StoppedMoving?.Invoke();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                EKey?.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Space?.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                CTRLKey?.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                TopNumbers?.Invoke(0);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                TopNumbers?.Invoke(1);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                TopNumbers?.Invoke(2);
+            }
+            Vector2 inputVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            Vector2 inputRaw = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            if (inputRaw != Vector2.zero)
+            {
+                Movement?.Invoke(inputVec, inputRaw);
+            }
+            else
+            {
+                StoppedMoving?.Invoke();
+            }
         }
     }
 }
