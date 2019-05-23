@@ -21,6 +21,7 @@ public class Dino : ForestEnemy
     {
         
         Health = 100;
+        Damage = 30;
         MovementSpeed1 = 5;
         EnemyName1 = "dino";
 
@@ -64,8 +65,7 @@ public class Dino : ForestEnemy
         var states = new Dictionary<Type, EnemyAIState>()
         {
             {typeof(WanderState), new WanderState(this) },
-            {typeof(ChaseState), new ChaseState(this) },
-            {typeof(AvoidanceState), new AvoidanceState(this) }
+            {typeof(ChaseState), new ChaseState(this) }
         };
 
         GetComponent<StateMachine>().SetStates(states);
