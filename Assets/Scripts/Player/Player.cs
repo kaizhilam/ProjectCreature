@@ -6,11 +6,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public delegate void ActionDelegate();
+    public event ActionDelegate GameOver;
     public event ActionDelegate Atk;
     public event ActionDelegate RunAbility;
     public SlottedItem selectedItem;
     public Weapon equippedWeapon;
     public float climbSpeed;
+    private bool isGameOver;
 
     bool canClimb = false;
     public static bool isClimbing = false;
@@ -24,7 +26,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController>();
-
+        isGameOver = false;
         selectedItem = this?.GetComponentInChildren<SlottedItem>();
         equippedWeapon = this?.GetComponentInChildren<Weapon>();
         InputManager.instance.LeftClick += Attack;
@@ -125,9 +127,11 @@ public class Player : MonoBehaviour
         {
             Enemy script = collision.gameObject.GetComponent<Enemy>();
             HP -= script.Damage;
-            if (HP <= 0)
+            if (HP <= 0 && !isGameOver)
             {
                 print("GAME OVER");
+                GameOver?.Invoke();
+                isGameOver = true;
             }
             //updating health bar in UI. make sure health can never be negative
             FindObjectOfType<Hp>().hp = Mathf.Max(0,HP);
