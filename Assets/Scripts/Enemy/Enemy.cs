@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     private float health;
+    private float damage;
     private int MovementSpeed;
     private string EnemyName;
     private GameObject target;
@@ -14,6 +15,7 @@ public abstract class Enemy : MonoBehaviour
     private Renderer _renderer;
 
     public float Health { get => health; set => health = value; }
+    public float Damage { get => damage; set => damage = value; }
     public int MovementSpeed1 { get => MovementSpeed; set => MovementSpeed = value; }
     public string EnemyName1 { get => EnemyName; set => EnemyName = value; }
     public GameObject Target { get => target; set => target = value; }
@@ -31,7 +33,6 @@ public abstract class Enemy : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _renderer = GetComponentInChildren<Renderer>();
-        print(_renderer);
     }
 
     IEnumerator Flash(float time, float intervalTime)
@@ -74,7 +75,11 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void CheckIfDead()
     {
-        if (health <= 0 || transform.position.y < -100)
+        if (health <= 0)
+        {
+            ResolveDeletionDropItem();
+        }
+        else if (transform.position.y < -100)
         {
             ResolveDeletion();
         }
@@ -82,6 +87,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public abstract void ResolveDeletion();
+    public abstract void ResolveDeletionDropItem();
 
     public void FixedGravity()
     {

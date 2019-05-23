@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 916029524}
   - component: {fileID: 916029523}
   - component: {fileID: 916029522}
-  - component: {fileID: 916029521}
   m_Layer: 5
   m_Name: Hp
   m_TagString: Untagged
@@ -59,8 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0759b7845a7fc14fbd9195ee0cd9953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 0
-  hp: 0
+  MaxHp: 100
+  hp: 100
 --- !u!114 &916029522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,20 +89,6 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &916029521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 916029519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0759b7845a7fc14fbd9195ee0cd9953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHp: 1
-  hp: 1
 --- !u!1 &1751311261
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,6 +867,7 @@ GameObject:
   - component: {fileID: 8985534130134613891}
   - component: {fileID: 8985534130134613889}
   - component: {fileID: 8985534130134613890}
+  - component: {fileID: 1818348533}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -946,6 +932,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!225 &1818348533
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8985534130134613892}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8985534130140755000
 GameObject:
   m_ObjectHideFlags: 0
@@ -2245,7 +2243,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8985534131313114979}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -2633,11 +2631,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7057585711427241910, guid: 6cc8e3adf306f487aab24a5305e7b8b1,
-        type: 3}
-      propertyPath: m_FillAmount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7057585711427241904, guid: 6cc8e3adf306f487aab24a5305e7b8b1,
         type: 3}
       propertyPath: CDBar
@@ -2780,11 +2773,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7057585711427241910, guid: 6cc8e3adf306f487aab24a5305e7b8b1,
-        type: 3}
-      propertyPath: m_FillAmount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7057585711427241904, guid: 6cc8e3adf306f487aab24a5305e7b8b1,
         type: 3}
       propertyPath: CDBar
@@ -2926,11 +2914,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7057585711427241910, guid: 6cc8e3adf306f487aab24a5305e7b8b1,
-        type: 3}
-      propertyPath: m_FillAmount
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7057585711427241904, guid: 6cc8e3adf306f487aab24a5305e7b8b1,
         type: 3}

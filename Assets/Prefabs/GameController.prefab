@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 158824048}
   - component: {fileID: 4696933282389681463}
   - component: {fileID: 6424459038731511547}
+  - component: {fileID: 8150154082547987092}
+  - component: {fileID: 4697624849048423310}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -212,3 +214,29 @@ MonoBehaviour:
   forestEnemyPrefabs:
   - {fileID: 8286709714443899492, guid: 571bba6d8ee740f45b53adf197d6139c, type: 3}
   - {fileID: 4422826808471991751, guid: dc669a68a63ed6a44b5b98fc95e2bdfd, type: 3}
+--- !u!114 &8150154082547987092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146164123831427512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac08fecc0bdc24c409e776243b06326d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4697624849048423310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146164123831427512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8022c6448e9be7e4d837df0d42834cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameOverTextPrefab: {fileID: 1733677497853896435, guid: ebbc23894764603499d46b9e3ae19979,
+    type: 3}

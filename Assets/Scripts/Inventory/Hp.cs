@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Hp : MonoBehaviour
 {
-    public float MaxHp;
-    public float hp;
+    public float MaxHp = 100;
+    public float hp = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +18,10 @@ public class Hp : MonoBehaviour
         if (hp != 0)
         {
             this.transform.localPosition = new Vector3((-200 + 200 * (hp / MaxHp)), 0.0f, 0.0f);
+        }
+        else
+        {
+            this.transform.localPosition = new Vector3(-200, 0.0f, 0.0f);
         }
     }
 }

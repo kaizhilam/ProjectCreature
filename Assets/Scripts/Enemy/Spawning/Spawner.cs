@@ -29,12 +29,9 @@ public abstract class Spawner : MonoBehaviour
 
         while (true)
         {
-            print(enemies.Count + " " + spawnCap);
             if (enemies.Count < spawnCap)
             {
-                print("respawning");
                 SpawnEnemy(spawnCap - enemies.Count);
-                print(enemies.Count);
             }
             yield return new WaitForSeconds(5);
         }
