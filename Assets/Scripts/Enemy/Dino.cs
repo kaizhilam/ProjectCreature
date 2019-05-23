@@ -109,6 +109,14 @@ public class Dino : ForestEnemy
 
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Projectile"))
+        {
+            this.TakeDamage(collision.gameObject.GetComponent<Projectile>().damage);
+        }
+    }
+
     public override void DropWeapon() //called, when enemy will be destroyed
     {
         Item item = DropTable.GetDrop(); //hopefully, it get the rolled item or do nothing(if item == null)
@@ -143,10 +151,6 @@ public class Dino : ForestEnemy
         //Instantiate(drop, transform.position, drop.transform.rotation);
     }
 
-    /*private void Instantiate(Item item, Vector3 position, Quaternion identity)
-    {
-        throw new NotImplementedException();
-    }*/
 }
 
 

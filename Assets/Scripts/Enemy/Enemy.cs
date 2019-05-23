@@ -75,7 +75,11 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void CheckIfDead()
     {
-        if (health <= 0 || transform.position.y < -100)
+        if (health <= 0)
+        {
+            ResolveDeletionDropItem();
+        }
+        else if (transform.position.y < -100)
         {
             ResolveDeletion();
         }
@@ -83,6 +87,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public abstract void ResolveDeletion();
+    public abstract void ResolveDeletionDropItem();
 
     public void FixedGravity()
     {
