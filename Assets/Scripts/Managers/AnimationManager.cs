@@ -105,6 +105,7 @@ public class AnimationManager : MonoBehaviour
         GUI.Label(new Rect(20, 100, 200, 20), "CTRL: Dodge");
         GUI.Label(new Rect(20, 120, 200, 20), "B: Open/Close Inventory");
         GUI.Label(new Rect(20, 140, 200, 20), "E: Pickup Item");
+        GUI.Label(new Rect(20, 160, 200, 20), "1,2,3: Switch hotbar index");
     }
 
     public void ResetAnimations()
