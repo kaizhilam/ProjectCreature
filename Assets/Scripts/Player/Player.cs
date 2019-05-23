@@ -131,6 +131,7 @@ public class Player : MonoBehaviour
             }
             //updating health bar in UI. make sure health can never be negative
             FindObjectOfType<Hp>().hp = Mathf.Max(0,HP);
+            print(FindObjectOfType<Hp>().gameObject.name);
         }
     }
 
