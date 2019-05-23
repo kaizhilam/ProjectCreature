@@ -52,10 +52,8 @@ public class Arrow : Projectile
 
 	private void Update()
 	{
-		if (_IsMoving == false)
-		{
-			TimeToDissapear -= Time.deltaTime;
-		}
+
+		TimeToDissapear -= Time.deltaTime;
 		if (TimeToDissapear <= 0)
 		{
 			Destroy(gameObject); //CHNAGE THIS FOR THE POOLING THINGO
@@ -74,6 +72,7 @@ public class Arrow : Projectile
 			_HitTransform = transform.position;
 			_IsMoving = false;
             _Rigidbody.velocity = Vector3.zero;
+            _Rigidbody.useGravity = false;
 		}
 	}
 }

@@ -12,6 +12,7 @@ public class HuntingKnife : Weapon
         wieldBone = 0;
     }
 
+
     public override void Attack()
     {
         Collider[] colliders = Physics.OverlapBox(daggerHitbox.transform.position, daggerHitbox.transform.lossyScale);
@@ -22,6 +23,7 @@ public class HuntingKnife : Weapon
                 colliders[i].gameObject.GetComponent<Enemy>().TakeDamage(damage);
             }
         }
+
     }
 
     public override void RunAbility()

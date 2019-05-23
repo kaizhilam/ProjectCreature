@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WanderState : EnemyAIState
 {
@@ -35,10 +36,10 @@ public class WanderState : EnemyAIState
             _enemy.Target = player;
             return typeof(ChaseState);
         }
-        if (AIAlgorithms.NeedsCorrection(gameObject))
-        {
-            return typeof(AvoidanceState);
-        }
+        //if (AIAlgorithms.NeedsCorrection(gameObject))
+        //{
+        //    return typeof(AvoidanceState);
+        //}
         Vector2 match1 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
         Vector3 match2 = new Vector2(_destination.x, _destination.z);
         if (Vector2.Distance(match1, match2) < 5 || _destination == Vector3.zero)
@@ -46,8 +47,9 @@ public class WanderState : EnemyAIState
             GetDestination();
 
         }
-        gameObject.transform.rotation = _desiredRotation;
-        _rb.transform.Translate(Vector3.forward* movementSpeed * Time.deltaTime);
+        //gameObject.transform.rotation = _desiredRotation;
+        //_rb.transform.Translate(Vector3.forward* movementSpeed * Time.deltaTime);
+        gameObject.GetComponent<NavMeshAgent>().SetDestination(_destination);
         return typeof(WanderState);
     }
 
@@ -64,11 +66,7 @@ public class WanderState : EnemyAIState
                                new Vector3(UnityEngine.Random.Range(-10f, 10.0f), 0f,
                                    UnityEngine.Random.Range(-10.0f, 10.0f));
 
-        _destination = new Vector3(testPosition.x, 1f, testPosition.z);
-
-        _direction = Vector3.Normalize(_destination - transform.position);
-        _direction = new Vector3(_direction.x, 0f, _direction.z);
-        _desiredRotation = Quaternion.LookRotation(_direction);
+        _destination = new Vector3(testPosition.x, gameObject.transform.position.y, testPosition.z);
     }
 
 }

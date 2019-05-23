@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class ForestEnemy : Enemy
 {
-    public override void ResolveDeletion()
+    public override void ResolveDeletionDropItem()
     {
         DropWeapon();
         ForestEnemyPool.Instance.ReturnToPool(this);
     }
+
+    public override void ResolveDeletion()
+    {
+        ForestEnemyPool.Instance.ReturnToPool(this);
+    }
+
 
     public virtual void DropWeapon() { }
 

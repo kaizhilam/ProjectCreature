@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 6705061775468289560}
   - component: {fileID: 2619040919754997377}
   - component: {fileID: 1351804063}
+  - component: {fileID: 8037169604761928688}
   m_Layer: 8
   m_Name: dino
   m_TagString: Enemy
@@ -215,6 +216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
+  FlashingTime: 0.6
+  TimeInterval: 0.1
   idle1: {fileID: 8300000, guid: d58e3ff4226e0dc469d895b3beb5dbb3, type: 3}
   idle2: {fileID: 8300000, guid: c83ca1df751ee604cb2ca13d7fbeacb1, type: 3}
   idle3: {fileID: 8300000, guid: c0e5da63a2f944c468b487339fbf44bf, type: 3}
@@ -371,6 +374,28 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: b565ec19bec38ca47890e25a118af6cf, type: 3}
+--- !u!195 &8037169604761928688
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511162704281060795}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &543704218514199249
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ TagManager:
   - T1
   - Enemy
   - Climb
+  - Projectile
   layers:
   - Default
   - TransparentFX
