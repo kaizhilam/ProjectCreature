@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryManager: MonoBehaviour
+public class InventoryManager : MonoBehaviour
 {
     private float targetAlpha = 1;
     private float smoothing = 4;
@@ -109,8 +109,8 @@ public class InventoryManager: MonoBehaviour
         }
 
         GetHotbarSlot(SelectedHotbarSlot).HighlightSlot();
-        
-        
+
+
     }
 
     //Swaps two slots contents
@@ -125,7 +125,7 @@ public class InventoryManager: MonoBehaviour
         print("from " + isInHotbar1 + ", to " + isInHotbar2);
         //Depending on which panel the slots are in, we target different panels slots
         //if swapping hotbar items for example, we are only concerned with hotbar slots
-        if(!isInHotbar1 && !isInHotbar2)
+        if (!isInHotbar1 && !isInHotbar2)
         {
             int invIndex1 = index1;
             int invIndex2 = index2;
@@ -135,7 +135,7 @@ public class InventoryManager: MonoBehaviour
             RefreshSlotFromIndex(invIndex1);
             RefreshSlotFromIndex(invIndex2);
         }
-        else if(isInHotbar1 && !isInHotbar2)
+        else if (isInHotbar1 && !isInHotbar2)
         {
             //hotbar into inv
             int hotbarindex1 = index1;
@@ -161,7 +161,7 @@ public class InventoryManager: MonoBehaviour
 
             
         }
-        else if(!isInHotbar1 && isInHotbar2)
+        else if (!isInHotbar1 && isInHotbar2)
         {
             //inv into hotbar
             int invIndex1 = index1;
@@ -247,7 +247,7 @@ public class InventoryManager: MonoBehaviour
         {
             if (InventoryItems[i] == null)
             {
-                return i; 
+                return i;
             }
         }
         return -1;
@@ -258,7 +258,7 @@ public class InventoryManager: MonoBehaviour
     {
         for (int i = 0; i < HotbarItems.Length; i++)
         {
-            if(HotbarItems[i] == null)
+            if (HotbarItems[i] == null)
             {
                 return i;
             }
@@ -287,11 +287,11 @@ public class InventoryManager: MonoBehaviour
                     return indexes[i];
                 }
             }
-            
+
         }
 
         //then check if its in inventory already
-        if(indexInv > -1)
+        if (indexInv > -1)
         {
             List<int> indexes = GetInvIndexesOfItem(item);
             //if can hold it, ++
@@ -304,11 +304,11 @@ public class InventoryManager: MonoBehaviour
                     return indexes[i];
                 }
             }
-            
+
         }
 
         //then check for free spot in hotbar
-        if(firstEmptyHotbar > -1)
+        if (firstEmptyHotbar > -1)
         {
             HotbarItems[firstEmptyHotbar] = item;
             RefreshHotbarSlotFromIndex(firstEmptyHotbar);
@@ -335,7 +335,7 @@ public class InventoryManager: MonoBehaviour
     //if item added to index i, we need to update it and show new wielded weapon
     private void UpdateWield(int i)
     {
-        if(i == SelectedHotbarSlot)
+        if (i == SelectedHotbarSlot)
         {
             SwitchHotbarIndex(i);
         }
@@ -350,7 +350,7 @@ public class InventoryManager: MonoBehaviour
     //outdated, dont use
     public bool AddToInventoryIndex(SlottedItem item, int index)
     {
-        if(InventoryItems[index] != null)
+        if (InventoryItems[index] != null)
         {
             InventoryItems[index] = item;
             return true;
@@ -363,7 +363,7 @@ public class InventoryManager: MonoBehaviour
     {
         for (int i = 0; i < InventoryItems.Length; i++)
         {
-            if(item?.objID == InventoryItems[i]?.objID)
+            if (item?.objID == InventoryItems[i]?.objID)
             {
                 return i;
             }
@@ -380,13 +380,13 @@ public class InventoryManager: MonoBehaviour
     //returns index of item in hotbar, -1 if there isn't any
     public int GetFirstHotbarIndexOfItem(SlottedItem item)
     {
-        if(item == null)
+        if (item == null)
         {
             return -1;
         }
         for (int i = 0; i < HotbarItems.Length; i++)
         {
-            if(item.objID == HotbarItems[i]?.objID)
+            if (item.objID == HotbarItems[i]?.objID)
             {
                 return i;
             }
@@ -400,7 +400,7 @@ public class InventoryManager: MonoBehaviour
         List<int> indexes = new List<int>();
         for (int i = 0; i < HotbarItems.Length; i++)
         {
-            if(item.objID == HotbarItems[i]?.objID)
+            if (item.objID == HotbarItems[i]?.objID)
             {
                 indexes.Add(i);
             }
@@ -440,7 +440,7 @@ public class InventoryManager: MonoBehaviour
     {
         for (int i = 0; i < HotbarSlots.Length; i++)
         {
-            if(HotbarSlots[i].GetInstanceID() == slot.GetInstanceID())
+            if (HotbarSlots[i].GetInstanceID() == slot.GetInstanceID())
             {
                 return true;
             }
@@ -477,7 +477,7 @@ public class InventoryManager: MonoBehaviour
             RefreshHotbarSlotFromIndex(i);
         }
     }
-    
+
     //will update the inv slot from array using index 
     public void RefreshSlotFromIndex(int index)
     {
@@ -574,4 +574,3 @@ public class InventoryManager: MonoBehaviour
 
 }
 
-    
