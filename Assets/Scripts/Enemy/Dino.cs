@@ -15,13 +15,45 @@ public class Dino : ForestEnemy
     public DropTable DropTable { get; set; }
     //public SlottedItem slottedItem;
 
+
+
     public Dino()
     {
         
         Health = 100;
+        Damage = 30;
         MovementSpeed1 = 5;
         EnemyName1 = "dino";
+
     }
+/*
+    IEnumerator collideFlash()
+    {
+        Material m = this.mainRenderer.material;
+        Color32 c = this.mainRenderer.material.color;
+        this.mainRenderer.material = null;
+        this.mainRenderer.material.color = Color.white;
+        yield return new WaitForSeconds(0.1f);
+        this.mainRenderer.material = m;
+        this.mainRenderer.material.color = c;
+    }
+
+
+    IEnumerator FlashCoroutine()
+    {
+        float duration = 1f;
+        while (duration > 0)
+        {
+            duration -= Time.deltaTime;
+
+            // flashing code goes here
+
+            return null;
+        }
+    }
+    */
+
+
 
     public void Awake()
     {
@@ -33,12 +65,12 @@ public class Dino : ForestEnemy
         var states = new Dictionary<Type, EnemyAIState>()
         {
             {typeof(WanderState), new WanderState(this) },
-            {typeof(ChaseState), new ChaseState(this) },
-            {typeof(AvoidanceState), new AvoidanceState(this) }
+            {typeof(ChaseState), new ChaseState(this) }
         };
 
         GetComponent<StateMachine>().SetStates(states);
     }
+
 
     private void Start()
     {
@@ -59,7 +91,12 @@ public class Dino : ForestEnemy
             idle4
         };
         StartCoroutine(IdleSound());
+
     }
+
+
+
+
 
     IEnumerator IdleSound()
     {
@@ -111,3 +148,6 @@ public class Dino : ForestEnemy
         throw new NotImplementedException();
     }*/
 }
+
+
+

@@ -119,6 +119,21 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Enemy script = collision.gameObject.GetComponent<Enemy>();
+            HP -= script.Damage;
+            if (HP <= 0)
+            {
+                print("GAME OVER");
+            }
+            //updating health bar in UI. make sure health can never be negative
+            FindObjectOfType<Hp>().hp = Mathf.Max(0,HP);
+        }
+    }
+
     private void Attack()
     {
         Atk();
