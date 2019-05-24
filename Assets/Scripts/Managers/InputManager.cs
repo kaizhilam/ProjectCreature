@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    private GameObject _player;
     public delegate void InputDelegate();
     public delegate void MovementDelegate(Vector2 v1, Vector2 v2);
     public delegate void ParamKeyCode(int i);
@@ -18,6 +19,8 @@ public class InputManager : MonoBehaviour
     public event InputDelegate EKey;
     //public event InputDelegate ShiftKey; soon
     private Vector3 _Input, _InputRaw;
+
+    private bool isGameOver;
 
     public static InputManager instance = null;
 
@@ -36,6 +39,11 @@ public class InputManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+        
+        isGameOver = false;
+        _player = GameObject.Find("Player");
+        _player.GetComponent<Player>().GameOver += SetGameOver;
     }
 
     private void Update()
@@ -46,51 +54,60 @@ public class InputManager : MonoBehaviour
         //let x be the function you are trying to subscribe and y the event that will broadcast
         //inside the class's start method, type InputManager.instance.y += x;
         //when this is done, the method(x) will run when event(y) is invoked
+        if (Player.isClimbing == false && !isGameOver) //Why is this reversed?
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                LeftClick?.Invoke();
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                RightClick?.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                BKey?.Invoke();
+            }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            LeftClick?.Invoke();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                EKey?.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Space?.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                CTRLKey?.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                TopNumbers?.Invoke(0);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                TopNumbers?.Invoke(1);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                TopNumbers?.Invoke(2);
+            }
+            Vector2 inputVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            Vector2 inputRaw = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            if (inputRaw != Vector2.zero)
+            {
+                Movement?.Invoke(inputVec, inputRaw);
+            }
+            else
+            {
+                StoppedMoving?.Invoke();
+            }
         }
-        if (Input.GetMouseButtonDown(1))
-        {
-            RightClick?.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.B)) {
-            BKey?.Invoke();
-        }
+    }
 
-        if (Input.GetKeyDown(KeyCode.E)) {
-            EKey?.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Space?.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            CTRLKey?.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            TopNumbers?.Invoke(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            TopNumbers?.Invoke(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            TopNumbers?.Invoke(2);
-        }
-        Vector2 inputVec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        Vector2 inputRaw = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if(inputRaw != Vector2.zero)
-        {
-            Movement?.Invoke(inputVec, inputRaw);
-        }
-        else
-        {
-            StoppedMoving?.Invoke();
-        }
+    private void SetGameOver()
+    {
+        isGameOver = true;
     }
 }

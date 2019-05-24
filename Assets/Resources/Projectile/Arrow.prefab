@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 376851627946157596}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1713f9fe2eedd3e458a2a5a870d8a04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 100
+  damage: 45
+  Speed: 300
+  TimeToDissapear: 5
 --- !u!136 &2765626501206742883
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -76,7 +78,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 96
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &376851627946157596
 CapsuleCollider:
@@ -104,6 +106,10 @@ PrefabInstance:
       value: arrow
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d79b5db63fa2a5b4290b222a11dd5bbe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: d79b5db63fa2a5b4290b222a11dd5bbe, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

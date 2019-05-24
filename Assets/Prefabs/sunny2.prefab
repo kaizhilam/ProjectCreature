@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4168170761995892843}
   - component: {fileID: 7093627866865846755}
   - component: {fileID: 7994738061851841085}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487648924893717233}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 9.5, y: 0, z: 0}
+  m_LocalPosition: {x: 9.5, y: -0.22, z: -0.06}
   m_LocalScale: {x: 100, y: 100, z: 308.65408}
   m_Children: []
   m_Father: {fileID: 9207976895189837925}
@@ -89,7 +89,9 @@ GameObject:
   - component: {fileID: 4422826808471991751}
   - component: {fileID: 5283297165666997827}
   - component: {fileID: 3239322281233639963}
-  m_Layer: 0
+  - component: {fileID: 796513496}
+  - component: {fileID: 5705239472140598466}
+  m_Layer: 8
   m_Name: sunny2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4083383024262006830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 674.5588, y: 104.46, z: 699.1411}
+  m_LocalPosition: {x: 674.5588, y: 104.54, z: 699.1411}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4168170761995892843}
@@ -123,6 +125,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e95e2848648394eb40966d666d6ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
+  damagebreak: 0
+  damagebreaktimer: 5
+  damagebreaktimertotal: 5
+  colorchange: 0
+  colorchangetimer: 1
+  red: {r: 0, g: 0, b: 0, a: 0}
+  white: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &5283297165666997827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,3 +161,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!114 &796513496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4083383024262006830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f641bcd1ae36a04580c3c65e77ccd7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
+  ItemsToDrop:
+  - {fileID: 1531286124224477998, guid: 61b99204c57f2084b957fac57744820d, type: 3}
+  - {fileID: 2422166637796321525, guid: e21e4a3e2e19ad940b847212fb839616, type: 3}
+  - {fileID: 5337079849440621394, guid: e19ab5c4da822d143b627a5b49dd508e, type: 3}
+--- !u!135 &5705239472140598466
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4083383024262006830}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.17
+  m_Center: {x: 9.34, y: 0.52, z: 0}
