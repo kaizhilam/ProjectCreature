@@ -3,7 +3,7 @@
 public class PlayerMovement : MonoBehaviour
 {
 	public Vector3 Gravity;
-	public float JumpAmount;
+	//public float JumpAmount;
 	public float JumpHeight;
 	public float Speed;
 	public float Smooth;
@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private GameObject _Camera;
 	private CharacterController _Controller;
+    private Vector3 _JumpAmount = new Vector3(0, 0, 0);
 
 	void Start()
     {
@@ -21,27 +22,22 @@ public class PlayerMovement : MonoBehaviour
         //subscribing Movement function to InputManager -- If InputManager sees WASD or jump pressed, will call
     }
 
-	private void FixedUpdate()
+	private void Update()
 	{
+        _JumpAmount.y += Gravity.y * Time.deltaTime;
+        _Controller.Move(_JumpAmount * Time.deltaTime);
+
         //GRAVITY CODE
-        if (Player.isClimbing == false)
-        {
-            JumpAmount += Gravity.y * Time.deltaTime;
-            _Controller.Move(new Vector3(0, JumpAmount, 0));
-        }
+        // if (Player.isClimbing == false)
+        // {
+        //     JumpAmount += Gravity.y * Time.deltaTime;
+        //     _Controller.Move(new Vector3(0, JumpAmount, 0));
+        // }
 
-        if(Player.isClimbing == true)
-        {
-            JumpAmount = 0.0f;
-        }
-
-        /*
-        if (_Controller.isGrounded)
-            JumpAmount += -0.5f; //TO COMBAT isGrounded BECAUSE GRAVITY CAN'T CATCH UP TO THE GAME'S TICK RATE
-        else
-            JumpAmount += Gravity.y;
-        _Controller.Move(new Vector3(0,JumpAmount,0));
-        */
+        // if(Player.isClimbing == true)
+        // {
+        //     JumpAmount = 0.0f;
+        // }
 
     }
 
@@ -87,16 +83,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        //player can only jump when on the ground and not dodging
-        AnimatorClipInfo info = AnimationManager.instance.clipInfo;
-        if (_Controller.isGrounded && info.clip.name!="Dodge_Dive_anim")
-        {
+        // //player can only jump when on the ground and not dodging
+        // AnimatorClipInfo info = AnimationManager.instance.clipInfo;
+        // if (_Controller.isGrounded && info.clip.name!="Dodge_Dive_anim")
+        // {
 
-            //JUMPING CODE
-            JumpAmount = 0;
-            JumpAmount = JumpHeight * Time.deltaTime;
-            JumpAmount = Mathf.Clamp(JumpAmount, -2f, Mathf.Infinity);
-            _Controller.Move(new Vector3(0,JumpAmount,0));
+        //     //JUMPING CODE
+        //     JumpAmount = 0;
+        //     JumpAmount = JumpHeight * Time.deltaTime;
+        //     JumpAmount = Mathf.Clamp(JumpAmount, -2f, Mathf.Infinity);
+        //     _Controller.Move(new Vector3(0,JumpAmount,0));
+        // }
+        if (_Controller.isGrounded == true)
+        {
+            _JumpAmount.y = JumpHeight;
         }
     }
 }

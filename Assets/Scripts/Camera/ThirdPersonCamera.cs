@@ -75,7 +75,7 @@ public class ThirdPersonCamera : MonoBehaviour
             LookingAtGameObject = hit.collider.gameObject;
             LookingAtPoint = hit.point;
             LookingAtDistance = hit.distance;
-            Debug.Log("Name: " + hit.collider.name + " Point: " + hit.point + " Distance: " + hit.distance);
+            //Debug.Log("Name: " + hit.collider.name + " Point: " + hit.point + " Distance: " + hit.distance);
 			//Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * 10), Color.black);
         }
         //if the ray cast from the camera hits nothing, the player is looking at the sky
