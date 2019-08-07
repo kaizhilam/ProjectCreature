@@ -24,9 +24,12 @@ public class ThirdPersonCamera : MonoBehaviour
     private float _CurrentY = 0f;
     private float _CurrentDistance;
 
+	private LayerMask _LayerMask = 1 << 11;
+
 	private void Start()
     {
         _CurrentDistance = Distance;
+		_LayerMask = ~_LayerMask;
     }
 
     private void Update()
@@ -66,13 +69,14 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         RaycastHit hit;
         castRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-        if (Physics.Raycast(castRay, out hit))
+        if (Physics.Raycast(castRay, out hit, Mathf.Infinity, _LayerMask))
         {
             //add information as to what the camera is currently looking at
             LookingAtGameObject = hit.collider.gameObject;
             LookingAtPoint = hit.point;
             LookingAtDistance = hit.distance;
             //Debug.Log("Name: " + hit.collider.name + " Point: " + hit.point + " Distance: " + hit.distance);
+			//Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * 10), Color.black);
         }
         //if the ray cast from the camera hits nothing, the player is looking at the sky
         else
