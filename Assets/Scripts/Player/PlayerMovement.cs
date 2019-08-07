@@ -8,8 +8,10 @@ public class PlayerMovement : MonoBehaviour
 	public float Speed;
 	public float Smooth;
 	public float AirMovementPenalty; //VALUE BETWEEN 0-1
+    public Vector3 moveDirection;
 
-	private GameObject _Camera;
+  
+    private GameObject _Camera;
 	private CharacterController _Controller;
 
 	void Start()
