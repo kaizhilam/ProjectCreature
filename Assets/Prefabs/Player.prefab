@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 20
-  GrappleDistance: 50
+  MaxGrappleDistance: 100
 --- !u!1001 &1616946615421262619
 PrefabInstance:
   m_ObjectHideFlags: 0
