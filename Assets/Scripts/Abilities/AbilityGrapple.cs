@@ -34,7 +34,7 @@ public class AbilityGrapple : MonoBehaviour
 		if (_Grappling == true)
 		{
 			Grapple();
-			if (ThirdPersonCamera.LookingAtDistance <= 10f)
+			if (ThirdPersonCamera.LookingAtDistance <= 15f)
 			{
 				_Grappling = false;
 				PlayerMovement.CanMove = true;
@@ -46,7 +46,7 @@ public class AbilityGrapple : MonoBehaviour
 
 	private void EnableGrapple()
 	{
-		if (ThirdPersonCamera.LookingAtDistance < MaxGrappleDistance && ThirdPersonCamera.isLookingAtSky == false)
+		if (ThirdPersonCamera.LookingAtDistance <= MaxGrappleDistance && ThirdPersonCamera.isLookingAtSky == false)
 		{
 			_Grappling = true;
 		}
@@ -66,11 +66,23 @@ public class AbilityGrapple : MonoBehaviour
 		 * BUG FOUND: Player grapple supper fast: SOLVED
 		 * */
 		//Make the player look forward instead of looking where the camera is pointing (x axis)
-		Vector3 temp = GameObject.Find("Idle").transform.eulerAngles;
+		//Vector3 temp = GameObject.Find("Idle").transform.eulerAngles;
+		Vector3 temp = transform.GetChild(0).eulerAngles;
 		temp.x = 0;
 		transform.eulerAngles = temp;
 		//Move the player
 		_Controller.Move(cameraForward.normalized * Speed * delta);
 		
+	}
+
+	private void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+		if (_Grappling == true && _Controller.isGrounded == false)
+		{
+			_Grappling = false;
+			PlayerMovement.CanMove = true;
+			ThirdPersonCamera.CameraLock = false;
+			PlayerMovement.EnableGravity = true;
+		}
 	}
 }
