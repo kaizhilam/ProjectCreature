@@ -27,7 +27,7 @@ public class MapCamera : MonoBehaviour
 		//ROTATE THE PLAYER ICON WHEN ROTATING PLAYER
 		Vector3 playerRotation = _Player.transform.eulerAngles;
 		_PlayerLocation.transform.eulerAngles = new Vector3(90, playerRotation.y, 0);
-		Debug.Log(_PlayerLocation.transform.eulerAngles);
+		//Debug.Log(_PlayerLocation.transform.eulerAngles);
 
 	}
 }
