@@ -6,11 +6,11 @@ using System.Threading;
 public class AbilityGrapple : MonoBehaviour
 {
 	/*TODO:
-	 * 1. Add disable gravity to grapple upwards
-	 * 2. During grapple, lock direction
+	 * 1. Add disable gravity to grapple upwards DONE
+	 * 2. During grapple, lock direction DONE
 	 * */
 	public float Speed;
-	public float GrappleDistance;
+	public float MaxGrappleDistance;
 
 	private GameObject _Camera;
 	private GameObject _Player;
@@ -26,26 +26,27 @@ public class AbilityGrapple : MonoBehaviour
 		_Player = GameObject.FindGameObjectWithTag("Player");
 		_PlayerMovement = _Player.GetComponent<PlayerMovement>();
 		_OriginalGravity = _PlayerMovement.Gravity;
-		InputManager.instance.RightClick += EnableGrapple;
+		InputManager.instance.RightClick += EnableGrapple; //Change this for grapple bind
 	}
 
 	void Update()
     {
 		if (_Grappling == true)
 		{
-			//_PlayerMovement.Gravity = Vector3.zero;
 			Grapple();
-			if (ThirdPersonCamera.LookingAtDistance <= 10f)
+			if (ThirdPersonCamera.LookingAtDistance <= 15f)
 			{
-				//_PlayerMovement.Gravity = _OriginalGravity;
 				_Grappling = false;
+				PlayerMovement.CanMove = true;
+				ThirdPersonCamera.CameraLock = false;
+				PlayerMovement.EnableGravity = true;
 			}
 		}
     }
 
 	private void EnableGrapple()
 	{
-		if (ThirdPersonCamera.LookingAtDistance < GrappleDistance)
+		if (ThirdPersonCamera.LookingAtDistance <= MaxGrappleDistance && ThirdPersonCamera.isLookingAtSky == false)
 		{
 			_Grappling = true;
 		}
@@ -53,13 +54,35 @@ public class AbilityGrapple : MonoBehaviour
 
 	private void Grapple()
 	{
+		PlayerMovement.CanMove = false;
+		ThirdPersonCamera.CameraLock = true;
+		PlayerMovement.EnableGravity = false;
 		float delta = Time.deltaTime;
 		//Make player face where the camera is facing
 		Vector3 cameraForward = _Camera.transform.forward;
-		Debug.Log(cameraForward);
-		cameraForward.y = 0;
+		//Debug.Log(cameraForward);
 		transform.forward = cameraForward;
+		/* Make the player look forward
+		 * BUG FOUND: Player grapple supper fast: SOLVED
+		 * */
+		//Make the player look forward instead of looking where the camera is pointing (x axis)
+		//Vector3 temp = GameObject.Find("Idle").transform.eulerAngles;
+		Vector3 temp = transform.GetChild(0).eulerAngles;
+		temp.x = 0;
+		transform.eulerAngles = temp;
 		//Move the player
 		_Controller.Move(cameraForward.normalized * Speed * delta);
+		
+	}
+
+	private void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+		if (_Grappling == true && _Controller.isGrounded == false)
+		{
+			_Grappling = false;
+			PlayerMovement.CanMove = true;
+			ThirdPersonCamera.CameraLock = false;
+			PlayerMovement.EnableGravity = true;
+		}
 	}
 }
