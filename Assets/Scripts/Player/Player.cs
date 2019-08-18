@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public delegate void ActionDelegate();
+	public static float LookingAtDistance;
+	public static GameObject LookingAtGameObject;
+	public delegate void ActionDelegate();
     public event ActionDelegate GameOver;
     public event ActionDelegate Atk;
     public event ActionDelegate RunAbility;
@@ -56,7 +58,16 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (isClimbing && Input.GetKeyDown(KeyCode.C))
+		RaycastHit hit;
+		//Debug.DrawRay(transform.position + (Vector3.up * 3), transform.TransformDirection(Vector3.forward * 10), Color.black);
+		Ray castRay = new Ray(transform.position + (Vector3.up * 3), transform.TransformDirection(Vector3.forward));
+		if (Physics.Raycast(castRay, out hit, Mathf.Infinity))
+		{
+			LookingAtDistance = hit.distance;
+			LookingAtGameObject = hit.collider.gameObject;
+		}
+
+		if (isClimbing && Input.GetKeyDown(KeyCode.C))
         {
             isClimbing = false;
         }
