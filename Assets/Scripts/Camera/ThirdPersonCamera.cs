@@ -19,12 +19,14 @@ public class ThirdPersonCamera : MonoBehaviour
     public static float LookingAtDistance;
     public static Ray castRay;
     public static bool isLookingAtSky = true;
+	public static bool CameraLock = false;
 
     private float _CurrentX = 0f;
     private float _CurrentY = 0f;
     private float _CurrentDistance;
 
 	private LayerMask _LayerMask = 1 << 11;
+	private Quaternion _CurrentQuaternion;
 
 	private void Start()
     {
@@ -41,28 +43,41 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void CameraMovement()
     {
-		float mouseX = Input.GetAxis("Mouse X") * MouseSensitivityX;
-		float mouseY = Input.GetAxis("Mouse Y") * MouseSensitivityY;
-		//INVERSE CODE HERE
-		if (MouseInverseX)
-			_CurrentX -= mouseX;
-		else
-			_CurrentX += mouseX;
+		if (CameraLock == false)
+		{
+			float mouseX = Input.GetAxis("Mouse X") * MouseSensitivityX;
+			float mouseY = Input.GetAxis("Mouse Y") * MouseSensitivityY;
+			//INVERSE CODE HERE
+			if (MouseInverseX)
+				_CurrentX -= mouseX;
+			else
+				_CurrentX += mouseX;
 
-		if (MouseInverseY)
-			_CurrentY += mouseY;
-		else
-			_CurrentY -= mouseY;
+			if (MouseInverseY)
+				_CurrentY += mouseY;
+			else
+				_CurrentY -= mouseY;
+		}
 
 		_CurrentY = Mathf.Clamp(_CurrentY, -89, 89); //so the y axis does not clip through ground
-		//Debug.Log(_CurrentX + ":" + _CurrentY);
+														//Debug.Log(_CurrentX + ":" + _CurrentY);
 
 		Vector3 dir = new Vector3(0, 0, -_CurrentDistance); //set distance between LookAt and camera
-        Quaternion rotation = Quaternion.Euler(_CurrentY, _CurrentX, 0);
-        transform.position = FocusOn.position + rotation * dir; //rotate camera around player
-        transform.LookAt(FocusOn); //camera face player
-        transform.Translate(new Vector3(_CurrentDistance / Distance, _CurrentDistance / Distance, 0f)); //move the camera slightly to the top right so camera ray casting wont keep hitting the player
-        FocusOn.transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); //rotate lookAt object
+		Quaternion rotation;
+		if (CameraLock == false)
+		{
+			rotation = Quaternion.Euler(_CurrentY, _CurrentX, 0);
+			_CurrentQuaternion = rotation;
+		}
+		else
+		{
+			rotation = _CurrentQuaternion;
+		}
+		transform.position = FocusOn.position + rotation * dir; //rotate camera around player
+		transform.LookAt(FocusOn); //camera face player
+		transform.Translate(new Vector3(_CurrentDistance / Distance, _CurrentDistance / Distance, 0f)); //move the camera slightly to the top right so camera ray casting wont keep hitting the player
+		FocusOn.transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z); //rotate lookAt object
+		
     }
 
     private void CameraAiming() //Raycasting for character interaction with objects
@@ -75,11 +90,12 @@ public class ThirdPersonCamera : MonoBehaviour
             LookingAtGameObject = hit.collider.gameObject;
             LookingAtPoint = hit.point;
             LookingAtDistance = hit.distance;
-            //Debug.Log("Name: " + hit.collider.name + " Point: " + hit.point + " Distance: " + hit.distance);
+			isLookingAtSky = false;
+			//Debug.Log("Name: " + hit.collider.name + " Point: " + hit.point + " Distance: " + hit.distance);
 			//Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * 10), Color.black);
-        }
-        //if the ray cast from the camera hits nothing, the player is looking at the sky
-        else
+		}
+		//if the ray cast from the camera hits nothing, the player is looking at the sky
+		else
         {
             LookingAtGameObject = null;
             LookingAtPoint = Vector3.positiveInfinity;

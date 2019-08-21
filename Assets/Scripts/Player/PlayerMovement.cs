@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
 	private CharacterController _Controller;
     private Vector3 _JumpAmount = new Vector3(0, 0, 0);
 
+	public static bool CanMove = true;
+	public static bool EnableGravity = true;
+
 	void Start()
     {
         InputManager.instance.Space += Jump;
@@ -24,8 +27,17 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update()
 	{
-        _JumpAmount.y += Gravity.y * Time.deltaTime;
-        _Controller.Move(_JumpAmount * Time.deltaTime);
+		if (EnableGravity == true)
+		{
+			_JumpAmount.y += Gravity.y * Time.deltaTime;
+			_Controller.Move(_JumpAmount * Time.deltaTime);
+		}
+		if (EnableGravity == false)
+		{
+			_JumpAmount.y = 0;
+		}
+		//Debug.Log(_JumpAmount);
+
 
         //GRAVITY CODE
         // if (Player.isClimbing == false)
@@ -49,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         cameraForward.y = 0f;
         Vector3 cameraRight = _Camera.transform.right;
         cameraRight.y = 0f;
+		if (CanMove == true)
         {
             if (_InputRaw.y >= 0)
             {
@@ -64,37 +77,34 @@ public class PlayerMovement : MonoBehaviour
                 if (_InputRaw.x != 0) //CHARACTER FACING LEFT AND RIGHT, BUT INVERSE
                     transform.forward = Vector3.Lerp(transform.forward, -cameraRight * -_InputRaw.x, delta * Smooth);
             }
-
-            //MOVEMENT CODE
-            //print((cameraForward * _Input.y) + (cameraRight * _Input.x));
-            movement = ((cameraForward * _Input.y) + (cameraRight * _Input.x)).normalized * Speed * delta;//HORIZONTAL + VERTICAL MOVEMENT
+			//MOVEMENT CODE
+			//print((cameraForward * _Input.y) + (cameraRight * _Input.x));
+			movement = ((cameraForward * _Input.y) + (cameraRight * _Input.x)).normalized * Speed * delta;//HORIZONTAL + VERTICAL MOVEMENT
 
             _Controller.Move(new Vector3(movement.x, 0, movement.z));
         }
 
-        
-        
+		//DEBUG
+		//Vector3 temp = _Controller.velocity;
+		//temp.y = 0f;
+		//Debug.Log("GROUNDED: " + _Controller.isGrounded + " --- VELOCITY: " + temp + " --- MAGNITUDE: " + temp.magnitude + " --- MOVEMENT: " + movement);
+	}
 
-        ////DEBUG
-        Vector3 temp = _Controller.velocity;
-        temp.y = 0f;
-        //Debug.Log("GROUNDED: " + _Controller.isGrounded + " --- VELOCITY: " + temp + " --- MAGNITUDE: " + temp.magnitude + " --- MOVEMENT: " + movement);
-    }
-
-    private void Jump()
+	private void Jump()
     {
-        // //player can only jump when on the ground and not dodging
-        // AnimatorClipInfo info = AnimationManager.instance.clipInfo;
-        // if (_Controller.isGrounded && info.clip.name!="Dodge_Dive_anim")
-        // {
+		// //player can only jump when on the ground and not dodging
+		// AnimatorClipInfo info = AnimationManager.instance.clipInfo;
+		// if (_Controller.isGrounded && info.clip.name!="Dodge_Dive_anim")
+		// {
 
-        //     //JUMPING CODE
-        //     JumpAmount = 0;
-        //     JumpAmount = JumpHeight * Time.deltaTime;
-        //     JumpAmount = Mathf.Clamp(JumpAmount, -2f, Mathf.Infinity);
-        //     _Controller.Move(new Vector3(0,JumpAmount,0));
-        // }
-        if (_Controller.isGrounded == true)
+		//     //JUMPING CODE
+		//     JumpAmount = 0;
+		//     JumpAmount = JumpHeight * Time.deltaTime;
+		//     JumpAmount = Mathf.Clamp(JumpAmount, -2f, Mathf.Infinity);
+		//     _Controller.Move(new Vector3(0,JumpAmount,0));
+		// }
+		AnimatorClipInfo info = AnimationManager.instance.clipInfo;
+		if (_Controller.isGrounded == true && info.clip.name != "Dodge_Dive_anim")
         {
             _JumpAmount.y = JumpHeight;
         }
