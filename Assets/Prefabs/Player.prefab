@@ -151,6 +151,8 @@ MonoBehaviour:
   Speed: 15
   Smooth: 21
   AirMovementPenalty: 0.75
+  damageFromFallMinDistance: 5
+  fallDamageMult: 0.2
 --- !u!114 &251117981135048682
 MonoBehaviour:
   m_ObjectHideFlags: 0

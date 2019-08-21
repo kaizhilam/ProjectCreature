@@ -16,7 +16,14 @@ public class PlayerMovement : MonoBehaviour
 	public static bool CanMove = true;
 	public static bool EnableGravity = true;
 
-	void Start()
+    private float lastPositionY;
+    private bool lastGrounded;
+    private float fallDistance;
+    public float damageFromFallMinDistance = 5f;
+    public float fallDamageMult = 0.5f;
+
+
+    void Start()
     {
         InputManager.instance.Space += Jump;
         InputManager.instance.Movement += Movement;
@@ -36,8 +43,33 @@ public class PlayerMovement : MonoBehaviour
 		{
 			_JumpAmount.y = 0;
 		}
-		//Debug.Log(_JumpAmount);
+        //Debug.Log(_JumpAmount);
+        if(!lastGrounded && _Controller.isGrounded)
+        {
+            //player has hit the ground
+            if (fallDistance > damageFromFallMinDistance)
+            {
+                Player.HP -= fallDamageMult*(fallDistance * fallDistance);
+                GetComponent<Player>().CheckIfDead();
+                print("player takes damage " + fallDistance);
+            }
+            
 
+           
+
+        }
+        if (lastPositionY > _Controller.transform.position.y)
+        {
+            fallDistance += lastPositionY - _Controller.transform.position.y;
+
+        }
+        if (_Controller.isGrounded)
+        {
+            fallDistance = 0;
+        }
+
+        lastPositionY = _Controller.transform.position.y;
+        lastGrounded = _Controller.isGrounded;
 
         //GRAVITY CODE
         // if (Player.isClimbing == false)
@@ -50,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
         // {
         //     JumpAmount = 0.0f;
         // }
+
+        
 
     }
 
