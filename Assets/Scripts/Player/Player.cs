@@ -59,12 +59,13 @@ public class Player : MonoBehaviour
     void Update()
     {
 		RaycastHit hit;
-		//Debug.DrawRay(transform.position + (Vector3.up * 3), transform.TransformDirection(Vector3.forward * 10), Color.black);
-		Ray castRay = new Ray(transform.position + (Vector3.up * 3), transform.TransformDirection(Vector3.forward));
+		Debug.DrawRay(transform.position + (Vector3.up * 1.5f), transform.TransformDirection(Vector3.forward * 10), Color.black);
+		Ray castRay = new Ray(transform.position + (Vector3.up * 1.5f), transform.TransformDirection(Vector3.forward));
 		if (Physics.Raycast(castRay, out hit, Mathf.Infinity))
 		{
 			LookingAtDistance = hit.distance;
 			LookingAtGameObject = hit.collider.gameObject;
+			Debug.Log(hit.collider.gameObject.name);
 		}
 
 		if (isClimbing && Input.GetKeyDown(KeyCode.C))

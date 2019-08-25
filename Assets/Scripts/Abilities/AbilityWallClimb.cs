@@ -48,7 +48,7 @@ public class AbilityWallClimb : MonoBehaviour
 			PlayerMovement.EnableGravity = false;
 			_Controller.Move(Vector3.up * _ClimbSpeed * Time.deltaTime);
 			_ClimbSpeed -= ClimbDecayMultiplier / ClimbSpeed;
-			if (_ClimbSpeed <= 0)
+			if (_ClimbSpeed <= 0 || Player.LookingAtGameObject.tag != "Climb")
 			{
 				_Climbing = false;
 				_CanClimb = false;
