@@ -127,21 +127,27 @@ public class Player : MonoBehaviour
         {
             Enemy script = collision.gameObject.GetComponent<Enemy>();
             HP -= script.Damage;
-            if (HP <= 0 && !isGameOver)
-            {
-                print("GAME OVER");
-                GameOver?.Invoke();
-                isGameOver = true;
-            }
+            CheckIfDead();
             //updating health bar in UI. make sure health can never be negative
-            FindObjectOfType<Hp>().hp = Mathf.Max(0,HP);
-            print(FindObjectOfType<Hp>().gameObject.name);
+            
+            //print(FindObjectOfType<Hp>().gameObject.name);
         }
     }
 
     private void Attack()
     {
         Atk();
+    }
+
+    public void CheckIfDead()
+    {
+        if (HP <= 0 && !isGameOver)
+        {
+            print("GAME OVER");
+            GameOver?.Invoke();
+            isGameOver = true;
+        }
+        FindObjectOfType<Hp>().hp = Mathf.Max(0, HP);
     }
 
     private void Ability()
