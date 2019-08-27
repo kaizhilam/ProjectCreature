@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6424459038731511547}
   - component: {fileID: 8150154082547987092}
   - component: {fileID: 4697624849048423310}
+  - component: {fileID: 3712370540495234393}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -240,3 +241,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOverTextPrefab: {fileID: 1733677497853896435, guid: ebbc23894764603499d46b9e3ae19979,
     type: 3}
+--- !u!114 &3712370540495234393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146164123831427512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b0d7933694c4334186f382d1c4c51b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

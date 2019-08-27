@@ -8,7 +8,11 @@ public class Underwater : MonoBehaviour
     private Transform _Player;
 	private Collider _Collider;
 	private bool _CheckCamera = false;
-    private bool isUnderwater;
+    
+    
+
+    public static Underwater instance = null;
+        
 	private void Start()
 	{
 		_Camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
@@ -16,13 +20,16 @@ public class Underwater : MonoBehaviour
         _Collider = GetComponent<Collider>();
 	}
 
-	private void Update()
+        
+
+    private void Update()
 	{
-        if (_CheckCamera == true)
+        if (_CheckCamera)
 		{
              if (_Camera.position.y > transform.position.y)
              {
-                 SetNormal();
+                UnderwaterManager.isUnderwater = false;
+                 //SetNormal();
                  if (_Player.position.y > transform.position.y)
                  {
                       //Debug.Log("Bug fixed");
@@ -31,8 +38,8 @@ public class Underwater : MonoBehaviour
              }
              else if (_Camera.position.y < transform.position.y)
              {
-                 isUnderwater = true;
-                 SetUnderwater();
+                UnderwaterManager.isUnderwater = true;
+                 //SetUnderwater();
              }     
         }
     }
@@ -46,31 +53,16 @@ public class Underwater : MonoBehaviour
         }
         else if (_Camera.position.y > transform.position.y)
         {
-            SetNormal();
+            UnderwaterManager.isUnderwater = false;
+            //SetNormal();
         }
         else if (_Camera.position.y < transform.position.y)
         {
-            SetUnderwater();
+            UnderwaterManager.isUnderwater = true;
+            //SetUnderwater();
         }
         
     }
 
-    private void SetUnderwater()
-	{
-        if (isUnderwater == true)
-        {
-            //Debug.Log("SetUnderwater Works");
-            RenderSettings.fog = true;
-            RenderSettings.fogColor = new Color(0.22f, 0.65f, 0.77f, 0.5f);
-            RenderSettings.fogDensity = 0.1f;
-        }
-    }
-
-	private void SetNormal()
-	{
-		//Debug.Log("SetNormal Works");
-        RenderSettings.fog = false;
-		RenderSettings.fogColor = new Color(0.5f, 0.5f, 0.5f, 1f);
-		RenderSettings.fogDensity = 0.01f;
-    }
+    
 }
