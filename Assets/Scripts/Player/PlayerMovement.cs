@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private float fallDistance;
     public float damageFromFallMinDistance = 5f;
     public float fallDamageMult = 0.5f;
+    public bool isApplyingFallDamage = true;
 
 
     void Start()
@@ -35,31 +37,27 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update()
 	{
-        GetGravity = Gravity.y;
-		if (EnableGravity == true)
-		{
-			_JumpAmount.y += Gravity.y * Time.deltaTime;
-			_Controller.Move(_JumpAmount * Time.deltaTime);
-		}
-		if (EnableGravity == false)
-		{
-			_JumpAmount.y = 0;
-		}
-        //Debug.Log(_JumpAmount);
-        if(!lastGrounded && _Controller.isGrounded)
+        RunGravity();
+        if (isApplyingFallDamage)
+        {
+            FallDamage();
+        }
+
+    }
+
+    private void FallDamage()
+    {
+        if (!lastGrounded && _Controller.isGrounded)
         {
             //player has hit the ground
             if (fallDistance > damageFromFallMinDistance)
             {
-                Player.HP -= fallDamageMult*(fallDistance * fallDistance);
+                Player.HP -= fallDamageMult * (fallDistance * fallDistance);
                 GetComponent<Player>().CheckIfDead();
                 print("player takes damage " + fallDistance);
             }
-            
-
-           
-
         }
+
         if (lastPositionY > _Controller.transform.position.y)
         {
             fallDistance += lastPositionY - _Controller.transform.position.y;
@@ -72,21 +70,19 @@ public class PlayerMovement : MonoBehaviour
 
         lastPositionY = _Controller.transform.position.y;
         lastGrounded = _Controller.isGrounded;
+    }
 
-        //GRAVITY CODE
-        // if (Player.isClimbing == false)
-        // {
-        //     JumpAmount += Gravity.y * Time.deltaTime;
-        //     _Controller.Move(new Vector3(0, JumpAmount, 0));
-        // }
-
-        // if(Player.isClimbing == true)
-        // {
-        //     JumpAmount = 0.0f;
-        // }
-
-        
-
+    private void RunGravity()
+    {
+        if (EnableGravity == true)
+        {
+            _JumpAmount.y += Gravity.y * Time.deltaTime;
+            _Controller.Move(_JumpAmount * Time.deltaTime);
+        }
+        if (EnableGravity == false)
+        {
+            _JumpAmount.y = 0;
+        }
     }
 
     private void Movement(Vector2 _Input, Vector2 _InputRaw)
@@ -128,17 +124,6 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Jump()
     {
-		// //player can only jump when on the ground and not dodging
-		// AnimatorClipInfo info = AnimationManager.instance.clipInfo;
-		// if (_Controller.isGrounded && info.clip.name!="Dodge_Dive_anim")
-		// {
-
-		//     //JUMPING CODE
-		//     JumpAmount = 0;
-		//     JumpAmount = JumpHeight * Time.deltaTime;
-		//     JumpAmount = Mathf.Clamp(JumpAmount, -2f, Mathf.Infinity);
-		//     _Controller.Move(new Vector3(0,JumpAmount,0));
-		// }
 		AnimatorClipInfo info = AnimationManager.instance.clipInfo;
 		if (_Controller.isGrounded == true && info.clip.name != "Dodge_Dive_anim")
         {

@@ -54,7 +54,7 @@ public class InputManager : MonoBehaviour
         //let x be the function you are trying to subscribe and y the event that will broadcast
         //inside the class's start method, type InputManager.instance.y += x;
         //when this is done, the method(x) will run when event(y) is invoked
-        if (Player.isClimbing == false && !isGameOver) //Why is this reversed?
+        if (!Player.isClimbing && !isGameOver) //Why is this reversed?
         {
             if (Input.GetMouseButtonDown(0))
             {

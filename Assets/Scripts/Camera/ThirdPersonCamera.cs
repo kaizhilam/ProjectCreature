@@ -25,13 +25,17 @@ public class ThirdPersonCamera : MonoBehaviour
     private float _CurrentY = 0f;
     private float _CurrentDistance;
 
+    public Material material;
+
 	private LayerMask _LayerMask = 1 << 11;
 	private Quaternion _CurrentQuaternion;
 
-	private void Start()
+    
+    private void Start()
     {
         _CurrentDistance = Distance;
 		_LayerMask = ~_LayerMask;
+
     }
 
     private void Update()
@@ -39,6 +43,20 @@ public class ThirdPersonCamera : MonoBehaviour
         CameraZooming();
         CameraMovement();
         CameraAiming();
+    }
+
+    //for camera effects
+    //material is an underwater effect which is applied when player is underwater
+    private void OnRenderImage(RenderTexture source, RenderTexture destination)
+    {
+        if (UnderwaterManager.isUnderwater && material !=null)
+        {
+            Graphics.Blit(source, destination, material);
+        }
+        else
+        {
+            Graphics.Blit(source, destination);
+        }
     }
 
     private void CameraMovement()
