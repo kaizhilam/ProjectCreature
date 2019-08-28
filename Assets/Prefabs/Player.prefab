@@ -118,7 +118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedItem: {fileID: 0}
   equippedWeapon: {fileID: 0}
-  climbSpeed: 3.5
 --- !u!143 &1164995793
 CharacterController:
   m_ObjectHideFlags: 0
