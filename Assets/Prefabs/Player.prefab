@@ -76,7 +76,10 @@ GameObject:
   - component: {fileID: 1028101635}
   - component: {fileID: 1040224276}
   - component: {fileID: 3941042754428619202}
+  - component: {fileID: 2274185813217286231}
   - component: {fileID: 1319459820}
+  - component: {fileID: 5723027543902039374}
+  - component: {fileID: 1338750286670374244}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -151,7 +154,7 @@ MonoBehaviour:
   Speed: 15
   Smooth: 21
   AirMovementPenalty: 0.75
-  damageFromFallMinDistance: 5
+  damageFromFallMinDistance: 10
   fallDamageMult: 0.2
 --- !u!114 &251117981135048682
 MonoBehaviour:
@@ -209,6 +212,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.565796, y: 2.087419, z: 3.3803225}
   m_Center: {x: 0.78289795, y: 2.4937103, z: 1.640161}
+--- !u!114 &2274185813217286231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806390366692392982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff0190872d260c4e8aae4eebf4bb654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAX_DJUMP: 1
+  currentjump: 0
+  JumpHeight: 25
 --- !u!114 &1319459820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +241,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 20
   MaxGrappleDistance: 100
+--- !u!114 &5723027543902039374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806390366692392982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aac66593db3ef14c97b5e85ee13aa21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDirection: {x: 0, y: 0, z: 0}
+  dashDistance: 10
+  dashStoppingSpeed: 0.1
+--- !u!114 &1338750286670374244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806390366692392982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aac66593db3ef14c97b5e85ee13aa21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDirection: {x: 0, y: 0, z: 0}
+  dashDistance: 10
+  dashStoppingSpeed: 0.1
 --- !u!1001 &1616946615421262619
 PrefabInstance:
   m_ObjectHideFlags: 0

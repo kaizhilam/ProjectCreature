@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 	public float Speed;
 	public float Smooth;
 	public float AirMovementPenalty; //VALUE BETWEEN 0-1
+    public static float GetGravity;
 
 	private GameObject _Camera;
 	private CharacterController _Controller;
