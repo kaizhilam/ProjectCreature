@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 3941042754428619202}
   - component: {fileID: 2274185813217286231}
   - component: {fileID: 1319459820}
+  - component: {fileID: 1574135090300674427}
   - component: {fileID: 5723027543902039374}
   - component: {fileID: 1338750286670374244}
   m_Layer: 11
@@ -241,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 20
   MaxGrappleDistance: 100
+--- !u!114 &1574135090300674427
 --- !u!114 &5723027543902039374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +252,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4806390366692392982}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f157f86305cf9644a0fff4586a4fea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClimbSpeed: 10
+  CanClimbDistance: 1.5
+  ClimbDecayMultiplier: 1.2
   m_Script: {fileID: 11500000, guid: 8aac66593db3ef14c97b5e85ee13aa21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
