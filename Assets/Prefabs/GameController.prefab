@@ -199,7 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6910794b51974b42a16d2d6542f1826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 1040224276, guid: b412180ee3ce70c4fa07727466aaece5, type: 3}
+  anim: {fileID: 0}
+  runSound: {fileID: 8300000, guid: 960c7601d76a8764c85c541ef5533419, type: 3}
 --- !u!114 &6424459038731511547
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ public class AnimationManager : MonoBehaviour
 
     public static AnimationManager instance = null;
 	public Animator anim;
+    public AudioClip runSound;
     CharacterController controller;
     GameObject _player;
     public AnimatorClipInfo clipInfo;
@@ -74,6 +75,7 @@ public class AnimationManager : MonoBehaviour
         //if animation already playing, don't play run animation. We don't want it to switch to running while mid-dodge, or mid-jump animation
         if (controller.isGrounded && !IsAnimationRunningExcept("wielding"))
         {
+            _player.GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.run);
             anim.SetBool(run, true);
         }
     }
@@ -86,6 +88,7 @@ public class AnimationManager : MonoBehaviour
             instance.ResetAnimationsExcept("dodge", "run", "wielding");
             if (controller.isGrounded)
             {
+
                 anim.SetTrigger(dodge);
             }
         }
@@ -93,6 +96,7 @@ public class AnimationManager : MonoBehaviour
 
     void UnsetRunAnim()
     {
+        SoundManager.instance.StopPlayingClipOfName(_player.GetComponent<AudioSource>(), "Running");
         anim.SetBool(run, false);
     }
 	

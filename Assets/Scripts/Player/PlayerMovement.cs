@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
 
+
+[RequireComponent(typeof(Player))]
 public class PlayerMovement : MonoBehaviour
 {
 	public Vector3 Gravity;
@@ -8,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 	public float JumpHeight;
 	public float Speed;
 	public float Smooth;
-	public float AirMovementPenalty; //VALUE BETWEEN 0-1
+    public float AirMovementPenalty; //VALUE BETWEEN 0-1
     public static float GetGravity;
 
 	private GameObject _Camera;
@@ -52,9 +55,7 @@ public class PlayerMovement : MonoBehaviour
             //player has hit the ground
             if (fallDistance > damageFromFallMinDistance)
             {
-                Player.HP -= fallDamageMult * (fallDistance * fallDistance);
-                GetComponent<Player>().CheckIfDead();
-                print("player takes damage " + fallDistance);
+                GetComponent<Player>().TakeDamage(fallDamageMult * (fallDistance * fallDistance));
             }
         }
 
@@ -112,7 +113,6 @@ public class PlayerMovement : MonoBehaviour
 			//MOVEMENT CODE
 			//print((cameraForward * _Input.y) + (cameraRight * _Input.x));
 			movement = ((cameraForward * _Input.y) + (cameraRight * _Input.x)).normalized * Speed * delta;//HORIZONTAL + VERTICAL MOVEMENT
-
             _Controller.Move(new Vector3(movement.x, 0, movement.z));
         }
 
@@ -125,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
 	private void Jump()
     {
 		AnimatorClipInfo info = AnimationManager.instance.clipInfo;
+        GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.jump);
 		if (_Controller.isGrounded == true && info.clip.name != "Dodge_Dive_anim")
         {
             _JumpAmount.y = JumpHeight;

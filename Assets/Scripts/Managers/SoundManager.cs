@@ -30,6 +30,7 @@ public class SoundManager : MonoBehaviour
         {
             source.pitch = randomPitch;
             source.clip = sounds[randomIndex];
+            print(sounds[0].name);
             source.Play();
         }
     }
@@ -44,4 +45,20 @@ public class SoundManager : MonoBehaviour
             source.Play();
         }
     }
+
+    public AudioClip GetAudioClipFromSource(AudioSource source)
+    {
+        return source.clip;
+    }
+
+    public void StopPlayingClipOfName(AudioSource source, string name)
+    {
+        if (source.clip != null)
+        {
+            if(source.clip.name == name)
+        {
+                source.Stop();
+            }
+        }
+    }   
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AbilityDash : MonoBehaviour
 {
+    [HideInInspector]
     public Vector3 moveDirection;
     public const float maxDashTime = 1.0f;
     public float dashDistance = 10;
