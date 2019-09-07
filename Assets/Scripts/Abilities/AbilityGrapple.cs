@@ -34,7 +34,7 @@ public class AbilityGrapple : MonoBehaviour
 		if (_Grappling == true)
 		{
 			Grapple();
-			if (ThirdPersonCamera.LookingAtDistance <= 15f)
+			if (Player.LookingAtDistance <= 2)
 			{
 				_Grappling = false;
 				PlayerMovement.CanMove = true;

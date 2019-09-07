@@ -13,14 +13,10 @@ public class Player : MonoBehaviour
     public event ActionDelegate RunAbility;
     public SlottedItem selectedItem;
     public Weapon equippedWeapon;
-    public float climbSpeed;
     private bool isGameOver;
 
-    bool canClimb = false;
-    public static bool isClimbing = false;
   
     CharacterController controller;
-    Collider climbSurface;
     float previousGravityY = 0f;
 
     public static float HP = 100f;
@@ -65,72 +61,8 @@ public class Player : MonoBehaviour
 		{
 			LookingAtDistance = hit.distance;
 			LookingAtGameObject = hit.collider.gameObject;
-			Debug.Log(hit.collider.gameObject.name);
+			//Debug.Log(hit.collider.gameObject.name);
 		}
-
-		if (isClimbing && Input.GetKeyDown(KeyCode.C))
-        {
-            isClimbing = false;
-        }
-        else if (canClimb && Input.GetKeyDown(KeyCode.C))
-        {
-            isClimbing = true;
-        }
-
-
-        if (isClimbing)
-        {
-            float delta = Time.deltaTime;
-
-            if (Input.GetKey(KeyCode.W))
-            {
-                controller.Move(climbSurface.transform.up * delta * climbSpeed);
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                controller.Move(climbSurface.transform.up * -delta * climbSpeed);
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                controller.Move(climbSurface.transform.forward * delta * climbSpeed);
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                controller.Move(climbSurface.transform.forward * -delta * climbSpeed);
-            }
-        }
-    }
-
-    private void OnGUI()
-    {
-        GUI.Label(new Rect(400, 5, 500, 50), "C: Climb when close to wall");
-
-        if (isClimbing)
-        {
-            GUI.Label(new Rect(400, 20, 100, 50), "CLIMBING");
-        }
-        /*if (canClimb)
-        {
-            GUI.Label(new Rect(400, 20, 100, 50), "CAN CLIMB");
-        }*/
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.CompareTag("Climb"))
-        {
-            canClimb = true;
-            climbSurface = other;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.CompareTag("Climb"))
-        {
-            isClimbing = false;
-            canClimb = false;
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -159,7 +91,7 @@ public class Player : MonoBehaviour
             GameOver?.Invoke();
             isGameOver = true;
         }
-        FindObjectOfType<Hp>().hp = Mathf.Max(0, HP);
+        HP = Mathf.Max(0, HP);
     }
 
     private void Ability()
