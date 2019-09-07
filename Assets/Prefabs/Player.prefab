@@ -163,6 +163,29 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0.0002288818, y: 1.69, z: 0.2274017}
+<<<<<<< HEAD
+=======
+--- !u!114 &1164995787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806390366692392982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a941e7138fa5561449ae0d63a50736e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gravity: {x: 0, y: -25, z: 0}
+  JumpHeight: 10
+  Speed: 15
+  Smooth: 21
+  AirMovementPenalty: 0.75
+  damageFromFallMinDistance: 10
+  fallDamageMult: 0.2
+  isApplyingFallDamage: 1
+>>>>>>> master
 --- !u!114 &251117981135048682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +251,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4806390366692392982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff0190872d260c4e8aae4eebf4bb654, type: 3}
+  m_Script: {fileID: 11500000, guid: 20728bad22ce7d8498f13f3ed0ec86a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_DJUMP: 1
@@ -264,6 +287,7 @@ MonoBehaviour:
   CanClimbDistance: 1.5
   ClimbDecayMultiplier: 1.2
 --- !u!114 &1338750286670374244
+<<<<<<< HEAD
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -375,6 +399,8 @@ AudioSource:
     m_PostInfinity: 2
     m_RotationOrder: 4
 --- !u!114 &3818454373613412686
+=======
+>>>>>>> master
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

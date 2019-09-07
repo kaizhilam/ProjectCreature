@@ -84,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _JumpAmount.y = 0;
         }
+        GetGravity = Gravity.y;
     }
 
     private void Movement(Vector2 _Input, Vector2 _InputRaw)
