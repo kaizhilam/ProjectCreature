@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ForestSpawner : Spawner
 {
@@ -48,8 +49,8 @@ public class ForestSpawner : Spawner
             ForestEnemy inst = ForestEnemyPool.Instance.Get();
             inst.transform.rotation = Quaternion.identity;
             inst.gameObject.SetActive(true);
-
-            inst.transform.position = TrySpawnLocation;
+            inst.GetComponent<NavMeshAgent>().Warp(TrySpawnLocation);
+            //inst.transform.position = TrySpawnLocation;
             enemies.Add(inst);
         }
 

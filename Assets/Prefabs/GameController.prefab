@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6910794b51974b42a16d2d6542f1826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 1040224276, guid: b412180ee3ce70c4fa07727466aaece5, type: 3}
+  anim: {fileID: 0}
 --- !u!114 &6424459038731511547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,8 +213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forestEnemyPrefabs:
-  - {fileID: 8286709714443899492, guid: 571bba6d8ee740f45b53adf197d6139c, type: 3}
-  - {fileID: 4422826808471991751, guid: dc669a68a63ed6a44b5b98fc95e2bdfd, type: 3}
+  - {fileID: 6799035195994185450, guid: e19ea579b0ad11044b08c9ab0536f5ee, type: 3}
+  - {fileID: 2694007086405659670, guid: bdb3e37ec66e53e4ba6a519e7b5c9d64, type: 3}
 --- !u!114 &8150154082547987092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +240,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOverTextPrefab: {fileID: 1733677497853896435, guid: ebbc23894764603499d46b9e3ae19979,
+    type: 3}
+  selectedObj: {fileID: 7653129108501115595, guid: 1270b8e25d86a8c4fb77d4072f6daf14,
     type: 3}
 --- !u!114 &3712370540495234393
 MonoBehaviour:
