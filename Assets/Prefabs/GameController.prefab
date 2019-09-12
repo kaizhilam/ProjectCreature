@@ -215,6 +215,7 @@ MonoBehaviour:
   forestEnemyPrefabs:
   - {fileID: 6799035195994185450, guid: e19ea579b0ad11044b08c9ab0536f5ee, type: 3}
   - {fileID: 2694007086405659670, guid: bdb3e37ec66e53e4ba6a519e7b5c9d64, type: 3}
+  - {fileID: 4644938029223614612, guid: 325f1a861f2dc3243a379bba619e5aab, type: 3}
 --- !u!114 &8150154082547987092
 MonoBehaviour:
   m_ObjectHideFlags: 0
