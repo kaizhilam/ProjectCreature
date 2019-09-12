@@ -96,6 +96,7 @@ public class AnimationManager : MonoBehaviour
 
     void UnsetRunAnim()
     {
+        _player.GetComponent<PlayerSoundManager>().StopSounds();
         anim.SetBool(run, false);
     }
 	
