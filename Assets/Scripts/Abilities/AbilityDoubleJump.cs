@@ -41,6 +41,8 @@ public class AbilityDoubleJump : MonoBehaviour
     {
         if (_Controller.isGrounded == false && currentjump < MAX_DJUMP)//only trigger when player not on ground
         {
+            GetComponent<PlayerSoundManager>().StopSounds();
+            GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.jump);
             _JumpAmount.y = JumpHeight;
             currentjump++;
             DJ = true;
