@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 7482157300429110033}
   - component: {fileID: 7651936796862578315}
   - component: {fileID: 6058781747782209734}
-  m_Layer: 0
+  - component: {fileID: 1562473348874244393}
+  - component: {fileID: 5344058864093846021}
+  m_Layer: 10
   m_Name: armbow
-  m_TagString: Untagged
+  m_TagString: T1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,3 +79,44 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1562473348874244393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044559790311242760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e1e93a787caff4cb821c9e285f1999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objID: 1
+  objName: armbow
+  description: '*shoots*'
+  Type: 2
+  Sprite: Sprites/Items/bracers
+  count: 0
+  capacity: 1
+  objectPrefab: {fileID: 6044559790311242760}
+  wieldPos: {x: 0, y: 0, z: 0}
+  wieldScale: {x: 0, y: 0, z: 0}
+  wieldRotation: {x: 0, y: 0, z: 0, w: 0}
+  wieldBone: 0
+  durability: 50
+  damage: 40
+  abilityMaxCDTime: 2
+  abilityCurrentCDTime: 0
+--- !u!135 &5344058864093846021
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044559790311242760}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.70193666
+  m_Center: {x: -0.09448526, y: -0.21699196, z: -0.20135842}
