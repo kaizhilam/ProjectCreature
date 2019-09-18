@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6044559790311242760
+--- !u!1 &51464935767041133
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7482157300429110033}
-  - component: {fileID: 7651936796862578315}
-  - component: {fileID: 6058781747782209734}
-  - component: {fileID: 1562473348874244393}
-  - component: {fileID: 5344058864093846021}
+  - component: {fileID: 386358921026941202}
+  m_Layer: 0
+  m_Name: armbowHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &386358921026941202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51464935767041133}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.0815574, y: 0.25310478, z: 9.785238}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3803425919483741637}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &71805592551277276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3803425919483741637}
+  - component: {fileID: 4119859268998414431}
+  - component: {fileID: 506813506156654098}
+  - component: {fileID: 5094284689717440509}
+  - component: {fileID: 1816187522245256401}
   m_Layer: 10
   m_Name: armbow
   m_TagString: T1
@@ -20,35 +51,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7482157300429110033
+--- !u!4 &3803425919483741637
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044559790311242760}
+  m_GameObject: {fileID: 71805592551277276}
   m_LocalRotation: {x: -0.66446304, y: 0.24184477, z: 0.24184479, w: 0.664463}
-  m_LocalPosition: {x: 0.42281374, y: 0.3060568, z: -0.1335567}
-  m_LocalScale: {x: 0.58975846, y: 0.58975846, z: 0.58975846}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.58975834, y: 0.58975834, z: 0.58975846}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 386358921026941202}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7651936796862578315
+--- !u!33 &4119859268998414431
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044559790311242760}
+  m_GameObject: {fileID: 71805592551277276}
   m_Mesh: {fileID: 4300000, guid: cd11b2b4ed9911c4ca7848d4a16858cc, type: 3}
---- !u!23 &6058781747782209734
+--- !u!23 &506813506156654098
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044559790311242760}
+  m_GameObject: {fileID: 71805592551277276}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -79,13 +110,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1562473348874244393
+--- !u!114 &5094284689717440509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044559790311242760}
+  m_GameObject: {fileID: 71805592551277276}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33e1e93a787caff4cb821c9e285f1999, type: 3}
@@ -98,7 +129,7 @@ MonoBehaviour:
   Sprite: Sprites/Items/bracers
   count: 0
   capacity: 1
-  objectPrefab: {fileID: 6044559790311242760}
+  objectPrefab: {fileID: 71805592551277276}
   wieldPos: {x: 0, y: 0, z: 0}
   wieldScale: {x: 0, y: 0, z: 0}
   wieldRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -107,16 +138,16 @@ MonoBehaviour:
   damage: 40
   abilityMaxCDTime: 2
   abilityCurrentCDTime: 0
---- !u!135 &5344058864093846021
+--- !u!135 &1816187522245256401
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044559790311242760}
+  m_GameObject: {fileID: 71805592551277276}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.70193666
+  m_Radius: 3.29
   m_Center: {x: -0.09448526, y: -0.21699196, z: -0.20135842}
