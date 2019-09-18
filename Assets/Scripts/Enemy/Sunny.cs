@@ -30,6 +30,22 @@ public class Sunny : ForestEnemy
         };
     }
 
+    public void Awake()
+    {
+        InitializeStateMachine();
+    }
+
+    private void InitializeStateMachine()
+    {
+        var states = new Dictionary<Type, EnemyAIState>()
+        {
+            {typeof(FlyingState), new FlyingState(this) },
+            {typeof(ChaseState), new ChaseState(this) }
+        };
+
+        GetComponent<StateMachine>().SetStates(states);
+    }
+
     public override void DropWeapon() //called, when enemy will be destroyed
     {
         Item item = DropTable.GetDrop(); //hopefully, it get the rolled item or do nothing(if item == null)

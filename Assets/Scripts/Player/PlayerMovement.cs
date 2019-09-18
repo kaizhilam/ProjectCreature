@@ -52,9 +52,7 @@ public class PlayerMovement : MonoBehaviour
             //player has hit the ground
             if (fallDistance > damageFromFallMinDistance)
             {
-                Player.HP -= fallDamageMult * (fallDistance * fallDistance);
-                GetComponent<Player>().CheckIfDead();
-                print("player takes damage " + fallDistance);
+                GetComponent<Player>().TakeDamage(fallDamageMult * (fallDistance * fallDistance));
             }
         }
 
@@ -126,7 +124,9 @@ public class PlayerMovement : MonoBehaviour
 	private void Jump()
     {
 		AnimatorClipInfo info = AnimationManager.instance.clipInfo;
-		if (_Controller.isGrounded == true && info.clip.name != "Dodge_Dive_anim")
+        GetComponent<PlayerSoundManager>().StopSounds();
+        GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.jump);
+        if (_Controller.isGrounded == true && info.clip.name != "Dodge_Dive_anim")
         {
             _JumpAmount.y = JumpHeight;
         }

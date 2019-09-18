@@ -94,7 +94,6 @@ public class Slot : MonoBehaviour, IDragHandler, IEndDragHandler
                 itemGameObject.transform.localPosition = Vector3.zero;
                 if (itemGameObject.GetComponent<Weapon>() != null)
                 {
-                    print(itemGameObject.GetComponent<Weapon>().abilityMaxCDTime);
                     cdScript.maxTime = itemGameObject.GetComponent<Weapon>().abilityMaxCDTime;
                     cdScript.currentTime = itemGameObject.GetComponent<Weapon>().abilityMaxCDTime;
                 }

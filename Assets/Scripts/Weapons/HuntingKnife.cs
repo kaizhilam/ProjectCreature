@@ -6,11 +6,13 @@ public class HuntingKnife : Weapon
 {
     private void Awake()
     {
-        wieldPos = new Vector3(-0.0159f, 0.0342f, 0.0067f);
-        wieldRotation = Quaternion.Euler(new Vector3(185.8f, 10.96f, 4.411f));
-        wieldScale = new Vector3(0.02f, 0.02f, 0.02f);
+        //right hand bone
+        wieldPos = new Vector3(-0.0069f, -0.0766f, 0.0167f);
+        wieldRotation = Quaternion.Euler(new Vector3(80.921f, 0.0f, 0.0f));
+        wieldScale = new Vector3(1.2f, 1.2f, 1.2f);
         wieldBone = 0;
     }
+
 
 
     public override void Attack()
