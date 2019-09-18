@@ -2285,7 +2285,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.074
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2384,10 +2384,10 @@ MonoBehaviour:
   _rb: {fileID: 5179351703792847354}
   FlashingTime: 0.6
   TimeInterval: 0.1
-  idle1: {fileID: 0}
-  idle2: {fileID: 0}
-  idle3: {fileID: 0}
-  idle4: {fileID: 0}
+  idle1: {fileID: 8300000, guid: d58e3ff4226e0dc469d895b3beb5dbb3, type: 3}
+  idle2: {fileID: 8300000, guid: c83ca1df751ee604cb2ca13d7fbeacb1, type: 3}
+  idle3: {fileID: 8300000, guid: c0e5da63a2f944c468b487339fbf44bf, type: 3}
+  idle4: {fileID: 8300000, guid: 89c5e8bf01658e34790afb62243b7333, type: 3}
   ItemsToDrop:
   - {fileID: 0}
   - {fileID: 0}
