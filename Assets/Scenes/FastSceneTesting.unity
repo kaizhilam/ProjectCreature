@@ -1127,6 +1127,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: dino
       objectReference: {fileID: 0}
+    - target: {fileID: 1665734630, guid: e19ea579b0ad11044b08c9ab0536f5ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1665734632, guid: e19ea579b0ad11044b08c9ab0536f5ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -1246,6 +1250,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4696933282389681463, guid: e1738c2b8ac1db4468087e8c2cb49a72,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1847627709}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1738c2b8ac1db4468087e8c2cb49a72, type: 3}
 --- !u!1001 &1657447554
@@ -1259,16 +1268,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: spiderHolder
-      objectReference: {fileID: 0}
-    - target: {fileID: 3851276489742447667, guid: 37a9073d81c5f8b44b8d5b547ea99619,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3851276489742447667, guid: 37a9073d81c5f8b44b8d5b547ea99619,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6422803852990098858, guid: 37a9073d81c5f8b44b8d5b547ea99619,
         type: 3}
@@ -1325,13 +1324,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 433921434283716628, guid: 37a9073d81c5f8b44b8d5b547ea99619,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37a9073d81c5f8b44b8d5b547ea99619, type: 3}
+--- !u!95 &1847627709 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1040224276, guid: b412180ee3ce70c4fa07727466aaece5,
+    type: 3}
+  m_PrefabInstance: {fileID: 678605353}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1885558021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1434,6 +1434,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wolf_Default
+      objectReference: {fileID: 0}
+    - target: {fileID: 568101671934729456, guid: 325f1a861f2dc3243a379bba619e5aab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1117352163804760373, guid: 325f1a861f2dc3243a379bba619e5aab,
         type: 3}
@@ -1667,6 +1672,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sunny2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2576688777636601292, guid: bdb3e37ec66e53e4ba6a519e7b5c9d64,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3849472207548712178, guid: bdb3e37ec66e53e4ba6a519e7b5c9d64,
         type: 3}

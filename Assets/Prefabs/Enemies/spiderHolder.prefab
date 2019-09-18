@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6774043900972104400
 Transform:
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 433921434283716628}
   m_LocalRotation: {x: 0.6441952, y: -0.26353648, z: 0.25780144, w: -0.67014885}
   m_LocalPosition: {x: -0.52, y: 0, z: -0.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 6422803852990098858}
   m_RootOrder: 0
@@ -92,12 +92,13 @@ GameObject:
   - component: {fileID: 701620158815581857}
   - component: {fileID: 6474102493232932931}
   - component: {fileID: 5896420472046622131}
+  - component: {fileID: 5260540306608722380}
   m_Layer: 0
   m_Name: spiderHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6422803852990098858
 Transform:
@@ -124,7 +125,7 @@ SphereCollider:
   m_GameObject: {fileID: 3851276489742447667}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 1.15
   m_Center: {x: 0, y: 0, z: 0}
@@ -277,7 +278,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3851276489742447667}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.51
+  m_Radius: 2.3
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -286,10 +287,23 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0.19
+  m_Height: 1.57
+  m_BaseOffset: 0.51
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &5260540306608722380
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3851276489742447667}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7383518531633784732
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7383518531633784732}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.07, y: -0.07, z: -0.40871608}
+  m_LocalPosition: {x: 0.09, y: 0.33, z: 1.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6422803852990098858}
