@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityDoubleJump : MonoBehaviour
+public class AbilityDoubleJump : Ability
 {
     //set variable
     public GameObject wingPrefab;

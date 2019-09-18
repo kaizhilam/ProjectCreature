@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityWallClimb : MonoBehaviour
+public class AbilityWallClimb : Ability
 {
 	/*TODO:
 	 * 1. Add release space to stop climbing

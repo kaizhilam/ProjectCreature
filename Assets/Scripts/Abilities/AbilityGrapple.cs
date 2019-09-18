@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 
-public class AbilityGrapple : MonoBehaviour
+public class AbilityGrapple : Ability
 {
 	/*TODO:
 	 * 1. Add disable gravity to grapple upwards DONE

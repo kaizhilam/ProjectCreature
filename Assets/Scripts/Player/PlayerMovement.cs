@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void RunGravity()
     {
-        if (EnableGravity == true)
+        if (EnableGravity == true && !_Controller.isGrounded)
         {
             _JumpAmount.y += Gravity.y * Time.deltaTime;
             _Controller.Move(_JumpAmount * Time.deltaTime);
