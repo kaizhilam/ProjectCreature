@@ -5,6 +5,7 @@ using UnityEngine;
 public class AbilityDoubleJump : MonoBehaviour
 {
     //set variable
+    public GameObject wingPrefab;
     public int MAX_DJUMP = 1;
     public int currentjump;
     private CharacterController _Controller;
@@ -41,9 +42,45 @@ public class AbilityDoubleJump : MonoBehaviour
     {
         if (_Controller.isGrounded == false && currentjump < MAX_DJUMP)//only trigger when player not on ground
         {
+            GetComponent<PlayerSoundManager>().StopSounds();
+            GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.jump);
             _JumpAmount.y = JumpHeight;
             currentjump++;
             DJ = true;
+            StartCoroutine(FlapWings());
         }
+    }
+
+    IEnumerator FlapWings()
+    {
+
+        GameObject wing1 = Instantiate(wingPrefab, Vector3.zero, Quaternion.identity);
+        GameObject wing2 = Instantiate(wingPrefab, Vector3.zero, Quaternion.identity);
+        GameObject spine = GetComponentInChildren<spineScript>().gameObject;
+        wing1.transform.parent = spine.transform;
+        wing1.transform.localPosition = new Vector3(0.0049f, 0.0f, 0.0f);
+        wing1.transform.localScale = Vector3.one * 0.05f;
+        wing1.transform.localRotation = Quaternion.Euler(new Vector3(-92.782f, 0.0f, 0.0f));
+        wing2.transform.parent = spine.transform;
+        wing2.transform.localPosition = new Vector3(0.007f, -0.012f, -0.037f);
+        wing2.transform.localScale = Vector3.one * 0.05f;
+        wing2.transform.localRotation = Quaternion.Euler(new Vector3(-69.59f, 179.2f, -2.95f));
+        //for (int i = 0; i < 60; i++)
+        //{
+
+        //    wing1.transform.RotateAround(transform.TransformPoint(spine.transform.position), Vector3.left, 5.0f);
+        //    yield return new WaitForEndOfFrame();
+        //}
+        //yield return new WaitForSeconds(0.1f);
+        //for (int i = 0; i < 60; i++)
+        //{
+        //    wing1.transform.RotateAround(transform.TransformPoint(spine.transform.position), Vector3.left, -5.0f);
+        //    yield return new WaitForEndOfFrame();
+        //}
+        yield return new WaitForSeconds(2.0f);
+        Destroy(wing1);
+        Destroy(wing2);
+        
+
     }
 }

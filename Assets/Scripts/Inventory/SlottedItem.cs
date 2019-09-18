@@ -19,11 +19,11 @@ public class SlottedItem : MonoBehaviour
     public int capacity;
     public GameObject objectPrefab;
     [HideInInspector]
-    public Vector3 wieldPos = Vector3.zero;
+    public Vector3 wieldPos;
     [HideInInspector]
-    public Vector3 wieldScale = Vector3.one;
+    public Vector3 wieldScale;
     [HideInInspector]
-    public Quaternion wieldRotation = Quaternion.identity;
+    public Quaternion wieldRotation;
     [HideInInspector]
     public int wieldBone = 0;
     public Item ItemDrop { get; set; }
@@ -34,6 +34,7 @@ public class SlottedItem : MonoBehaviour
 
     private void Start()
     {
+        print(objName);
         player = GameObject.Find("Player").gameObject; //Caching
         count = 1;
         daggerHitbox = GameObject.Find("Player").GetComponent<BoxCollider>();
@@ -57,8 +58,9 @@ public class SlottedItem : MonoBehaviour
     {
        
         distance = Vector3.Distance(transform.position, player.transform.position);
-        if (distance < 6)
+        if (distance < 14)
         {
+
             //GetComponent<MeshRenderer>().material.color = Color.red;
             isCloseEnough = true;
         }

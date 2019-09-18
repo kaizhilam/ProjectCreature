@@ -269,6 +269,7 @@ public class InventoryManager : MonoBehaviour
     //returns index item was added to, returns false if no room for it
     public int PutIntoUI(SlottedItem item)
     {
+        print("adding item to hotbar");
         int indexHotbar = GetFirstHotbarIndexOfItem(item);
         int indexInv = GetIndex(item);
         int firstEmpty = FirstEmptySlotInvIndex();

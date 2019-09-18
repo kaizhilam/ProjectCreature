@@ -49,7 +49,14 @@ public class WanderState : EnemyAIState
         }
         //gameObject.transform.rotation = _desiredRotation;
         //_rb.transform.Translate(Vector3.forward* movementSpeed * Time.deltaTime);
-        gameObject.GetComponent<NavMeshAgent>().SetDestination(_destination);
+        if (gameObject.GetComponent<NavMeshAgent>().isOnNavMesh)
+        {
+            gameObject.GetComponent<NavMeshAgent>().SetDestination(_destination);
+        }
+        else
+        {
+            _enemy.ResolveDeletion();
+        }
         return typeof(WanderState);
     }
 

@@ -70,17 +70,26 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Enemy script = collision.gameObject.GetComponent<Enemy>();
-            HP -= script.Damage;
-            CheckIfDead();
+            TakeDamage(script.Damage);
             //updating health bar in UI. make sure health can never be negative
-            
+
             //print(FindObjectOfType<Hp>().gameObject.name);
         }
     }
 
     private void Attack()
     {
+        GetComponent<PlayerSoundManager>().StopSounds();
+        GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.attack);
         Atk();
+    }
+
+    public void TakeDamage(float healthToLose)
+    {
+        HP -= healthToLose;
+        GetComponent<PlayerSoundManager>().StopSounds();
+        GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.hurt);
+        CheckIfDead();
     }
 
     public void CheckIfDead()

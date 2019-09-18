@@ -14,7 +14,15 @@ public class ChaseState : EnemyAIState
 
         //transform.LookAt(player.transform.position + (Vector3.up * 4)); //look at player
         //_rb.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime); //move towards the player
-        gameObject.GetComponent<NavMeshAgent>().SetDestination(player.transform.position-gameObject.transform.forward*4);
+        
+        if(gameObject.GetComponent<NavMeshAgent>().isOnNavMesh)
+        {
+            gameObject.GetComponent<NavMeshAgent>().SetDestination(player.transform.position - gameObject.transform.forward * 4);
+        }
+        else
+        {
+            _enemy.ResolveDeletion();
+        }
         //if (AIAlgorithms.NeedsCorrection(gameObject))
         //{
         //    return typeof(AvoidanceState);
@@ -23,7 +31,10 @@ public class ChaseState : EnemyAIState
         {
             return typeof(ChaseState);
         }
-        return typeof(WanderState);
+        if (_enemy.GetComponent<Dino>() != null) { 
+            return typeof(WanderState);
+        }
+        return typeof(FlyingState);
     }
 
     public ChaseState(Enemy enemy) : base(enemy.gameObject)

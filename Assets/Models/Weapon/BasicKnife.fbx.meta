@@ -1,28 +1,15 @@
 fileFormatVersion: 2
-guid: 1d1979d37be1f10499d962438a1bb9c0
+guid: 8eb8817bfec06f1418837ad8baf4a9a6
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Blade
-    100002: Camera
-    100004: //RootNode
-    100006: Lamp
-    400000: Blade
-    400002: Camera
-    400004: //RootNode
-    400006: Lamp
-    2000000: Camera
-    2100000: No Name
-    2300000: Blade
-    3300000: Blade
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Material.001
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Blade
-    10800000: Lamp
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: c9df4f5495f530446aacdbae49b9d012, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -62,7 +49,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0

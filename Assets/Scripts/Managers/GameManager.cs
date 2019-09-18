@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     private GameObject _player;
     public GameObject GameOverTextPrefab;
     public static GameManager instance = null;
+    public GameObject selectedObj;
     private void Awake()
     {
 
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
 
         _player = GameObject.Find("Player");
         _player.GetComponent<Player>().GameOver += GameOver;
+
     }
 
     private void GameOver()

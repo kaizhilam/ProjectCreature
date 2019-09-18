@@ -32,6 +32,9 @@ public class UnderwaterManager : MonoBehaviour
         {
             //hopping out of water
             SetAbovewater();
+            //play gasp sound
+            GameObject.Find("Player").GetComponent<PlayerSoundManager>().StopSounds();
+            GameObject.Find("Player").GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.exitwater);
             OutOfWater?.Invoke();
         }
         else if(!wasUnderwater && isUnderwater)
