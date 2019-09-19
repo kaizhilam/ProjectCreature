@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 8073378521135467517}
   - component: {fileID: 1165505794}
   m_Layer: 10
-  m_Name: armbow
+  m_Name: armbow(old)
   m_TagString: T1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objID: 1
-  objName: Crossbow
+  objName: armbow'
   description: Shoots stuff I spose
   Type: 2
   Sprite: Sprites/Items/bracers

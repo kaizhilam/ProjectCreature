@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityDash : MonoBehaviour
+public class AbilityDash : Ability
 {
     public Vector3 moveDirection;
     public const float maxDashTime = 1.0f;

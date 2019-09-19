@@ -1,0 +1,233 @@
+fileFormatVersion: 2
+guid: f6f0036928ef0564684662022e36e6ab
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: ChestEndEffector
+    100002: ChestOriginEffector
+    100004: Head
+    100006: Head 1
+    100008: HeadEffector
+    100010: Hips
+    100012: Hips 1
+    100014: HipsEffector
+    100016: HipsTranslation
+    100018: LeftAnkleEffector
+    100020: LeftArm
+    100022: LeftArm 1
+    100024: LeftElbowEffector
+    100026: LeftFoot
+    100028: LeftFoot 1
+    100030: LeftFootEffector
+    100032: LeftForeArm
+    100034: LeftForeArm 1
+    100036: LeftHand
+    100038: LeftHand 1
+    100040: LeftHipEffector
+    100042: LeftKneeEffector
+    100044: LeftLeg
+    100046: LeftLeg 1
+    100048: LeftShoulder
+    100050: LeftShoulder 1
+    100052: LeftShoulderEffector
+    100054: LeftToeBase
+    100056: LeftToeBase 1
+    100058: LeftUpLeg
+    100060: LeftUpLeg 1
+    100062: LeftWristEffector
+    100064: Model
+    100066: Neck
+    100068: Neck 1
+    100070: Reference
+    100072: //RootNode
+    100074: RightAnkleEffector
+    100076: RightArm
+    100078: RightArm 1
+    100080: RightElbowEffector
+    100082: RightFoot
+    100084: RightFoot 1
+    100086: RightFootEffector
+    100088: RightForeArm
+    100090: RightForeArm 1
+    100092: RightHand
+    100094: RightHand 1
+    100096: RightHipEffector
+    100098: RightKneeEffector
+    100100: RightLeg
+    100102: RightLeg 1
+    100104: RightShoulder
+    100106: RightShoulder 1
+    100108: RightShoulderEffector
+    100110: RightToeBase
+    100112: RightToeBase 1
+    100114: RightUpLeg
+    100116: RightUpLeg 1
+    100118: RightWristEffector
+    100120: Spine
+    100122: Spine 1
+    100124: Spine1
+    100126: Spine1 1
+    100128: Spine2
+    100130: Spine2 1
+    100132: Spooky_scary_skeleton
+    400000: ChestEndEffector
+    400002: ChestOriginEffector
+    400004: Head
+    400006: Head 1
+    400008: HeadEffector
+    400010: Hips
+    400012: Hips 1
+    400014: HipsEffector
+    400016: HipsTranslation
+    400018: LeftAnkleEffector
+    400020: LeftArm
+    400022: LeftArm 1
+    400024: LeftElbowEffector
+    400026: LeftFoot
+    400028: LeftFoot 1
+    400030: LeftFootEffector
+    400032: LeftForeArm
+    400034: LeftForeArm 1
+    400036: LeftHand
+    400038: LeftHand 1
+    400040: LeftHipEffector
+    400042: LeftKneeEffector
+    400044: LeftLeg
+    400046: LeftLeg 1
+    400048: LeftShoulder
+    400050: LeftShoulder 1
+    400052: LeftShoulderEffector
+    400054: LeftToeBase
+    400056: LeftToeBase 1
+    400058: LeftUpLeg
+    400060: LeftUpLeg 1
+    400062: LeftWristEffector
+    400064: Model
+    400066: Neck
+    400068: Neck 1
+    400070: Reference
+    400072: //RootNode
+    400074: RightAnkleEffector
+    400076: RightArm
+    400078: RightArm 1
+    400080: RightElbowEffector
+    400082: RightFoot
+    400084: RightFoot 1
+    400086: RightFootEffector
+    400088: RightForeArm
+    400090: RightForeArm 1
+    400092: RightHand
+    400094: RightHand 1
+    400096: RightHipEffector
+    400098: RightKneeEffector
+    400100: RightLeg
+    400102: RightLeg 1
+    400104: RightShoulder
+    400106: RightShoulder 1
+    400108: RightShoulderEffector
+    400110: RightToeBase
+    400112: RightToeBase 1
+    400114: RightUpLeg
+    400116: RightUpLeg 1
+    400118: RightWristEffector
+    400120: Spine
+    400122: Spine 1
+    400124: Spine1
+    400126: Spine1 1
+    400128: Spine2
+    400130: Spine2 1
+    400132: Spooky_scary_skeleton
+    2100000: blinn1
+    2100002: lambert2
+    2100004: armor_eve_blinn1
+    2100006: Character_new_blinn1
+    2100008: lambert1
+    4300000: Model
+    9500000: //RootNode
+    13700000: Model
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
