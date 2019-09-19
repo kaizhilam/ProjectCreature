@@ -13,6 +13,10 @@ TagManager:
   - Enemy
   - Climb
   - Projectile
+  - Dash
+  - WallClimb
+  - Grapple
+  - DoubleJump
   layers:
   - Default
   - TransparentFX
