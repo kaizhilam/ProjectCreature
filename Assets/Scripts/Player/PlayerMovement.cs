@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
 	private GameObject _Camera;
 	private CharacterController _Controller;
     private Vector3 _JumpAmount = new Vector3(0, 0, 0);
+	private bool _Jumping = false;
+	private bool _Falling = false;
 
 	public static bool CanMove = true;
 	public static bool EnableGravity = true;
@@ -74,9 +76,25 @@ public class PlayerMovement : MonoBehaviour
     {
         if (EnableGravity == true)
         {
-            _JumpAmount.y += Gravity.y * Time.deltaTime;
+			if (_Jumping == false)
+			{
+				if (_Controller.isGrounded == false && _Falling == false)
+				{
+					_JumpAmount.y = 0;
+					_Falling = true;
+				}
+			}
+			if (_Falling == true && _Controller.isGrounded)
+			{
+				_Falling = false;
+			}
+			_JumpAmount.y += Gravity.y * Time.deltaTime;
             _Controller.Move(_JumpAmount * Time.deltaTime);
-        }
+			if (_Jumping == true && _Controller.isGrounded == true)
+			{
+				_Jumping = false;
+			}
+		}
         if (EnableGravity == false)
         {
             _JumpAmount.y = 0;
@@ -128,6 +146,7 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.jump);
         if (_Controller.isGrounded == true && info.clip.name != "Dodge_Dive_anim")
         {
+			_Jumping = true;
             _JumpAmount.y = JumpHeight;
         }
     }
