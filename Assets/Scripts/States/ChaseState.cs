@@ -31,10 +31,10 @@ public class ChaseState : EnemyAIState
         {
             return typeof(ChaseState);
         }
-        if (_enemy.GetComponent<Dino>() != null) { 
-            return typeof(WanderState);
+        if (_enemy.GetComponent<Sunny>() != null ) { 
+            return typeof(FlyingState);
         }
-        return typeof(FlyingState);
+        return typeof(WanderState);
     }
 
     public ChaseState(Enemy enemy) : base(enemy.gameObject)

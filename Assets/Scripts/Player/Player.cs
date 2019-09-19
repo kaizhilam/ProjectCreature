@@ -137,4 +137,31 @@ public class Player : MonoBehaviour
         }
         
     }
+
+    public void changeAbilityScript(ability enumValue)
+    {
+        Ability[] abilityScripts = GetComponents<Ability>();
+        for(int i = 0; i<abilityScripts.Length; i++)
+        {
+            Destroy(abilityScripts[i]);
+        }
+
+        switch (enumValue)
+        {
+            case ability.dash:
+                this.gameObject.AddComponent<AbilityDash>();
+                break;
+            case ability.doubleJump:
+                this.gameObject.AddComponent<AbilityDoubleJump>();
+                break;
+            case ability.grapple:
+                this.gameObject.AddComponent<AbilityGrapple>();
+                break;
+            case ability.wallClimb:
+                this.gameObject.AddComponent<AbilityWallClimb>();
+                break;
+        }
+
+
+    }
 }

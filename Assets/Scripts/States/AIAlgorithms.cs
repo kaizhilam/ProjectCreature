@@ -25,6 +25,8 @@ public static class AIAlgorithms
         return false;
     }
 
+
+    //not used
     public static bool NeedsCorrection(GameObject gameObject)
     {
         GameObject rayCastPoint = gameObject.transform.Find("RayCastPoint").gameObject;

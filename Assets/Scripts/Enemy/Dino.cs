@@ -94,10 +94,6 @@ public class Dino : ForestEnemy
 
     }
 
-
-
-
-
     IEnumerator IdleSound()
     {
         while (true)
