@@ -2203,7 +2203,7 @@ GameObject:
   - component: {fileID: 8710479796807895293}
   m_Layer: 0
   m_Name: dino
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2389,9 +2389,7 @@ MonoBehaviour:
   idle3: {fileID: 8300000, guid: c0e5da63a2f944c468b487339fbf44bf, type: 3}
   idle4: {fileID: 8300000, guid: 89c5e8bf01658e34790afb62243b7333, type: 3}
   ItemsToDrop:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8435123262609823334, guid: ade4c111f9d10cc4fbca7cf596440ca1, type: 3}
 --- !u!114 &9194672491991143695
 MonoBehaviour:
   m_ObjectHideFlags: 0

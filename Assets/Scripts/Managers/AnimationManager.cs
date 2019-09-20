@@ -96,7 +96,7 @@ public class AnimationManager : MonoBehaviour
 
     void UnsetRunAnim()
     {
-        _player.GetComponent<PlayerSoundManager>().StopSounds();
+        _player.GetComponent<PlayerSoundManager>().StopSoundIf(PlayerSoundManager.SoundTypes.run);
         anim.SetBool(run, false);
     }
 	

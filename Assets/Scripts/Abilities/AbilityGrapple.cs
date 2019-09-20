@@ -46,8 +46,9 @@ public class AbilityGrapple : Ability
 
 	private void EnableGrapple()
 	{
-		if (ThirdPersonCamera.LookingAtDistance <= MaxGrappleDistance && ThirdPersonCamera.isLookingAtSky == false)
+		if (ThirdPersonCamera.LookingAtDistance <= MaxGrappleDistance && !ThirdPersonCamera.isLookingAtSky && !_Grappling)
 		{
+            //play grapple sound here brad
 			_Grappling = true;
 		}
 	}

@@ -12,6 +12,8 @@ public class PlayerSoundManager : MonoBehaviour
     public List<AudioClip> doubleJumpSounds;
     public List<AudioClip> attackSounds;
     public List<AudioClip> exitWaterSounds;
+    public List<AudioClip> dashSounds;
+    public List<AudioClip> climbSounds;
 
     private static Dictionary<SoundTypes, List<AudioClip>> soundDictionary;
 
@@ -25,6 +27,8 @@ public class PlayerSoundManager : MonoBehaviour
         doublejump,
         attack,
         exitwater,
+        dash,
+        climb,
         none
     }
 
@@ -38,6 +42,8 @@ public class PlayerSoundManager : MonoBehaviour
         soundDictionary.Add(SoundTypes.doublejump, doubleJumpSounds);
         soundDictionary.Add(SoundTypes.attack, attackSounds);
         soundDictionary.Add(SoundTypes.exitwater, exitWaterSounds);
+        soundDictionary.Add(SoundTypes.dash, dashSounds);
+        soundDictionary.Add(SoundTypes.climb, climbSounds);
 
         //cache audiosrc
         src = GetComponent<AudioSource>();
@@ -68,6 +74,12 @@ public class PlayerSoundManager : MonoBehaviour
             case SoundTypes.exitwater:
                 PlayRandomSoundOfKey(SoundTypes.exitwater);
                 break;
+            case SoundTypes.dash:
+                PlayRandomSoundOfKey(SoundTypes.dash);
+                break;
+            case SoundTypes.climb:
+                PlayRandomSoundOfKey(SoundTypes.climb);
+                break;
             case SoundTypes.none:
                 src.Stop();
                 break;
@@ -83,6 +95,8 @@ public class PlayerSoundManager : MonoBehaviour
             src.pitch = randomPitch;
             src.clip = soundDictionary[key][randomIndex];
             src.Play();
+            print("sound playing is " + soundDictionary[key][randomIndex].name + " " + src.isPlaying);
+
         }
 
     }
@@ -91,4 +105,24 @@ public class PlayerSoundManager : MonoBehaviour
     {
         src.Stop();
     }
+
+    private void Update()
+    {
+        if(src.clip)
+        print(src.clip.name + " " + src.isPlaying);
+    }
+
+    //stop sound if its a certain type
+    public void StopSoundIf(SoundTypes type)
+    {
+        for (int i = 0; i < soundDictionary[type].Count; i++)
+        {
+            if(soundDictionary[type][i] == src.clip)
+            {
+                StopSounds();
+                break;
+            }
+        }
+    }
+
 }

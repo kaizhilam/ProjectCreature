@@ -29,13 +29,15 @@ public class AbilityWallClimb : Ability
 		InputManager.instance.Space += WallClimb; //CHANGE THIS TO CHANGE BINDING
 		_Controller = GetComponent<CharacterController>();
 		_ClimbSpeed = ClimbSpeed;
-	}
+    }
 
 	private void Update()
 	{
-		//Debug.Log("CanClimb:" + _CanClimb + ", Climbing:" + _Climbing + ", ClimbSpeed:"+_ClimbSpeed); //UNCOMMENT FOR DEBUG
-		if (Player.LookingAtDistance <= CanClimbDistance && _Controller.isGrounded && Player.LookingAtGameObject.tag == "Climb")
+        //Debug.Log("CanClimb:" + _CanClimb + ", Climbing:" + _Climbing + ", ClimbSpeed:"+_ClimbSpeed); //UNCOMMENT FOR DEBUG
+		if (Player.LookingAtDistance <= CanClimbDistance && _Controller.isGrounded && Player.LookingAtGameObject.tag == "Climb"
+        )
 		{
+            
 			_CanClimb = true;
 		}
 		else
@@ -50,7 +52,8 @@ public class AbilityWallClimb : Ability
 			_ClimbSpeed -= ClimbDecayMultiplier / ClimbSpeed;
 			if (_ClimbSpeed <= 0 || Player.LookingAtGameObject.tag != "Climb")
 			{
-				_Climbing = false;
+                GetComponent<PlayerSoundManager>().StopSoundIf(PlayerSoundManager.SoundTypes.climb);
+                _Climbing = false;
 				_CanClimb = false;
 				PlayerMovement.CanMove = true;
 				PlayerMovement.EnableGravity = true;
@@ -63,7 +66,11 @@ public class AbilityWallClimb : Ability
 	{
 		if (_CanClimb == true)
 		{
-			_Climbing = true;
+            GetComponent<PlayerSoundManager>().StopSounds();
+            GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.climb);
+
+            _Climbing = true;
 		}
+
 	}
 }
