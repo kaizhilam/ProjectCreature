@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
     private SlottedItem selectedItem;
     private Weapon equippedWeapon;
     private bool isGameOver;
-
+    public bool godMode;
+    public bool canDie;
   
     CharacterController controller;
     float previousGravityY = 0f;
@@ -85,15 +86,19 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float healthToLose)
     {
-        HP -= healthToLose;
-        GetComponent<PlayerSoundManager>().StopSounds();
-        GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.hurt);
-        CheckIfDead();
+        if (!godMode)
+        {
+            HP -= healthToLose;
+            GetComponent<PlayerSoundManager>().StopSounds();
+            GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.hurt);
+            CheckIfDead();
+        }
+        
     }
 
     public void CheckIfDead()
     {
-        if (HP <= 0 && !isGameOver)
+        if (HP <= 0 && !isGameOver && canDie)
         {
             print("GAME OVER");
             GameOver?.Invoke();

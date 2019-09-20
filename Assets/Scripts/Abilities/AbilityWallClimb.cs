@@ -14,13 +14,13 @@ public class AbilityWallClimb : Ability
 	 * Climb speed will decay overtime
 	 * When climb speed hits 0, player will fall
 	 * */
-	public float ClimbSpeed;
-	public float CanClimbDistance;
-	public float ClimbDecayMultiplier;
+	public float ClimbSpeed = 5.0f;
+	public float CanClimbDistance = 3.0f;
+	public float ClimbDecayMultiplier = 0.05f;
 
 	private bool _CanClimb = false;
 	private bool _Climbing = false;
-	private float _ClimbSpeed;
+	private float _ClimbSpeed = 5.0f;
 	private CharacterController _Controller;
 	private LayerMask _LayerMask = 1 << 11;
 
