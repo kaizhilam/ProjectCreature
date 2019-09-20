@@ -5,6 +5,7 @@ using UnityEngine;
 public class AbilityDoubleJump : Ability
 {
     //set variable
+    [HideInInspector]
     public GameObject wingPrefab;
     public int MAX_DJUMP = 1;
     public int currentjump;

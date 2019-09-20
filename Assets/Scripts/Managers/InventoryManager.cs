@@ -64,6 +64,7 @@ public class InventoryManager : MonoBehaviour
         //if player is on slot 1 and presses 1, it will update the weapon uneccessarily but still better than making new method
         // if (i == SelectedHotbarSlot)
         //return;
+        if(GetHotbarSlot(SelectedHotbarSlot)!= null)
         GetHotbarSlot(SelectedHotbarSlot).UnhighlightSlot();
         SelectedHotbarSlot = i;
         Destroy(_player.GetComponentInChildren<SlottedItem>()?.gameObject);
@@ -212,7 +213,6 @@ public class InventoryManager : MonoBehaviour
 
     private CalCDTime GetSlotCDScript(int index)
     {
-        print(GetHotbarSlot(index).name);
         return GetHotbarSlot(index).GetComponentInChildren<CalCDTime>();
     }
 
@@ -560,7 +560,8 @@ public class InventoryManager : MonoBehaviour
 
     public Slot GetHotbarSlot(int index)
     {
-        return HotbarSlots[index];
+        
+        return HotbarSlots==null ? null : HotbarSlots[index];
     }
 
     public void CooldownToCurrent()

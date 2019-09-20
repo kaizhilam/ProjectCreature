@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
     public event ActionDelegate GameOver;
     public event ActionDelegate Atk;
     public event ActionDelegate RunAbility;
-    public SlottedItem selectedItem;
-    public Weapon equippedWeapon;
+    private SlottedItem selectedItem;
+    private Weapon equippedWeapon;
     private bool isGameOver;
 
   
@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
         equippedWeapon = this?.GetComponentInChildren<Weapon>();
         InputManager.instance.LeftClick += Attack;
         InputManager.instance.RightClick += Ability;
-        InventoryManager.Instance.SwitchHotbarIndex(0);
         //layer 2 means its ignored by raycast, we don't want camera worrying about an equipped weapon
         if (GetComponentInChildren<Weapon>() != null)
         {
@@ -40,7 +39,7 @@ public class Player : MonoBehaviour
             //if player not holding weapon, tell em to stop trying to use lmb/rmb?
             Atk = () => print("no weapon equipped, can't perform attack");
         }
-
+        print("setting ability function");
         if (GetComponentInChildren<Weapon>() != null)
         {
             RunAbility = this.GetComponentInChildren<Weapon>().RunAbility;
@@ -108,6 +107,7 @@ public class Player : MonoBehaviour
         //only run the ability if it isn't on cooldown
         if (!InventoryManager.Instance.IsOnCooldown())
         {
+            
             RunAbility();
             InventoryManager.Instance.CooldownToCurrent();
         }
@@ -136,32 +136,5 @@ public class Player : MonoBehaviour
             RunAbility = () => print("no weapon equipped, can't perform ability");
         }
         
-    }
-
-    public void changeAbilityScript(ability enumValue)
-    {
-        Ability[] abilityScripts = GetComponents<Ability>();
-        for(int i = 0; i<abilityScripts.Length; i++)
-        {
-            Destroy(abilityScripts[i]);
-        }
-
-        switch (enumValue)
-        {
-            case ability.dash:
-                this.gameObject.AddComponent<AbilityDash>();
-                break;
-            case ability.doubleJump:
-                this.gameObject.AddComponent<AbilityDoubleJump>();
-                break;
-            case ability.grapple:
-                this.gameObject.AddComponent<AbilityGrapple>();
-                break;
-            case ability.wallClimb:
-                this.gameObject.AddComponent<AbilityWallClimb>();
-                break;
-        }
-
-
     }
 }

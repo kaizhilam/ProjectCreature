@@ -9,8 +9,8 @@ public class AbilityGrapple : Ability
 	 * 1. Add disable gravity to grapple upwards DONE
 	 * 2. During grapple, lock direction DONE
 	 * */
-	public float Speed;
-	public float MaxGrappleDistance;
+	public float Speed = 10;
+	public float MaxGrappleDistance = 100;
 
 	private GameObject _Camera;
 	private GameObject _Player;

@@ -10,7 +10,9 @@ public class AbilityDash : Ability
     public float dashStoppingSpeed = 0.1f;
     float currentDashTime = maxDashTime;
     float dashSpeed = 8;
+
     CharacterController controller;
+
 
     void Start()
     {

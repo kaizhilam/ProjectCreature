@@ -10,6 +10,8 @@ public class AbilityController : MonoBehaviour
     public Image DJumpImage;
     public Image ClimbImage;
     public Image GrappleImage;
+    public GameObject wingPrefab;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +41,8 @@ public class AbilityController : MonoBehaviour
         {
             abilityCrystal.gameObject.SetActive(false);
             DJumpImage.fillAmount = 1;
-            _player.AddComponent<AbilityDoubleJump>();
+            AbilityDoubleJump newComp = _player.AddComponent<AbilityDoubleJump>();
+            newComp.wingPrefab = wingPrefab;
         }
         else if (abilityCrystal.gameObject.CompareTag("WallClimb"))
         {
