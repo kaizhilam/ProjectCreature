@@ -106,11 +106,6 @@ public class PlayerSoundManager : MonoBehaviour
         src.Stop();
     }
 
-    private void Update()
-    {
-        if(src.clip)
-        print(src.clip.name + " " + src.isPlaying);
-    }
 
     //stop sound if its a certain type
     public void StopSoundIf(SoundTypes type)
