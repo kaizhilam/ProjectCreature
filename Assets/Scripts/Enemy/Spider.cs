@@ -5,7 +5,8 @@ using System;
 
 public class Spider : ForestEnemy
 {
-
+    public AudioClip spiderWalkSound;
+    public AudioClip spiderAtkSound;
     private AudioSource src;
     public GameObject[] ItemsToDrop;
     public DropTable DropTable { get; set; }
@@ -23,6 +24,11 @@ public class Spider : ForestEnemy
     public void Awake()
     {
         InitializeStateMachine();
+    }
+
+    public override void PlayAtkSound()
+    {
+        SoundManager.instance.PlaySfxAtSource(spiderAtkSound, src);
     }
 
     private void InitializeStateMachine()
@@ -47,8 +53,22 @@ public class Spider : ForestEnemy
 
         src = GetComponent<AudioSource>();
 
+    
+        StartCoroutine(IdleSound());
+
     }
-    private void OnCollisionEnter(Collision collision)
+
+    IEnumerator IdleSound()
+    {
+    while (true)
+    {
+        //print("idle sounds");
+        SoundManager.instance.PlaySfxAtSource(spiderWalkSound, src);
+        yield return new WaitForSeconds(UnityEngine.Random.Range(5, 8));
+    }
+
+}
+private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Projectile"))
         {

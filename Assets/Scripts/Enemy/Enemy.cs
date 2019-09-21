@@ -59,7 +59,6 @@ public abstract class Enemy : MonoBehaviour
     }
 
 
-
     public virtual void TakeDamage(float damage)
     {
         print(damage + " " + health);
@@ -70,8 +69,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
 
-
-
+    public virtual void PlayAtkSound() {  }
 
     public virtual void CheckIfDead()
     {
