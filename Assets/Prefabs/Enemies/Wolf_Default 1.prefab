@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1117352163804760373}
-  - component: {fileID: 4644938029223614612}
   - component: {fileID: 6574891693985608460}
+  - component: {fileID: 745665495778668593}
   - component: {fileID: 4998274749577051180}
   - component: {fileID: 6833702043537605055}
   - component: {fileID: 3368981984666919591}
@@ -38,26 +38,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4644938029223614612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568101671934729456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d198b7d3d5f75ea4ca033f8560c1c914, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rb: {fileID: 0}
-  FlashingTime: 0.6
-  TimeInterval: 0.1
-  idle1: {fileID: 0}
-  idle2: {fileID: 0}
-  idle3: {fileID: 0}
-  idle4: {fileID: 0}
-  ItemsToDrop: []
 --- !u!195 &6574891693985608460
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -80,6 +60,23 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &745665495778668593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568101671934729456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2378f7877a313cc4aa8ef47cfb58c7c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rb: {fileID: 4998274749577051180}
+  FlashingTime: 0.6
+  TimeInterval: 0.1
+  ItemsToDrop:
+  - {fileID: 7486068914291311836, guid: de6afd3c8a29a5344a4c82e6ddf574d8, type: 3}
 --- !u!54 &4998274749577051180
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -21,7 +21,6 @@ public class ItemDatabase : MonoBehaviour
     private void BuildDatabase()
     {
         Items = JsonConvert.DeserializeObject<List<Item>>(Resources.Load<TextAsset>("JSON/Items").ToString());
-        Debug.Log("start building "+Items[0].ObjectSlug);
     }
 
     public Item GetItem(string itemSlug)

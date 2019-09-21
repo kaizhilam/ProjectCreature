@@ -11,7 +11,7 @@ public class Dino : ForestEnemy
     public AudioClip idle4;
     protected List<AudioClip> sounds;
     private AudioSource src;
-    public GameObject[] ItemsToDrop;
+    public List<GameObject> ItemsToDrop;
     public DropTable DropTable { get; set; }
     //public SlottedItem slottedItem;
 
@@ -75,11 +75,11 @@ public class Dino : ForestEnemy
     private void Start()
     {
         DropTable = new DropTable();
+        print(ItemsToDrop[0].name);
         DropTable.loot = new List<LootDrop> //set loots in enemy
         {
-            new LootDrop("BasicKnife",25), //25% chance to get a knife
-            new LootDrop("armbow",25), //50% chance to get an arrow
-            new LootDrop("Tent",25) //75% chance to get its head
+            
+            new LootDrop(ItemsToDrop[0].name,100)
         };
 
         src = GetComponent<AudioSource>();
@@ -116,7 +116,7 @@ public class Dino : ForestEnemy
     public override void DropWeapon() //called, when enemy will be destroyed
     {
         Item item = DropTable.GetDrop(); //hopefully, it get the rolled item or do nothing(if item == null)
-
+        
         if (item != null)
         {
             //Debug.Log("get item " + item.ObjectSlug);
