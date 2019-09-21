@@ -33,7 +33,7 @@ public class AbilityWallClimb : Ability
 
 	private void Update()
 	{
-		//Debug.Log("CanClimb:" + _CanClimb + ", Climbing:" + _Climbing + ", ClimbSpeed:"+_ClimbSpeed); //UNCOMMENT FOR DEBUG
+		Debug.Log("CanClimb:" + _CanClimb + ", Climbing:" + _Climbing + ", ClimbSpeed:"+_ClimbSpeed+", LookingAtDistance: "+Player.LookingAtDistance); //UNCOMMENT FOR DEBUG
 		if (Player.LookingAtDistance <= CanClimbDistance && _Controller.isGrounded && Player.LookingAtGameObject.tag == "Climb")
 		{
 			_CanClimb = true;
@@ -48,7 +48,7 @@ public class AbilityWallClimb : Ability
 			PlayerMovement.EnableGravity = false;
 			_Controller.Move(Vector3.up * _ClimbSpeed * Time.deltaTime);
 			_ClimbSpeed -= ClimbDecayMultiplier / ClimbSpeed;
-			if (_ClimbSpeed <= 0 || Player.LookingAtGameObject.tag != "Climb")
+			if (_ClimbSpeed <= 0 || Player.LookingAtGameObject.tag != "Climb" || Player.LookingAtDistance == Mathf.Infinity)
 			{
 				_Climbing = false;
 				_CanClimb = false;

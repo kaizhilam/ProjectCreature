@@ -63,7 +63,11 @@ public class Player : MonoBehaviour
 			LookingAtGameObject = hit.collider.gameObject;
 			//Debug.Log(hit.collider.gameObject.name);
 		}
-    }
+		else
+		{
+			LookingAtDistance = Mathf.Infinity;
+		}
+	}
 
     private void OnCollisionEnter(Collision collision)
     {
