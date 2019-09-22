@@ -50,7 +50,7 @@ public class AbilityWallClimb : Ability
 			PlayerMovement.EnableGravity = false;
 			_Controller.Move(Vector3.up * _ClimbSpeed * Time.deltaTime);
 			_ClimbSpeed -= ClimbDecayMultiplier / ClimbSpeed;
-			if (_ClimbSpeed <= 0 || Player.LookingAtGameObject.tag != "Climb")
+			if (_ClimbSpeed <= 0 || Player.LookingAtGameObject.tag != "Climb" || Player.LookingAtDistance == Mathf.Infinity)
 			{
                 GetComponent<PlayerSoundManager>().StopSoundIf(PlayerSoundManager.SoundTypes.climb);
                 _Climbing = false;
