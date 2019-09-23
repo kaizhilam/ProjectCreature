@@ -38,6 +38,8 @@ public class Underwater : MonoBehaviour
              }
              else if (_Camera.position.y < transform.position.y)
              {
+				//Possibly still a bug here, for now, it seems to be working
+				//Debug.Log("Bug2 here");
                 UnderwaterManager.isUnderwater = true;
                  //SetUnderwater();
              }     
@@ -58,7 +60,9 @@ public class Underwater : MonoBehaviour
         }
         else if (_Camera.position.y < transform.position.y)
         {
-            UnderwaterManager.isUnderwater = true;
+			//Definitely a bug here, should be fixed
+			//Debug.Log("Bug here");
+            //UnderwaterManager.isUnderwater = true;
             //SetUnderwater();
         }
         

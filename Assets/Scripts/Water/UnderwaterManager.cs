@@ -51,7 +51,7 @@ public class UnderwaterManager : MonoBehaviour
     {
         if (isUnderwater)
         {
-            //Debug.Log("SetUnderwater Works");
+            Debug.Log("SetUnderwater Works");
             RenderSettings.fog = true;
             RenderSettings.fogColor = new Color(0.22f, 0.65f, 0.77f, 0.5f);
             RenderSettings.fogDensity = 0.1f;
@@ -60,7 +60,7 @@ public class UnderwaterManager : MonoBehaviour
 
     private void SetAbovewater()
     {
-        //Debug.Log("SetNormal Works");
+        Debug.Log("SetNormal Works");
         RenderSettings.fog = false;
         RenderSettings.fogColor = new Color(0.5f, 0.5f, 0.5f, 1f);
         RenderSettings.fogDensity = 0.01f;
