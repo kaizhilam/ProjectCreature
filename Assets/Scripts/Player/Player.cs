@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
         {
             Enemy script = collision.gameObject.GetComponent<Enemy>();
             TakeDamage(script.Damage);
+            script.PlayAtkSound();
             //updating health bar in UI. make sure health can never be negative
 
             //print(FindObjectOfType<Hp>().gameObject.name);

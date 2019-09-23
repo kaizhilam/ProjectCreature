@@ -87,15 +87,15 @@ GameObject:
   m_Component:
   - component: {fileID: 6422803852990098858}
   - component: {fileID: 1670049443324790448}
+  - component: {fileID: 5260540306608722380}
   - component: {fileID: 8336548209309457359}
   - component: {fileID: 1472457491529423581}
   - component: {fileID: 701620158815581857}
   - component: {fileID: 6474102493232932931}
   - component: {fileID: 5896420472046622131}
-  - component: {fileID: 5260540306608722380}
   m_Layer: 0
   m_Name: spiderHolder
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,8 +127,21 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 1.15
+  m_Radius: 1.52
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &5260540306608722380
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3851276489742447667}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.02, y: 2.65, z: 3.32}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!82 &8336548209309457359
 AudioSource:
   m_ObjectHideFlags: 0
@@ -240,7 +253,10 @@ MonoBehaviour:
   _rb: {fileID: 701620158815581857}
   FlashingTime: 0.6
   TimeInterval: 0.1
-  ItemsToDrop: []
+  spiderWalkSound: {fileID: 8300000, guid: 8d76741b810b27747a915451a4d21030, type: 3}
+  spiderAtkSound: {fileID: 8300000, guid: f0d71c55f9a966f4a97af469b73af754, type: 3}
+  ItemsToDrop:
+  - {fileID: 497740728722114154, guid: 985c6b4fb11b94445bbe829b919a90d8, type: 3}
 --- !u!54 &701620158815581857
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -255,7 +271,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 94
   m_CollisionDetection: 0
 --- !u!114 &6474102493232932931
 MonoBehaviour:
@@ -291,19 +307,6 @@ NavMeshAgent:
   m_BaseOffset: 0.51
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &5260540306608722380
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3851276489742447667}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7383518531633784732
 GameObject:
   m_ObjectHideFlags: 0

@@ -245,6 +245,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3df3eb0808ad27447a292f7a263989f4, type: 3}
   - {fileID: 8300000, guid: f230ff93a9ad38f408cb13b5dcd3226f, type: 3}
   - {fileID: 8300000, guid: 74a1b7d31f77c5749a1d760f0508ad26, type: 3}
+  dashSounds:
+  - {fileID: 8300000, guid: 3a79e4b42342ce54d91ae8dc62067cdf, type: 3}
+  - {fileID: 8300000, guid: 0dc99b3b43a071c40a82c02707c11d67, type: 3}
+  - {fileID: 8300000, guid: a0df12f9616d3b345bb65e4165b5b07d, type: 3}
+  climbSounds:
+  - {fileID: 8300000, guid: e5ab1e060475fc743affebf35ca78d04, type: 3}
 --- !u!65 &3941042754428619202
 BoxCollider:
   m_ObjectHideFlags: 0

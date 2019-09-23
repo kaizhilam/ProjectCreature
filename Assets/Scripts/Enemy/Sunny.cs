@@ -21,12 +21,10 @@ public class Sunny : ForestEnemy
     // Update is called once per frame
     void Start()
     {
-        DropTable = new DropTable(); 
+        DropTable = new DropTable();
         DropTable.loot = new List<LootDrop> //set loots in enemy
         {
-            new LootDrop("BasicKnife",25), //25% chance to get a knife
-            new LootDrop("armbow",25), //50% chance to get an arrow
-            new LootDrop("Cube",25) //75% chance to get its head
+            new LootDrop(ItemsToDrop[0].name,100)
         };
     }
 

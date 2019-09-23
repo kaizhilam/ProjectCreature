@@ -5,7 +5,8 @@ using System;
 
 public class Spider : ForestEnemy
 {
-
+    public AudioClip spiderWalkSound;
+    public AudioClip spiderAtkSound;
     private AudioSource src;
     public GameObject[] ItemsToDrop;
     public DropTable DropTable { get; set; }
@@ -25,6 +26,11 @@ public class Spider : ForestEnemy
         InitializeStateMachine();
     }
 
+    public override void PlayAtkSound()
+    {
+        SoundManager.instance.PlaySfxAtSource(spiderAtkSound, src);
+    }
+
     private void InitializeStateMachine()
     {
         var states = new Dictionary<Type, EnemyAIState>()
@@ -42,15 +48,27 @@ public class Spider : ForestEnemy
         DropTable = new DropTable();
         DropTable.loot = new List<LootDrop> //set loots in enemy
         {
-            new LootDrop("BasicKnife",25), //25% chance to get a knife
-            new LootDrop("armbow",25), //50% chance to get an arrow
-            new LootDrop("Tent",25) //75% chance to get its head
+            new LootDrop(ItemsToDrop[0].name,100)
         };
 
         src = GetComponent<AudioSource>();
 
+    
+        StartCoroutine(IdleSound());
+
     }
-    private void OnCollisionEnter(Collision collision)
+
+    IEnumerator IdleSound()
+    {
+    while (true)
+    {
+        //print("idle sounds");
+        SoundManager.instance.PlaySfxAtSource(spiderWalkSound, src);
+        yield return new WaitForSeconds(UnityEngine.Random.Range(5, 8));
+    }
+
+}
+private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Projectile"))
         {

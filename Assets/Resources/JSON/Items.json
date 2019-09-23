@@ -1,42 +1,34 @@
 [
   {
-    "objectSlug": "sword",
-    "itemName": "Sword",
-    "description": "A long, sharp blade.",
-    "itemType": "Weapon",
-    "actionName": "Equip",
-    "itemModifier": 0
-  },
-  {
-    "objectSlug": "BasicKnife",
-    "itemName": "Knife",
-    "description": "A Knife made by Valyrian steel.",
-    "itemType": "Weapon",
-    "actionName": "Equip",
-    "itemModifier": 0
-  },
-  {
-    "objectSlug": "armbow",
-    "itemName": "armbow",
-    "description": "Do I need to spell it out for you?",
-    "itemType": "Weapon",
-    "actionName": "Equip",
-    "itemModifier": 0
-  },
-  {
-    "objectSlug": "Tent",
-    "itemName": "Head of a dinosaur",
-    "description": "Survival of the fittest",
+    "objectSlug": "CrystalDoubleJump",
+    "itemName": "CrystalDoubleJump",
+    "description": "Gives player ability to double jump",
     "itemType": "Consumable",
-    "actionName": "Eat",
+    "actionName": "Use",
     "itemModifier": 0
   },
   {
-    "objectSlug": "Sunny's head",
-    "itemName": "Head of poor sunny",
-    "description": "Not sunny anymore",
+    "objectSlug": "CrystalDash",
+    "itemName": "CrystalDash",
+    "description": "Gives player ability to dash",
     "itemType": "Consumable",
-    "actionName": "Eat",
+    "actionName": "Use",
+    "itemModifier": 0
+  },
+  {
+    "objectSlug": "CrystalGrapple",
+    "itemName": "CrystalGrapple",
+    "description": "Gives player ability to grapple",
+    "itemType": "Consumable",
+    "actionName": "Use",
+    "itemModifier": 0
+  },
+  {
+    "objectSlug": "CrystalWallClimb",
+    "itemName": "CrystalWallClimb",
+    "description": "Gives player ability to wall climb",
+    "itemType": "Consumable",
+    "actionName": "Use",
     "itemModifier": 0
   }
 ]

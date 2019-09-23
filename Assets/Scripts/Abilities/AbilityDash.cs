@@ -27,6 +27,9 @@ public class AbilityDash : Ability
         {
             if (Input.GetKeyDown(KeyCode.Q)) //Q button
             {
+                GetComponent<PlayerSoundManager>().StopSounds();
+                GetComponent<PlayerSoundManager>().
+                    SetSoundOfName(PlayerSoundManager.SoundTypes.dash);
                 currentDashTime = 0;
             }
             if (currentDashTime < maxDashTime)

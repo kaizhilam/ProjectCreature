@@ -34,7 +34,6 @@ public class SlottedItem : MonoBehaviour
 
     private void Start()
     {
-        print(objName);
         player = GameObject.Find("Player").gameObject; //Caching
         count = 1;
         daggerHitbox = GameObject.Find("Player").GetComponent<BoxCollider>();
