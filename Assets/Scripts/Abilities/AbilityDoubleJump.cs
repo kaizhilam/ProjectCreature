@@ -39,9 +39,27 @@ public class AbilityDoubleJump : Ability
             DJ = false;
         }
     }
+    bool Grapplecheck()
+    {
+        try
+        {
+            GetComponent<AbilityGrapple>().Getgrapple();
+        }
+        catch
+        {
+            return false;
+        }
+
+        if (GetComponent<AbilityGrapple>().Getgrapple())
+            {
+                return true;
+            }
+        else
+            return false;
+    }
     void DJump()
     {
-        if (_Controller.isGrounded == false && currentjump < MAX_DJUMP && !GetComponent<AbilityGrapple>().Getgrapple())//only trigger when player not on ground
+        if (_Controller.isGrounded == false && currentjump < MAX_DJUMP && !Grapplecheck())//only trigger when player not on ground
         {
             GetComponent<PlayerSoundManager>().StopSounds();
             GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.jump);
