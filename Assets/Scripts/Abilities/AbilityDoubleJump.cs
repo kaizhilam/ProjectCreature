@@ -41,7 +41,7 @@ public class AbilityDoubleJump : Ability
     }
     void DJump()
     {
-        if (_Controller.isGrounded == false && currentjump < MAX_DJUMP)//only trigger when player not on ground
+        if (_Controller.isGrounded == false && currentjump < MAX_DJUMP && !GetComponent<AbilityGrapple>().Getgrapple())//only trigger when player not on ground
         {
             GetComponent<PlayerSoundManager>().StopSounds();
             GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.jump);
