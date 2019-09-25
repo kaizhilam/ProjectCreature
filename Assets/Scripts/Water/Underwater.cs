@@ -60,6 +60,7 @@ public class Underwater : MonoBehaviour
         {
             UnderwaterManager.isUnderwater = true;
             //SetUnderwater();
+            
         }
         
     }

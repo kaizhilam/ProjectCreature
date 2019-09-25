@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
     public event InputDelegate RightClick;
     public event InputDelegate BKey;
     public event InputDelegate EKey;
+   
     //public event InputDelegate ShiftKey; soon
     private Vector3 _Input, _InputRaw;
 
@@ -73,10 +74,18 @@ public class InputManager : MonoBehaviour
             {
                 EKey?.Invoke();
             }
+            /*
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Space?.Invoke();
             }
+            */
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                Space?.Invoke();
+            }
+
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
                 CTRLKey?.Invoke();

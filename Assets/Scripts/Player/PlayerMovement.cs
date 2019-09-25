@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         {
             FallDamage();
         }
-
+        //UnderWaterSwimming();
     }
 
     private void FallDamage()
@@ -74,8 +74,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (EnableGravity == true)
         {
+            float rate = 1.0f;
+            if (UnderwaterManager.isUnderwater == true)
+            {
+                rate = 0.3f;
+            }
             _JumpAmount.y += Gravity.y * Time.deltaTime;
-            _Controller.Move(_JumpAmount * Time.deltaTime);
+            _Controller.Move(_JumpAmount * Time.deltaTime * rate);
         }
         if (EnableGravity == false)
         {
@@ -113,6 +118,16 @@ public class PlayerMovement : MonoBehaviour
 			movement = ((cameraForward * _Input.y) + (cameraRight * _Input.x)).normalized * Speed * delta;//HORIZONTAL + VERTICAL MOVEMENT
 
             _Controller.Move(new Vector3(movement.x, 0, movement.z));
+
+            /*
+            if (Input.GetKey(KeyCode.V))
+            {
+                if (UnderwaterManager.isUnderwater == true)
+                {
+                    _Controller.Move(new Vector3(movement.x, 1, movement.z));
+                }
+            }
+            */
         }
 
 		//DEBUG
@@ -126,9 +141,30 @@ public class PlayerMovement : MonoBehaviour
 		AnimatorClipInfo info = AnimationManager.instance.clipInfo;
         GetComponent<PlayerSoundManager>().StopSounds();
         GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.jump);
-        if (_Controller.isGrounded == true && info.clip.name != "Dodge_Dive_anim")
+        if (UnderwaterManager.isUnderwater == false)
         {
-            _JumpAmount.y = JumpHeight;
+            if (_Controller.isGrounded == true && info.clip.name != "Dodge_Dive_anim")
+            {
+                _JumpAmount.y = JumpHeight;
+            }
+        }
+        else
+        {
+            if (info.clip.name != "Dodge_Dive_anim")
+            {
+                _JumpAmount.y = JumpHeight;
+            }
+        }
+    }
+
+    private void UnderWaterSwimming()
+    {
+        if (Input.GetKey(KeyCode.V))
+        {
+            if (UnderwaterManager.isUnderwater == true)
+            {
+                _Controller.Move(new Vector3(0, 1, 0));
+            }
         }
     }
 }
