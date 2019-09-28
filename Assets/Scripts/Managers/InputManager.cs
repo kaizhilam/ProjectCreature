@@ -79,7 +79,7 @@ public class InputManager : MonoBehaviour
                 Space?.Invoke();
             }
             */
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 Space?.Invoke();
             }

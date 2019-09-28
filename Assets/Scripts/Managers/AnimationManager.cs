@@ -54,7 +54,7 @@ public class AnimationManager : MonoBehaviour
         if (!IsAnimationRunning("Dodge_Dive_anim"))
         {
             //we don't want to play jump animation if its already playing
-            if (controller.isGrounded)
+            if (controller.isGrounded && !UnderwaterManager.isUnderwater)
             {
                 instance.ResetAnimationsExcept("run","dodge", "wielding");
                 anim.SetTrigger(jump);
