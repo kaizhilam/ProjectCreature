@@ -73,7 +73,13 @@ public class InputManager : MonoBehaviour
             {
                 EKey?.Invoke();
             }
+            /*
             if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Space?.Invoke();
+            }
+            */
+            if (Input.GetKey(KeyCode.Space))
             {
                 Space?.Invoke();
             }

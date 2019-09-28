@@ -81,7 +81,7 @@ public class AnimationManager : MonoBehaviour
 
     void SetDodgeAnim()
     {
-        if (!IsAnimationRunning("Jumping_Anim"))
+        if (!IsAnimationRunning("Jumping_Anim") && IsAnimationRunning("Fast_Run_Anim"))
         {
             //we dont want to reset wielding to false if the player is still holding a weapon
             instance.ResetAnimationsExcept("dodge", "run", "wielding");
