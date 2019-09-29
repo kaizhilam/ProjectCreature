@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         InputManager.instance.Space += Jump;
+        //InputManager.instance.Space += JumpOrSwimming;
         InputManager.instance.Movement += Movement;
 		_Controller = GetComponent<CharacterController>();
         _Camera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -40,6 +41,11 @@ public class PlayerMovement : MonoBehaviour
 	private void Update()
 	{
         RunGravity();
+        if (UnderwaterManager.isUnderwater == true)
+        {
+            Swimming();
+        }
+        
         if (isApplyingFallDamage)
         {
             FallDamage();
@@ -89,7 +95,18 @@ public class PlayerMovement : MonoBehaviour
 				_Falling = false;
 			}
 			_JumpAmount.y += Gravity.y * Time.deltaTime;
-            _Controller.Move(_JumpAmount * Time.deltaTime);
+
+            //Gravity in ground or underwater
+            if (UnderwaterManager.isUnderwater == false)
+            {
+                _Controller.Move(_JumpAmount * Time.deltaTime);
+            }
+            else
+            {
+                float gravityRateInWater = 0.3f;
+                _Controller.Move(_JumpAmount * Time.deltaTime * gravityRateInWater);
+            }
+            
 			if (_Jumping == true && _Controller.isGrounded == true)
 			{
 				_Jumping = false;
@@ -141,13 +158,41 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Jump()
     {
-		AnimatorClipInfo info = AnimationManager.instance.clipInfo;
-        GetComponent<PlayerSoundManager>().StopSounds();
-        GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.jump);
-        if (_Controller.isGrounded == true && info.clip.name != "Dodge_Dive_anim")
+        if (!UnderwaterManager.isUnderwater)
         {
-			_Jumping = true;
-            _JumpAmount.y = JumpHeight;
+            AnimatorClipInfo info = AnimationManager.instance.clipInfo;
+            GetComponent<PlayerSoundManager>().StopSounds();
+            GetComponent<PlayerSoundManager>().SetSoundOfName(PlayerSoundManager.SoundTypes.jump);
+            if (_Controller.isGrounded == true && info.clip.name != "Dodge_Dive_anim")
+            {
+                _Jumping = true;
+                _JumpAmount.y = JumpHeight;
+            }
+        }		
+    }
+
+    private void Swimming()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            AnimatorClipInfo info = AnimationManager.instance.clipInfo;
+            if (info.clip.name != "Dodge_Dive_anim")
+            {
+                _JumpAmount.y = JumpHeight;
+            }
+        }       
+    }
+
+    private void JumpOrSwimming()
+    {
+        if (UnderwaterManager.isUnderwater == false)
+        {
+            Jump();
+        }
+        else
+        {
+            Debug.Log("Should swim");
+            Swimming();
         }
     }
 }

@@ -54,7 +54,7 @@ public class AnimationManager : MonoBehaviour
         if (!IsAnimationRunning("Dodge_Dive_anim"))
         {
             //we don't want to play jump animation if its already playing
-            if (controller.isGrounded)
+            if (controller.isGrounded && !UnderwaterManager.isUnderwater)
             {
                 instance.ResetAnimationsExcept("run","dodge", "wielding");
                 anim.SetTrigger(jump);
@@ -81,7 +81,7 @@ public class AnimationManager : MonoBehaviour
 
     void SetDodgeAnim()
     {
-        if (!IsAnimationRunning("Jumping_Anim"))
+        if (!IsAnimationRunning("Jumping_Anim") && IsAnimationRunning("Fast_Run_Anim"))
         {
             //we dont want to reset wielding to false if the player is still holding a weapon
             instance.ResetAnimationsExcept("dodge", "run", "wielding");
