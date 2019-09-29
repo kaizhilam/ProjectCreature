@@ -18,7 +18,6 @@ public class AbilityGrapple : Ability
 	private PlayerMovement _PlayerMovement;
 	private bool _Grappling = false;
 	private Vector3 _OriginalGravity;
-
 	void Start()
     {
 		_Camera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -53,7 +52,17 @@ public class AbilityGrapple : Ability
 		}
 	}
 
-	private void Grapple()
+    public bool Getgrapple()
+    {
+        if (_Grappling)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    private void Grapple()
 	{
 		PlayerMovement.CanMove = false;
 		ThirdPersonCamera.CameraLock = true;
