@@ -5,10 +5,6 @@ using System.Threading;
 
 public class AbilityGrapple : Ability
 {
-	/*TODO:
-	 * 1. Add disable gravity to grapple upwards DONE
-	 * 2. During grapple, lock direction DONE
-	 * */
 	public float Speed = 10;
 	public float MaxGrappleDistance = 100;
 
@@ -45,7 +41,9 @@ public class AbilityGrapple : Ability
 
 	private void EnableGrapple()
 	{
-		if (ThirdPersonCamera.LookingAtDistance <= MaxGrappleDistance && !ThirdPersonCamera.isLookingAtSky && !_Grappling)
+        if (ThirdPersonCamera.LookingAtDistance <= MaxGrappleDistance &&
+            !ThirdPersonCamera.isLookingAtSky && !_Grappling && ThirdPersonCamera.LookingAtPoint.y > this.gameObject.transform.position.y+2 && 
+            ThirdPersonCamera.LookingAtGameObject.tag!="Ground")
 		{
             //play grapple sound here brad
 			_Grappling = true;
@@ -87,7 +85,7 @@ public class AbilityGrapple : Ability
 
 	private void OnControllerColliderHit(ControllerColliderHit hit)
 	{
-		if (_Grappling == true && _Controller.isGrounded == false)
+		if (_Grappling == true && !_Controller.isGrounded)
 		{
 			_Grappling = false;
 			PlayerMovement.CanMove = true;
