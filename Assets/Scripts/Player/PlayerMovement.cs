@@ -181,18 +181,5 @@ public class PlayerMovement : MonoBehaviour
                 _JumpAmount.y = JumpHeight;
             }
         }       
-    }
-
-    private void JumpOrSwimming()
-    {
-        if (UnderwaterManager.isUnderwater == false)
-        {
-            Jump();
-        }
-        else
-        {
-            Debug.Log("Should swim");
-            Swimming();
-        }
-    }
+    }    
 }
