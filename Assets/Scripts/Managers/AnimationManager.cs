@@ -102,14 +102,14 @@ public class AnimationManager : MonoBehaviour
 	
 	void OnGUI()
 	{
-		GUI.Label(new Rect(20, 20, 200, 20), "CTRL: Dodge");
-		GUI.Label(new Rect(20, 40, 200, 20), "WASD: Move");
-		GUI.Label(new Rect(20, 60, 200, 20), "Space: Jump");
-		GUI.Label(new Rect(20, 80, 200, 20), "MouseLB: Attack");
-        GUI.Label(new Rect(20, 100, 200, 20), "CTRL: Dodge");
-        GUI.Label(new Rect(20, 120, 200, 20), "B: Open/Close Inventory");
-        GUI.Label(new Rect(20, 140, 200, 20), "E: Pickup Item");
-        GUI.Label(new Rect(20, 160, 200, 20), "1,2,3: Switch hotbar index");
+		//GUI.Label(new Rect(20, 20, 200, 20), "CTRL: Dodge");
+		//GUI.Label(new Rect(20, 40, 200, 20), "WASD: Move");
+		//GUI.Label(new Rect(20, 60, 200, 20), "Space: Jump");
+		//GUI.Label(new Rect(20, 80, 200, 20), "MouseLB: Attack");
+  //      GUI.Label(new Rect(20, 100, 200, 20), "CTRL: Dodge");
+  //      GUI.Label(new Rect(20, 120, 200, 20), "B: Open/Close Inventory");
+  //      GUI.Label(new Rect(20, 140, 200, 20), "E: Pickup Item");
+  //      GUI.Label(new Rect(20, 160, 200, 20), "1,2,3: Switch hotbar index");
     }
 
     public void ResetAnimations()
