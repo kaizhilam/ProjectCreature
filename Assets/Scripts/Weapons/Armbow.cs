@@ -6,9 +6,9 @@ public class Armbow : Weapon
 {
     private void Awake()
     {
-        wieldPos = new Vector3(0.002801714f, 0, 0.005f);
-        wieldRotation = Quaternion.Euler(new Vector3(2.13f, -75.311f, 87.899f));
-        wieldScale = new Vector3(0.04f, 0.04f, 0.04f);
+        wieldPos = new Vector3(-0.005f,0.0251f,-0.006f);
+        wieldRotation = Quaternion.Euler(new Vector3(-4.8f, 181.9f, -55.4f));
+        wieldScale = new Vector3(0.03f, 0.03f, 0.03f);
         wieldBone = -1;
     }
     public override void Attack()
