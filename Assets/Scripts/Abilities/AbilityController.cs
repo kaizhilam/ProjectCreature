@@ -19,7 +19,7 @@ public class AbilityController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        textScript = GameObject.Find("HelpfulScript").GetComponent<HelpfulTextScript>();
+        textScript = GameObject.Find("HelpfulText").GetComponent<HelpfulTextScript>();
         _player = GameObject.Find("Player");
         DashImage.fillAmount = 0;
         DJumpImage.fillAmount = 0;
@@ -51,7 +51,7 @@ public class AbilityController : MonoBehaviour
             AbilityDoubleJump newComp = _player.AddComponent<AbilityDoubleJump>();
             playSound();
             newComp.wingPrefab = wingPrefab;
-            textScript.DisplayHelpfulMessage("Press Space twice to doublejump!");
+            textScript.DisplayHelpfulMessage("Press Space twice to double jump!");
 
         }
         else if (abilityCrystal.gameObject.CompareTag("WallClimb"))
