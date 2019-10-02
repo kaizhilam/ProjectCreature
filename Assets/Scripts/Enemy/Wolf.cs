@@ -55,7 +55,7 @@ public class Wolf : ForestEnemy
     {
         if (collision.gameObject.CompareTag("Projectile"))
         {
-            this.TakeDamage(collision.gameObject.GetComponent<Projectile>().damage);
+            this.TakeDamage(collision.gameObject.GetComponent<Projectile>().damage, true);
         }
     }
 

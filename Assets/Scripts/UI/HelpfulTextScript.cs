@@ -14,16 +14,19 @@ public class HelpfulTextScript : MonoBehaviour
 
     IEnumerator FadeInOutText(string msg)
     {
+        //cache text component
+        Text text = GetComponent<Text>();
         //fade in
+        text.CrossFadeAlpha(1.0f, 0.0f, true);
         print("running CROITINOINE");
-        GetComponent<Text>().text = msg;
-        GetComponent<Text>().CrossFadeAlpha(1.0f, 0.05f, true);
+        text.text = msg;
+        text.CrossFadeAlpha(1.0f, 0.05f, true);
         //wait
         yield return new WaitForSeconds(2.0f);
 
         //fade out
-        GetComponent<Text>().CrossFadeAlpha(1.0f, 0.05f, true);
-        GetComponent<Text>().text = "";
+        text.CrossFadeAlpha(1.0f, 0.05f, true);
+        text.text = "";
 
     }
 }

@@ -72,7 +72,7 @@ private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Projectile"))
         {
-            this.TakeDamage(collision.gameObject.GetComponent<Projectile>().damage);
+            this.TakeDamage(collision.gameObject.GetComponent<Projectile>().damage, true);
         }
     }
 

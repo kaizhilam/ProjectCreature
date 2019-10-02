@@ -96,7 +96,7 @@ public class AbilityDoubleJump : Ability
         //    wing1.transform.RotateAround(transform.TransformPoint(spine.transform.position), Vector3.left, -5.0f);
         //    yield return new WaitForEndOfFrame();
         //}
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.5f);
         Destroy(wing1);
         Destroy(wing2);
         

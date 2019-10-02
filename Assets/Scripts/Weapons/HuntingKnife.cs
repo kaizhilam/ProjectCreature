@@ -22,7 +22,7 @@ public class HuntingKnife : Weapon
         {
             if (colliders[i].gameObject.CompareTag("Enemy"))
             {
-                colliders[i].gameObject.GetComponent<Enemy>().TakeDamage(damage);
+                colliders[i].gameObject.GetComponent<Enemy>().TakeDamage(damage, true);
             }
         }
 
