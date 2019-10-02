@@ -59,23 +59,27 @@ public abstract class Enemy : MonoBehaviour
     }
 
 
-    public virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage, bool takenDamageFromPlayer)
     {
         print(damage + " " + health);
         print("hit");
         health -= damage;
         StartCoroutine(Flash(FlashingTime, TimeInterval));
-        CheckIfDead();
+        CheckIfDead(takenDamageFromPlayer);
     }
 
 
     public virtual void PlayAtkSound() {  }
 
-    public virtual void CheckIfDead()
+    public virtual void CheckIfDead(bool takenDamageFromPlayer)
     {
-        if (health <= 0)
+        if (health <= 0 && takenDamageFromPlayer)
         {
             ResolveDeletionDropItem();
+        }
+        else if (health <= 0)
+        {
+            ResolveDeletion();
         }
         else if (transform.position.y < -100)
         {
@@ -93,6 +97,6 @@ public abstract class Enemy : MonoBehaviour
 
     private void Update()
     {
-        CheckIfDead();
+        CheckIfDead(false);
     }
 }
