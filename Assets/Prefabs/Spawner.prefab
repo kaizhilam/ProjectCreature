@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnCap: 50
-  Range: 100
+  Range: 300
   forest:
   - {fileID: 511162704281060795, guid: 571bba6d8ee740f45b53adf197d6139c, type: 3}

@@ -13,12 +13,13 @@ public class AbilityController : MonoBehaviour
     public GameObject wingPrefab;
     public AudioSource pickupSoundAudioSrc;
     public AudioClip pickupSound;
+    private HelpfulTextScript textScript;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        textScript = GameObject.Find("HelpfulText").GetComponent<HelpfulTextScript>();
         _player = GameObject.Find("Player");
         DashImage.fillAmount = 0;
         DJumpImage.fillAmount = 0;
@@ -40,6 +41,7 @@ public class AbilityController : MonoBehaviour
             abilityCrystal.gameObject.SetActive(false);
             DashImage.fillAmount = 1;
             _player.AddComponent<AbilityDash>();
+            textScript.DisplayHelpfulMessage("Press Q to Dash!");
         }
         else if (abilityCrystal.gameObject.CompareTag("DoubleJump"))
         {
@@ -49,6 +51,8 @@ public class AbilityController : MonoBehaviour
             AbilityDoubleJump newComp = _player.AddComponent<AbilityDoubleJump>();
             playSound();
             newComp.wingPrefab = wingPrefab;
+            textScript.DisplayHelpfulMessage("Press Space twice to double jump!");
+
         }
         else if (abilityCrystal.gameObject.CompareTag("WallClimb"))
         {
@@ -56,6 +60,8 @@ public class AbilityController : MonoBehaviour
             abilityCrystal.gameObject.SetActive(false);
             ClimbImage.fillAmount = 1;
             _player.AddComponent<AbilityWallClimb>();
+            textScript.DisplayHelpfulMessage("Hold Space against a wall to climb it!");
+
         }
         else if (abilityCrystal.gameObject.CompareTag("Grapple"))
         {
@@ -63,6 +69,8 @@ public class AbilityController : MonoBehaviour
             abilityCrystal.gameObject.SetActive(false);
             GrappleImage.fillAmount = 1;
             _player.AddComponent<AbilityGrapple>();
+            textScript.DisplayHelpfulMessage("Right click to Grapple!");
+
         }
     }
 
