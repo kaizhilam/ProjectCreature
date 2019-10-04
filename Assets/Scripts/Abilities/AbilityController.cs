@@ -39,38 +39,50 @@ public class AbilityController : MonoBehaviour
         {
             playSound();
             abilityCrystal.gameObject.SetActive(false);
-            DashImage.fillAmount = 1;
-            _player.AddComponent<AbilityDash>();
-            textScript.DisplayHelpfulMessage("Press Q to Dash!");
+            if (!_player.GetComponent<AbilityDash>())
+            {
+                DashImage.fillAmount = 1;
+                _player.AddComponent<AbilityDash>();
+                textScript.DisplayHelpfulMessage("Press Q to Dash!");
+            }
+            
         }
         else if (abilityCrystal.gameObject.CompareTag("DoubleJump"))
         {
             playSound();
             abilityCrystal.gameObject.SetActive(false);
-            DJumpImage.fillAmount = 1;
-            AbilityDoubleJump newComp = _player.AddComponent<AbilityDoubleJump>();
-            playSound();
-            newComp.wingPrefab = wingPrefab;
-            textScript.DisplayHelpfulMessage("Press Space twice to double jump!");
+            if (!_player.GetComponent<AbilityDoubleJump>())
+            {
+                DJumpImage.fillAmount = 1;
+                AbilityDoubleJump newComp = _player.AddComponent<AbilityDoubleJump>();
+                playSound();
+                newComp.wingPrefab = wingPrefab;
+                textScript.DisplayHelpfulMessage("Press Space twice to double jump!");
+            }
 
         }
         else if (abilityCrystal.gameObject.CompareTag("WallClimb"))
         {
             playSound();
             abilityCrystal.gameObject.SetActive(false);
-            ClimbImage.fillAmount = 1;
-            _player.AddComponent<AbilityWallClimb>();
-            textScript.DisplayHelpfulMessage("Hold Space against a wall to climb it!");
+            if (!_player.GetComponent<AbilityWallClimb>())
+            {
+                ClimbImage.fillAmount = 1;
+                _player.AddComponent<AbilityWallClimb>();
+                textScript.DisplayHelpfulMessage("Hold Space against a wall to climb it!");
+            }
 
         }
         else if (abilityCrystal.gameObject.CompareTag("Grapple"))
         {
             playSound();
             abilityCrystal.gameObject.SetActive(false);
-            GrappleImage.fillAmount = 1;
-            _player.AddComponent<AbilityGrapple>();
-            textScript.DisplayHelpfulMessage("Right click to Grapple!");
-
+            if (!_player.GetComponent<AbilityGrapple>())
+            {
+                GrappleImage.fillAmount = 1;
+                _player.AddComponent<AbilityGrapple>();
+                textScript.DisplayHelpfulMessage("Right click to Grapple!");
+            }
         }
     }
 
